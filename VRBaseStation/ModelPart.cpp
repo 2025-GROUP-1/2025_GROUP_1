@@ -22,6 +22,13 @@ ModelPart::ModelPart(const QList<QVariant>& data, ModelPart* parent)
     // Default scale to avoid the "White Screen of Death"
     actor->SetScale(0.001, 0.001, 0.001);
 
+    // Initialize the variables you already have VR Clone
+    vrMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+    vrActor = vtkSmartPointer<vtkActor>::New();
+    vrActor->SetMapper(vrMapper);
+
+    // Default scale to avoid the "White Screen of Death"
+    vrActor->SetScale(0.001, 0.001, 0.001);
 }
 
 ModelPart::~ModelPart() {
@@ -76,21 +83,24 @@ int ModelPart::row() const {
 }
 
 void ModelPart::loadSTL(QString fileName) {
-    vtkNew<vtkSTLReader> reader;
-    reader->SetFileName(fileName.toStdString().c_str());
-    reader->Update();
+    file = vtkSmartPointer<vtkSTLReader>::New();
+    file->SetFileName(fileName.toStdString().c_str());
+    file->Update();
 
-    // DO NOT put 'mapper = ...::New()' here. 
-    // Just plug the data into the existing mapper!
-    if (mapper) {
-        mapper->SetInputConnection(reader->GetOutputPort());
-    }
+    // Plug data into the 2D UI
+    if (mapper) mapper->SetInputConnection(file->GetOutputPort());
 
-    // Set Properties on the existing actor
+    // Plug data into the VR Thread
+    if (vrMapper) vrMapper->SetInputConnection(file->GetOutputPort());
+
+    // Update colors and visibility for both
     if (actor) {
         actor->GetProperty()->SetColor(red / 255.0, green / 255.0, blue / 255.0);
         actor->SetVisibility(isVisible ? 1 : 0);
-        actor->SetScale(0.001, 0.001, 0.001); // Shrink to visible size
+    }
+    if (vrActor) {
+        vrActor->GetProperty()->SetColor(red / 255.0, green / 255.0, blue / 255.0);
+        vrActor->SetVisibility(isVisible ? 1 : 0);
     }
 }
 
@@ -132,8 +142,5 @@ int ModelPart::getID() const {
 }
 
 vtkActor* ModelPart::getVRActor() const {
-    if (actor) {
-        actor->SetScale(0.001, 0.001, 0.001);
-    }
-    return actor; // Stub: Required for the VR loop to link[cite: 424].
+    return vrActor; // Stub: Required for the VR loop to link[cite: 424].
 }

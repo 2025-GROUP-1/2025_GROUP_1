@@ -44,6 +44,8 @@ private:
     vtkSmartPointer<vtkSTLReader>      file;
     vtkSmartPointer<vtkPolyDataMapper> mapper;
     vtkSmartPointer<vtkActor>          actor;
+    vtkSmartPointer<vtkPolyDataMapper> vrMapper;
+    vtkSmartPointer<vtkActor>          vrActor;
     int  red;
     int  green;
     int  blue;

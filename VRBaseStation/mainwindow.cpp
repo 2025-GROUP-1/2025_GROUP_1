@@ -103,32 +103,38 @@ void MainWindow::updateRenderFromTree(const QModelIndex& index) {
 void MainWindow::on_pushStartVR_clicked() {
     m_vrThread = new VRRenderThread(this);
     m_vrThread->setPartList(m_partList);
-    // Safety check
+
     if (!m_partList) {
         emit statusUpdateMessage(tr("Error: No part list loaded."), 2000);
         return;
     }
 
-    // Check if running
     if (m_vrThread && m_vrThread->isRunning()) {
         emit statusUpdateMessage(tr("VR is already running."), 2000);
         return;
     }
 
-    for (ModelPart* p : m_partList->allParts()) {
-        m_vrThread->addActorOffline(p->getVRActor(), p->getID());
-    }
+    // --- NEW TREE WALKER CODE ---
+    // Create a list to help us crawl the tree, starting at the root
+    QList<ModelPart*> itemsToProcess;
+    itemsToProcess.append(m_partList->getRootItem());
 
-    // TEST SPHERE: Place it at eye level 1 meter in front
-    vtkNew<vtkSphereSource> sphere;
-    sphere->SetRadius(0.5); // Make it big (50cm)
-    vtkNew<vtkPolyDataMapper> m;
-    m->SetInputConnection(sphere->GetOutputPort());
-    vtkNew<vtkActor> a;
-    a->SetMapper(m);
-    a->SetPosition(0, 1.2, -1.0); // 1.2m high, 1m in front of you
-    a->GetProperty()->SetColor(1.0, 0.0, 0.0); // Make it bright RED
-    m_vrThread->addActorOffline(a, 999);
+    // Keep looping until we have checked every single item
+    while (!itemsToProcess.isEmpty()) {
+        // Grab the next item in the line
+        ModelPart* currentPart = itemsToProcess.takeFirst();
+
+        // 1. Add it to VR! (We skip the root item itself because it's just the "Part/Visible" header)
+        if (currentPart != m_partList->getRootItem() && currentPart->getVRActor() != nullptr) {
+            m_vrThread->addActorOffline(currentPart->getVRActor(), currentPart->getID());
+        }
+
+        // 2. Add all of this item's children to the end of the line to be processed
+        for (int i = 0; i < currentPart->childCount(); i++) {
+            itemsToProcess.append(currentPart->child(i));
+        }
+    }
+    // ----------------------------
 
     m_vrThread->start();
 }

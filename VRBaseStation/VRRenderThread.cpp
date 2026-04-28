@@ -13,6 +13,10 @@
 #include "ModelPartList.h"
 #include "ModelPart.h"
 #include <vtkCamera.h>
+#include <vtkJPEGReader.h>
+#include <vtkTexture.h>
+#include <vtkSkybox.h>
+
 
 VRRenderThread::VRRenderThread(QObject* parent)
     : QThread(parent) {
@@ -63,10 +67,31 @@ void VRRenderThread::run() {
 
     // 4. Setup the camera so you aren't blind
     m_renderer->ResetCamera();
-    vtkCamera* cam = m_renderer->GetActiveCamera();
-    cam->SetPosition(0, 1.2, 1.0);
-    cam->SetFocalPoint(0, 1.2, 0);
 
+    m_renderer->ResetCameraClippingRange();
+
+    // --- 360 ROOM BACKGROUND (SKYBOX) ---
+    vtkNew<vtkJPEGReader> bgReader;
+    bgReader->SetFileName("C:\\Users\\eeysm11\\Downloads\\2025_GROUP_1-feature-sk-vr-thread-header\\VRBaseStation\\room.jpg"); // Make sure this matches your file name!
+    bgReader->Update();
+
+    vtkNew<vtkTexture> bgTexture;
+    bgTexture->SetInputConnection(bgReader->GetOutputPort());
+    //bgTexture->MipmapOn();
+    bgTexture->InterpolateOn();
+
+    vtkNew<vtkSkybox> skybox;
+    skybox->SetTexture(bgTexture);
+    // This tells VTK the image is a flat 360 map that needs to be wrapped
+    skybox->SetProjectionToSphere();
+
+    m_renderer->AddActor(skybox);
+    /*
+    // Optional: This makes your STL model reflect the lighting of the room!
+    m_renderer->UseImageBasedLightingOn();
+    m_renderer->SetEnvironmentTexture(bgTexture);
+    // ------------------------------------
+    */
     m_renderWindow->Initialize();
 
     // 4. Main VR loop.
