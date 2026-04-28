@@ -11,151 +11,144 @@
 #include <vtkNew.h>
 #include <vtkProperty.h>
 #include <vtkCamera.h>
+#include <vtkSphereSource.h>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // 1. Initialize the main list and give it to the UI
     m_partList = new ModelPartList("Main List", this);
     ui->treeView->setModel(m_partList);
 
     QModelIndex rootIndex;
     m_partList->appendChild(rootIndex, { "Test Part", "Yes" });
 
+    // 2. Setup VTK rendering
     renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
     ui->vtkWidget->setRenderWindow(renderWindow);
 
     renderer = vtkSmartPointer<vtkRenderer>::New();
     renderWindow->AddRenderer(renderer);
-
     renderWindow->Render();
 
-    connect(ui->pushButton_2, &QPushButton::released,
-        this, &MainWindow::handleButton2);
-    connect(this, &MainWindow::statusUpdateMessage,
-        ui->statusbar, &QStatusBar::showMessage);
-    connect(ui->treeView, &QTreeView::clicked,
-        this, &MainWindow::handleTreeClicked);
-
+    // 3. Connect signals
+    connect(ui->pushButton_2, &QPushButton::released, this, &MainWindow::handleButton2);
+    connect(this, &MainWindow::statusUpdateMessage, ui->statusbar, &QStatusBar::showMessage);
+    connect(ui->treeView, &QTreeView::clicked, this, &MainWindow::handleTreeClicked);
     ui->treeView->addAction(ui->actionItem_Options);
-    this->partList = new ModelPartList("PartsList");
-    ui->treeView->setModel(this->partList);
 
-    
-    ModelPart* rootItem = this->partList->getRootItem();
+    // 4. Populate dummy data for testing
+    ModelPart* rootItem = m_partList->getRootItem();
 
     for (int i = 0; i < 3; i++) {
         QString name = QString("TopLevel %1").arg(i);
         QString visible = QString("true");
-        ModelPart* childItem = new ModelPart(
-            QList<QVariant>({ name, visible }));
+        ModelPart* childItem = new ModelPart(QList<QVariant>({ name, visible }));
         rootItem->appendChild(childItem);
 
         for (int j = 0; j < 5; j++) {
-            QString name = QString("Item %1,%2").arg(i).arg(j);
-            QString visible = QString("true");
-            ModelPart* childChildItem = new ModelPart(
-                QList<QVariant>({ name, visible }));
+            QString childName = QString("Item %1,%2").arg(i).arg(j);
+            ModelPart* childChildItem = new ModelPart(QList<QVariant>({ childName, visible }));
             childItem->appendChild(childChildItem);
         }
     }
+
     m_vrThread = nullptr;
 }
 
 MainWindow::~MainWindow() {
     if (m_vrThread && m_vrThread->isRunning()) {
         m_vrThread->issueCommand(Command::EndRender, 0, QVariant());
-            m_vrThread->wait();
-            delete m_vrThread;
+        m_vrThread->wait();
+        delete m_vrThread;
     }
     delete ui;
 }
 
-void MainWindow::updateRender()
-{
+void MainWindow::updateRender() {
     renderer->RemoveAllViewProps();
 
-    int topLevelCount = partList->rowCount(QModelIndex());
+    int topLevelCount = m_partList->rowCount(QModelIndex());
     for (int i = 0; i < topLevelCount; i++) {
-        updateRenderFromTree(partList->index(i, 0, QModelIndex()));
+        updateRenderFromTree(m_partList->index(i, 0, QModelIndex()));
     }
 
     renderWindow->Render();
 }
 
-void MainWindow::updateRenderFromTree(const QModelIndex& index)
-{
+void MainWindow::updateRenderFromTree(const QModelIndex& index) {
     if (index.isValid()) {
-        ModelPart* part = static_cast<ModelPart*>(
-            index.internalPointer());
+        ModelPart* part = static_cast<ModelPart*>(index.internalPointer());
         vtkSmartPointer<vtkActor> actor = part->getActor();
         if (actor != nullptr) {
             renderer->AddActor(actor);
         }
     }
 
-    if (!partList->hasChildren(index) ||
-        (index.flags() & Qt::ItemNeverHasChildren)) {
+    if (!m_partList->hasChildren(index) || (index.flags() & Qt::ItemNeverHasChildren)) {
         return;
     }
 
-    int rows = partList->rowCount(index);
+    int rows = m_partList->rowCount(index);
     for (int i = 0; i < rows; i++) {
-        updateRenderFromTree(partList->index(i, 0, index));
+        updateRenderFromTree(m_partList->index(i, 0, index));
     }
 }
 
 void MainWindow::on_pushStartVR_clicked() {
-    // Safety check: Don't crash if the list hasn't been created!
+    // Safety check
     if (!m_partList) {
         emit statusUpdateMessage(tr("Error: No part list loaded."), 2000);
         return;
     }
-    // 1. Safety check to see if VR is already running [cite: 417-419]
+
+    // Check if running
     if (m_vrThread && m_vrThread->isRunning()) {
         emit statusUpdateMessage(tr("VR is already running."), 2000);
-            return;
+        return;
     }
 
-    // 2. Setup the thread and link it to your parts list [cite: 420-421]
     m_vrThread = new VRRenderThread(this);
-        m_vrThread->setPartList(m_partList);
+    m_vrThread->setPartList(m_partList);
 
-        // 3. Hand every current part's VR actor to the thread before it starts [cite: 422-424]
-        for(ModelPart * p : m_partList->allParts()) {
-            m_vrThread->addActorOffline(p->getVRActor(), p->getID()); // Added p->getID() 
-        }
+    for (ModelPart* p : m_partList->allParts()) {
+        m_vrThread->addActorOffline(p->getVRActor(), p->getID());
+    }
 
-    // 4. Start the background loop [cite: 425]
+    // TEST SPHERE: Place it at eye level 1 meter in front
+    vtkNew<vtkSphereSource> sphere;
+    vtkNew<vtkPolyDataMapper> m;
+    m->SetInputConnection(sphere->GetOutputPort());
+    vtkNew<vtkActor> a;
+    a->SetMapper(m);
+    a->SetPosition(0, 1.2, 0); // Directly in front of the new camera position
+    m_vrThread->addActorOffline(a, 999);
+
     m_vrThread->start();
 
-    // 5. Update UI states [cite: 428-430]
     ui->pushStartVR->setEnabled(false);
-        ui->pushStopVR->setEnabled(true);
-        emit statusUpdateMessage(tr("VR started."), 2000);
+    ui->pushStopVR->setEnabled(true);
+    emit statusUpdateMessage(tr("VR started."), 2000);
 }
 
 void MainWindow::on_pushStopVR_clicked() {
-    // 1. Only run if the thread actually exists and is active [cite: 434]
     if (!m_vrThread || !m_vrThread->isRunning()) return;
 
-    // 2. Issue the EndRender command and wait for completion [cite: 435-436]
     m_vrThread->issueCommand(Command::EndRender, 0, QVariant());
-        m_vrThread->wait();
+    m_vrThread->wait();
 
-        // 3. Clean up the memory [cite: 437-438]
-        delete m_vrThread;
-        m_vrThread = nullptr;
+    delete m_vrThread;
+    m_vrThread = nullptr;
 
-        // 4. Reset UI states [cite: 439-441]
-        ui->pushStartVR->setEnabled(true);
-        ui->pushStopVR->setEnabled(false);
-        emit statusUpdateMessage(tr("VR stopped."), 2000);
+    ui->pushStartVR->setEnabled(true);
+    ui->pushStopVR->setEnabled(false);
+    emit statusUpdateMessage(tr("VR stopped."), 2000);
 }
 
-void MainWindow::handleButton2()
-{
+void MainWindow::handleButton2() {
     QModelIndex index = ui->treeView->currentIndex();
 
     if (!index.isValid()) {
@@ -163,8 +156,7 @@ void MainWindow::handleButton2()
         return;
     }
 
-    ModelPart* selectedPart = static_cast<ModelPart*>(
-        index.internalPointer());
+    ModelPart* selectedPart = static_cast<ModelPart*>(index.internalPointer());
     if (selectedPart == nullptr) return;
 
     OptionDialog dialog(this);
@@ -173,41 +165,33 @@ void MainWindow::handleButton2()
     if (dialog.exec() == QDialog::Accepted) {
         dialog.saveToModelPart(selectedPart);
 
-        emit partList->dataChanged(
-            partList->index(0, 0, QModelIndex()),
-            partList->index(
-                partList->rowCount(QModelIndex()) - 1,
-                1,
-                QModelIndex()));
+        emit m_partList->dataChanged(
+            m_partList->index(0, 0, QModelIndex()),
+            m_partList->index(m_partList->rowCount(QModelIndex()) - 1, 1, QModelIndex())
+        );
 
         updateRender();
         renderWindow->Render();
 
-        emit statusUpdateMessage(
-            QString("Item updated: ") +
-            selectedPart->data(0).toString(), 0);
+        emit statusUpdateMessage(QString("Item updated: ") + selectedPart->data(0).toString(), 0);
     }
     else {
         emit statusUpdateMessage(QString("Edit cancelled"), 0);
     }
 }
 
-void MainWindow::handleTreeClicked()
-{
+void MainWindow::handleTreeClicked() {
     QModelIndex index = ui->treeView->currentIndex();
     if (!index.isValid()) return;
 
-    ModelPart* selectedPart = static_cast<ModelPart*>(
-        index.internalPointer());
+    ModelPart* selectedPart = static_cast<ModelPart*>(index.internalPointer());
     if (selectedPart == nullptr) return;
 
     QString text = selectedPart->data(0).toString();
-    emit statusUpdateMessage(
-        QString("The selected item is: ") + text, 0);
+    emit statusUpdateMessage(QString("The selected item is: ") + text, 0);
 }
 
-void MainWindow::on_actionOpen_File_triggered()
-{
+void MainWindow::on_actionOpen_File_triggered() {
     QString fileName = QFileDialog::getOpenFileName(
         this,
         tr("Open STL File"),
@@ -220,13 +204,11 @@ void MainWindow::on_actionOpen_File_triggered()
     QModelIndex index = ui->treeView->currentIndex();
 
     if (!index.isValid()) {
-        emit statusUpdateMessage(
-            QString("Please select a tree item first"), 0);
+        emit statusUpdateMessage(QString("Please select a tree item first"), 0);
         return;
     }
 
-    ModelPart* selectedPart = static_cast<ModelPart*>(
-        index.internalPointer());
+    ModelPart* selectedPart = static_cast<ModelPart*>(index.internalPointer());
     if (selectedPart == nullptr) return;
 
     QFileInfo fileInfo(fileName);
@@ -235,12 +217,10 @@ void MainWindow::on_actionOpen_File_triggered()
     selectedPart->setData(0, QVariant(partName));
     selectedPart->loadSTL(fileName);
 
-    emit partList->dataChanged(
-        partList->index(0, 0, QModelIndex()),
-        partList->index(
-            partList->rowCount(QModelIndex()) - 1,
-            1,
-            QModelIndex()));
+    emit m_partList->dataChanged(
+        m_partList->index(0, 0, QModelIndex()),
+        m_partList->index(m_partList->rowCount(QModelIndex()) - 1, 1, QModelIndex())
+    );
 
     updateRender();
     renderer->ResetCamera();
@@ -249,8 +229,7 @@ void MainWindow::on_actionOpen_File_triggered()
     emit statusUpdateMessage(QString("Loaded: ") + partName, 0);
 }
 
-void MainWindow::on_actionItem_Options_triggered()
-{
+void MainWindow::on_actionItem_Options_triggered() {
     QModelIndex index = ui->treeView->currentIndex();
 
     if (!index.isValid()) {
@@ -258,8 +237,7 @@ void MainWindow::on_actionItem_Options_triggered()
         return;
     }
 
-    ModelPart* selectedPart = static_cast<ModelPart*>(
-        index.internalPointer());
+    ModelPart* selectedPart = static_cast<ModelPart*>(index.internalPointer());
     if (selectedPart == nullptr) return;
 
     OptionDialog dialog(this);
@@ -268,23 +246,18 @@ void MainWindow::on_actionItem_Options_triggered()
     if (dialog.exec() == QDialog::Accepted) {
         dialog.saveToModelPart(selectedPart);
 
-        emit partList->dataChanged(
-            partList->index(0, 0, QModelIndex()),
-            partList->index(
-                partList->rowCount(QModelIndex()) - 1,
-                1,
-                QModelIndex()));
+        emit m_partList->dataChanged(
+            m_partList->index(0, 0, QModelIndex()),
+            m_partList->index(m_partList->rowCount(QModelIndex()) - 1, 1, QModelIndex())
+        );
 
         updateRender();
         renderer->ResetCamera();
         renderWindow->Render();
 
-        emit statusUpdateMessage(
-            QString("Item Options saved: ") +
-            selectedPart->data(0).toString(), 0);
+        emit statusUpdateMessage(QString("Item Options saved: ") + selectedPart->data(0).toString(), 0);
     }
     else {
-        emit statusUpdateMessage(
-            QString("Item Options cancelled"), 0);
+        emit statusUpdateMessage(QString("Item Options cancelled"), 0);
     }
 }

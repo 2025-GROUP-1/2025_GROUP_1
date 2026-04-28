@@ -1,3 +1,4 @@
+
 #include "VRRenderThread.h"
 #include <QMutexLocker>
 #include <vtkActor.h>
@@ -11,6 +12,7 @@
 #include <QVector3D>
 #include "ModelPartList.h"
 #include "ModelPart.h"
+#include <vtkCamera.h>
 
 VRRenderThread::VRRenderThread(QObject* parent)
     : QThread(parent) {
@@ -72,14 +74,19 @@ void VRRenderThread::run() {
     m_renderer->AddLight(fillLight);
 
     m_renderer->SetBackground(0.1, 0.1, 0.12);
-    m_renderer->ResetCamera();
+    m_renderer->ResetCamera(); // Fits all actors into initial view
     m_renderWindow->Initialize();
 
-    // Inside your run() function before the while loop
     if (!m_renderWindow->GetHMD()) {
         qDebug() << "HMD not found! Check SteamVR connection.";
-        return; // Stop the thread instead of crashing
+        // Don't return here if simulating, but ensure window exists
     }
+
+    // FIX: Position the camera so you are looking at the models
+    vtkCamera* cam = m_renderer->GetActiveCamera();
+    cam->SetPosition(0, 1.6, 1.5);   // 1.6m high (eye level), 1.5m back
+    cam->SetFocalPoint(0, 1.0, 0);   // Look toward the center of the scene
+    cam->SetViewUp(0, 1, 0);         // Ensure Y is "up"
 
     // 4. Main VR loop.
     m_endRender = false;

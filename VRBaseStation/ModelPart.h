@@ -1,3 +1,4 @@
+
 #ifndef MODELPART_H
 #define MODELPART_H
 
@@ -39,7 +40,7 @@ public:
 private:
     QList<ModelPart*>  m_childItems;
     QList<QVariant>    m_itemData;
-    ModelPart*         m_parentItem;
+    ModelPart* m_parentItem;
     vtkSmartPointer<vtkSTLReader>      file;
     vtkSmartPointer<vtkPolyDataMapper> mapper;
     vtkSmartPointer<vtkActor>          actor;

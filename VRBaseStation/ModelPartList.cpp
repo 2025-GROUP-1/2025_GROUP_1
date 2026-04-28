@@ -118,31 +118,29 @@ ModelPart* ModelPartList::getRootItem() {
 }
 
 
-
-QModelIndex ModelPartList::appendChild(QModelIndex& parent, const QList<QVariant>& data) {      
+QModelIndex ModelPartList::appendChild(QModelIndex& parent, const QList<QVariant>& data) {
     ModelPart* parentPart;
 
     if (parent.isValid())
         parentPart = static_cast<ModelPart*>(parent.internalPointer());
     else {
         parentPart = rootItem;
-        parent = createIndex(0, 0, rootItem );
+        parent = createIndex(0, 0, rootItem);
     }
 
-    beginInsertRows( parent, rowCount(parent), rowCount(parent) ); 
+    beginInsertRows(parent, rowCount(parent), rowCount(parent));
 
-    ModelPart* childPart = new ModelPart( data, parentPart );
-
+    ModelPart* childPart = new ModelPart(data, parentPart);
     parentPart->appendChild(childPart);
 
     QModelIndex child = createIndex(0, 0, childPart);
 
     endInsertRows();
 
-    emit layoutChanged();
-
+    // FIX: Add the part to the flat list so the VR loop can find it
     m_parts.append(childPart);
 
+    emit layoutChanged();
     return child;
 }
 

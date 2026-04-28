@@ -1,3 +1,4 @@
+
 #include "ModelPart.h"
 #include <vtkSmartPointer.h>
 #include <vtkSTLReader.h>
@@ -8,10 +9,19 @@
 ModelPart::ModelPart(const QList<QVariant>& data, ModelPart* parent)
     : m_itemData(data), m_parentItem(parent)
 {
-    red       = 255;
-    green     = 255;
-    blue      = 255;
+    red = 255;
+    green = 255;
+    blue = 255;
     isVisible = true;
+
+    // Initialize the variables you already have
+    mapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+    actor = vtkSmartPointer<vtkActor>::New();
+    actor->SetMapper(mapper);
+
+    // Default scale to avoid the "White Screen of Death"
+    actor->SetScale(0.001, 0.001, 0.001);
+
 }
 
 ModelPart::~ModelPart() {
@@ -66,23 +76,22 @@ int ModelPart::row() const {
 }
 
 void ModelPart::loadSTL(QString fileName) {
-    file = vtkSmartPointer<vtkSTLReader>::New();
-    file->SetFileName(fileName.toStdString().c_str());
-    file->Update();
+    vtkNew<vtkSTLReader> reader;
+    reader->SetFileName(fileName.toStdString().c_str());
+    reader->Update();
 
-    mapper = vtkSmartPointer<vtkPolyDataMapper>::New();
-    mapper->SetInputConnection(file->GetOutputPort());
+    // DO NOT put 'mapper = ...::New()' here. 
+    // Just plug the data into the existing mapper!
+    if (mapper) {
+        mapper->SetInputConnection(reader->GetOutputPort());
+    }
 
-    actor = vtkSmartPointer<vtkActor>::New();
-    actor->SetMapper(mapper);
-
-    actor->GetProperty()->SetColor(
-        red   / 255.0,
-        green / 255.0,
-        blue  / 255.0
-        );
-
-    actor->SetVisibility(isVisible ? 1 : 0);
+    // Set Properties on the existing actor
+    if (actor) {
+        actor->GetProperty()->SetColor(red / 255.0, green / 255.0, blue / 255.0);
+        actor->SetVisibility(isVisible ? 1 : 0);
+        actor->SetScale(0.001, 0.001, 0.001); // Shrink to visible size
+    }
 }
 
 vtkSmartPointer<vtkActor> ModelPart::getActor() {
@@ -90,14 +99,14 @@ vtkSmartPointer<vtkActor> ModelPart::getActor() {
 }
 
 void ModelPart::setColour(int r, int g, int b) {
-    red   = r;
+    red = r;
     green = g;
-    blue  = b;
+    blue = b;
 }
 
-int ModelPart::getColourR() { return red;   }
+int ModelPart::getColourR() { return red; }
 int ModelPart::getColourG() { return green; }
-int ModelPart::getColourB() { return blue;  }
+int ModelPart::getColourB() { return blue; }
 
 void ModelPart::setVisible(bool visible) {
     isVisible = visible;
@@ -123,5 +132,8 @@ int ModelPart::getID() const {
 }
 
 vtkActor* ModelPart::getVRActor() const {
-    return nullptr; // Stub: Required for the VR loop to link[cite: 424].
+    if (actor) {
+        actor->SetScale(0.001, 0.001, 0.001);
+    }
+    return actor; // Stub: Required for the VR loop to link[cite: 424].
 }
