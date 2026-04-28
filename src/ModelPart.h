@@ -31,6 +31,10 @@ public:
     int getColourB();
     void setVisible(bool visible);
     bool getVisible();
+    void setShrinkEnabled(bool enabled);
+    bool getShrinkEnabled();
+    void setClipEnabled(bool enabled);
+    bool getClipEnabled();
 
 private:
     QList<ModelPart*>  m_childItems;
@@ -43,6 +47,8 @@ private:
     int  green;
     int  blue;
     bool isVisible;
+    bool shrinkEnabled;
+    bool clipEnabled;
 };
 
 #endif

@@ -12,6 +12,8 @@ ModelPart::ModelPart(const QList<QVariant>& data, ModelPart* parent)
     green     = 255;
     blue      = 255;
     isVisible = true;
+    shrinkEnabled = false;
+    clipEnabled = false;
 }
 
 ModelPart::~ModelPart() {
@@ -93,8 +95,15 @@ void ModelPart::setColour(int r, int g, int b) {
     red   = r;
     green = g;
     blue  = b;
-}
 
+    if (actor != nullptr) {
+        actor->GetProperty()->SetColor(
+            red   / 255.0,
+            green / 255.0,
+            blue  / 255.0
+        );
+    }
+}
 int ModelPart::getColourR() { return red;   }
 int ModelPart::getColourG() { return green; }
 int ModelPart::getColourB() { return blue;  }
@@ -111,4 +120,23 @@ void ModelPart::setVisible(bool visible) {
 
 bool ModelPart::getVisible() {
     return isVisible;
+}
+void ModelPart::setShrinkEnabled(bool enabled)
+{
+    shrinkEnabled = enabled;
+}
+
+bool ModelPart::getShrinkEnabled()
+{
+    return shrinkEnabled;
+}
+
+void ModelPart::setClipEnabled(bool enabled)
+{
+    clipEnabled = enabled;
+}
+
+bool ModelPart::getClipEnabled()
+{
+    return clipEnabled;
 }
