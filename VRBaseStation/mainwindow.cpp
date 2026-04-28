@@ -17,6 +17,11 @@ MainWindow::MainWindow(QWidget* parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    m_partList = new ModelPartList("Main List", this);
+    ui->treeView->setModel(m_partList);
+
+    QModelIndex rootIndex;
+    m_partList->appendChild(rootIndex, { "Test Part", "Yes" });
 
     renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
     ui->vtkWidget->setRenderWindow(renderWindow);
@@ -37,6 +42,7 @@ MainWindow::MainWindow(QWidget* parent)
     this->partList = new ModelPartList("PartsList");
     ui->treeView->setModel(this->partList);
 
+    
     ModelPart* rootItem = this->partList->getRootItem();
 
     for (int i = 0; i < 3; i++) {
@@ -54,6 +60,7 @@ MainWindow::MainWindow(QWidget* parent)
             childItem->appendChild(childChildItem);
         }
     }
+    m_vrThread = nullptr;
 }
 
 MainWindow::~MainWindow() {
@@ -100,6 +107,11 @@ void MainWindow::updateRenderFromTree(const QModelIndex& index)
 }
 
 void MainWindow::on_pushStartVR_clicked() {
+    // Safety check: Don't crash if the list hasn't been created!
+    if (!m_partList) {
+        emit statusUpdateMessage(tr("Error: No part list loaded."), 2000);
+        return;
+    }
     // 1. Safety check to see if VR is already running [cite: 417-419]
     if (m_vrThread && m_vrThread->isRunning()) {
         emit statusUpdateMessage(tr("VR is already running."), 2000);

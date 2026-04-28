@@ -43,6 +43,10 @@ void VRRenderThread::run() {
     m_renderWindow = vtkSmartPointer<vtkOpenVRRenderWindow>::New();
     m_interactor = vtkSmartPointer<vtkOpenVRRenderWindowInteractor>::New();
 
+    // This tells VTK to open a desktop window instead of erroring out when no HMD is found
+    const char* simulateVR = "1";
+    _putenv_s("VTK_VR_SIMULATOR", simulateVR);
+
     m_renderWindow->AddRenderer(m_renderer);
     m_interactor->SetRenderWindow(m_renderWindow);
 
@@ -70,6 +74,12 @@ void VRRenderThread::run() {
     m_renderer->SetBackground(0.1, 0.1, 0.12);
     m_renderer->ResetCamera();
     m_renderWindow->Initialize();
+
+    // Inside your run() function before the while loop
+    if (!m_renderWindow->GetHMD()) {
+        qDebug() << "HMD not found! Check SteamVR connection.";
+        return; // Stop the thread instead of crashing
+    }
 
     // 4. Main VR loop.
     m_endRender = false;
