@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    _putenv_s("VTK_VR_SIMULATOR", "1");
+
     ui->setupUi(this);
 
     // 1. Initialize the main list and give it to the UI
@@ -99,6 +101,8 @@ void MainWindow::updateRenderFromTree(const QModelIndex& index) {
 }
 
 void MainWindow::on_pushStartVR_clicked() {
+    m_vrThread = new VRRenderThread(this);
+    m_vrThread->setPartList(m_partList);
     // Safety check
     if (!m_partList) {
         emit statusUpdateMessage(tr("Error: No part list loaded."), 2000);
@@ -111,27 +115,22 @@ void MainWindow::on_pushStartVR_clicked() {
         return;
     }
 
-    m_vrThread = new VRRenderThread(this);
-    m_vrThread->setPartList(m_partList);
-
     for (ModelPart* p : m_partList->allParts()) {
         m_vrThread->addActorOffline(p->getVRActor(), p->getID());
     }
 
     // TEST SPHERE: Place it at eye level 1 meter in front
     vtkNew<vtkSphereSource> sphere;
+    sphere->SetRadius(0.5); // Make it big (50cm)
     vtkNew<vtkPolyDataMapper> m;
     m->SetInputConnection(sphere->GetOutputPort());
     vtkNew<vtkActor> a;
     a->SetMapper(m);
-    a->SetPosition(0, 1.2, 0); // Directly in front of the new camera position
+    a->SetPosition(0, 1.2, -1.0); // 1.2m high, 1m in front of you
+    a->GetProperty()->SetColor(1.0, 0.0, 0.0); // Make it bright RED
     m_vrThread->addActorOffline(a, 999);
 
     m_vrThread->start();
-
-    ui->pushStartVR->setEnabled(false);
-    ui->pushStopVR->setEnabled(true);
-    emit statusUpdateMessage(tr("VR started."), 2000);
 }
 
 void MainWindow::on_pushStopVR_clicked() {
@@ -190,8 +189,8 @@ void MainWindow::handleTreeClicked() {
     QString text = selectedPart->data(0).toString();
     emit statusUpdateMessage(QString("The selected item is: ") + text, 0);
 }
-
 void MainWindow::on_actionOpen_File_triggered() {
+    // 1. Get the file name from the user
     QString fileName = QFileDialog::getOpenFileName(
         this,
         tr("Open STL File"),
@@ -201,8 +200,8 @@ void MainWindow::on_actionOpen_File_triggered() {
 
     if (fileName.isEmpty()) return;
 
+    // 2. Get the currently selected item in the tree
     QModelIndex index = ui->treeView->currentIndex();
-
     if (!index.isValid()) {
         emit statusUpdateMessage(QString("Please select a tree item first"), 0);
         return;
@@ -211,22 +210,22 @@ void MainWindow::on_actionOpen_File_triggered() {
     ModelPart* selectedPart = static_cast<ModelPart*>(index.internalPointer());
     if (selectedPart == nullptr) return;
 
+    // 3. Update the part with the new STL data
     QFileInfo fileInfo(fileName);
-    QString partName = fileInfo.fileName();
-
-    selectedPart->setData(0, QVariant(partName));
+    selectedPart->setData(0, QVariant(fileInfo.fileName()));
     selectedPart->loadSTL(fileName);
 
-    emit m_partList->dataChanged(
-        m_partList->index(0, 0, QModelIndex()),
-        m_partList->index(m_partList->rowCount(QModelIndex()) - 1, 1, QModelIndex())
-    );
-
+    // 4. Update the 2D view
     updateRender();
     renderer->ResetCamera();
     renderWindow->Render();
 
-    emit statusUpdateMessage(QString("Loaded: ") + partName, 0);
+    // 5. NEW: If VR is already running, update the VR thread immediately
+    if (m_vrThread && m_vrThread->isRunning()) {
+        m_vrThread->addActorOffline(selectedPart->getVRActor(), selectedPart->getID());
+    }
+
+    emit statusUpdateMessage(QString("Loaded: ") + fileInfo.fileName(), 2000);
 }
 
 void MainWindow::on_actionItem_Options_triggered() {

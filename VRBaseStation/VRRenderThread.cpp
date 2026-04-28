@@ -40,53 +40,34 @@ void VRRenderThread::issueCommand(Command c, int partID, const QVariant& data) {
 }
 
 void VRRenderThread::run() {
-    // 1. Create all VTK objects ON THIS THREAD.
+    /// 1. Force Simulator mode again just in case
+    _putenv_s("VTK_VR_SIMULATOR", "1");
+
     m_renderer = vtkSmartPointer<vtkOpenVRRenderer>::New();
     m_renderWindow = vtkSmartPointer<vtkOpenVRRenderWindow>::New();
     m_interactor = vtkSmartPointer<vtkOpenVRRenderWindowInteractor>::New();
 
-    // This tells VTK to open a desktop window instead of erroring out when no HMD is found
-    const char* simulateVR = "1";
-    _putenv_s("VTK_VR_SIMULATOR", simulateVR);
+    // 2. CLEAR THE MANIFEST: This is what stops the vr::VRInput() nullptr crash
+    m_interactor->SetActionManifestFileName("");
+    m_interactor->SetActionSetName("");
 
     m_renderWindow->AddRenderer(m_renderer);
     m_interactor->SetRenderWindow(m_renderWindow);
 
-    // 2. Register pending actors.
+    // 3. Register your actors
     for (auto& [id, actor] : m_pendingActors) {
         m_renderer->AddActor(actor);
         m_activeActors[id] = actor;
     }
     m_pendingActors.clear();
 
-    // 3. Lights (Step 5 factors these into LightingHelper).
-    vtkNew<vtkLight> keyLight;
-    keyLight->SetLightTypeToSceneLight();
-    keyLight->SetPosition(3.0, 3.0, 3.0);
-    keyLight->SetIntensity(0.9);
-    m_renderer->AddLight(keyLight);
-
-    vtkNew<vtkLight> fillLight;
-    fillLight->SetLightTypeToSceneLight();
-    fillLight->SetPosition(-2.0, 1.5, -2.0);
-    fillLight->SetColor(0.7, 0.8, 1.0);
-    fillLight->SetIntensity(0.4);
-    m_renderer->AddLight(fillLight);
-
-    m_renderer->SetBackground(0.1, 0.1, 0.12);
-    m_renderer->ResetCamera(); // Fits all actors into initial view
-    m_renderWindow->Initialize();
-
-    if (!m_renderWindow->GetHMD()) {
-        qDebug() << "HMD not found! Check SteamVR connection.";
-        // Don't return here if simulating, but ensure window exists
-    }
-
-    // FIX: Position the camera so you are looking at the models
+    // 4. Setup the camera so you aren't blind
+    m_renderer->ResetCamera();
     vtkCamera* cam = m_renderer->GetActiveCamera();
-    cam->SetPosition(0, 1.6, 1.5);   // 1.6m high (eye level), 1.5m back
-    cam->SetFocalPoint(0, 1.0, 0);   // Look toward the center of the scene
-    cam->SetViewUp(0, 1, 0);         // Ensure Y is "up"
+    cam->SetPosition(0, 1.2, 1.0);
+    cam->SetFocalPoint(0, 1.2, 0);
+
+    m_renderWindow->Initialize();
 
     // 4. Main VR loop.
     m_endRender = false;
