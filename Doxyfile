@@ -1,0 +1,74 @@
+# Doxyfile for VR Base Station — EEEE2076 Group 1
+# ----------------------------------------------------------------
+
+# --- Project identity ------------------------------------------
+PROJECT_NAME           = "VR Base Station"
+PROJECT_NUMBER         = 1.0.0
+PROJECT_BRIEF          = "Qt/VTK CAD viewer with VR support — EEEE2076 Group 1"
+OUTPUT_DIRECTORY       = .
+CREATE_SUBDIRS         = NO
+OUTPUT_LANGUAGE        = English
+
+# --- What to document ------------------------------------------
+INPUT                  = . README.md
+FILE_PATTERNS          = *.cpp *.h *.md
+RECURSIVE              = YES
+EXCLUDE                = build
+EXCLUDE_PATTERNS       = */build/* */.git/* *- Copy.cpp *- Copy.h *- Copy.ui *- Copy.qrc *- Copy.txt
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+
+# --- Source browser --------------------------------------------
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+REFERENCES_LINK_SOURCE = YES
+
+# --- Markdown + main page --------------------------------------
+MARKDOWN_SUPPORT       = YES
+USE_MDFILE_AS_MAINPAGE = README.md
+
+# --- Output ----------------------------------------------------
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+GENERATE_TREEVIEW      = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = NO
+
+# --- Appearance (teal accent matching the GUI theme) -----------
+HTML_COLORSTYLE        = LIGHT
+HTML_COLORSTYLE_HUE    = 168
+HTML_COLORSTYLE_SAT    = 100
+HTML_COLORSTYLE_GAMMA  = 80
+
+# --- Diagrams (graphviz) ---------------------------------------
+HAVE_DOT               = YES
+UML_LOOK               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+COLLABORATION_GRAPH    = YES
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES
+
+# --- Warnings --------------------------------------------------
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = YES
+WARN_LOGFILE           = doxygen-warnings.log
+
+# --- Sort & display --------------------------------------------
+SORT_MEMBER_DOCS       = YES
+SORT_BRIEF_DOCS        = YES
+SORT_GROUP_NAMES       = YES
+SHOW_USED_FILES        = YES
+SHOW_FILES             = YES
+SHOW_NAMESPACES        = YES
+
+QUIET                  = YES
