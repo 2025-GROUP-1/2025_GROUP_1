@@ -1,0 +1,53 @@
+# Doxyfile for VRBaseStation
+# Generated for EEEE2076 Group 1
+
+#---------------------------------------------------------------------------
+# Project
+#---------------------------------------------------------------------------
+PROJECT_NAME           = "VRBaseStation"
+PROJECT_BRIEF          = "Qt/VTK CAD viewer with VR support – EEEE2076 Group 1"
+PROJECT_NUMBER         = 1.0.0
+OUTPUT_DIRECTORY       = .
+
+#---------------------------------------------------------------------------
+# Input
+#---------------------------------------------------------------------------
+INPUT                  = .
+FILE_PATTERNS          = *.cpp *.h
+RECURSIVE              = YES
+EXCLUDE                = build
+
+#---------------------------------------------------------------------------
+# Output
+#---------------------------------------------------------------------------
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+GENERATE_LATEX         = NO
+
+#---------------------------------------------------------------------------
+# Extraction
+#---------------------------------------------------------------------------
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+
+#---------------------------------------------------------------------------
+# Appearance (light teal accent to match the GUI theme)
+#---------------------------------------------------------------------------
+HTML_COLORSTYLE        = LIGHT
+HTML_COLORSTYLE_HUE    = 168
+HTML_COLORSTYLE_SAT    = 100
+HTML_COLORSTYLE_GAMMA  = 80
+
+#---------------------------------------------------------------------------
+# Graphs (requires Graphviz/dot – set to NO if dot is not installed)
+#---------------------------------------------------------------------------
+HAVE_DOT               = NO
+CLASS_DIAGRAMS         = YES
+
+#---------------------------------------------------------------------------
+# Miscellaneous
+#---------------------------------------------------------------------------
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES

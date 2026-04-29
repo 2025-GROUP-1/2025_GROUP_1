@@ -30,3 +30,7 @@ compile_commands.json
 *.ilk
 *.exp
 *.log
+
+# Doxygen output
+html/
+latex/

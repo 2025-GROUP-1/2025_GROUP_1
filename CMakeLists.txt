@@ -50,54 +50,82 @@ add_custom_command(TARGET VRBindings PRE_BUILD
     copy_directory ${CMAKE_SOURCE_DIR}/vrbindings ${CMAKE_BINARY_DIR}/)
 
 include(GNUInstallDirs)
+
+# Main executable
 install(TARGETS VRBaseStation
     BUNDLE  DESTINATION .
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
+# Qt DLLs via windeployqt
 qt_generate_deploy_app_script(
     TARGET VRBaseStation
     OUTPUT_SCRIPT deploy_script
     NO_UNSUPPORTED_PLATFORM_ERROR
 )
 install(SCRIPT ${deploy_script})
-# ----------------------------
-# Installer setup using CPack/NSIS
-# ----------------------------
 
-include(InstallRequiredSystemLibraries)
-
+# Icons and VR bindings
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/icons
     DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
-
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/vrbindings
     DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
+# Microsoft Visual C++ runtime DLLs
+include(InstallRequiredSystemLibraries)
+
+# OpenVR DLL
+if(EXISTS "C:/OpenVr/bin/win64/openvr_api.dll")
+    install(FILES "C:/OpenVr/bin/win64/openvr_api.dll"
+        DESTINATION ${CMAKE_INSTALL_BINDIR}
+    )
+endif()
+
+# VTK DLLs - detected dynamically from linked targets
+foreach(_vtk_lib ${VTK_LIBRARIES})
+    if(TARGET ${_vtk_lib})
+        get_target_property(_lib_type ${_vtk_lib} TYPE)
+        if(_lib_type STREQUAL "SHARED_LIBRARY")
+            get_target_property(_lib_loc ${_vtk_lib} IMPORTED_LOCATION_RELEASE)
+            if(_lib_loc AND EXISTS "${_lib_loc}")
+                install(FILES "${_lib_loc}" DESTINATION ${CMAKE_INSTALL_BINDIR})
+            endif()
+        endif()
+    endif()
+endforeach()
+
+# ----------------------------
+# CPack / NSIS Installer
+# ----------------------------
 set(CPACK_PACKAGE_NAME "VRBaseStation")
 set(CPACK_PACKAGE_VENDOR "EEEE2076 Group 1")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "VRBaseStation Qt VTK CAD Viewer")
 set(CPACK_PACKAGE_VERSION "1.0.0")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "VRBaseStation")
 
-set(CPACK_GENERATOR "NSIS")
+if(WIN32)
+    set(CPACK_GENERATOR "NSIS")
+else()
+    set(CPACK_GENERATOR "ZIP")
+endif()
 
 set(CPACK_NSIS_DISPLAY_NAME "VRBaseStation")
 set(CPACK_NSIS_PACKAGE_NAME "VRBaseStation")
 set(CPACK_NSIS_CONTACT "EEEE2076 Group 1")
 set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
 
+# Start menu shortcut for the app
 set(CPACK_PACKAGE_EXECUTABLES "VRBaseStation" "VRBaseStation")
-set(CPACK_CREATE_DESKTOP_LINKS "VRBaseStation")
-install(FILES "C:/OpenVr/bin/win64/openvr_api.dll"
-    DESTINATION ${CMAKE_INSTALL_BINDIR}
+
+# Add uninstaller link to start menu (required by marking rubric)
+set(CPACK_NSIS_CREATE_ICONS_EXTRA
+    "CreateShortCut '$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\Uninstall VRBaseStation.lnk' '$INSTDIR\\\\Uninstall.exe'"
 )
-install(DIRECTORY "C:/Program Files (x86)/VTK/bin/"
-    DESTINATION ${CMAKE_INSTALL_BINDIR}
-    FILES_MATCHING PATTERN "*.dll"
+set(CPACK_NSIS_DELETE_ICONS_EXTRA
+    "Delete '$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\Uninstall VRBaseStation.lnk'"
 )
-install(FILES "C:/OpenVr/bin/win64/openvr_api.dll"
-    DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
+
 include(CPack)

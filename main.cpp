@@ -1,3 +1,7 @@
+/**
+ * @file main.cpp
+ * @brief Application entry point. Configures the OpenGL surface format and launches MainWindow.
+ */
 #include "mainwindow.h"
 
 #include <QApplication>
