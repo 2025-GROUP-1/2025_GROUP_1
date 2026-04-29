@@ -1,9 +1,6 @@
 /**
  * @file ModelPart.h
  * @brief Declares ModelPart, the data class for a single part in the tree.
- *
- * Each ModelPart owns its own VTK pipeline (STL reader -> optional filters
- * -> mapper -> actor) plus the data shown in the tree view (name, visibility).
  */
 
 #ifndef MODELPART_H
@@ -13,6 +10,7 @@
 #include <QVariant>
 #include <QString>
 #include <QColor>
+#include <QVector3D>
 
 #include <vtkSmartPointer.h>
 #include <vtkSTLReader.h>
@@ -29,26 +27,16 @@
   */
 class ModelPart {
 public:
-    /**
-     * @brief Construct a new ModelPart.
-     * @param data    Initial column data (typically [name, visibleString]).
-     * @param parent  Parent node, or nullptr for the root.
-     */
+    /** @brief Construct a new ModelPart. */
     ModelPart(const QList<QVariant>& data, ModelPart* parent = nullptr);
 
     /** @brief Destroys this part and recursively deletes its children. */
-    ~ModelPart() noexcept;
+    ~ModelPart();
 
-    /**
-     * @brief Add a child part.
-     * @param item Child pointer; ownership is transferred.
-     */
+    /** @brief Add a child part. Ownership is transferred. */
     void appendChild(ModelPart* item);
 
-    /**
-     * @brief Remove and delete the child at the given row.
-     * @param row Row index.
-     */
+    /** @brief Remove and delete the child at the given row. */
     void removeChild(int row);
 
     /** @return Child at the given row, or nullptr if out of range. */
@@ -60,17 +48,10 @@ public:
     /** @return Number of data columns. */
     int columnCount() const;
 
-    /**
-     * @brief Get the data for a given column.
-     * @param column 0 = name, 1 = visibility flag as string.
-     */
+    /** @brief Get the data for a given column. */
     QVariant data(int column) const;
 
-    /**
-     * @brief Set the data for a given column.
-     * @param column Column index.
-     * @param value  New value.
-     */
+    /** @brief Set the data for a given column. */
     void setData(int column, QVariant value);
 
     /** @return This node's row within its parent. */
@@ -79,11 +60,7 @@ public:
     /** @return Pointer to the parent node, or nullptr if root. */
     ModelPart* parentItem();
 
-    /**
-     * @brief Load an STL file and build the VTK pipeline.
-     * @param fileName Absolute path to the STL file.
-     * @return true on success, false otherwise.
-     */
+    /** @brief Load an STL file and build the VTK pipeline. */
     bool loadSTL(QString fileName);
 
     /** @brief Rebuild the mapper/actor with the current filter settings. */
@@ -110,10 +87,7 @@ public:
     /** @return true if the shrink filter is currently applied. */
     bool getShrinkEnabled() const;
 
-    /**
-     * @brief Set the shrink factor (0.1 strong shrink ... 1.0 no shrink).
-     * @param factor Shrink factor in the range [0.1, 1.0].
-     */
+    /** @brief Set the shrink factor (0.1 strong shrink ... 1.0 no shrink). */
     void setShrinkFactor(double factor);
 
     /** @return The current shrink factor. */
@@ -125,23 +99,17 @@ public:
     /** @return true if the clip filter is currently applied. */
     bool getClipEnabled() const;
 
-    /**
-     * @brief Set the X position of the clip plane.
-     * @param x Plane offset along the X axis.
-     */
+    /** @brief Set the X position of the clip plane. */
     void setClipPlaneX(double x);
 
     /** @return The clip plane X position. */
     double getClipPlaneX() const;
 
-    /** @brief Get STL bounds as [xmin, xmax, ymin, ymax, zmin, zmax]. */
-    bool getBounds(double bounds[6]) const;
+    /** @brief Compute the radial offset direction for explode view. */
+    void computeExplodeDirection(double cx, double cy, double cz);
 
-    /** @brief Apply temporary exploded-view translation to this actor. */
-    void setExplodeOffset(double x, double y, double z);
-
-    /** @brief Reset this actor to its assembled position. */
-    void clearExplodeOffset();
+    /** @brief Apply the current explode amount (0.0 = original, 1.0 = full). */
+    void applyExplode(double amount);
 
 private:
     QList<ModelPart*> m_childItems;   ///< Children in the tree.
@@ -154,13 +122,15 @@ private:
     vtkSmartPointer<vtkShrinkFilter>  shrinkFilter;  ///< Shrink filter (only built when enabled).
     vtkSmartPointer<vtkClipDataSet>   clipFilter;    ///< Clip filter (only built when enabled).
 
-    QColor m_colour;          ///< RGB colour applied to the actor.
-    bool   m_isVisible;       ///< Whether the part is shown in the renderer.
-    bool   m_shrinkEnabled;   ///< Shrink filter on/off.
-    double m_shrinkFactor;    ///< Shrink factor (0.1 strong - 1.0 none).
-    bool   m_clipEnabled;     ///< Clip filter on/off.
-    double m_clipPlaneX;      ///< Clip plane X offset.
-    double m_explodeOffset[3]; ///< Current exploded-view translation.
+    QColor m_colour;            ///< RGB colour applied to the actor.
+    bool   m_isVisible;         ///< Whether the part is shown.
+    bool   m_shrinkEnabled;     ///< Shrink filter on/off.
+    double m_shrinkFactor;      ///< Shrink factor (0.1 - 1.0).
+    bool   m_clipEnabled;       ///< Clip filter on/off.
+    double m_clipPlaneX;        ///< Clip plane X offset.
+
+    QVector3D m_originalCentre; ///< Centre of mass at load time, used for explode.
+    QVector3D m_explodeDir;     ///< Unit vector pointing away from scene centre.
 };
 
 #endif

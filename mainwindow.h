@@ -23,18 +23,21 @@ QT_END_NAMESPACE
 
 /**
  * @class MainWindow
- * @brief Application main window. Holds parts browser, viewport and properties.
+ * @brief Application main window. Holds parts browser, viewport, properties and theme.
  */
     class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    /** @brief Construct the window and set up renderer and lighting. */
+    /** @brief Theme variants used by applyTheme(). */
+    enum class Theme { Dark, Light };
+
+    /** @brief Construct the window and set up renderer, lighting and theme. */
     MainWindow(QWidget* parent = nullptr);
 
     /** @brief Destructor. */
-    ~MainWindow() noexcept;
+    ~MainWindow();
 
     /** @brief Rebuild the renderer's actor list from the current tree. */
     void updateRender();
@@ -42,14 +45,8 @@ public:
     /** @brief Recursive walk used by updateRender(). */
     void updateRenderFromTree(const QModelIndex& index);
 
-    /** @brief Apply the current explode amount to all loaded parts. */
-    void applyExplode();
-
-    /** @brief Recursive helper used by applyExplode(). */
-    void applyExplodeFromTree(const QModelIndex& index, const double sceneCentre[3], double amount);
-
-    /** @brief Recursive helper used to calculate global STL bounds for the explode centre. */
-    bool collectBoundsFromTree(const QModelIndex& index, double bounds[6]);
+    /** @brief Apply a colour theme (dark or light) across the whole window. */
+    void applyTheme(Theme theme);
 
 public slots:
     /** @brief Status bar update when a tree item is clicked. */
@@ -59,57 +56,37 @@ public slots:
     void onCurrentSelectionChanged(const QModelIndex& current, const QModelIndex& previous);
 
     // -- File / Tree actions --
-
-    /** @brief Import a single STL mesh. */
     void on_actionImport_Mesh_triggered();
-    /** @brief Import every STL mesh in a folder. */
     void on_actionImport_Folder_triggered();
-    /** @brief Show OptionDialog for the selected part. */
     void on_actionEdit_Part_triggered();
-    /** @brief Delete the selected part from the tree. */
     void on_actionDelete_Part_triggered();
 
     // -- Camera / Scene --
-
-    /** @brief Frame all parts in the view. */
     void on_actionFrame_All_triggered();
-    /** @brief Open colour picker for the renderer background. */
     void on_buttonViewportBackground_clicked();
 
-    // -- Properties panel: Part group --
-
-    /** @brief Open colour picker for the selected part. */
+    // -- Properties: Part --
     void on_buttonDiffuseColour_clicked();
-    /** @brief Visibility checkbox toggled. */
     void on_checkShowPart_stateChanged(int state);
-    /** @brief Shrink slider moved. */
-    void on_sliderShrink_valueChanged(int value);
-    /** @brief Section plane slider moved. */
-    void on_sliderSection_valueChanged(int value);
+    void on_toggleShrink_toggled(bool checked);
+    void on_toggleClip_toggled(bool checked);
 
-    // -- Properties panel: Scene group --
-
-    /** @brief Ambient brightness slider moved. */
+    // -- Properties: Scene --
     void on_sliderBrightness_valueChanged(int value);
-    /** @brief Enable or disable the exploded CAD view. */
-    void on_checkExplode_stateChanged(int state);
-    /** @brief Change the global explode amount for all loaded parts. */
+
+    // -- Explode view --
     void on_sliderExplode_valueChanged(int value);
-    /** @brief Reset the exploded CAD view back to the assembled model. */
-    void on_buttonResetExplode_clicked();
 
-    // -- VR (stubs for now, implemented by Senthil later) --
+    // -- Theme --
+    /** @brief Toggle between dark and light themes. */
+    void on_actionToggle_Theme_triggered();
 
-    /** @brief Start VR rendering thread. */
+    // -- VR (stubs for now, real impl in VRRenderThread) --
     void on_actionEnter_VR_triggered();
-    /** @brief Stop VR rendering thread. */
     void on_actionExit_VR_triggered();
-    /** @brief Force the VR thread to refresh from the GUI state. */
     void on_buttonSyncVR_clicked();
 
     // -- Help --
-
-    /** @brief Show About dialog. */
     void on_actionAbout_triggered();
 
 signals:
@@ -124,13 +101,26 @@ private:
     /** @brief Helper: get the currently selected ModelPart, or nullptr. */
     ModelPart* currentPart();
 
+    /** @brief Recompute scene centre and refresh per-part explode directions. */
+    void refreshExplodeDirections();
+
+    /** @brief Recursive helper for refreshExplodeDirections(). */
+    void refreshExplodeDirectionsFromTree(const QModelIndex& index, double cx, double cy, double cz);
+
+    /** @brief Apply the current explode amount to every part. */
+    void applyExplodeToAll();
+
+    /** @brief Recursive helper for applyExplodeToAll(). */
+    void applyExplodeFromTree(const QModelIndex& index, double amount);
+
     Ui::MainWindow* ui;            ///< Generated UI.
     ModelPartList* partList;      ///< Tree model.
     vtkSmartPointer<vtkRenderer>                   renderer;      ///< Renderer for the GUI viewport.
     vtkSmartPointer<vtkGenericOpenGLRenderWindow>  renderWindow;  ///< Render window inside vtkWidget.
     vtkSmartPointer<vtkLight>                      light;         ///< Scene light controlled by the slider.
-    bool explodeEnabled;                                          ///< True when exploded view is enabled.
-    int explodeValue;                                             ///< Explode slider value, 0-100.
+
+    Theme  m_theme;          ///< Currently applied theme.
+    double m_explodeAmount;  ///< Current explode value [0.0 - 1.0].
 };
 
 #endif
