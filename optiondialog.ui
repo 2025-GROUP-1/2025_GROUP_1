@@ -1,99 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>OptionDialog</class>
- <widget class="QDialog" name="OptionDialog">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>400</width>
-    <height>300</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Dialog</string>
-  </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLineEdit" name="lineEditName">
-     <property name="text">
-      <string>lineEditName</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QSpinBox" name="spinBoxR">
-     <property name="maximum">
-      <number>255</number>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QSpinBox" name="spinBoxG">
-     <property name="maximum">
-      <number>255</number>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QSpinBox" name="spinBoxB">
-     <property name="maximum">
-      <number>255</number>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="checkBoxVisible">
-     <property name="text">
-      <string>Visible</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Orientation::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
-     </property>
-    </widget>
-   </item>
-  </layout>
- </widget>
- <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>OptionDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>OptionDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+	<class>OptionDialog</class>
+	<widget class="QDialog" name="OptionDialog">
+		<property name="geometry">
+			<rect>
+				<x>0</x>
+				<y>0</y>
+				<width>360</width>
+				<height>240</height>
+			</rect>
+		</property>
+		<property name="windowTitle">
+			<string>Item Options</string>
+		</property>
+		<layout class="QVBoxLayout" name="verticalLayout">
+			<item>
+				<layout class="QFormLayout" name="formLayout">
+					<property name="horizontalSpacing">
+						<number>12</number>
+					</property>
+					<property name="verticalSpacing">
+						<number>10</number>
+					</property>
+					<item row="0" column="0">
+						<widget class="QLabel" name="label_name">
+							<property name="text">
+								<string>Name:</string>
+							</property>
+						</widget>
+					</item>
+					<item row="0" column="1">
+						<widget class="QLineEdit" name="nameEdit"/>
+					</item>
+					<item row="1" column="0">
+						<widget class="QLabel" name="label_colour">
+							<property name="text">
+								<string>Colour:</string>
+							</property>
+						</widget>
+					</item>
+					<item row="1" column="1">
+						<layout class="QHBoxLayout" name="colourLayout">
+							<item>
+								<widget class="QFrame" name="colourSwatch">
+									<property name="minimumSize">
+										<size>
+											<width>48</width>
+											<height>24</height>
+										</size>
+									</property>
+									<property name="frameShape">
+										<enum>QFrame::Shape::Box</enum>
+									</property>
+								</widget>
+							</item>
+							<item>
+								<widget class="QPushButton" name="colourButton">
+									<property name="text">
+										<string>Change Colour...</string>
+									</property>
+								</widget>
+							</item>
+							<item>
+								<spacer>
+									<property name="orientation">
+										<enum>Qt::Orientation::Horizontal</enum>
+									</property>
+									<property name="sizeHint" stdset="0">
+										<size>
+											<width>40</width>
+											<height>20</height>
+										</size>
+									</property>
+								</spacer>
+							</item>
+						</layout>
+					</item>
+					<item row="2" column="0">
+						<widget class="QLabel" name="label_visible">
+							<property name="text">
+								<string>Visible:</string>
+							</property>
+						</widget>
+					</item>
+					<item row="2" column="1">
+						<widget class="QCheckBox" name="visibleCheck">
+							<property name="text">
+								<string/>
+							</property>
+						</widget>
+					</item>
+					<item row="3" column="0">
+						<widget class="QLabel" name="label_shrink">
+							<property name="text">
+								<string>Shrink filter:</string>
+							</property>
+						</widget>
+					</item>
+					<item row="3" column="1">
+						<widget class="QCheckBox" name="shrinkCheck">
+							<property name="text">
+								<string/>
+							</property>
+						</widget>
+					</item>
+					<item row="4" column="0">
+						<widget class="QLabel" name="label_clip">
+							<property name="text">
+								<string>Clip filter:</string>
+							</property>
+						</widget>
+					</item>
+					<item row="4" column="1">
+						<widget class="QCheckBox" name="clipCheck">
+							<property name="text">
+								<string/>
+							</property>
+						</widget>
+					</item>
+				</layout>
+			</item>
+			<item>
+				<spacer>
+					<property name="orientation">
+						<enum>Qt::Orientation::Vertical</enum>
+					</property>
+					<property name="sizeHint" stdset="0">
+						<size>
+							<width>20</width>
+							<height>20</height>
+						</size>
+					</property>
+				</spacer>
+			</item>
+			<item>
+				<widget class="QDialogButtonBox" name="buttonBox">
+					<property name="orientation">
+						<enum>Qt::Orientation::Horizontal</enum>
+					</property>
+					<property name="standardButtons">
+						<set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+					</property>
+				</widget>
+			</item>
+		</layout>
+	</widget>
+	<resources/>
+	<connections>
+		<connection>
+			<sender>buttonBox</sender>
+			<signal>accepted()</signal>
+			<receiver>OptionDialog</receiver>
+			<slot>accept()</slot>
+			<hints>
+				<hint type="sourcelabel">
+					<x>20</x>
+					<y>20</y>
+				</hint>
+				<hint type="destinationlabel">
+					<x>20</x>
+					<y>20</y>
+				</hint>
+			</hints>
+		</connection>
+		<connection>
+			<sender>buttonBox</sender>
+			<signal>rejected()</signal>
+			<receiver>OptionDialog</receiver>
+			<slot>reject()</slot>
+			<hints>
+				<hint type="sourcelabel">
+					<x>20</x>
+					<y>20</y>
+				</hint>
+				<hint type="destinationlabel">
+					<x>20</x>
+					<y>20</y>
+				</hint>
+			</hints>
+		</connection>
+	</connections>
 </ui>
