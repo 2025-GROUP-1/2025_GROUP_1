@@ -5,7 +5,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets OpenGL OpenGLWidgets)
 find_package(VTK REQUIRED)
 
 qt_standard_project_setup()
@@ -34,6 +34,8 @@ target_link_libraries(VRBaseStation
     PRIVATE
         Qt6::Core
         Qt6::Widgets
+        Qt6::OpenGL
+        Qt6::OpenGLWidgets
         ${VTK_LIBRARIES}
 )
 
@@ -60,3 +62,42 @@ qt_generate_deploy_app_script(
     NO_UNSUPPORTED_PLATFORM_ERROR
 )
 install(SCRIPT ${deploy_script})
+# ----------------------------
+# Installer setup using CPack/NSIS
+# ----------------------------
+
+include(InstallRequiredSystemLibraries)
+
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/icons
+    DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/vrbindings
+    DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+
+set(CPACK_PACKAGE_NAME "VRBaseStation")
+set(CPACK_PACKAGE_VENDOR "EEEE2076 Group 1")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "VRBaseStation Qt VTK CAD Viewer")
+set(CPACK_PACKAGE_VERSION "1.0.0")
+
+set(CPACK_GENERATOR "NSIS")
+
+set(CPACK_NSIS_DISPLAY_NAME "VRBaseStation")
+set(CPACK_NSIS_PACKAGE_NAME "VRBaseStation")
+set(CPACK_NSIS_CONTACT "EEEE2076 Group 1")
+set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
+
+set(CPACK_PACKAGE_EXECUTABLES "VRBaseStation" "VRBaseStation")
+set(CPACK_CREATE_DESKTOP_LINKS "VRBaseStation")
+install(FILES "C:/OpenVr/bin/win64/openvr_api.dll"
+    DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+install(DIRECTORY "C:/Program Files (x86)/VTK/bin/"
+    DESTINATION ${CMAKE_INSTALL_BINDIR}
+    FILES_MATCHING PATTERN "*.dll"
+)
+install(FILES "C:/OpenVr/bin/win64/openvr_api.dll"
+    DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+include(CPack)

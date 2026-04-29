@@ -1,9 +1,10 @@
 /**
  * @file ModelPart.cpp
- * @brief Implementation of ModelPart, including the VTK filter pipeline.
+ * @brief Implementation of ModelPart, including the VTK filter pipeline and explode view.
  */
 
 #include "ModelPart.h"
+#include <cmath>
 
 ModelPart::ModelPart(const QList<QVariant>& data, ModelPart* parent)
     : m_itemData(data)
@@ -14,10 +15,12 @@ ModelPart::ModelPart(const QList<QVariant>& data, ModelPart* parent)
     , m_shrinkFactor(0.8)
     , m_clipEnabled(false)
     , m_clipPlaneX(0.0)
+    , m_originalCentre(0.0f, 0.0f, 0.0f)
+    , m_explodeDir(0.0f, 0.0f, 0.0f)
 {
 }
 
-ModelPart::~ModelPart() noexcept {
+ModelPart::~ModelPart() {
     qDeleteAll(m_childItems);
 }
 
@@ -74,6 +77,16 @@ bool ModelPart::loadSTL(QString fileName) {
     }
 
     rebuildPipeline();
+
+    if (actor) {
+        double bounds[6];
+        actor->GetBounds(bounds);
+        m_originalCentre = QVector3D(
+            static_cast<float>((bounds[0] + bounds[1]) * 0.5),
+            static_cast<float>((bounds[2] + bounds[3]) * 0.5),
+            static_cast<float>((bounds[4] + bounds[5]) * 0.5));
+    }
+
     return true;
 }
 
@@ -85,23 +98,36 @@ void ModelPart::rebuildPipeline() {
 
     vtkAlgorithmOutput* source = file->GetOutputPort();
 
+    // Apply clip first (it operates on PolyData from the STL reader directly).
+    if (m_clipEnabled) {
+        // Compute clip plane position relative to the STL bounds so the
+        // slider range maps to the actual model.
+        double bounds[6];
+        file->GetOutput()->GetBounds(bounds);
+        double cx = (bounds[0] + bounds[1]) * 0.5;
+        double xMin = bounds[0];
+        double xMax = bounds[1];
+        // m_clipPlaneX is normalised (-1..1); map it to model space.
+        double planeX = cx + m_clipPlaneX * (xMax - xMin) * 0.5;
+
+        vtkSmartPointer<vtkPlane> plane = vtkSmartPointer<vtkPlane>::New();
+        plane->SetOrigin(planeX, 0.0, 0.0);
+        plane->SetNormal(-1.0, 0.0, 0.0);
+
+        clipFilter = vtkSmartPointer<vtkClipDataSet>::New();
+        clipFilter->SetInputConnection(source);
+        clipFilter->SetClipFunction(plane.Get());
+        clipFilter->Update();
+        source = clipFilter->GetOutputPort();
+    }
+
+    // Shrink filter operates on whatever's upstream.
     if (m_shrinkEnabled) {
         shrinkFilter = vtkSmartPointer<vtkShrinkFilter>::New();
         shrinkFilter->SetInputConnection(source);
         shrinkFilter->SetShrinkFactor(m_shrinkFactor);
         shrinkFilter->Update();
         source = shrinkFilter->GetOutputPort();
-    }
-
-    if (m_clipEnabled) {
-        vtkSmartPointer<vtkPlane> plane = vtkSmartPointer<vtkPlane>::New();
-        plane->SetOrigin(m_clipPlaneX, 0.0, 0.0);
-        plane->SetNormal(-1.0, 0.0, 0.0);
-
-        clipFilter = vtkSmartPointer<vtkClipDataSet>::New();
-        clipFilter->SetInputConnection(source);
-        clipFilter->SetClipFunction(plane.Get());
-        source = clipFilter->GetOutputPort();
     }
 
     mapper->SetInputConnection(source);
@@ -113,7 +139,6 @@ void ModelPart::rebuildPipeline() {
     actor->GetProperty()->SetColor(
         m_colour.redF(), m_colour.greenF(), m_colour.blueF());
     actor->SetVisibility(m_isVisible ? 1 : 0);
-    actor->SetPosition(m_explodeOffset[0], m_explodeOffset[1], m_explodeOffset[2]);
 }
 
 vtkSmartPointer<vtkActor> ModelPart::getActor() { return actor; }
@@ -168,24 +193,28 @@ void ModelPart::setClipPlaneX(double x) {
 }
 
 double ModelPart::getClipPlaneX() const { return m_clipPlaneX; }
-bool ModelPart::getBounds(double bounds[6]) const {
-    if (!file)
-        return false;
 
-    file->Update();
-    file->GetOutput()->GetBounds(bounds);
-    return true;
+void ModelPart::computeExplodeDirection(double cx, double cy, double cz) {
+    QVector3D scene(static_cast<float>(cx), static_cast<float>(cy), static_cast<float>(cz));
+    m_explodeDir = m_originalCentre - scene;
+    if (m_explodeDir.length() > 0.0001f)
+        m_explodeDir.normalize();
 }
 
-void ModelPart::setExplodeOffset(double x, double y, double z) {
-    m_explodeOffset[0] = x;
-    m_explodeOffset[1] = y;
-    m_explodeOffset[2] = z;
+void ModelPart::applyExplode(double amount) {
+    if (!actor)
+        return;
 
-    if (actor)
-        actor->SetPosition(x, y, z);
-}
+    double bounds[6];
+    actor->GetBounds(bounds);
+    double dx = bounds[1] - bounds[0];
+    double dy = bounds[3] - bounds[2];
+    double dz = bounds[5] - bounds[4];
+    double diag = std::sqrt(dx * dx + dy * dy + dz * dz);
 
-void ModelPart::clearExplodeOffset() {
-    setExplodeOffset(0.0, 0.0, 0.0);
+    double mag = amount * diag * 1.5;
+    actor->SetPosition(
+        m_explodeDir.x() * mag,
+        m_explodeDir.y() * mag,
+        m_explodeDir.z() * mag);
 }
