@@ -1,11 +1,20 @@
+/**
+ * @file optiondialog.cpp
+ * @brief Implementation of the per-part options dialog.
+ */
+
 #include "optiondialog.h"
 #include "ui_optiondialog.h"
+
+#include <QColorDialog>
 
 OptionDialog::OptionDialog(QWidget* parent)
     : QDialog(parent)
     , ui(new Ui::OptionDialog)
+    , m_colour(255, 255, 255)
 {
     ui->setupUi(this);
+    updateSwatch();
 }
 
 OptionDialog::~OptionDialog() {
@@ -13,33 +22,39 @@ OptionDialog::~OptionDialog() {
 }
 
 void OptionDialog::loadFromModelPart(ModelPart* part) {
-    if (part == nullptr) return;
+    if (!part)
+        return;
 
-    // Populate the name field
-    ui->lineEditName->setText(part->data(0).toString());
+    ui->nameEdit->setText(part->data(0).toString());
+    ui->visibleCheck->setChecked(part->getVisible());
+    ui->shrinkCheck->setChecked(part->getShrinkEnabled());
+    ui->clipCheck->setChecked(part->getClipEnabled());
 
-    // Populate the colour spinboxes
-    ui->spinBoxR->setValue(part->getColourR());
-    ui->spinBoxG->setValue(part->getColourG());
-    ui->spinBoxB->setValue(part->getColourB());
-
-    // Populate the visibility checkbox
-    ui->checkBoxVisible->setChecked(part->getVisible());
+    m_colour = part->getColour();
+    updateSwatch();
 }
 
 void OptionDialog::saveToModelPart(ModelPart* part) {
-    if (part == nullptr) return;
+    if (!part)
+        return;
 
-    // Save name back into itemData column 0
-    part->setData(0, QVariant(ui->lineEditName->text()));
+    part->setData(0, QVariant(ui->nameEdit->text()));
+    part->setColour(m_colour);
+    part->setVisible(ui->visibleCheck->isChecked());
+    part->setShrinkFilter(ui->shrinkCheck->isChecked());
+    part->setClipFilter(ui->clipCheck->isChecked());
+}
 
-    // Save colour
-    part->setColour(
-        ui->spinBoxR->value(),
-        ui->spinBoxG->value(),
-        ui->spinBoxB->value()
-        );
+void OptionDialog::on_colourButton_clicked() {
+    QColor chosen = QColorDialog::getColor(m_colour, this, tr("Select Colour"));
+    if (chosen.isValid()) {
+        m_colour = chosen;
+        updateSwatch();
+    }
+}
 
-    // Save visibility
-    part->setVisible(ui->checkBoxVisible->isChecked());
+void OptionDialog::updateSwatch() {
+    ui->colourSwatch->setStyleSheet(
+        QString("background-color: %1; border: 1px solid #444;")
+        .arg(m_colour.name()));
 }
