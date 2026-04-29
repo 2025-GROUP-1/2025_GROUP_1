@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "PowerShell(New-Item -ItemType Directory -Force -Path \"c:\\\\Users\\\\Ash Kumar\\\\Documents\\\\2025_GROUP_1\\\\.github\\\\workflows\")"
-    ]
-  }
-}
