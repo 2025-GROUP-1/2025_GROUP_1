@@ -1,27 +1,37 @@
-.vs/
+# Build directories
 build/
-*.user
-*.suo
-.vs/
-.qtcreator/
-build/
+bin/
 out/
 x64/
 Debug/
 Release/
 
-*_autogen/
+# CMake
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
 compile_commands.json
+*_autogen/
 
+# Visual Studio
+.vs/
+*.sln
+*.vcxproj
 *.user
 *.suo
 *.VC.db
 *.opensdf
 *.sdf
 
+# Qt Creator
+.qtcreator/
+
+# Qt generated files
+ui_*.h
+moc_*.cpp
+qrc_*.cpp
+
+# Binaries
 *.exe
 *.dll
 *.lib
