@@ -13,6 +13,12 @@
 #include <QColorDialog>
 #include <QMessageBox>
 #include <QItemSelectionModel>
+#include <QProgressDialog>
+#include <QFutureWatcher>
+#include <QEventLoop>
+#include <QtConcurrent>
+
+#include <vtkSTLReader.h>
 
 #include <vtkRenderer.h>
 #include <vtkGenericOpenGLRenderWindow.h>
@@ -439,33 +445,7 @@ void MainWindow::applyTheme(Theme theme)
 
 void MainWindow::updateRender()
 {
-    renderer->RemoveAllViewProps();
-
-    int topLevelCount = partList->rowCount(QModelIndex());
-    for (int i = 0; i < topLevelCount; i++)
-        updateRenderFromTree(partList->index(i, 0, QModelIndex()));
-
-    renderer->AddLight(light);
     renderWindow->Render();
-}
-
-void MainWindow::updateRenderFromTree(const QModelIndex& index)
-{
-    if (index.isValid()) {
-        ModelPart* part = static_cast<ModelPart*>(index.internalPointer());
-        if (part) {
-            vtkSmartPointer<vtkActor> actor = part->getActor();
-            if (actor != nullptr)
-                renderer->AddActor(actor);
-        }
-    }
-
-    if (!partList->hasChildren(index) || (index.flags() & Qt::ItemNeverHasChildren))
-        return;
-
-    int rows = partList->rowCount(index);
-    for (int i = 0; i < rows; i++)
-        updateRenderFromTree(partList->index(i, 0, index));
 }
 
 void MainWindow::handleTreeClicked()
@@ -518,9 +498,7 @@ void MainWindow::on_actionImport_Mesh_triggered()
     QModelIndex parent = ui->treeView->currentIndex();
     QFileInfo info(fileName);
 
-    QModelIndex newIndex = partList->appendChild(
-        parent, { info.fileName(), QString("true") });
-
+    QModelIndex newIndex = partList->appendChild(parent, { info.fileName(), QString("true") });
     ModelPart* newPart = static_cast<ModelPart*>(newIndex.internalPointer());
     if (!newPart) return;
 
@@ -530,10 +508,10 @@ void MainWindow::on_actionImport_Mesh_triggered()
         return;
     }
 
+    renderer->AddActor(newPart->getActor());
     ui->treeView->expand(parent);
     refreshExplodeDirections();
     applyExplodeToAll();
-    updateRender();
     renderer->ResetCamera();
     renderWindow->Render();
 
@@ -542,41 +520,75 @@ void MainWindow::on_actionImport_Mesh_triggered()
 
 void MainWindow::on_actionImport_Folder_triggered()
 {
-    QString dirPath = QFileDialog::getExistingDirectory(
-        this, tr("Import Folder of Meshes"));
+    QString dirPath = QFileDialog::getExistingDirectory(this, tr("Import Folder of Meshes"));
     if (dirPath.isEmpty()) return;
 
     QDir dir(dirPath);
-    QStringList stlFiles = dir.entryList(
-        QStringList() << "*.stl", QDir::Files, QDir::Name);
-
-    if (stlFiles.isEmpty()) {
-        emit statusUpdateMessage(tr("No STL meshes found in %1").arg(dirPath), 0);
+    QStringList fileNames = dir.entryList(QStringList() << "*.stl", QDir::Files, QDir::Name);
+    if (fileNames.isEmpty()) {
+        emit statusUpdateMessage(tr("No STL files found in %1").arg(dirPath), 0);
         return;
     }
 
-    QModelIndex parent = ui->treeView->currentIndex();
-    int loaded = 0;
+    // Build a pre-load task list — one reader per file, Update() runs in parallel
+    struct LoadTask { QString fullPath; QString fileName; vtkSmartPointer<vtkSTLReader> reader; };
+    QVector<LoadTask> tasks;
+    tasks.reserve(fileNames.size());
+    for (const QString& f : fileNames)
+        tasks.append({ dir.absoluteFilePath(f), f, nullptr });
 
-    for (const QString& fileName : stlFiles) {
-        QString fullPath = dir.absoluteFilePath(fileName);
-        QModelIndex newIndex = partList->appendChild(
-            parent, { fileName, QString("true") });
-        ModelPart* newPart = static_cast<ModelPart*>(newIndex.internalPointer());
-        if (!newPart) continue;
-        if (newPart->loadSTL(fullPath)) loaded++;
-        else partList->removeItem(newIndex);
+    // Phase 1: read all STL files in parallel on the thread pool
+    QProgressDialog progress(tr("Reading %1 STL files...").arg(tasks.size()),
+                             tr("Cancel"), 0, tasks.size(), this);
+    progress.setWindowModality(Qt::WindowModal);
+
+    QFutureWatcher<void> watcher;
+    connect(&watcher, &QFutureWatcher<void>::progressValueChanged,
+            &progress, &QProgressDialog::setValue);
+    connect(&progress, &QProgressDialog::canceled, &watcher, &QFutureWatcher<void>::cancel);
+
+    watcher.setFuture(QtConcurrent::map(tasks, [](LoadTask& t) {
+        t.reader = vtkSmartPointer<vtkSTLReader>::New();
+        t.reader->SetFileName(t.fullPath.toStdString().c_str());
+        t.reader->Update();
+    }));
+
+    QEventLoop loop;
+    connect(&watcher, &QFutureWatcher<void>::finished, &loop, &QEventLoop::quit);
+    loop.exec();
+
+    if (watcher.isCanceled()) {
+        emit statusUpdateMessage(tr("Import cancelled"), 0);
+        return;
     }
 
+    // Phase 2: build VTK pipelines and populate the tree on the main thread
+    QModelIndex parent = ui->treeView->currentIndex();
+    ui->treeView->setUpdatesEnabled(false);
+    int loaded = 0;
+
+    for (const LoadTask& t : tasks) {
+        QModelIndex newIndex = partList->appendChild(parent, { t.fileName, QString("true") });
+        ModelPart* newPart = static_cast<ModelPart*>(newIndex.internalPointer());
+        if (!newPart) continue;
+
+        if (newPart->attachReader(t.reader)) {
+            renderer->AddActor(newPart->getActor());
+            loaded++;
+        } else {
+            partList->removeItem(newIndex);
+        }
+    }
+
+    ui->treeView->setUpdatesEnabled(true);
     ui->treeView->expand(parent);
     refreshExplodeDirections();
     applyExplodeToAll();
-    updateRender();
     renderer->ResetCamera();
     renderWindow->Render();
 
-    emit statusUpdateMessage(
-        tr("Imported %1 mesh(es) from %2").arg(loaded).arg(dirPath), 0);
+    emit statusUpdateMessage(tr("Imported %1/%2 mesh(es) from %3")
+        .arg(loaded).arg(tasks.size()).arg(dirPath), 0);
 }
 
 void MainWindow::on_actionEdit_Part_triggered()
@@ -621,11 +633,13 @@ void MainWindow::on_actionDelete_Part_triggered()
     if (!part) return;
 
     QString name = part->data(0).toString();
+    if (part->getActor())
+        renderer->RemoveActor(part->getActor());
     partList->removeItem(index);
 
     refreshExplodeDirections();
     applyExplodeToAll();
-    updateRender();
+    renderWindow->Render();
 
     emit statusUpdateMessage(tr("Deleted: %1").arg(name), 0);
 }
@@ -819,13 +833,16 @@ void MainWindow::on_actionEnter_VR_triggered()
     m_vrThread = new VRRenderThread(this);
     m_vrThread->setPartList(partList);
 
-    // Walk every part in the tree and hand its VR actor to the thread
+    // Build VR pipelines lazily and register actors with the thread
     QList<ModelPart*> queue;
     queue.append(partList->getRootItem());
     while (!queue.isEmpty()) {
         ModelPart* part = queue.takeFirst();
-        if (part != partList->getRootItem() && part->getVRActor())
-            m_vrThread->addActorOffline(part->getVRActor(), part->getID());
+        if (part != partList->getRootItem()) {
+            part->rebuildVRPipeline();
+            if (part->getVRActor())
+                m_vrThread->addActorOffline(part->getVRActor(), part->getID());
+        }
         for (int i = 0; i < part->childCount(); ++i)
             queue.append(part->child(i));
     }

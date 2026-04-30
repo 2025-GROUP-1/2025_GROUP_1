@@ -64,6 +64,9 @@ public:
     /** @brief Load an STL file and build the VTK pipeline. */
     bool loadSTL(QString fileName);
 
+    /** @brief Attach a pre-loaded STL reader (already Update()'d) and build the pipeline. */
+    bool attachReader(vtkSmartPointer<vtkSTLReader> preloaded);
+
     /** @brief Rebuild the mapper/actor with the current filter settings. */
     void rebuildPipeline();
 

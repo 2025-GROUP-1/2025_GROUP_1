@@ -77,7 +77,6 @@ bool ModelPart::loadSTL(QString fileName) {
     }
 
     rebuildPipeline();
-    rebuildVRPipeline();
 
     if (actor) {
         double bounds[6];
@@ -88,6 +87,24 @@ bool ModelPart::loadSTL(QString fileName) {
             static_cast<float>((bounds[4] + bounds[5]) * 0.5));
     }
 
+    return true;
+}
+
+bool ModelPart::attachReader(vtkSmartPointer<vtkSTLReader> preloaded) {
+    file = preloaded;
+    if (!file || file->GetOutput()->GetNumberOfPoints() == 0) {
+        file = nullptr;
+        return false;
+    }
+    rebuildPipeline();
+    if (actor) {
+        double bounds[6];
+        actor->GetBounds(bounds);
+        m_originalCentre = QVector3D(
+            static_cast<float>((bounds[0] + bounds[1]) * 0.5),
+            static_cast<float>((bounds[2] + bounds[3]) * 0.5),
+            static_cast<float>((bounds[4] + bounds[5]) * 0.5));
+    }
     return true;
 }
 
