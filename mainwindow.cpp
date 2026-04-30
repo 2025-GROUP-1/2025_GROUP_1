@@ -378,8 +378,6 @@ MainWindow::MainWindow(QWidget* parent)
     , m_theme(Theme::Dark)
     , m_explodeAmount(0.0)
 {
-    _putenv_s("VTK_VR_SIMULATOR", "1");
-
     ui->setupUi(this);
 
     renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
