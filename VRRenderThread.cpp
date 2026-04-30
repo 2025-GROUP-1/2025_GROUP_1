@@ -42,8 +42,6 @@ void VRRenderThread::issueCommand(Command c, int partID, const QVariant& data) {
 }
 
 void VRRenderThread::run() {
-    _putenv_s("VTK_VR_SIMULATOR", "1");
-
     m_renderer    = vtkSmartPointer<vtkOpenVRRenderer>::New();
     m_renderWindow  = vtkSmartPointer<vtkOpenVRRenderWindow>::New();
     m_interactor  = vtkSmartPointer<vtkOpenVRRenderWindowInteractor>::New();
