@@ -40,11 +40,8 @@ public:
     /** @brief Destructor. */
     ~MainWindow();
 
-    /** @brief Rebuild the renderer's actor list from the current tree. */
+    /** @brief Trigger a render pass. Actors are managed directly — no tree walk needed. */
     void updateRender();
-
-    /** @brief Recursive walk used by updateRender(). */
-    void updateRenderFromTree(const QModelIndex& index);
 
     /** @brief Apply a colour theme (dark or light) across the whole window. */
     void applyTheme(Theme theme);
