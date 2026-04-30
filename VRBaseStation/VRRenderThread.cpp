@@ -16,7 +16,16 @@
 #include <vtkJPEGReader.h>
 #include <vtkTexture.h>
 #include <vtkSkybox.h>
-
+#include <vtkCommand.h>
+#include <vtkEventData.h>
+#include <vtkProp3D.h>
+#include <vtkOpenVRInteractorStyle.h>
+#include <vtkPropPicker.h>
+#include <vtkLineSource.h>
+#include <vtkPolyDataMapper.h>
+#include <vtkProperty.h>
+#include <vtkActor.h>
+#include <vtkCellPicker.h>
 
 VRRenderThread::VRRenderThread(QObject* parent)
     : QThread(parent) {
@@ -42,7 +51,106 @@ void VRRenderThread::issueCommand(Command c, int partID, const QVariant& data) {
     QMutexLocker locker(&m_mutex);
     m_commandQueue.enqueue({ c, partID, data, nullptr });
 }
+// ==========================================
+// SHARED MEMORY POINTER
+// ==========================================
+static vtkProp3D* g_HoveredActor = nullptr;
 
+// ==========================================
+// 1. VR SCALE COMMAND (TRACKPAD SWIPE)
+// ==========================================
+class VRScaleCommand : public vtkCommand {
+public:
+    static VRScaleCommand* New() { return new VRScaleCommand; }
+
+    void Execute(vtkObject* caller, unsigned long eventId, void* callData) override {
+        if (eventId == vtkCommand::Elevation3DEvent) {
+            vtkEventData* edata = static_cast<vtkEventData*>(callData);
+            vtkEventDataDevice3D* ed = edata->GetAsEventDataDevice3D();
+
+            if (ed && ed->GetDevice() == vtkEventDataDevice::RightController) {
+
+                // ==========================================
+                // CRITICAL FIX 1: THE KILL SWITCH
+                // This stops VTK from pushing/pulling the object or the camera!
+                this->AbortFlagOn();
+                // ==========================================
+
+                if (g_HoveredActor) {
+                    const double* trackpad = ed->GetTrackPadPosition();
+                    double swipeY = trackpad[1];
+
+                    double currentScale[3];
+                    g_HoveredActor->GetScale(currentScale);
+                    double newScale = currentScale[0] + (swipeY * 0.0001);
+
+                    if (newScale > 0.00001) {
+                        g_HoveredActor->SetScale(newScale, newScale, newScale);
+                    }
+                }
+            }
+        }
+    }
+};
+
+// ==========================================
+// 2. VR HOVER COMMAND (BLUE GLOW)
+// ==========================================
+class VRHoverCommand : public vtkCommand {
+public:
+    static VRHoverCommand* New() { return new VRHoverCommand; }
+
+    vtkRenderer* renderer = nullptr;
+    vtkProp3D* lastHoveredActor = nullptr;
+
+    // ==========================================
+    // CRITICAL FIX 2: PRECISE TRIANGLE PICKING
+    // Upgraded from vtkPropPicker so it phases right through invisible bounding boxes!
+    vtkNew<vtkCellPicker> picker;
+    // ==========================================
+
+    void Execute(vtkObject* caller, unsigned long eventId, void* callData) override {
+        if (eventId == vtkCommand::Move3DEvent) {
+            vtkEventData* edata = static_cast<vtkEventData*>(callData);
+            vtkEventDataDevice3D* ed = edata->GetAsEventDataDevice3D();
+
+            if (ed && renderer) {
+                // Ignore the Left Controller
+                if (ed->GetDevice() != vtkEventDataDevice::RightController) return;
+
+                const double* constPos = ed->GetWorldPosition();
+                const double* constOri = ed->GetWorldOrientation();
+
+                double pos[3] = { constPos[0], constPos[1], constPos[2] };
+                double ori[4] = { constOri[0], constOri[1], constOri[2], constOri[3] };
+
+                picker->SetTolerance(0.0); // Tell the raycast to be pixel-perfect
+                picker->Pick3DRay(pos, ori, renderer);
+                vtkProp3D* targetActor = picker->GetProp3D();
+
+                if (targetActor != lastHoveredActor) {
+                    // Turn off old glow
+                    if (lastHoveredActor) {
+                        vtkActor* oldActor = vtkActor::SafeDownCast(lastHoveredActor);
+                        if (oldActor) oldActor->GetProperty()->SetAmbient(0.0);
+                    }
+                    // Turn on new glow
+                    if (targetActor) {
+                        vtkActor* newActor = vtkActor::SafeDownCast(targetActor);
+                        if (newActor) {
+                            newActor->GetProperty()->SetAmbientColor(0.0, 0.0, 1.0);
+                            newActor->GetProperty()->SetAmbient(0.6);
+                        }
+                    }
+
+                    lastHoveredActor = targetActor;
+                    g_HoveredActor = targetActor;
+                }
+            }
+        }
+    }
+};
+// --------------------------------------
 void VRRenderThread::run() {
     /// 1. Force Simulator mode again just in case
     _putenv_s("VTK_VR_SIMULATOR", "1");
@@ -51,50 +159,71 @@ void VRRenderThread::run() {
     m_renderWindow = vtkSmartPointer<vtkOpenVRRenderWindow>::New();
     m_interactor = vtkSmartPointer<vtkOpenVRRenderWindowInteractor>::New();
 
-    // 2. CLEAR THE MANIFEST: This is what stops the vr::VRInput() nullptr crash
-    m_interactor->SetActionManifestFileName("");
-    m_interactor->SetActionSetName("");
-
     m_renderWindow->AddRenderer(m_renderer);
     m_interactor->SetRenderWindow(m_renderWindow);
 
-    // 3. Register your actors
+    // ==========================================
+    // STEP 1: SET UP THE STRICT RAYCAST FILTER
+    // ==========================================
+    vtkNew<VRHoverCommand> hoverCmd;
+    hoverCmd->renderer = m_renderer;
+    hoverCmd->picker->PickFromListOn(); // Tell the raycast to ignore everything by default!
+
+    // 3. Register your actors AND whitelist them
     for (auto& [id, actor] : m_pendingActors) {
         m_renderer->AddActor(actor);
         m_activeActors[id] = actor;
+
+        // Add ONLY the STLs to the filter so the raycast can see them
+        hoverCmd->picker->AddPickList(actor);
     }
     m_pendingActors.clear();
 
+    // ==========================================
+    // STEP 2: ATTACH THE LISTENERS
+    // ==========================================
+    m_interactor->AddObserver(vtkCommand::Move3DEvent, hoverCmd);
+
+    vtkNew<VRScaleCommand> scaleCmd;
+    m_interactor->AddObserver(vtkCommand::Elevation3DEvent, scaleCmd);
+
     // 4. Setup the camera so you aren't blind
     m_renderer->ResetCamera();
-
     m_renderer->ResetCameraClippingRange();
 
+    // ... KEEP YOUR SKYBOX AND RENDER LOOP EXACTLY AS THEY ARE BELOW THIS! ...
+    
     // --- 360 ROOM BACKGROUND (SKYBOX) ---
+    // --- 360 ROOM BACKGROUND (SKYBOX) ---
+    std::string roomPath = "C:\\Users\\eeysm11\\Downloads\\2025_GROUP_1-feature-sk-vr-thread-header\\VRBaseStation\\room.jpg";
+
     vtkNew<vtkJPEGReader> bgReader;
-    bgReader->SetFileName("C:\\Users\\eeysm11\\Downloads\\2025_GROUP_1-feature-sk-vr-thread-header\\VRBaseStation\\room.jpg"); // Make sure this matches your file name!
-    bgReader->Update();
 
-    vtkNew<vtkTexture> bgTexture;
-    bgTexture->SetInputConnection(bgReader->GetOutputPort());
-    //bgTexture->MipmapOn();
-    bgTexture->InterpolateOn();
+    // SAFETY NET: Check if the file actually exists and can be read!
+    if (bgReader->CanReadFile(roomPath.c_str())) {
+        bgReader->SetFileName(roomPath.c_str());
+        bgReader->Update();
 
-    vtkNew<vtkSkybox> skybox;
-    skybox->SetTexture(bgTexture);
-    // This tells VTK the image is a flat 360 map that needs to be wrapped
-    skybox->SetProjectionToSphere();
+        vtkNew<vtkTexture> bgTexture;
+        bgTexture->SetInputConnection(bgReader->GetOutputPort());
+        bgTexture->InterpolateOn();
 
-    m_renderer->AddActor(skybox);
-    /*
-    // Optional: This makes your STL model reflect the lighting of the room!
-    m_renderer->UseImageBasedLightingOn();
-    m_renderer->SetEnvironmentTexture(bgTexture);
+        vtkNew<vtkSkybox> skybox;
+        skybox->SetTexture(bgTexture);
+        skybox->SetProjectionToSphere();
+        skybox->PickableOff(); // Prevent laser from hitting the background
+
+        m_renderer->AddActor(skybox);
+    }
+    else {
+        // If the path is wrong, skip the skybox so the app doesn't crash!
+        qDebug("WARNING: Could not find room.jpg! Check your file path.");
+    }
     // ------------------------------------
-    */
+
     m_renderWindow->Initialize();
 
-    // 4. Main VR loop.
+    // 5. Main VR loop.
     m_endRender = false;
     while (!m_endRender) {
         m_renderWindow->Render();
@@ -102,7 +231,7 @@ void VRRenderThread::run() {
         processCommands();
     }
 
-    // 5. Graceful shutdown - release the HMD.
+    // 6. Graceful shutdown - release the HMD.
     m_renderWindow->Finalize();
     m_renderer = nullptr;
     m_renderWindow = nullptr;
