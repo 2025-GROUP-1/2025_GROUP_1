@@ -386,6 +386,13 @@
 													</property>
 												</widget>
 											</item>
+											<item>
+												<widget class="QPushButton" name="buttonEnablePassthrough">
+													<property name="text">
+														<string>Enable Passthrough</string>
+													</property>
+												</widget>
+											</item>
 										</layout>
 									</widget>
 								</item>
@@ -445,6 +452,7 @@
 				</property>
 				<addaction name="actionEnter_VR"/>
 				<addaction name="actionExit_VR"/>
+				<addaction name="actionEnable_Passthrough"/>
 			</widget>
 			<widget class="QMenu" name="menuView">
 				<property name="title">
@@ -486,6 +494,7 @@
 			<addaction name="separator"/>
 			<addaction name="actionEnter_VR"/>
 			<addaction name="actionExit_VR"/>
+			<addaction name="actionEnable_Passthrough"/>
 			<addaction name="separator"/>
 			<addaction name="actionToggle_Theme"/>
 		</widget>
@@ -597,6 +606,17 @@
 				<enum>QAction::MenuRole::NoRole</enum>
 			</property>
 		</action>
+		<action name="actionEnable_Passthrough">
+			<property name="text">
+				<string>Enable &amp;Passthrough</string>
+			</property>
+			<property name="toolTip">
+				<string>Switch the Vive Pro 2 into Room View passthrough</string>
+			</property>
+			<property name="menuRole">
+				<enum>QAction::MenuRole::NoRole</enum>
+			</property>
+		</action>
 		<action name="actionToggle_Theme">
 			<property name="text">
 				<string>Light Mode</string>
@@ -668,6 +688,22 @@
 			<sender>buttonExitVR</sender>
 			<signal>clicked()</signal>
 			<receiver>actionExit_VR</receiver>
+			<slot>trigger()</slot>
+			<hints>
+				<hint type="sourcelabel">
+					<x>20</x>
+					<y>20</y>
+				</hint>
+				<hint type="destinationlabel">
+					<x>-1</x>
+					<y>-1</y>
+				</hint>
+			</hints>
+		</connection>
+		<connection>
+			<sender>buttonEnablePassthrough</sender>
+			<signal>clicked()</signal>
+			<receiver>actionEnable_Passthrough</receiver>
 			<slot>trigger()</slot>
 			<hints>
 				<hint type="sourcelabel">

@@ -92,6 +92,10 @@ QPushButton#buttonExitVR {
     background-color: #c54848; border-color: #c54848; color: white; font-weight: 600;
 }
 QPushButton#buttonExitVR:hover { background-color: #d85757; }
+QPushButton#buttonEnablePassthrough {
+    background-color: #3976c8; border-color: #3976c8; color: white; font-weight: 600;
+}
+QPushButton#buttonEnablePassthrough:hover { background-color: #4686db; }
 QTreeView {
     background-color: #1e1f24;
     border: 1px solid #34373f;
@@ -258,6 +262,10 @@ QPushButton#buttonExitVR {
     background-color: #c54848; border-color: #c54848; color: white; font-weight: 600;
 }
 QPushButton#buttonExitVR:hover { background-color: #d85757; }
+QPushButton#buttonEnablePassthrough {
+    background-color: #3976c8; border-color: #3976c8; color: white; font-weight: 600;
+}
+QPushButton#buttonEnablePassthrough:hover { background-color: #4686db; }
 QTreeView {
     background-color: #ffffff;
     border: 1px solid #d8dbe0;
@@ -864,6 +872,12 @@ void MainWindow::on_actionExit_VR_triggered()
     m_vrThread = nullptr;
 
     emit statusUpdateMessage(tr("VR stopped"), 0);
+}
+
+void MainWindow::on_actionEnable_Passthrough_triggered()
+{
+    emit statusUpdateMessage(
+        tr("Passthrough requested. Double-press the Vive System button to toggle Room View."), 0);
 }
 
 void MainWindow::on_buttonSyncVR_clicked()
