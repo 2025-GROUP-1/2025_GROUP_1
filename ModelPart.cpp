@@ -102,6 +102,7 @@ void ModelPart::rebuildVRPipeline() {
         vrActor = vtkSmartPointer<vtkActor>::New();
 
     vrActor->SetMapper(vrMapper);
+    vrActor->SetScale(0.001, 0.001, 0.001);  // STL units are mm; VR space is metres
     vrActor->GetProperty()->SetColor(
         m_colour.redF(), m_colour.greenF(), m_colour.blueF());
     vrActor->SetVisibility(m_isVisible ? 1 : 0);
