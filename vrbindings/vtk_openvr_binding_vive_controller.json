@@ -8,54 +8,6 @@
         {
           "inputs": {
             "click": {
-              "output": "/actions/vtk/in/startelevation"
-            },
-            "position": {
-              "output": "/actions/vtk/in/elevation"
-            }
-          },
-          "mode": "trackpad",
-          "path": "/user/hand/right/input/trackpad"
-        },
-        {
-          "inputs": {
-            "click": {
-              "output": "/actions/vtk/in/positionprop"
-            }
-          },
-          "mode": "button",
-          "path": "/user/hand/right/input/grip"
-        },
-        {
-          "inputs": {
-            "click": {
-              "output": "/actions/vtk/in/complexgestureaction"
-            }
-          },
-          "mode": "button",
-          "path": "/user/hand/left/input/grip"
-        },
-        {
-          "inputs": {
-            "click": {
-              "output": "/actions/vtk/in/showmenu"
-            }
-          },
-          "mode": "button",
-          "path": "/user/hand/right/input/application_menu"
-        },
-        {
-          "inputs": {
-            "click": {
-              "output": "/actions/vtk/in/triggeraction"
-            }
-          },
-          "mode": "button",
-          "path": "/user/hand/left/input/trigger"
-        },
-        {
-          "inputs": {
-            "click": {
               "output": "/actions/vtk/in/triggeraction"
             }
           },
