@@ -95,14 +95,43 @@ void ModelPart::rebuildVRPipeline() {
     if (!file)
         return;
 
-    vrMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
-    vrMapper->SetInputConnection(file->GetOutputPort());
+    vtkSmartPointer<vtkDataSetMapper> newMapper = vtkSmartPointer<vtkDataSetMapper>::New();
+    vtkAlgorithmOutput* source = file->GetOutputPort();
+
+    if (m_clipEnabled) {
+        double bounds[6];
+        file->GetOutput()->GetBounds(bounds);
+        double cx    = (bounds[0] + bounds[1]) * 0.5;
+        double xMin  = bounds[0], xMax = bounds[1];
+        double planeX = cx + m_clipPlaneX * (xMax - xMin) * 0.5;
+
+        vtkSmartPointer<vtkPlane> plane = vtkSmartPointer<vtkPlane>::New();
+        plane->SetOrigin(planeX, 0.0, 0.0);
+        plane->SetNormal(-1.0, 0.0, 0.0);
+
+        vtkSmartPointer<vtkClipDataSet> clip = vtkSmartPointer<vtkClipDataSet>::New();
+        clip->SetInputConnection(source);
+        clip->SetClipFunction(plane.Get());
+        clip->Update();
+        source = clip->GetOutputPort();
+    }
+
+    if (m_shrinkEnabled) {
+        vtkSmartPointer<vtkShrinkFilter> shrink = vtkSmartPointer<vtkShrinkFilter>::New();
+        shrink->SetInputConnection(source);
+        shrink->SetShrinkFactor(m_shrinkFactor);
+        shrink->Update();
+        source = shrink->GetOutputPort();
+    }
+
+    newMapper->SetInputConnection(source);
+    vrMapper = newMapper;
 
     if (!vrActor)
         vrActor = vtkSmartPointer<vtkActor>::New();
 
     vrActor->SetMapper(vrMapper);
-    vrActor->SetScale(0.001, 0.001, 0.001);  // STL units are mm; VR space is metres
+    vrActor->SetScale(0.001, 0.001, 0.001);
     vrActor->GetProperty()->SetColor(
         m_colour.redF(), m_colour.greenF(), m_colour.blueF());
     vrActor->SetVisibility(m_isVisible ? 1 : 0);
