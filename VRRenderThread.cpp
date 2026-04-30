@@ -23,6 +23,9 @@
 #include <vtkProp3D.h>
 #include <vtkCellPicker.h>
 
+#include <chrono>
+#include <cmath>
+
 static vtkProp3D* g_hoveredActor = nullptr;
 
 class VRScaleCommand : public vtkCommand {
@@ -63,6 +66,10 @@ public:
     vtkRenderer* renderer = nullptr;
     vtkProp3D* lastHoveredActor = nullptr;
     vtkNew<vtkCellPicker> picker;
+    std::chrono::steady_clock::time_point lastPickTime = std::chrono::steady_clock::now();
+    double lastPickPosition[3] = { 0.0, 0.0, 0.0 };
+    double lastPickOrientation[4] = { 0.0, 0.0, 0.0, 0.0 };
+    bool hasLastPickPose = false;
 
     void Execute(vtkObject* caller, unsigned long eventId, void* callData) override {
         Q_UNUSED(caller);
@@ -78,6 +85,35 @@ public:
 
         const double* worldPosition = deviceData->GetWorldPosition();
         const double* worldOrientation = deviceData->GetWorldOrientation();
+
+        const auto now = std::chrono::steady_clock::now();
+        const double positionDelta =
+            std::fabs(worldPosition[0] - lastPickPosition[0]) +
+            std::fabs(worldPosition[1] - lastPickPosition[1]) +
+            std::fabs(worldPosition[2] - lastPickPosition[2]);
+        const double orientationDelta =
+            std::fabs(worldOrientation[0] - lastPickOrientation[0]) +
+            std::fabs(worldOrientation[1] - lastPickOrientation[1]) +
+            std::fabs(worldOrientation[2] - lastPickOrientation[2]) +
+            std::fabs(worldOrientation[3] - lastPickOrientation[3]);
+
+        if (hasLastPickPose) {
+            const auto elapsedMs =
+                std::chrono::duration_cast<std::chrono::milliseconds>(now - lastPickTime).count();
+            if (elapsedMs < 50 || (positionDelta < 0.002 && orientationDelta < 0.01))
+                return;
+        }
+
+        lastPickTime = now;
+        hasLastPickPose = true;
+        lastPickPosition[0] = worldPosition[0];
+        lastPickPosition[1] = worldPosition[1];
+        lastPickPosition[2] = worldPosition[2];
+        lastPickOrientation[0] = worldOrientation[0];
+        lastPickOrientation[1] = worldOrientation[1];
+        lastPickOrientation[2] = worldOrientation[2];
+        lastPickOrientation[3] = worldOrientation[3];
+
         double pos[3] = { worldPosition[0], worldPosition[1], worldPosition[2] };
         double ori[4] = {
             worldOrientation[0],
