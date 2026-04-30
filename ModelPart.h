@@ -131,8 +131,10 @@ private:
     vtkSmartPointer<vtkActor>         actor;         ///< Actor placed in the GUI renderer.
     vtkSmartPointer<vtkShrinkFilter>  shrinkFilter;  ///< Shrink filter (only built when enabled).
     vtkSmartPointer<vtkClipDataSet>   clipFilter;    ///< Clip filter (only built when enabled).
-    vtkSmartPointer<vtkDataSetMapper>  vrMapper;     ///< Mapper for VR (mirrors GUI filter chain).
-    vtkSmartPointer<vtkActor>         vrActor;      ///< Actor for the VR renderer.
+    vtkSmartPointer<vtkDataSetMapper>  vrMapper;      ///< Mapper for VR (mirrors GUI filter chain).
+    vtkSmartPointer<vtkActor>         vrActor;       ///< Actor for the VR renderer.
+    vtkSmartPointer<vtkShrinkFilter>  vrShrinkFilter;
+    vtkSmartPointer<vtkClipDataSet>   vrClipFilter;
 
     QColor m_colour;            ///< RGB colour applied to the actor.
     bool   m_isVisible;         ///< Whether the part is shown.
