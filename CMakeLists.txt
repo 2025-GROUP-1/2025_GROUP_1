@@ -51,6 +51,13 @@ add_custom_command(TARGET VRBindings PRE_BUILD
     COMMAND ${CMAKE_COMMAND} -E
     copy_directory ${CMAKE_SOURCE_DIR}/vrbindings ${CMAKE_BINARY_DIR}/)
 
+# Copy room.jpg next to the exe after every build so the skybox loads at runtime
+add_custom_command(TARGET VRBaseStation POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        ${CMAKE_SOURCE_DIR}/VRBaseStation/room.jpg
+        $<TARGET_FILE_DIR:VRBaseStation>/room.jpg
+)
+
 include(GNUInstallDirs)
 
 # Main executable
@@ -68,11 +75,14 @@ qt_generate_deploy_app_script(
 )
 install(SCRIPT ${deploy_script})
 
-# Icons and VR bindings
+# Icons, VR bindings, and skybox
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/icons
     DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/vrbindings
+    DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+install(FILES ${CMAKE_SOURCE_DIR}/VRBaseStation/room.jpg
     DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
