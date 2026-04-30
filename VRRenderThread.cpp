@@ -15,6 +15,7 @@
 #include "ModelPart.h"
 #include <vtkCamera.h>
 #include <vtkJPEGReader.h>
+#include <vtkImageData.h>
 #include <vtkTexture.h>
 #include <vtkSkybox.h>
 
