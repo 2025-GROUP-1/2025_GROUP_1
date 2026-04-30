@@ -1,6 +1,8 @@
 #include "VRRenderThread.h"
 #include <QMutexLocker>
 #include <QCoreApplication>
+#include <QFile>
+#include <vtkOpenVRInteractorStyle.h>
 #include <vtkActor.h>
 #include <vtkOpenVRRenderer.h>
 #include <vtkOpenVRRenderWindow.h>
@@ -49,8 +51,18 @@ void VRRenderThread::run() {
     m_renderWindow = vtkSmartPointer<vtkOpenVRRenderWindow>::New();
     m_interactor = vtkSmartPointer<vtkOpenVRRenderWindowInteractor>::New();
 
-    m_interactor->SetActionManifestFileName("");
-    m_interactor->SetActionSetName("");
+    // Load action manifest for controller bindings if it was copied to the exe dir
+    QString manifestPath = QCoreApplication::applicationDirPath() + "/vtk_openvr_actions.json";
+    if (QFile::exists(manifestPath)) {
+        m_interactor->SetActionManifestFileName(manifestPath.toStdString().c_str());
+    } else {
+        m_interactor->SetActionManifestFileName("");
+        m_interactor->SetActionSetName("");
+    }
+
+    // Default OpenVR interaction style — provides teleportation and controller navigation
+    vtkNew<vtkOpenVRInteractorStyle> style;
+    m_interactor->SetInteractorStyle(style);
 
     m_renderWindow->AddRenderer(m_renderer);
     m_interactor->SetRenderWindow(m_renderWindow);

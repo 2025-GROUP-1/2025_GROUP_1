@@ -671,6 +671,8 @@ void MainWindow::on_buttonDiffuseColour_clicked()
     if (!chosen.isValid()) return;
 
     part->setColour(chosen);
+    if (m_vrThread && m_vrThread->isRunning())
+        m_vrThread->issueCommand(Command::SetColour, part->getID(), chosen);
     renderWindow->Render();
     emit statusUpdateMessage(tr("Recoloured: %1").arg(part->data(0).toString()), 0);
 }
@@ -680,6 +682,8 @@ void MainWindow::on_checkShowPart_stateChanged(int state)
     ModelPart* part = currentPart();
     if (!part) return;
     part->setVisible(state == Qt::Checked);
+    if (m_vrThread && m_vrThread->isRunning())
+        m_vrThread->issueCommand(Command::SetVisible, part->getID(), part->getVisible());
     updateRender();
 }
 
@@ -688,6 +692,8 @@ void MainWindow::on_toggleShrink_toggled(bool checked)
     ModelPart* part = currentPart();
     if (!part) return;
     part->setShrinkFilter(checked);
+    if (m_vrThread && m_vrThread->isRunning())
+        m_vrThread->issueCommand(Command::ToggleShrink, part->getID(), checked);
     updateRender();
     emit statusUpdateMessage(
         checked ? tr("Shrink filter on: %1").arg(part->data(0).toString())
@@ -699,6 +705,8 @@ void MainWindow::on_toggleClip_toggled(bool checked)
     ModelPart* part = currentPart();
     if (!part) return;
     part->setClipFilter(checked);
+    if (m_vrThread && m_vrThread->isRunning())
+        m_vrThread->issueCommand(Command::ToggleClip, part->getID(), checked);
     updateRender();
     emit statusUpdateMessage(
         checked ? tr("Clip filter on: %1").arg(part->data(0).toString())
