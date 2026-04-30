@@ -48,9 +48,10 @@ void VRRenderThread::run() {
     m_renderWindow  = vtkSmartPointer<vtkOpenVRRenderWindow>::New();
     m_interactor  = vtkSmartPointer<vtkOpenVRRenderWindowInteractor>::New();
 
-    // Clear the action manifest so VTK uses its own built-in navigation bindings.
-    m_interactor->SetActionManifestFileName("");
-    m_interactor->SetActionSetName("");
+    const std::string manifestPath =
+        (QCoreApplication::applicationDirPath() + "/vrbindings/vtk_openvr_actions.json").toStdString();
+    m_interactor->SetActionManifestFileName(manifestPath.c_str());
+    m_interactor->SetActionSetName("/actions/vtk");
 
     m_renderWindow->AddRenderer(m_renderer);
     m_interactor->SetRenderWindow(m_renderWindow);
