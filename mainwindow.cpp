@@ -545,7 +545,13 @@ void MainWindow::on_actionImport_Folder_triggered()
     for (const QString& f : fileNames)
         tasks.append({ dir.absoluteFilePath(f), f, nullptr });
 
-    // Phase 1: read all STL files in parallel on the thread pool
+    // Phase 1: create readers on the main thread (VTK factory is not thread-safe),
+    // then call Update() in parallel so file I/O runs concurrently.
+    for (LoadTask& t : tasks) {
+        t.reader = vtkSmartPointer<vtkSTLReader>::New();
+        t.reader->SetFileName(t.fullPath.toStdString().c_str());
+    }
+
     QProgressDialog progress(tr("Reading %1 STL files...").arg(tasks.size()),
                              tr("Cancel"), 0, tasks.size(), this);
     progress.setWindowModality(Qt::WindowModal);
@@ -556,8 +562,6 @@ void MainWindow::on_actionImport_Folder_triggered()
     connect(&progress, &QProgressDialog::canceled, &watcher, &QFutureWatcher<void>::cancel);
 
     watcher.setFuture(QtConcurrent::map(tasks, [](LoadTask& t) {
-        t.reader = vtkSmartPointer<vtkSTLReader>::New();
-        t.reader->SetFileName(t.fullPath.toStdString().c_str());
         t.reader->Update();
     }));
 
