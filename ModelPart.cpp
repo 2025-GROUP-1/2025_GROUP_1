@@ -101,27 +101,31 @@ void ModelPart::rebuildVRPipeline() {
     if (m_clipEnabled) {
         double bounds[6];
         file->GetOutput()->GetBounds(bounds);
-        double cx    = (bounds[0] + bounds[1]) * 0.5;
-        double xMin  = bounds[0], xMax = bounds[1];
+        double cx     = (bounds[0] + bounds[1]) * 0.5;
+        double xMin   = bounds[0], xMax = bounds[1];
         double planeX = cx + m_clipPlaneX * (xMax - xMin) * 0.5;
 
         vtkSmartPointer<vtkPlane> plane = vtkSmartPointer<vtkPlane>::New();
         plane->SetOrigin(planeX, 0.0, 0.0);
         plane->SetNormal(-1.0, 0.0, 0.0);
 
-        vtkSmartPointer<vtkClipDataSet> clip = vtkSmartPointer<vtkClipDataSet>::New();
-        clip->SetInputConnection(source);
-        clip->SetClipFunction(plane.Get());
-        clip->Update();
-        source = clip->GetOutputPort();
+        vrClipFilter = vtkSmartPointer<vtkClipDataSet>::New();
+        vrClipFilter->SetInputConnection(source);
+        vrClipFilter->SetClipFunction(plane.Get());
+        vrClipFilter->Update();
+        source = vrClipFilter->GetOutputPort();
+    } else {
+        vrClipFilter = nullptr;
     }
 
     if (m_shrinkEnabled) {
-        vtkSmartPointer<vtkShrinkFilter> shrink = vtkSmartPointer<vtkShrinkFilter>::New();
-        shrink->SetInputConnection(source);
-        shrink->SetShrinkFactor(m_shrinkFactor);
-        shrink->Update();
-        source = shrink->GetOutputPort();
+        vrShrinkFilter = vtkSmartPointer<vtkShrinkFilter>::New();
+        vrShrinkFilter->SetInputConnection(source);
+        vrShrinkFilter->SetShrinkFactor(m_shrinkFactor);
+        vrShrinkFilter->Update();
+        source = vrShrinkFilter->GetOutputPort();
+    } else {
+        vrShrinkFilter = nullptr;
     }
 
     newMapper->SetInputConnection(source);
