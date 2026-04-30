@@ -185,7 +185,8 @@ private:
             worldOrientation[3]
         };
 
-        picker->SetTolerance(0.0);
+        picker->SetTolerance(0.01);
+        picker->PickClippingPlanesOff();
         picker->Pick3DRay(pos, ori, renderer);
         vtkProp3D* targetActor = picker->GetProp3D();
 
