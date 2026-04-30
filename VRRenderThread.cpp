@@ -22,15 +22,30 @@
 #include <vtkEventData.h>
 #include <vtkProp3D.h>
 #include <vtkCellPicker.h>
+#include <vtkLineSource.h>
+#include <vtkTubeFilter.h>
+#include <vtkPolyDataMapper.h>
+#include <vtkBillboardTextActor3D.h>
+#include <vtkTextProperty.h>
 
 #include <chrono>
 #include <cmath>
 
 static vtkProp3D* g_hoveredActor = nullptr;
 
-class VRScaleCommand : public vtkCommand {
+static void setActorGlow(vtkProp3D* prop, double ambient, double r, double g, double b)
+{
+    vtkActor* actor = vtkActor::SafeDownCast(prop);
+    if (!actor)
+        return;
+
+    actor->GetProperty()->SetAmbientColor(r, g, b);
+    actor->GetProperty()->SetAmbient(ambient);
+}
+
+class VRTrackpadCommand : public vtkCommand {
 public:
-    static VRScaleCommand* New() { return new VRScaleCommand; }
+    static VRTrackpadCommand* New() { return new VRTrackpadCommand; }
 
     void Execute(vtkObject* caller, unsigned long eventId, void* callData) override {
         Q_UNUSED(caller);
@@ -56,26 +71,32 @@ public:
         const double newScale = currentScale[0] + (trackpad[1] * 0.0001);
         if (newScale > 0.00001)
             g_hoveredActor->SetScale(newScale, newScale, newScale);
+
+        if (std::fabs(trackpad[0]) > 0.08)
+            g_hoveredActor->RotateY(trackpad[0] * 0.4);
     }
 };
 
-class VRHoverCommand : public vtkCommand {
+class VRControlsCommand : public vtkCommand {
 public:
-    static VRHoverCommand* New() { return new VRHoverCommand; }
+    static VRControlsCommand* New() { return new VRControlsCommand; }
 
     vtkRenderer* renderer = nullptr;
     vtkProp3D* lastHoveredActor = nullptr;
     vtkNew<vtkCellPicker> picker;
+    vtkLineSource* pointerLine = nullptr;
+    vtkActor* pointerActor = nullptr;
+    vtkBillboardTextActor3D* menuActor = nullptr;
+    vtkProp3D* grabbedActor = nullptr;
+    double grabOffset[3] = { 0.0, 0.0, 0.0 };
     std::chrono::steady_clock::time_point lastPickTime = std::chrono::steady_clock::now();
     double lastPickPosition[3] = { 0.0, 0.0, 0.0 };
     double lastPickOrientation[4] = { 0.0, 0.0, 0.0, 0.0 };
     bool hasLastPickPose = false;
+    bool menuVisible = false;
 
     void Execute(vtkObject* caller, unsigned long eventId, void* callData) override {
         Q_UNUSED(caller);
-
-        if (eventId != vtkCommand::Move3DEvent)
-            return;
 
         vtkEventData* eventData = static_cast<vtkEventData*>(callData);
         vtkEventDataDevice3D* deviceData = eventData ? eventData->GetAsEventDataDevice3D() : nullptr;
@@ -85,7 +106,85 @@ public:
 
         const double* worldPosition = deviceData->GetWorldPosition();
         const double* worldOrientation = deviceData->GetWorldOrientation();
+        const double* worldDirection = deviceData->GetWorldDirection();
 
+        if (eventId == vtkCommand::Move3DEvent) {
+            updatePointer(worldPosition, worldDirection);
+            updateMenuPosition(worldPosition, worldDirection);
+            updateGrabbedActor(worldPosition);
+            updateHover(worldPosition, worldOrientation);
+            return;
+        }
+
+        if (eventId == vtkCommand::Select3DEvent) {
+            handleSelect(deviceData);
+            return;
+        }
+
+        if (eventId == vtkCommand::PositionProp3DEvent) {
+            handleGrab(deviceData, worldPosition);
+            return;
+        }
+
+        if (eventId == vtkCommand::Menu3DEvent) {
+            handleMenu(deviceData);
+            return;
+        }
+    }
+
+private:
+    void updatePointer(const double* worldPosition, const double* worldDirection)
+    {
+        if (!pointerLine || !pointerActor)
+            return;
+
+        constexpr double pointerLength = 12.0;
+        const double directionLength = std::sqrt(
+            worldDirection[0] * worldDirection[0] +
+            worldDirection[1] * worldDirection[1] +
+            worldDirection[2] * worldDirection[2]);
+
+        double direction[3] = { 0.0, 0.0, -1.0 };
+        if (directionLength > 0.0001) {
+            direction[0] = worldDirection[0] / directionLength;
+            direction[1] = worldDirection[1] / directionLength;
+            direction[2] = worldDirection[2] / directionLength;
+        }
+
+        pointerLine->SetPoint1(worldPosition);
+        pointerLine->SetPoint2(
+            worldPosition[0] + direction[0] * pointerLength,
+            worldPosition[1] + direction[1] * pointerLength,
+            worldPosition[2] + direction[2] * pointerLength);
+        pointerLine->Modified();
+        pointerActor->SetVisibility(1);
+    }
+
+    void updateMenuPosition(const double* worldPosition, const double* worldDirection)
+    {
+        if (!menuActor || !menuVisible)
+            return;
+
+        constexpr double menuDistance = 1.15;
+        menuActor->SetPosition(
+            worldPosition[0] + worldDirection[0] * menuDistance,
+            worldPosition[1] + worldDirection[1] * menuDistance + 0.15,
+            worldPosition[2] + worldDirection[2] * menuDistance);
+    }
+
+    void updateGrabbedActor(const double* worldPosition)
+    {
+        if (!grabbedActor)
+            return;
+
+        grabbedActor->SetPosition(
+            worldPosition[0] + grabOffset[0],
+            worldPosition[1] + grabOffset[1],
+            worldPosition[2] + grabOffset[2]);
+    }
+
+    void updateHover(const double* worldPosition, const double* worldOrientation)
+    {
         const auto now = std::chrono::steady_clock::now();
         const double positionDelta =
             std::fabs(worldPosition[0] - lastPickPosition[0]) +
@@ -129,22 +228,54 @@ public:
         if (targetActor == lastHoveredActor)
             return;
 
-        if (lastHoveredActor) {
-            vtkActor* oldActor = vtkActor::SafeDownCast(lastHoveredActor);
-            if (oldActor)
-                oldActor->GetProperty()->SetAmbient(0.0);
-        }
+        if (lastHoveredActor && lastHoveredActor != grabbedActor)
+            setActorGlow(lastHoveredActor, 0.0, 1.0, 1.0, 1.0);
 
-        if (targetActor) {
-            vtkActor* newActor = vtkActor::SafeDownCast(targetActor);
-            if (newActor) {
-                newActor->GetProperty()->SetAmbientColor(0.0, 0.0, 1.0);
-                newActor->GetProperty()->SetAmbient(0.6);
-            }
-        }
+        if (targetActor && targetActor != grabbedActor)
+            setActorGlow(targetActor, 0.45, 0.1, 0.45, 1.0);
 
         lastHoveredActor = targetActor;
         g_hoveredActor = targetActor;
+    }
+
+    void handleSelect(vtkEventDataDevice3D* deviceData)
+    {
+        AbortFlagOn();
+
+        if (deviceData->GetAction() == vtkEventDataAction::Press && g_hoveredActor)
+            setActorGlow(g_hoveredActor, 0.75, 0.1, 1.0, 0.35);
+        else if (deviceData->GetAction() == vtkEventDataAction::Release && g_hoveredActor)
+            setActorGlow(g_hoveredActor, 0.45, 0.1, 0.45, 1.0);
+    }
+
+    void handleGrab(vtkEventDataDevice3D* deviceData, const double* worldPosition)
+    {
+        AbortFlagOn();
+
+        if (deviceData->GetAction() == vtkEventDataAction::Press && g_hoveredActor) {
+            grabbedActor = g_hoveredActor;
+            double actorPosition[3];
+            grabbedActor->GetPosition(actorPosition);
+            grabOffset[0] = actorPosition[0] - worldPosition[0];
+            grabOffset[1] = actorPosition[1] - worldPosition[1];
+            grabOffset[2] = actorPosition[2] - worldPosition[2];
+            setActorGlow(grabbedActor, 0.8, 1.0, 0.65, 0.1);
+        } else if (deviceData->GetAction() == vtkEventDataAction::Release) {
+            if (grabbedActor)
+                setActorGlow(grabbedActor, 0.45, 0.1, 0.45, 1.0);
+            grabbedActor = nullptr;
+        }
+    }
+
+    void handleMenu(vtkEventDataDevice3D* deviceData)
+    {
+        if (deviceData->GetAction() != vtkEventDataAction::Press || !menuActor) {
+            return;
+        }
+
+        AbortFlagOn();
+        menuVisible = !menuVisible;
+        menuActor->SetVisibility(menuVisible ? 1 : 0);
     }
 };
 
@@ -188,21 +319,63 @@ void VRRenderThread::run() {
     m_renderWindow->AddRenderer(m_renderer);
     m_interactor->SetRenderWindow(m_renderWindow);
 
-    vtkNew<VRHoverCommand> hoverCommand;
-    hoverCommand->renderer = m_renderer;
-    hoverCommand->picker->PickFromListOn();
+    vtkNew<vtkLineSource> pointerLine;
+    pointerLine->SetPoint1(0.0, 0.0, 0.0);
+    pointerLine->SetPoint2(0.0, 0.0, -12.0);
+
+    vtkNew<vtkTubeFilter> pointerTube;
+    pointerTube->SetInputConnection(pointerLine->GetOutputPort());
+    pointerTube->SetRadius(0.006);
+    pointerTube->SetNumberOfSides(8);
+
+    vtkNew<vtkPolyDataMapper> pointerMapper;
+    pointerMapper->SetInputConnection(pointerTube->GetOutputPort());
+
+    vtkNew<vtkActor> pointerActor;
+    pointerActor->SetMapper(pointerMapper);
+    pointerActor->GetProperty()->SetColor(0.1, 0.45, 1.0);
+    pointerActor->GetProperty()->SetAmbient(1.0);
+    pointerActor->PickableOff();
+    pointerActor->SetVisibility(0);
+    m_renderer->AddActor(pointerActor);
+
+    vtkNew<vtkBillboardTextActor3D> menuActor;
+    menuActor->SetInput(
+        "VR Controls\n"
+        "Trigger: select highlighted part\n"
+        "Grip: grab and move part\n"
+        "Trackpad up/down: scale part\n"
+        "Menu: show/hide this panel");
+    menuActor->GetTextProperty()->SetColor(1.0, 1.0, 1.0);
+    menuActor->GetTextProperty()->SetBackgroundColor(0.04, 0.05, 0.06);
+    menuActor->GetTextProperty()->SetBackgroundOpacity(0.85);
+    menuActor->GetTextProperty()->SetFontSize(24);
+    menuActor->SetScale(0.008, 0.008, 0.008);
+    menuActor->PickableOff();
+    menuActor->SetVisibility(0);
+    m_renderer->AddActor(menuActor);
+
+    vtkNew<VRControlsCommand> controlsCommand;
+    controlsCommand->renderer = m_renderer;
+    controlsCommand->pointerLine = pointerLine;
+    controlsCommand->pointerActor = pointerActor;
+    controlsCommand->menuActor = menuActor;
+    controlsCommand->picker->PickFromListOn();
 
     for (auto& [id, actor] : m_pendingActors) {
         m_renderer->AddActor(actor);
         m_activeActors[id] = actor;
-        hoverCommand->picker->AddPickList(actor);
+        controlsCommand->picker->AddPickList(actor);
     }
     m_pendingActors.clear();
 
-    m_interactor->AddObserver(vtkCommand::Move3DEvent, hoverCommand);
+    m_interactor->AddObserver(vtkCommand::Move3DEvent, controlsCommand, 1.0);
+    m_interactor->AddObserver(vtkCommand::Select3DEvent, controlsCommand, 1.0);
+    m_interactor->AddObserver(vtkCommand::PositionProp3DEvent, controlsCommand, 1.0);
+    m_interactor->AddObserver(vtkCommand::Menu3DEvent, controlsCommand, 1.0);
 
-    vtkNew<VRScaleCommand> scaleCommand;
-    m_interactor->AddObserver(vtkCommand::Elevation3DEvent, scaleCommand);
+    vtkNew<VRTrackpadCommand> trackpadCommand;
+    m_interactor->AddObserver(vtkCommand::Elevation3DEvent, trackpadCommand, 1.0);
 
     m_renderer->ResetCamera();
     m_renderer->ResetCameraClippingRange();
