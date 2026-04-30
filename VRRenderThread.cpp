@@ -23,7 +23,6 @@
 #include <vtkProp3D.h>
 #include <vtkCellPicker.h>
 #include <vtkLineSource.h>
-#include <vtkTubeFilter.h>
 #include <vtkPolyDataMapper.h>
 #include <vtkBillboardTextActor3D.h>
 #include <vtkTextProperty.h>
@@ -32,6 +31,7 @@
 #include <cmath>
 
 static vtkProp3D* g_hoveredActor = nullptr;
+static vtkProp3D* g_selectedActor = nullptr;
 
 static void setActorGlow(vtkProp3D* prop, double ambient, double r, double g, double b)
 {
@@ -61,19 +61,19 @@ public:
 
         AbortFlagOn();
 
-        if (!g_hoveredActor)
+        if (!g_selectedActor)
             return;
 
         const double* trackpad = deviceData->GetTrackPadPosition();
         double currentScale[3];
-        g_hoveredActor->GetScale(currentScale);
+        g_selectedActor->GetScale(currentScale);
 
         const double newScale = currentScale[0] + (trackpad[1] * 0.0001);
         if (newScale > 0.00001)
-            g_hoveredActor->SetScale(newScale, newScale, newScale);
+            g_selectedActor->SetScale(newScale, newScale, newScale);
 
         if (std::fabs(trackpad[0]) > 0.08)
-            g_hoveredActor->RotateY(trackpad[0] * 0.4);
+            g_selectedActor->RotateY(trackpad[0] * 0.4);
     }
 };
 
@@ -138,7 +138,7 @@ private:
         if (!pointerLine || !pointerActor)
             return;
 
-        constexpr double pointerLength = 12.0;
+        constexpr double pointerLength = 8.0;
         const double directionLength = std::sqrt(
             worldDirection[0] * worldDirection[0] +
             worldDirection[1] * worldDirection[1] +
@@ -228,10 +228,10 @@ private:
         if (targetActor == lastHoveredActor)
             return;
 
-        if (lastHoveredActor && lastHoveredActor != grabbedActor)
+        if (lastHoveredActor && lastHoveredActor != grabbedActor && lastHoveredActor != g_selectedActor)
             setActorGlow(lastHoveredActor, 0.0, 1.0, 1.0, 1.0);
 
-        if (targetActor && targetActor != grabbedActor)
+        if (targetActor && targetActor != grabbedActor && targetActor != g_selectedActor)
             setActorGlow(targetActor, 0.45, 0.1, 0.45, 1.0);
 
         lastHoveredActor = targetActor;
@@ -242,18 +242,22 @@ private:
     {
         AbortFlagOn();
 
-        if (deviceData->GetAction() == vtkEventDataAction::Press && g_hoveredActor)
-            setActorGlow(g_hoveredActor, 0.75, 0.1, 1.0, 0.35);
-        else if (deviceData->GetAction() == vtkEventDataAction::Release && g_hoveredActor)
-            setActorGlow(g_hoveredActor, 0.45, 0.1, 0.45, 1.0);
+        if (deviceData->GetAction() != vtkEventDataAction::Press || !g_hoveredActor)
+            return;
+
+        if (g_selectedActor && g_selectedActor != g_hoveredActor)
+            setActorGlow(g_selectedActor, 0.0, 1.0, 1.0, 1.0);
+
+        g_selectedActor = g_hoveredActor;
+        setActorGlow(g_selectedActor, 0.75, 0.1, 1.0, 0.35);
     }
 
     void handleGrab(vtkEventDataDevice3D* deviceData, const double* worldPosition)
     {
         AbortFlagOn();
 
-        if (deviceData->GetAction() == vtkEventDataAction::Press && g_hoveredActor) {
-            grabbedActor = g_hoveredActor;
+        if (deviceData->GetAction() == vtkEventDataAction::Press && g_selectedActor) {
+            grabbedActor = g_selectedActor;
             double actorPosition[3];
             grabbedActor->GetPosition(actorPosition);
             grabOffset[0] = actorPosition[0] - worldPosition[0];
@@ -321,20 +325,17 @@ void VRRenderThread::run() {
 
     vtkNew<vtkLineSource> pointerLine;
     pointerLine->SetPoint1(0.0, 0.0, 0.0);
-    pointerLine->SetPoint2(0.0, 0.0, -12.0);
-
-    vtkNew<vtkTubeFilter> pointerTube;
-    pointerTube->SetInputConnection(pointerLine->GetOutputPort());
-    pointerTube->SetRadius(0.006);
-    pointerTube->SetNumberOfSides(8);
+    pointerLine->SetPoint2(0.0, 0.0, -8.0);
 
     vtkNew<vtkPolyDataMapper> pointerMapper;
-    pointerMapper->SetInputConnection(pointerTube->GetOutputPort());
+    pointerMapper->SetInputConnection(pointerLine->GetOutputPort());
 
     vtkNew<vtkActor> pointerActor;
     pointerActor->SetMapper(pointerMapper);
-    pointerActor->GetProperty()->SetColor(0.1, 0.45, 1.0);
+    pointerActor->GetProperty()->SetColor(0.2, 0.65, 1.0);
     pointerActor->GetProperty()->SetAmbient(1.0);
+    pointerActor->GetProperty()->SetOpacity(0.65);
+    pointerActor->GetProperty()->SetLineWidth(1.0);
     pointerActor->PickableOff();
     pointerActor->SetVisibility(0);
     m_renderer->AddActor(pointerActor);
@@ -343,8 +344,9 @@ void VRRenderThread::run() {
     menuActor->SetInput(
         "VR Controls\n"
         "Trigger: select highlighted part\n"
-        "Grip: grab and move part\n"
-        "Trackpad up/down: scale part\n"
+        "Grip: grab selected part\n"
+        "Trackpad up/down: scale selected part\n"
+        "Trackpad left/right: rotate selected part\n"
         "Menu: show/hide this panel");
     menuActor->GetTextProperty()->SetColor(1.0, 1.0, 1.0);
     menuActor->GetTextProperty()->SetBackgroundColor(0.04, 0.05, 0.06);
