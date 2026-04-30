@@ -82,6 +82,7 @@ public slots:
     // -- VR --
     void on_actionEnter_VR_triggered();
     void on_actionExit_VR_triggered();
+    void on_actionEnable_Passthrough_triggered();
     void on_buttonSyncVR_clicked();
 
     // -- Help --

@@ -18,6 +18,99 @@
 #include <vtkImageData.h>
 #include <vtkTexture.h>
 #include <vtkSkybox.h>
+#include <vtkCommand.h>
+#include <vtkEventData.h>
+#include <vtkProp3D.h>
+#include <vtkCellPicker.h>
+
+static vtkProp3D* g_hoveredActor = nullptr;
+
+class VRScaleCommand : public vtkCommand {
+public:
+    static VRScaleCommand* New() { return new VRScaleCommand; }
+
+    void Execute(vtkObject* caller, unsigned long eventId, void* callData) override {
+        Q_UNUSED(caller);
+
+        if (eventId != vtkCommand::Elevation3DEvent)
+            return;
+
+        vtkEventData* eventData = static_cast<vtkEventData*>(callData);
+        vtkEventDataDevice3D* deviceData = eventData ? eventData->GetAsEventDataDevice3D() : nullptr;
+
+        if (!deviceData || deviceData->GetDevice() != vtkEventDataDevice::RightController)
+            return;
+
+        AbortFlagOn();
+
+        if (!g_hoveredActor)
+            return;
+
+        const double* trackpad = deviceData->GetTrackPadPosition();
+        double currentScale[3];
+        g_hoveredActor->GetScale(currentScale);
+
+        const double newScale = currentScale[0] + (trackpad[1] * 0.0001);
+        if (newScale > 0.00001)
+            g_hoveredActor->SetScale(newScale, newScale, newScale);
+    }
+};
+
+class VRHoverCommand : public vtkCommand {
+public:
+    static VRHoverCommand* New() { return new VRHoverCommand; }
+
+    vtkRenderer* renderer = nullptr;
+    vtkProp3D* lastHoveredActor = nullptr;
+    vtkNew<vtkCellPicker> picker;
+
+    void Execute(vtkObject* caller, unsigned long eventId, void* callData) override {
+        Q_UNUSED(caller);
+
+        if (eventId != vtkCommand::Move3DEvent)
+            return;
+
+        vtkEventData* eventData = static_cast<vtkEventData*>(callData);
+        vtkEventDataDevice3D* deviceData = eventData ? eventData->GetAsEventDataDevice3D() : nullptr;
+
+        if (!deviceData || !renderer || deviceData->GetDevice() != vtkEventDataDevice::RightController)
+            return;
+
+        const double* worldPosition = deviceData->GetWorldPosition();
+        const double* worldOrientation = deviceData->GetWorldOrientation();
+        double pos[3] = { worldPosition[0], worldPosition[1], worldPosition[2] };
+        double ori[4] = {
+            worldOrientation[0],
+            worldOrientation[1],
+            worldOrientation[2],
+            worldOrientation[3]
+        };
+
+        picker->SetTolerance(0.0);
+        picker->Pick3DRay(pos, ori, renderer);
+        vtkProp3D* targetActor = picker->GetProp3D();
+
+        if (targetActor == lastHoveredActor)
+            return;
+
+        if (lastHoveredActor) {
+            vtkActor* oldActor = vtkActor::SafeDownCast(lastHoveredActor);
+            if (oldActor)
+                oldActor->GetProperty()->SetAmbient(0.0);
+        }
+
+        if (targetActor) {
+            vtkActor* newActor = vtkActor::SafeDownCast(targetActor);
+            if (newActor) {
+                newActor->GetProperty()->SetAmbientColor(0.0, 0.0, 1.0);
+                newActor->GetProperty()->SetAmbient(0.6);
+            }
+        }
+
+        lastHoveredActor = targetActor;
+        g_hoveredActor = targetActor;
+    }
+};
 
 VRRenderThread::VRRenderThread(QObject* parent)
     : QThread(parent) {
@@ -51,29 +144,41 @@ void VRRenderThread::run() {
     m_renderWindow = vtkSmartPointer<vtkOpenVRRenderWindow>::New();
     m_interactor = vtkSmartPointer<vtkOpenVRRenderWindowInteractor>::New();
 
-    // Clear manifest to avoid the vr::VRInput() nullptr crash
-    m_interactor->SetActionManifestFileName("");
-    m_interactor->SetActionSetName("");
+    const std::string manifestPath =
+        (QCoreApplication::applicationDirPath() + "/vrbindings/vtk_openvr_actions.json").toStdString();
+    m_interactor->SetActionManifestFileName(manifestPath.c_str());
+    m_interactor->SetActionSetName("/actions/vtk");
 
     m_renderWindow->AddRenderer(m_renderer);
     m_interactor->SetRenderWindow(m_renderWindow);
 
+    vtkNew<VRHoverCommand> hoverCommand;
+    hoverCommand->renderer = m_renderer;
+    hoverCommand->picker->PickFromListOn();
+
     for (auto& [id, actor] : m_pendingActors) {
         m_renderer->AddActor(actor);
         m_activeActors[id] = actor;
+        hoverCommand->picker->AddPickList(actor);
     }
     m_pendingActors.clear();
+
+    m_interactor->AddObserver(vtkCommand::Move3DEvent, hoverCommand);
+
+    vtkNew<VRScaleCommand> scaleCommand;
+    m_interactor->AddObserver(vtkCommand::Elevation3DEvent, scaleCommand);
 
     m_renderer->ResetCamera();
     m_renderer->ResetCameraClippingRange();
 
-    // Skybox — looks for room.jpg next to the executable
+    // Skybox: looks for room.jpg next to the executable.
     QString roomPath = QCoreApplication::applicationDirPath() + "/room.jpg";
     vtkNew<vtkJPEGReader> bgReader;
-    bgReader->SetFileName(roomPath.toStdString().c_str());
-    bgReader->Update();
 
-    if (bgReader->GetOutput()->GetNumberOfPoints() > 0) {
+    if (bgReader->CanReadFile(roomPath.toStdString().c_str())) {
+        bgReader->SetFileName(roomPath.toStdString().c_str());
+        bgReader->Update();
+
         vtkNew<vtkTexture> bgTexture;
         bgTexture->SetInputConnection(bgReader->GetOutputPort());
         bgTexture->InterpolateOn();
@@ -81,6 +186,7 @@ void VRRenderThread::run() {
         vtkNew<vtkSkybox> skybox;
         skybox->SetTexture(bgTexture);
         skybox->SetProjectionToSphere();
+        skybox->PickableOff();
         m_renderer->AddActor(skybox);
     }
 

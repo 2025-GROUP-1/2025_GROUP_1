@@ -50,13 +50,16 @@ vtk_module_autoinit(
 add_custom_target(VRBindings)
 add_custom_command(TARGET VRBindings PRE_BUILD
     COMMAND ${CMAKE_COMMAND} -E
-    copy_directory ${CMAKE_SOURCE_DIR}/vrbindings ${CMAKE_BINARY_DIR}/)
+    copy_directory ${CMAKE_SOURCE_DIR}/vrbindings ${CMAKE_BINARY_DIR}/vrbindings)
 
 # Copy room.jpg next to the exe after every build so the skybox loads at runtime
 add_custom_command(TARGET VRBaseStation POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
         ${CMAKE_SOURCE_DIR}/VRBaseStation/room.jpg
         $<TARGET_FILE_DIR:VRBaseStation>/room.jpg
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/vrbindings
+        $<TARGET_FILE_DIR:VRBaseStation>/vrbindings
 )
 
 include(GNUInstallDirs)
