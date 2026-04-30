@@ -88,6 +88,9 @@ public:
     /** @return Pointer to the (hidden) root item. */
     ModelPart* getRootItem();
 
+    /** @brief Find a part by its integer ID (used by VRRenderThread). */
+    ModelPart* findByID(int partID) const;
+
     /**
      * @brief Append a new ModelPart under the given parent.
      * @param parent Parent index. If invalid, the new item goes under the root.
