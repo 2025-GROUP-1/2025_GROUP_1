@@ -16,6 +16,7 @@
 
 #include "ModelPart.h"
 #include "ModelPartList.h"
+#include "VRRenderThread.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -81,7 +82,7 @@ public slots:
     /** @brief Toggle between dark and light themes. */
     void on_actionToggle_Theme_triggered();
 
-    // -- VR (stubs for now, real impl in VRRenderThread) --
+    // -- VR --
     void on_actionEnter_VR_triggered();
     void on_actionExit_VR_triggered();
     void on_buttonSyncVR_clicked();
@@ -113,14 +114,16 @@ private:
     /** @brief Recursive helper for applyExplodeToAll(). */
     void applyExplodeFromTree(const QModelIndex& index, double amount);
 
-    Ui::MainWindow* ui;            ///< Generated UI.
-    ModelPartList* partList;      ///< Tree model.
-    vtkSmartPointer<vtkRenderer>                   renderer;      ///< Renderer for the GUI viewport.
-    vtkSmartPointer<vtkGenericOpenGLRenderWindow>  renderWindow;  ///< Render window inside vtkWidget.
-    vtkSmartPointer<vtkLight>                      light;         ///< Scene light controlled by the slider.
+    Ui::MainWindow* ui;
+    ModelPartList* partList;
+    vtkSmartPointer<vtkRenderer>                   renderer;
+    vtkSmartPointer<vtkGenericOpenGLRenderWindow>  renderWindow;
+    vtkSmartPointer<vtkLight>                      light;
 
-    Theme  m_theme;          ///< Currently applied theme.
-    double m_explodeAmount;  ///< Current explode value [0.0 - 1.0].
+    VRRenderThread* m_vrThread = nullptr;
+
+    Theme  m_theme;
+    double m_explodeAmount;
 };
 
 #endif

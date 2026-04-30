@@ -15,6 +15,7 @@
 #include <vtkSmartPointer.h>
 #include <vtkSTLReader.h>
 #include <vtkDataSetMapper.h>
+#include <vtkPolyDataMapper.h>
 #include <vtkActor.h>
 #include <vtkProperty.h>
 #include <vtkShrinkFilter.h>
@@ -66,8 +67,17 @@ public:
     /** @brief Rebuild the mapper/actor with the current filter settings. */
     void rebuildPipeline();
 
-    /** @return The VTK actor (may be null if STL not yet loaded). */
+    /** @brief Rebuild the VR actor pipeline (called by VRRenderThread on property change). */
+    void rebuildVRPipeline();
+
+    /** @return The VTK actor for the GUI viewport (may be null if STL not yet loaded). */
     vtkSmartPointer<vtkActor> getActor();
+
+    /** @return The VTK actor for the VR renderer (raw pointer, valid while part exists). */
+    vtkActor* getVRActor() const;
+
+    /** @return Unique integer ID for this part, used by VRRenderThread. */
+    int getID() const;
 
     /** @brief Set the part's display colour. */
     void setColour(const QColor& colour);
@@ -117,10 +127,12 @@ private:
     ModelPart* m_parentItem;   ///< Parent node, or nullptr if root.
 
     vtkSmartPointer<vtkSTLReader>     file;          ///< STL reader, source of the pipeline.
-    vtkSmartPointer<vtkDataSetMapper> mapper;        ///< Mapper between filtered data and the actor.
-    vtkSmartPointer<vtkActor>         actor;         ///< Actor placed in the renderer.
+    vtkSmartPointer<vtkDataSetMapper> mapper;        ///< Mapper between filtered data and the GUI actor.
+    vtkSmartPointer<vtkActor>         actor;         ///< Actor placed in the GUI renderer.
     vtkSmartPointer<vtkShrinkFilter>  shrinkFilter;  ///< Shrink filter (only built when enabled).
     vtkSmartPointer<vtkClipDataSet>   clipFilter;    ///< Clip filter (only built when enabled).
+    vtkSmartPointer<vtkPolyDataMapper> vrMapper;     ///< Direct mapper for VR (no filters).
+    vtkSmartPointer<vtkActor>          vrActor;      ///< Actor for the VR renderer.
 
     QColor m_colour;            ///< RGB colour applied to the actor.
     bool   m_isVisible;         ///< Whether the part is shown.

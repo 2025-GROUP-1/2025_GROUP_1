@@ -19,6 +19,8 @@ set(PROJECT_SOURCES
     ModelPart.h
     ModelPartList.cpp
     ModelPartList.h
+    VRRenderThread.cpp
+    VRRenderThread.h
     icons.qrc
     optiondialog.cpp
     optiondialog.h

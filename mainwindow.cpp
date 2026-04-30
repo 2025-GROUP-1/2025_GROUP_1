@@ -364,6 +364,8 @@ MainWindow::MainWindow(QWidget* parent)
     , m_theme(Theme::Dark)
     , m_explodeAmount(0.0)
 {
+    _putenv_s("VTK_VR_SIMULATOR", "1");
+
     ui->setupUi(this);
 
     renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
@@ -404,6 +406,11 @@ MainWindow::MainWindow(QWidget* parent)
 
 MainWindow::~MainWindow()
 {
+    if (m_vrThread && m_vrThread->isRunning()) {
+        m_vrThread->issueCommand(Command::EndRender, 0, QVariant());
+        m_vrThread->wait();
+    }
+    delete m_vrThread;
     delete ui;
 }
 
@@ -791,12 +798,72 @@ void MainWindow::on_actionToggle_Theme_triggered()
 }
 
 // ---------------------------------------------------------------------------
-// VR (stubs)
+// VR
 // ---------------------------------------------------------------------------
 
-void MainWindow::on_actionEnter_VR_triggered() { emit statusUpdateMessage(tr("VR not yet implemented"), 0); }
-void MainWindow::on_actionExit_VR_triggered() { emit statusUpdateMessage(tr("VR not yet implemented"), 0); }
-void MainWindow::on_buttonSyncVR_clicked() { emit statusUpdateMessage(tr("VR not yet implemented"), 0); }
+void MainWindow::on_actionEnter_VR_triggered()
+{
+    if (m_vrThread && m_vrThread->isRunning()) {
+        emit statusUpdateMessage(tr("VR is already running"), 0);
+        return;
+    }
+
+    m_vrThread = new VRRenderThread(this);
+    m_vrThread->setPartList(partList);
+
+    // Walk every part in the tree and hand its VR actor to the thread
+    QList<ModelPart*> queue;
+    queue.append(partList->getRootItem());
+    while (!queue.isEmpty()) {
+        ModelPart* part = queue.takeFirst();
+        if (part != partList->getRootItem() && part->getVRActor())
+            m_vrThread->addActorOffline(part->getVRActor(), part->getID());
+        for (int i = 0; i < part->childCount(); ++i)
+            queue.append(part->child(i));
+    }
+
+    m_vrThread->start();
+    emit statusUpdateMessage(tr("VR started"), 0);
+}
+
+void MainWindow::on_actionExit_VR_triggered()
+{
+    if (!m_vrThread || !m_vrThread->isRunning()) {
+        emit statusUpdateMessage(tr("VR is not running"), 0);
+        return;
+    }
+
+    m_vrThread->issueCommand(Command::EndRender, 0, QVariant());
+    m_vrThread->wait();
+    delete m_vrThread;
+    m_vrThread = nullptr;
+
+    emit statusUpdateMessage(tr("VR stopped"), 0);
+}
+
+void MainWindow::on_buttonSyncVR_clicked()
+{
+    if (!m_vrThread || !m_vrThread->isRunning()) {
+        emit statusUpdateMessage(tr("Start VR first"), 0);
+        return;
+    }
+
+    // Push visibility and colour for every loaded part to the running VR thread
+    QList<ModelPart*> queue;
+    queue.append(partList->getRootItem());
+    while (!queue.isEmpty()) {
+        ModelPart* part = queue.takeFirst();
+        if (part != partList->getRootItem()) {
+            int id = part->getID();
+            m_vrThread->issueCommand(Command::SetVisible, id, part->getVisible());
+            m_vrThread->issueCommand(Command::SetColour,  id, part->getColour());
+        }
+        for (int i = 0; i < part->childCount(); ++i)
+            queue.append(part->child(i));
+    }
+
+    emit statusUpdateMessage(tr("Synced to VR"), 0);
+}
 
 // ---------------------------------------------------------------------------
 // Help

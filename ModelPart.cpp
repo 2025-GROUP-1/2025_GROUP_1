@@ -77,6 +77,7 @@ bool ModelPart::loadSTL(QString fileName) {
     }
 
     rebuildPipeline();
+    rebuildVRPipeline();
 
     if (actor) {
         double bounds[6];
@@ -88,6 +89,30 @@ bool ModelPart::loadSTL(QString fileName) {
     }
 
     return true;
+}
+
+void ModelPart::rebuildVRPipeline() {
+    if (!file)
+        return;
+
+    vrMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+    vrMapper->SetInputConnection(file->GetOutputPort());
+
+    if (!vrActor)
+        vrActor = vtkSmartPointer<vtkActor>::New();
+
+    vrActor->SetMapper(vrMapper);
+    vrActor->GetProperty()->SetColor(
+        m_colour.redF(), m_colour.greenF(), m_colour.blueF());
+    vrActor->SetVisibility(m_isVisible ? 1 : 0);
+}
+
+vtkActor* ModelPart::getVRActor() const {
+    return vrActor;
+}
+
+int ModelPart::getID() const {
+    return reinterpret_cast<quintptr>(this) & 0x7fffffff;
 }
 
 void ModelPart::rebuildPipeline() {
