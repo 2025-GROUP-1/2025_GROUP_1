@@ -11,6 +11,7 @@
 #include <QVector3D>
 #include "ModelPartList.h"
 #include "ModelPart.h"
+#include <vtkCamera.h>
 #include <vtkJPEGReader.h>
 #include <vtkImageData.h>
 #include <vtkTexture.h>
@@ -85,6 +86,10 @@ void VRRenderThread::run() {
 
     }
     m_renderWindow->Initialize();
+    m_interactor->Initialize();
+
+    // Widen clipping range so the ray/pointer extends far enough to reach models
+    m_renderer->GetActiveCamera()->SetClippingRange(0.001, 100.0);
 
     m_endRender = false;
     while (!m_endRender) {
