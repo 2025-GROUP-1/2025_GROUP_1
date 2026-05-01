@@ -154,9 +154,11 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
         break;
     
     case Command::ToggleSkybox: {
-        if (m_skybox) {
-            // cmd.data.toBool() will be true (show) or false (hide)
-            m_skybox->SetVisibility(cmd.data.toBool() ? 1 : 0);
+        if (m_skybox && m_renderer) {
+            if (cmd.data.toBool())
+                m_renderer->AddActor(m_skybox);
+            else
+                m_renderer->RemoveActor(m_skybox);
         }
         break;
     }
