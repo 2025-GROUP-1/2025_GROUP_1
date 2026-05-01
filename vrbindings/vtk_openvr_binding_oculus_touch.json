@@ -20,10 +20,10 @@
         {
           "inputs": {
             "click": {
-              "output": "/actions/vtk/in/startelevation"
+              "output": "/actions/vtk/in/startmovement"
             },
             "position": {
-              "output": "/actions/vtk/in/elevation"
+              "output": "/actions/vtk/in/movement"
             }
           },
           "mode": "joystick",
