@@ -22,6 +22,11 @@
 class ModelPart;
 
 /**
+ * @addtogroup data_model
+ * @{
+ */
+
+/**
  * @brief Qt tree model that manages the hierarchy of ModelPart nodes shown in the tree view.
  *
  * Implements QAbstractItemModel so that a QTreeView can consume it directly.  The tree
@@ -160,5 +165,7 @@ public:
 private:
     ModelPart* rootItem; ///< Invisible root node; acts as the parent of all top-level parts.
 };
+
+/** @} */ // end data_model
 
 #endif
