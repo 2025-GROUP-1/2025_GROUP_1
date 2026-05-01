@@ -441,8 +441,6 @@ void VRRenderThread::run() {
         m_skybox = skybox;
     }
 
-    // World is in mm; tell VTK so movement speed, stereo separation, etc. are correct
-    m_renderWindow->SetPhysicalScale(1000.0);
     m_renderWindow->Initialize();
 
     try {
@@ -460,7 +458,7 @@ void VRRenderThread::run() {
     }
 
     if (m_renderer->GetActiveCamera())
-        m_renderer->GetActiveCamera()->SetClippingRange(1.0, 100000.0);
+        m_renderer->ResetCameraClippingRange();
 
     m_endRender = false;
     while (!m_endRender) {
