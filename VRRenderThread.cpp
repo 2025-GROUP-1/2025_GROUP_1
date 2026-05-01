@@ -16,6 +16,132 @@
 #include <vtkImageData.h>
 #include <vtkTexture.h>
 #include <vtkSkybox.h>
+#include <vtkLineSource.h>
+#include <vtkPolyDataMapper.h>
+#include <vtkCellPicker.h>
+#include <vtkOutlineFilter.h>
+#include <vtkCommand.h>
+#include <vtkEventData.h>
+#include <vtkTransform.h>
+
+// ---------------------------------------------------------------------------
+// Per-frame callback: dynamic ray + outline highlight on hovered actor
+// ---------------------------------------------------------------------------
+class VRRayCallback : public vtkCommand {
+public:
+    static VRRayCallback* New() { return new VRRayCallback; }
+
+    vtkRenderer* renderer = nullptr;
+    vtkActor* hoveredActor = nullptr;
+
+    void init(vtkRenderer* ren)
+    {
+        renderer = ren;
+
+        picker->SetTolerance(0.005);
+
+        // Ray line
+        rayLine->SetPoint1(0, 0, 0);
+        rayLine->SetPoint2(0, 0, -1);
+        vtkNew<vtkPolyDataMapper> rayMapper;
+        rayMapper->SetInputConnection(rayLine->GetOutputPort());
+        rayActor->SetMapper(rayMapper);
+        rayActor->GetProperty()->SetColor(0.2, 0.85, 1.0);
+        rayActor->GetProperty()->SetLineWidth(2.0);
+        rayActor->GetProperty()->SetOpacity(0.7);
+        rayActor->PickableOff();
+        ren->AddActor(rayActor);
+
+        // Outline box for hovered part
+        outlineMapper->SetInputConnection(outlineFilter->GetOutputPort());
+        outlineActor->SetMapper(outlineMapper);
+        outlineActor->GetProperty()->SetColor(0.1, 1.0, 0.4);
+        outlineActor->GetProperty()->SetLineWidth(3.0);
+        outlineActor->PickableOff();
+        outlineActor->SetVisibility(0);
+        ren->AddActor(outlineActor);
+    }
+
+    void Execute(vtkObject*, unsigned long eventId, void* callData) override
+    {
+        if (eventId != vtkCommand::Move3DEvent || !renderer)
+            return;
+
+        auto* ed = static_cast<vtkEventData*>(callData);
+        auto* d3d = ed ? ed->GetAsEventDataDevice3D() : nullptr;
+        if (!d3d) return;
+
+        auto device = d3d->GetDevice();
+        if (device != vtkEventDataDevice::RightController &&
+            device != vtkEventDataDevice::Unknown &&
+            device != vtkEventDataDevice::Any)
+            return;
+
+        const double* pos = d3d->GetWorldPosition();
+        const double* ori = d3d->GetWorldOrientation();
+
+        // Compute forward direction from controller orientation (angle-axis)
+        vtkNew<vtkTransform> xform;
+        xform->RotateWXYZ(ori[0], ori[1], ori[2], ori[3]);
+        double fwd[3] = { 0.0, 0.0, -1.0 };
+        xform->TransformVector(fwd, fwd);
+
+        // Pick along the ray
+        double p[3] = { pos[0], pos[1], pos[2] };
+        double o[4] = { ori[0], ori[1], ori[2], ori[3] };
+        picker->Pick3DRay(p, o, renderer);
+
+        vtkActor* hit = vtkActor::SafeDownCast(picker->GetProp3D());
+        double* hitPt = picker->GetPickPosition();
+
+        // Update ray endpoint
+        rayLine->SetPoint1(pos[0], pos[1], pos[2]);
+        if (hit && picker->GetCellId() >= 0) {
+            rayLine->SetPoint2(hitPt[0], hitPt[1], hitPt[2]);
+        } else {
+            rayLine->SetPoint2(
+                pos[0] + fwd[0] * MAX_RAY,
+                pos[1] + fwd[1] * MAX_RAY,
+                pos[2] + fwd[2] * MAX_RAY);
+        }
+        rayLine->Modified();
+
+        // Update outline highlight
+        if (hit != hoveredActor) {
+            if (hit && hit->GetMapper() && hit->GetMapper()->GetInput()) {
+                outlineFilter->SetInputData(hit->GetMapper()->GetInput());
+                outlineFilter->Update();
+                outlineActor->SetPosition(hit->GetPosition());
+                outlineActor->SetScale(hit->GetScale());
+                outlineActor->SetOrientation(hit->GetOrientation());
+                outlineActor->SetVisibility(1);
+            } else {
+                outlineActor->SetVisibility(0);
+            }
+            hoveredActor = hit;
+        }
+
+        // Keep outline transform in sync if part moves (explode, etc.)
+        if (hoveredActor && outlineActor->GetVisibility()) {
+            outlineActor->SetPosition(hoveredActor->GetPosition());
+            outlineActor->SetScale(hoveredActor->GetScale());
+            outlineActor->SetOrientation(hoveredActor->GetOrientation());
+        }
+    }
+
+private:
+    static constexpr double MAX_RAY = 10.0;
+    vtkNew<vtkCellPicker>      picker;
+    vtkNew<vtkLineSource>      rayLine;
+    vtkNew<vtkActor>           rayActor;
+    vtkNew<vtkOutlineFilter>   outlineFilter;
+    vtkNew<vtkPolyDataMapper>  outlineMapper;
+    vtkNew<vtkActor>           outlineActor;
+};
+
+// ---------------------------------------------------------------------------
+// VRRenderThread
+// ---------------------------------------------------------------------------
 
 VRRenderThread::VRRenderThread(QObject* parent)
     : QThread(parent) {
@@ -43,9 +169,9 @@ void VRRenderThread::issueCommand(Command c, int partID, const QVariant& data) {
 }
 
 void VRRenderThread::run() {
-    m_renderer    = vtkSmartPointer<vtkOpenVRRenderer>::New();
+    m_renderer      = vtkSmartPointer<vtkOpenVRRenderer>::New();
     m_renderWindow  = vtkSmartPointer<vtkOpenVRRenderWindow>::New();
-    m_interactor  = vtkSmartPointer<vtkOpenVRRenderWindowInteractor>::New();
+    m_interactor    = vtkSmartPointer<vtkOpenVRRenderWindowInteractor>::New();
 
     const std::string manifestPath =
         (QCoreApplication::applicationDirPath() + "/vrbindings/vtk_openvr_actions.json").toStdString();
@@ -64,7 +190,12 @@ void VRRenderThread::run() {
     m_renderer->ResetCamera();
     m_renderer->ResetCameraClippingRange();
 
-    // Skybox: looks for room.jpg next to the executable.
+    // Dynamic ray + outline highlight
+    vtkNew<VRRayCallback> rayCallback;
+    rayCallback->init(m_renderer);
+    m_interactor->AddObserver(vtkCommand::Move3DEvent, rayCallback, 1.0);
+
+    // Skybox
     QString roomPath = QCoreApplication::applicationDirPath() + "/room.jpg";
     vtkNew<vtkJPEGReader> bgReader;
 
@@ -83,12 +214,11 @@ void VRRenderThread::run() {
         m_renderer->AddActor(skybox);
 
         m_skybox = skybox;
-
     }
+
     m_renderWindow->Initialize();
     m_interactor->Initialize();
 
-    // Widen clipping range so the ray/pointer extends far enough to reach models
     m_renderer->GetActiveCamera()->SetClippingRange(0.001, 100.0);
 
     m_endRender = false;
@@ -99,9 +229,9 @@ void VRRenderThread::run() {
     }
 
     m_renderWindow->Finalize();
-    m_renderer    = nullptr;
+    m_renderer      = nullptr;
     m_renderWindow  = nullptr;
-    m_interactor  = nullptr;
+    m_interactor    = nullptr;
 }
 
 void VRRenderThread::processCommands() {
@@ -155,9 +285,8 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
         break;
     }
     case Command::AddActor:
-    case Command::RemoveActor: 
+    case Command::RemoveActor:
         break;
-    
     case Command::ToggleSkybox: {
         if (m_skybox && m_renderer) {
             if (cmd.data.toBool())
@@ -168,5 +297,5 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
         }
         break;
     }
-   }
+    }
 }
