@@ -27,10 +27,16 @@ set(PROJECT_SOURCES
     optiondialog.ui
 )
 
+if(EXISTS "${CMAKE_SOURCE_DIR}/icons/VRBaseStationLogo.ico")
+    set(_APP_ICON_RC "${CMAKE_SOURCE_DIR}/app_icon.rc")
+else()
+    set(_APP_ICON_RC "")
+endif()
+
 qt_add_executable(VRBaseStation
     WIN32 MACOSX_BUNDLE
     ${PROJECT_SOURCES}
-    app_icon.rc
+    ${_APP_ICON_RC}
 )
 
 target_link_libraries(VRBaseStation
@@ -130,8 +136,10 @@ else()
     set(CPACK_GENERATOR "ZIP")
 endif()
 
-set(CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/icons/VRBaseStationLogo.ico")
-set(CPACK_NSIS_MUI_UNIICON "${CMAKE_SOURCE_DIR}/icons/VRBaseStationLogo.ico")
+if(EXISTS "${CMAKE_SOURCE_DIR}/icons/VRBaseStationLogo.ico")
+    set(CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/icons/VRBaseStationLogo.ico")
+    set(CPACK_NSIS_MUI_UNIICON "${CMAKE_SOURCE_DIR}/icons/VRBaseStationLogo.ico")
+endif()
 set(CPACK_NSIS_DISPLAY_NAME "VRBaseStation")
 set(CPACK_NSIS_PACKAGE_NAME "VRBaseStation")
 set(CPACK_NSIS_CONTACT "EEEE2076 Group 1")
