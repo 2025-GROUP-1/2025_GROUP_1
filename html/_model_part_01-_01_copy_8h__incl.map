@@ -1,0 +1,19 @@
+<map id="2025_GROUP_1/ModelPart &#45; Copy.h" name="2025_GROUP_1/ModelPart &#45; Copy.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="310,5,492,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,58,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="306,44,200,67,73,96,72,91,199,62,312,42"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="81,94,152,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="332,48,168,94,167,89,328,45"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="176,94,242,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="356,46,253,90,251,85,350,47"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="266,94,392,120"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="385,45,352,84,349,80,381,47"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="415,94,530,120"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="420,44,454,83,449,81,418,49"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="554,94,701,120"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="458,44,581,88,575,88,457,49"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="725,94,805,120"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="493,44,713,93,707,94,492,49"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="830,94,927,120"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="493,38,817,93,812,94,492,44"/>
+</map>

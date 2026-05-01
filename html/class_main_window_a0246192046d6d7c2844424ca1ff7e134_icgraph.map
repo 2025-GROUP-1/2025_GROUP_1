@@ -1,0 +1,12 @@
+<map id="MainWindow::refreshExplodeDirectionsFromTree" name="MainWindow::refreshExplodeDirectionsFromTree">
+<area shape="rect" id="Node000001" title="Recursive helper for refreshExplodeDirections()." alt="" coords="491,71,682,111"/>
+<area shape="poly" id="edge5_Node000001_Node000001" title=" " alt="" coords="624,55,611,52,587,49,564,51,550,56,545,62,547,71,542,69,539,61,547,52,563,46,587,44,612,46,629,55"/>
+<area shape="rect" id="Node000002" href="$class_main_window.html#ad0f3f72f92f2fe5aa922ad43c13fe3b9" title="Recompute scene centre and refresh per&#45;part explode directions." alt="" coords="252,71,443,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="472,91,444,94,443,88,478,91"/>
+<area shape="rect" id="Node000003" href="$class_main_window.html#ac8d2ec00c54dd53fc814c23cb396d526" title=" " alt="" coords="5,5,204,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="252,67,183,49,183,44,257,65"/>
+<area shape="rect" id="Node000004" href="$class_main_window.html#a8ae3a2bab6826c885e2d13f399e0b7c1" title=" " alt="" coords="6,71,203,111"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="233,92,204,94,203,88,239,90"/>
+<area shape="rect" id="Node000005" href="$class_main_window.html#a73b0020c4cde6b548e415d29234eeda6" title=" " alt="" coords="6,136,203,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="257,115,184,138,182,133,252,116"/>
+</map>

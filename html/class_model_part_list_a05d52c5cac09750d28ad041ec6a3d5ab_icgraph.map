@@ -1,0 +1,5 @@
+<map id="ModelPartList::rowCount" name="ModelPartList::rowCount">
+<area shape="rect" id="Node000001" title="Returns the number of child rows under parent." alt="" coords="235,5,400,31"/>
+<area shape="rect" id="Node000002" href="$class_model_part_list.html#ac687a2942c6e8b8b23df36c32a0deaeb" title="Creates a new child ModelPart and appends it under parent." alt="" coords="5,5,187,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,18,187,21,187,16,222,18"/>
+</map>

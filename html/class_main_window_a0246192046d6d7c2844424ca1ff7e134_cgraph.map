@@ -1,0 +1,6 @@
+<map id="MainWindow::refreshExplodeDirectionsFromTree" name="MainWindow::refreshExplodeDirectionsFromTree">
+<area shape="rect" id="Node000001" title="Recursive helper for refreshExplodeDirections()." alt="" coords="5,29,197,70"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="57,28,54,19,62,10,77,5,101,3,127,5,143,13,138,14,125,10,101,8,78,10,65,15,60,21,62,29"/>
+<area shape="rect" id="Node000002" href="$class_model_part.html#a738fcaa52819208a662192a51cba66d7" title="Compute the radial offset direction for explode view." alt="" coords="245,29,430,70"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,47,232,49,226,50,197,52"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="MainWindow::handleButton1" name="MainWindow::handleButton1">
+<area shape="rect" id="Node000001" title="Emits a status bar message when button 1 is clicked." alt="" coords="5,13,193,38"/>
+<area shape="rect" id="Node000002" href="$class_main_window.html#a86443ea744fda3e9bad328c2fd1c3d6b" title="Emitted to display a message in the main window&#39;s status bar." alt="" coords="241,5,423,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,23,228,25,222,26,193,28"/>
+</map>
