@@ -64,6 +64,8 @@ struct ControllerRay {
 
     void update(const double* pos, const double* ori, vtkRenderer* ren, double maxRay)
     {
+        if (!ren) return;
+
         vtkNew<vtkTransform> xform;
         xform->RotateWXYZ(ori[0], ori[1], ori[2], ori[3]);
         double fwd[3] = { 0.0, 0.0, -1.0 };
@@ -71,10 +73,17 @@ struct ControllerRay {
 
         double p[3] = { pos[0], pos[1], pos[2] };
         double o[4] = { ori[0], ori[1], ori[2], ori[3] };
-        picker->Pick3DRay(p, o, ren);
 
-        vtkActor* hit = vtkActor::SafeDownCast(picker->GetProp3D());
-        double* hitPt = picker->GetPickPosition();
+        vtkActor* hit = nullptr;
+        double hitPt[3] = { 0.0, 0.0, 0.0 };
+        try {
+            picker->Pick3DRay(p, o, ren);
+            hit = vtkActor::SafeDownCast(picker->GetProp3D());
+            double* pt = picker->GetPickPosition();
+            hitPt[0] = pt[0]; hitPt[1] = pt[1]; hitPt[2] = pt[2];
+        } catch (...) {
+            hit = nullptr;
+        }
 
         rayLine->SetPoint1(pos[0], pos[1], pos[2]);
         if (hit && picker->GetCellId() >= 0) {
@@ -234,16 +243,23 @@ void VRRenderThread::run() {
     }
 
     m_renderWindow->Initialize();
-    m_interactor->Initialize();
 
-    // Hide the default red VTK rays — we draw our own
-    auto* style = vtkOpenVRInteractorStyle::SafeDownCast(m_interactor->GetInteractorStyle());
-    if (style) {
-        style->HideRay(vtkEventDataDevice::RightController);
-        style->HideRay(vtkEventDataDevice::LeftController);
+    try {
+        m_interactor->Initialize();
+
+        // Hide the default red VTK rays — we draw our own
+        auto* style = vtkOpenVRInteractorStyle::SafeDownCast(
+            m_interactor->GetInteractorStyle());
+        if (style) {
+            style->HideRay(vtkEventDataDevice::RightController);
+            style->HideRay(vtkEventDataDevice::LeftController);
+        }
+    } catch (...) {
+        // VR input system may not be available — continue without custom ray hiding
     }
 
-    m_renderer->GetActiveCamera()->SetClippingRange(0.001, 100.0);
+    if (m_renderer->GetActiveCamera())
+        m_renderer->GetActiveCamera()->SetClippingRange(0.001, 100.0);
 
     m_endRender = false;
     while (!m_endRender) {
