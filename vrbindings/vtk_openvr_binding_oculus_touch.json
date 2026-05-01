@@ -1,27 +1,33 @@
 {
   "action_manifest_version": 0,
   "alias_info": {},
-  "app_key": "system.generated.paraview.exe",
+  "app_key": "system.generated.vrbasestation.exe",
   "bindings": {
     "/actions/vtk": {
       "sources": [
         {
           "inputs": {
+            "click": {
+              "output": "/actions/vtk/in/startmovement"
+            },
             "position": {
               "output": "/actions/vtk/in/movement"
             }
           },
           "mode": "joystick",
-          "path": "/user/hand/right/input/joystick"
+          "path": "/user/hand/left/input/joystick"
         },
         {
           "inputs": {
             "click": {
-              "output": "/actions/vtk/in/leftgripaction"
+              "output": "/actions/vtk/in/startelevation"
+            },
+            "position": {
+              "output": "/actions/vtk/in/elevation"
             }
           },
-          "mode": "button",
-          "path": "/user/hand/left/input/grip"
+          "mode": "joystick",
+          "path": "/user/hand/right/input/joystick"
         },
         {
           "inputs": {
@@ -44,28 +50,37 @@
         {
           "inputs": {
             "click": {
+              "output": "/actions/vtk/in/complexgestureaction"
+            }
+          },
+          "mode": "button",
+          "path": "/user/hand/left/input/grip"
+        },
+        {
+          "inputs": {
+            "click": {
+              "output": "/actions/vtk/in/complexgestureaction_event2"
+            }
+          },
+          "mode": "button",
+          "path": "/user/hand/right/input/grip"
+        },
+        {
+          "inputs": {
+            "click": {
               "output": "/actions/vtk/in/showmenu"
             }
           },
           "mode": "button",
           "path": "/user/hand/right/input/b"
-        },
-        {
-          "inputs": {
-            "click": {
-              "output": "/actions/vtk/in/rightgripaction"
-            }
-          },
-          "mode": "button",
-          "path": "/user/hand/right/input/grip"
         }
       ]
     }
   },
   "category": "steamvr_input",
   "controller_type": "oculus_touch",
-  "description": "",
-  "name": "vtk-oculus",
+  "description": "Bindings for VTK applications for Oculus Touch / Quest 2 controllers",
+  "name": "vtk-oculus-touch",
   "options": {},
   "simulated_actions": []
 }

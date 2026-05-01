@@ -14,26 +14,20 @@
               "output": "/actions/vtk/in/movement"
             }
           },
-          "mode": "trackpad",
-          "path": "/user/hand/right/input/trackpad"
+          "mode": "joystick",
+          "path": "/user/hand/left/input/thumbstick"
         },
         {
           "inputs": {
             "click": {
-              "output": "/actions/vtk/in/rightgripaction"
+              "output": "/actions/vtk/in/startelevation"
+            },
+            "position": {
+              "output": "/actions/vtk/in/elevation"
             }
           },
-          "mode": "button",
-          "path": "/user/hand/right/input/grip"
-        },
-        {
-          "inputs": {
-            "click": {
-              "output": "/actions/vtk/in/leftgripaction"
-            }
-          },
-          "mode": "button",
-          "path": "/user/hand/left/input/grip"
+          "mode": "joystick",
+          "path": "/user/hand/right/input/thumbstick"
         },
         {
           "inputs": {
@@ -42,7 +36,7 @@
             }
           },
           "mode": "button",
-          "path": "/user/hand/right/input/application_menu"
+          "path": "/user/hand/right/input/b"
         },
         {
           "inputs": {
@@ -61,14 +55,32 @@
           },
           "mode": "button",
           "path": "/user/hand/right/input/trigger"
+        },
+        {
+          "inputs": {
+            "click": {
+              "output": "/actions/vtk/in/complexgestureaction"
+            }
+          },
+          "mode": "button",
+          "path": "/user/hand/left/input/a"
+        },
+        {
+          "inputs": {
+            "click": {
+              "output": "/actions/vtk/in/complexgestureaction_event2"
+            }
+          },
+          "mode": "button",
+          "path": "/user/hand/right/input/a"
         }
       ]
     }
   },
   "category": "steamvr_input",
-  "controller_type": "vive_controller",
+  "controller_type": "knuckles",
   "description": "",
-  "name": "Bindings for VTK applications for Vive Controllers",
+  "name": "Bindings for VTK applications for Valve Index controllers",
   "options": {},
   "simulated_actions": []
 }

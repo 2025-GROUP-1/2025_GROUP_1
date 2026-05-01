@@ -1,0 +1,27 @@
+﻿{
+  "configurations": [
+    {
+      "name": "x64-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": ""
+    },
+    {
+      "name": "x64-Release",
+      "generator": "Ninja",
+      "configurationType": "Release",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "-DCMAKE_PREFIX_PATH=\"C:/Qt/6.10.2/msvc2022_64\" -DOpenVR_INCLUDE_DIR=\"C:/OpenVr/headers\" -DOpenVR_LIBRARY=\"C:/OpenVr/lib/win64/openvr_api.lib\"",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "variables": []
+    }
+  ]
+}

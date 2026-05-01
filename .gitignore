@@ -2,21 +2,45 @@
 build/
 bin/
 out/
+x64/
+Debug/
+Release/
 
-# Visual Studio files
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+*_autogen/
+
+# Visual Studio
 .vs/
 *.sln
 *.vcxproj
 *.user
+*.suo
+*.VC.db
+*.opensdf
+*.sdf
 
-# Large binaries/data
-*.exe
-*.dll
-*.pdb
-*.lib
-*.stl
+# Qt Creator
+.qtcreator/
 
 # Qt generated files
 ui_*.h
 moc_*.cpp
 qrc_*.cpp
+
+# Binaries
+*.exe
+*.dll
+*.lib
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.log
+
+# Doxygen output
+html/
+latex/

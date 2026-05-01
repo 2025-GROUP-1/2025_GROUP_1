@@ -59,7 +59,7 @@
         {
           "inputs": {
             "click": {
-              "output": "/actions/vtk/in/complexgestureaction"
+              "output": "/actions/vtk/in/leftgripaction"
             }
           },
           "mode": "button",
@@ -68,7 +68,7 @@
         {
           "inputs": {
             "click": {
-              "output": "/actions/vtk/in/complexgestureaction_event2"
+              "output": "/actions/vtk/in/rightgripaction"
             }
           },
           "mode": "button",
