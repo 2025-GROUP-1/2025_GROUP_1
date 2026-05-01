@@ -1,0 +1,13 @@
+<map id="OptionDialog::loadFromModelPart" name="OptionDialog::loadFromModelPart">
+<area shape="rect" id="Node000001" title="Populates all dialog fields from the given ModelPart." alt="" coords="5,104,223,130"/>
+<area shape="rect" id="Node000002" href="$class_model_part.html#a178655da543bd0dae2d0ed1e2ea38a56" title="Returns the display data for the given column." alt="" coords="291,5,404,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,101,198,72,270,40,289,35,284,38,272,45,200,76,142,106"/>
+<area shape="rect" id="Node000003" href="$class_model_part.html#afdec3f90829f83e3c1397eb83d1a2647" title="Returns the stored blue colour component." alt="" coords="271,55,424,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="178,101,271,83,266,86,179,106"/>
+<area shape="rect" id="Node000004" href="$class_model_part.html#a1f6ab9393ed09e5779e045b004bcb178" title="Returns the stored green colour component." alt="" coords="271,104,425,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="223,114,258,116,252,118,224,119"/>
+<area shape="rect" id="Node000005" href="$class_model_part.html#a736954418020fca30162468feb3adea3" title="Returns the stored red colour component." alt="" coords="271,153,425,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="179,128,271,149,266,150,178,133"/>
+<area shape="rect" id="Node000006" href="$class_model_part.html#a3bd31780c389deda3a6f28211eff719f" title="Returns the current visibility state." alt="" coords="275,203,420,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="141,127,200,157,272,189,289,198,284,197,270,194,198,162,140,133"/>
+</map>

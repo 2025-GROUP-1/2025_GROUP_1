@@ -1,0 +1,50 @@
+<map id="MainWindow::MainWindow" name="MainWindow::MainWindow">
+<area shape="rect" id="Node000001" title="Constructs the main window and wires up all subsystems." alt="" coords="5,352,185,378"/>
+<area shape="poly" id="edge27_Node000001_Node000001" title=" " alt="" coords="54,352,47,343,52,333,68,327,95,325,125,328,142,337,137,338,124,333,95,331,69,333,55,338,52,343,59,351"/>
+<area shape="rect" id="Node000002" href="$class_model_part.html#a52074db110367665c3e262919e172c98" title="Appends a child item and sets its parent pointer to this item." alt="" coords="259,213,419,239"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,349,301,244,301,250,121,354"/>
+<area shape="rect" id="Node000005" href="$class_main_window.html#a930de12c8da1bda6dad9c1548ecb9375" title="Emits a status bar message when button 1 is clicked." alt="" coords="245,453,432,479"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="120,375,172,403,234,432,276,448,270,448,232,437,169,408,119,381"/>
+<area shape="rect" id="Node000006" href="$class_main_window.html#a86443ea744fda3e9bad328c2fd1c3d6b" title="Emitted to display a message in the main window&#39;s status bar." alt="" coords="510,424,693,465"/>
+<area shape="poly" id="edge28_Node000001_Node000006" title=" " alt="" coords="166,376,233,388,497,428,493,432,232,393,166,381"/>
+<area shape="rect" id="Node000007" href="$class_main_window.html#accf7f1ca023168f0c31d2f9580e8acab" title="Opens OptionDialog for the selected tree item; saves and re&#45;renders on accept." alt="" coords="245,303,432,328"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="161,349,259,330,255,334,163,354"/>
+<area shape="rect" id="Node000020" href="$class_main_window.html#a143bb60757a3e3f88e208eedb2af7539" title="Emits a status bar message naming the currently selected tree item." alt="" coords="233,352,445,378"/>
+<area shape="poly" id="edge24_Node000001_Node000020" title=" " alt="" coords="185,362,220,364,214,366,186,367"/>
+<area shape="rect" id="Node000003" href="$class_model_part.html#a4f22ba9a54525edde005cb4eb7366648" title="Constructs a ModelPart with the given column data and optional parent." alt="" coords="528,173,675,199"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="419,211,515,199,510,201,420,216"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="560,173,552,165,557,155,574,149,602,147,633,149,649,159,644,159,631,155,602,152,575,154,561,159,558,164,565,173"/>
+<area shape="rect" id="Node000004" href="$class_model_part.html#a178655da543bd0dae2d0ed1e2ea38a56" title="Returns the display data for the given column." alt="" coords="794,209,908,235"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="675,194,782,211,776,212,676,199"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="433,456,493,454,498,453,433,461"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="377,300,431,282,492,266,645,240,782,227,776,229,646,246,494,271,433,287,379,305"/>
+<area shape="poly" id="edge19_Node000007_Node000006" title=" " alt="" coords="425,326,447,337,464,356,472,375,479,393,495,411,501,417,496,416,491,415,475,396,467,377,459,359,443,342,425,331"/>
+<area shape="rect" id="Node000008" href="$class_option_dialog.html#a5f2578ef11d7940ca5821f2fcbf79e4d" title="Populates all dialog fields from the given ModelPart." alt="" coords="493,100,710,126"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="372,300,409,279,443,250,453,235,459,220,464,191,470,163,478,149,491,135,494,136,498,133,495,139,482,152,475,165,469,192,464,222,458,237,447,253,412,284,374,305"/>
+<area shape="rect" id="Node000013" href="$class_option_dialog.html#a8cbe60aecbb7344f560f424ed537b47a" title="Writes the dialog&#39;s current field values back to the given ModelPart." alt="" coords="499,325,704,351"/>
+<area shape="poly" id="edge15_Node000007_Node000013" title=" " alt="" coords="433,321,486,328,481,328,433,326"/>
+<area shape="rect" id="Node000017" href="$class_main_window.html#aa2a5945f9c4bf90022f0a7ad3db34c49" title="Clears the renderer and re&#45;adds actors for every part in the tree." alt="" coords="509,375,694,400"/>
+<area shape="poly" id="edge20_Node000007_Node000017" title=" " alt="" coords="410,326,446,337,470,349,494,361,517,370,511,370,492,366,468,354,444,342,410,332"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="687,123,712,135,728,148,737,162,745,176,760,189,783,203,778,203,757,194,741,179,732,165,724,152,709,139,687,129"/>
+<area shape="rect" id="Node000009" href="$class_model_part.html#afdec3f90829f83e3c1397eb83d1a2647" title="Returns the stored blue colour component." alt="" coords="774,104,928,130"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="710,112,761,115,756,116,711,117"/>
+<area shape="rect" id="Node000010" href="$class_model_part.html#a1f6ab9393ed09e5779e045b004bcb178" title="Returns the stored green colour component." alt="" coords="774,153,928,179"/>
+<area shape="poly" id="edge12_Node000008_Node000010" title=" " alt="" coords="665,124,775,149,770,150,665,129"/>
+<area shape="rect" id="Node000011" href="$class_model_part.html#a736954418020fca30162468feb3adea3" title="Returns the stored red colour component." alt="" coords="774,5,928,31"/>
+<area shape="poly" id="edge13_Node000008_Node000011" title=" " alt="" coords="628,97,686,69,757,40,780,35,776,37,759,45,688,74,630,102"/>
+<area shape="rect" id="Node000012" href="$class_model_part.html#a3bd31780c389deda3a6f28211eff719f" title="Returns the current visibility state." alt="" coords="778,55,924,80"/>
+<area shape="poly" id="edge14_Node000008_Node000012" title=" " alt="" coords="675,97,765,82,760,84,677,102"/>
+<area shape="rect" id="Node000014" href="$class_model_part.html#aff9c4aa487b20ad057fca3dae43cc31b" title="Stores the RGB colour for this part." alt="" coords="779,272,923,298"/>
+<area shape="poly" id="edge16_Node000013_Node000014" title=" " alt="" coords="665,322,775,301,770,302,666,327"/>
+<area shape="rect" id="Node000015" href="$class_model_part.html#a1b0dd7d3e3953b1aa8a4a44a7aa1349b" title="Replaces the stored value at the given column." alt="" coords="784,321,918,347"/>
+<area shape="poly" id="edge17_Node000013_Node000015" title=" " alt="" coords="704,334,771,335,766,336,705,339"/>
+<area shape="rect" id="Node000016" href="$class_model_part.html#a4cfdee348fd6870756ce836f67b1ce75" title="Sets the visibility of this part." alt="" coords="778,371,924,396"/>
+<area shape="poly" id="edge18_Node000013_Node000016" title=" " alt="" coords="676,349,766,367,760,368,676,354"/>
+<area shape="rect" id="Node000018" href="$class_main_window.html#a3efc38e6be895f53a3f973906e4174b8" title="Recursively adds actors to the renderer starting from index." alt="" coords="758,444,944,485"/>
+<area shape="poly" id="edge21_Node000017_Node000018" title=" " alt="" coords="666,398,711,410,787,439,782,438,710,415,666,404"/>
+<area shape="poly" id="edge23_Node000018_Node000018" title=" " alt="" coords="812,442,809,435,816,426,830,420,851,418,874,420,889,429,883,428,872,425,851,423,831,425,819,430,815,436,816,445"/>
+<area shape="rect" id="Node000019" href="$class_model_part.html#a3d845a3cb1d357a0c2f4ffb131e73116" title="Returns the VTK actor for this part." alt="" coords="992,452,1129,478"/>
+<area shape="poly" id="edge22_Node000018_Node000019" title=" " alt="" coords="944,462,979,465,974,465,944,467"/>
+<area shape="poly" id="edge25_Node000020_Node000004" title=" " alt="" coords="411,349,444,338,468,324,492,310,552,292,600,285,649,279,710,266,797,241,802,240,711,271,650,284,601,290,553,297,494,315,470,329,446,343,413,354"/>
+<area shape="poly" id="edge26_Node000020_Node000006" title=" " alt="" coords="385,376,446,394,494,410,518,420,512,419,492,415,444,399,385,381"/>
+</map>

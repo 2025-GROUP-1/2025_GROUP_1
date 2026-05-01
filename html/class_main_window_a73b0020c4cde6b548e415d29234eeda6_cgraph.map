@@ -1,0 +1,29 @@
+<map id="MainWindow::on_actionImport_Mesh_triggered" name="MainWindow::on_actionImport_Mesh_triggered">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,144,203,185"/>
+<area shape="rect" id="Node000002" href="$class_main_window.html#a6db062f407bd66add549a10a7dc24a0f" title="Apply the current explode amount to every part." alt="" coords="255,29,438,70"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,141,189,110,250,79,266,75,261,78,252,84,191,115,139,146"/>
+<area shape="rect" id="Node000005" href="$class_model_part.html#a8d004c61b9f9cb0da895956a4c22b97b" title=" " alt="" coords="278,94,414,120"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="192,141,276,123,272,126,194,146"/>
+<area shape="rect" id="Node000006" href="$class_main_window.html#ad0f3f72f92f2fe5aa922ad43c13fe3b9" title="Recompute scene centre and refresh per&#45;part explode directions." alt="" coords="251,144,442,185"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="203,162,238,163,233,165,204,167"/>
+<area shape="rect" id="Node000010" href="$class_main_window.html#a86443ea744fda3e9bad328c2fd1c3d6b" title=" " alt="" coords="255,209,438,250"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="182,183,256,204,251,206,182,188"/>
+<area shape="rect" id="Node000011" href="$class_main_window.html#aa2a5945f9c4bf90022f0a7ad3db34c49" title=" " alt="" coords="254,274,439,300"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="131,182,186,222,252,259,272,269,267,269,250,264,183,226,130,188"/>
+<area shape="rect" id="Node000003" href="$class_main_window.html#a46cb35b1c663ea1240545f3e626f3854" title="Recursive helper for applyExplodeToAll()." alt="" coords="494,29,677,70"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="438,47,481,49,476,50,439,52"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="541,28,539,19,546,10,562,5,586,3,611,5,628,14,623,14,610,10,586,8,563,10,549,15,544,21,546,30"/>
+<area shape="rect" id="Node000004" href="$class_model_part.html#add8f9a9b7100f07bccaa68ac58d7821b" title="Apply the current explode amount (0.0 = original, 1.0 = full)." alt="" coords="739,37,905,62"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="677,47,726,49,721,50,678,52"/>
+<area shape="rect" id="Node000007" href="$class_model_part.html#a3d845a3cb1d357a0c2f4ffb131e73116" title=" " alt="" coords="753,233,891,258"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="442,178,741,231,736,232,442,183"/>
+<area shape="rect" id="Node000008" href="$class_main_window.html#a0246192046d6d7c2844424ca1ff7e134" title="Recursive helper for refreshExplodeDirections()." alt="" coords="490,128,681,169"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="442,155,477,155,472,156,443,161"/>
+<area shape="poly" id="edge10_Node000008_Node000008" title=" " alt="" coords="541,126,539,118,546,109,562,103,586,101,611,104,628,112,623,112,610,109,586,107,563,109,549,113,544,119,546,129"/>
+<area shape="rect" id="Node000009" href="$class_model_part.html#a738fcaa52819208a662192a51cba66d7" title="Compute the radial offset direction for explode view." alt="" coords="729,128,915,169"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="681,146,716,148,711,149,682,151"/>
+<area shape="rect" id="Node000012" href="$class_main_window.html#a3efc38e6be895f53a3f973906e4174b8" title=" " alt="" coords="493,267,678,307"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="439,284,480,287,475,287,440,290"/>
+<area shape="poly" id="edge14_Node000012_Node000007" title=" " alt="" coords="678,268,735,261,740,260,679,273"/>
+<area shape="poly" id="edge15_Node000012_Node000012" title=" " alt="" coords="542,264,539,257,546,248,562,242,586,240,611,242,628,251,623,251,610,248,586,245,563,247,549,252,544,258,546,268"/>
+</map>

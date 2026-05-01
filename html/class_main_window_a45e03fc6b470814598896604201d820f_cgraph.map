@@ -1,0 +1,14 @@
+<map id="MainWindow::on_checkShowPart_stateChanged" name="MainWindow::on_checkShowPart_stateChanged">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,47,199,88"/>
+<area shape="rect" id="Node000002" href="$class_main_window.html#a3c769f260aadd2fef6ad5218df03ae74" title="Helper: get the currently selected ModelPart, or nullptr." alt="" coords="255,5,424,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,45,262,34,257,36,200,50"/>
+<area shape="rect" id="Node000003" href="$class_model_part.html#a4cfdee348fd6870756ce836f67b1ce75" title=" " alt="" coords="267,55,412,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="199,65,254,67,248,68,199,70"/>
+<area shape="rect" id="Node000004" href="$class_main_window.html#aa2a5945f9c4bf90022f0a7ad3db34c49" title=" " alt="" coords="247,104,432,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="199,85,262,100,257,101,199,90"/>
+<area shape="rect" id="Node000005" href="$class_main_window.html#a3efc38e6be895f53a3f973906e4174b8" title=" " alt="" coords="480,96,665,137"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="432,114,467,117,462,117,433,119"/>
+<area shape="poly" id="edge6_Node000005_Node000005" title=" " alt="" coords="533,94,531,87,538,78,552,72,573,70,595,72,610,81,605,80,594,77,573,75,553,77,541,82,536,88,538,97"/>
+<area shape="rect" id="Node000006" href="$class_model_part.html#a3d845a3cb1d357a0c2f4ffb131e73116" title=" " alt="" coords="713,104,851,130"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="666,114,701,117,695,117,666,119"/>
+</map>

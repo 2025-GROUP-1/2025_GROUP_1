@@ -1,0 +1,20 @@
+<map id="MainWindow::on_toggleClip_toggled" name="MainWindow::on_toggleClip_toggled">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,96,189,137"/>
+<area shape="rect" id="Node000002" href="$class_main_window.html#a3c769f260aadd2fef6ad5218df03ae74" title="Helper: get the currently selected ModelPart, or nullptr." alt="" coords="245,5,414,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,94,179,66,236,40,256,35,252,37,238,45,181,71,133,98"/>
+<area shape="rect" id="Node000003" href="$class_model_part.html#a178655da543bd0dae2d0ed1e2ea38a56" title=" " alt="" coords="273,55,386,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="188,95,260,81,255,84,190,100"/>
+<area shape="rect" id="Node000004" href="$class_model_part.html#a2baa7057c98d5dc4c9b5303ca54d083d" title="Enable or disable the clip filter." alt="" coords="250,104,408,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="189,114,237,116,232,118,190,119"/>
+<area shape="rect" id="Node000006" href="$class_main_window.html#a86443ea744fda3e9bad328c2fd1c3d6b" title=" " alt="" coords="238,154,420,194"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="182,135,232,149,227,150,182,140"/>
+<area shape="rect" id="Node000007" href="$class_main_window.html#aa2a5945f9c4bf90022f0a7ad3db34c49" title=" " alt="" coords="237,219,422,244"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="126,135,177,170,238,204,258,214,253,213,236,209,174,175,124,140"/>
+<area shape="rect" id="Node000005" href="$class_model_part.html#ad1a6f921de90d0e8d3fb710d445c9593" title="Rebuild the mapper/actor with the current filter settings." alt="" coords="476,104,649,130"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="408,114,464,116,458,117,409,119"/>
+<area shape="rect" id="Node000008" href="$class_main_window.html#a3efc38e6be895f53a3f973906e4174b8" title=" " alt="" coords="470,211,655,252"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="422,229,457,231,452,232,423,234"/>
+<area shape="poly" id="edge9_Node000008_Node000008" title=" " alt="" coords="523,209,521,201,528,192,542,187,563,185,585,187,600,196,595,195,584,192,563,190,543,192,531,196,526,202,528,212"/>
+<area shape="rect" id="Node000009" href="$class_model_part.html#a3d845a3cb1d357a0c2f4ffb131e73116" title=" " alt="" coords="703,219,841,244"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="656,229,691,231,685,232,656,234"/>
+</map>

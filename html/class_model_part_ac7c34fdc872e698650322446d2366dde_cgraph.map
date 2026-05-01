@@ -1,0 +1,10 @@
+<map id="ModelPart::removeChild" name="ModelPart::removeChild">
+<area shape="rect" id="Node000001" title="Remove and delete the child at the given row." alt="" coords="5,29,167,55"/>
+<area shape="rect" id="Node000002" href="$class_model_part.html#a05bc0dd06a3658d9a2c46fa717dec910" title=" " alt="" coords="215,29,324,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,40,201,42,196,42,167,45"/>
+<area shape="rect" id="Node000003" href="$class_model_part.html#a4f22ba9a54525edde005cb4eb7366648" title=" " alt="" coords="372,29,519,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="325,40,359,42,354,42,325,45"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="416,28,410,21,414,11,426,5,446,3,467,5,480,15,474,14,465,10,446,8,427,10,417,15,415,20,420,30"/>
+<area shape="rect" id="Node000004" href="$class_model_part.html#a178655da543bd0dae2d0ed1e2ea38a56" title=" " alt="" coords="567,29,681,55"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="520,40,554,42,549,42,520,45"/>
+</map>

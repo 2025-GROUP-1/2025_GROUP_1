@@ -1,0 +1,23 @@
+<map id="ModelPart::child" name="ModelPart::child">
+<area shape="rect" id="Node000001" title="Returns the child at the given row index." alt="" coords="854,84,969,110"/>
+<area shape="rect" id="Node000002" href="$class_model_part_list.html#a5698ba9ca23f010369f12ff4a97976e2" title="Creates a QModelIndex for the item at row / column under parent." alt="" coords="665,84,806,110"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="835,97,806,100,806,94,841,97"/>
+<area shape="rect" id="Node000003" href="$class_model_part_list.html#a60923d947a2eafb5dfabe1cf8461807e" title="Returns the display data for the item at index." alt="" coords="478,9,612,35"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="689,77,616,49,588,38,588,33,618,44,694,78"/>
+<area shape="rect" id="Node000006" href="$class_model_part_list.html#ac28fbfeaf57aafc946127db8225c00b5" title="Returns the item flags for index." alt="" coords="476,59,613,84"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="647,86,614,83,614,78,653,85"/>
+<area shape="rect" id="Node000007" href="$class_model_part_list.html#a2aeb9586030b325193894ddfe99e629c" title="Returns the parent index of the item at index." alt="" coords="472,108,617,134"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="672,113,618,123,617,118,678,113"/>
+<area shape="rect" id="Node000004" href="$class_model_part_list.html#ac687a2942c6e8b8b23df36c32a0deaeb" title="Creates a new child ModelPart and appends it under parent." alt="" coords="5,84,187,110"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="460,12,353,9,293,13,235,24,201,36,168,52,116,86,113,81,165,48,199,31,234,18,293,8,353,4,465,10"/>
+<area shape="rect" id="Node000005" href="$class_model_part_list.html#ab78590b83bc1a7a05636efd7f29a7862" title="&lt; Required Qt macro enabling signals, slots, and the meta&#45;object system." alt="" coords="235,33,424,59"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="459,32,425,38,424,33,465,31"/>
+<area shape="poly" id="edge9_Node000007_Node000002" title=" " alt="" coords="605,102,668,97,663,97,606,108"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="455,119,187,104,187,99,458,114"/>
+<area shape="poly" id="edge10_Node000007_Node000005" title=" " alt="" coords="485,103,471,99,423,81,371,62,371,57,425,76,473,94,491,103"/>
+<area shape="rect" id="Node000008" href="$class_model_part_list.html#a4a6ebf42f2f1c5c0242154d093295756" title="Returns the number of columns in the tree view." alt="" coords="236,135,422,160"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="453,132,423,139,423,133,459,131"/>
+<area shape="rect" id="Node000009" href="$class_model_part_list.html#a05d52c5cac09750d28ad041ec6a3d5ab" title="Returns the number of child rows under parent." alt="" coords="247,184,412,210"/>
+<area shape="poly" id="edge11_Node000007_Node000009" title=" " alt="" coords="505,140,425,175,389,186,388,181,423,170,500,141"/>
+<area shape="poly" id="edge12_Node000009_Node000004" title=" " alt="" coords="249,179,234,175,168,144,117,113,118,108,171,139,236,170,255,179"/>
+</map>
