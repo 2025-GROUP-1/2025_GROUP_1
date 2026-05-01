@@ -80,8 +80,10 @@ void VRRenderThread::run() {
         skybox->SetProjectionToSphere();
         skybox->PickableOff();
         m_renderer->AddActor(skybox);
-    }
 
+        m_skybox = skybox;
+
+    }
     m_renderWindow->Initialize();
 
     m_endRender = false;
@@ -148,7 +150,22 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
         break;
     }
     case Command::AddActor:
-    case Command::RemoveActor:
+    case Command::RemoveActor: 
+        break;
+    
+    case Command::ToggleSkybox: {
+        // Only run this if the skybox successfully loaded in the first place
+        if (m_skybox && m_renderer) {
+            if (cmd.data.toBool()) {
+                // If true (Passthrough OFF), plug the skybox back into the world
+                m_renderer->AddActor(m_skybox);
+            }
+            else {
+                // If false (Passthrough ON), safely rip it out of the renderer entirely
+                m_renderer->RemoveActor(m_skybox);
+            }
+        }
         break;
     }
+   }
 }

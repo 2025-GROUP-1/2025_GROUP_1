@@ -24,6 +24,7 @@
 #include <vtkGenericOpenGLRenderWindow.h>
 #include <vtkActor.h>
 #include <vtkCamera.h>
+#include <vtkSkybox.h>
 
  // ===========================================================================
  // Stylesheets
@@ -880,8 +881,24 @@ void MainWindow::on_actionExit_VR_triggered()
 
 void MainWindow::on_actionEnable_Passthrough_triggered()
 {
-    emit statusUpdateMessage(
-        tr("Passthrough requested. Double-press the Vive System button to toggle Room View."), 0);
+    // 1. Flip our true/false state
+    m_passthroughEnabled = !m_passthroughEnabled;
+
+    // 2. If VR is running, send the command to the thread
+    if (m_vrThread && m_vrThread->isRunning()) {
+        // We pass !m_passthroughEnabled because if Passthrough is ON, Skybox visibility should be FALSE
+        m_vrThread->issueCommand(Command::ToggleSkybox, 0, !m_passthroughEnabled);
+    }
+
+    // 3. Update the UI Text and Status Bar
+    if (m_passthroughEnabled) {
+        ui->actionEnable_Passthrough->setText("Disable Passthrough");
+        emit statusUpdateMessage(tr("Skybox hidden. Double-press Vive System button to see your room!"), 0);
+    }
+    else {
+        ui->actionEnable_Passthrough->setText("Enable Passthrough");
+        emit statusUpdateMessage(tr("Passthrough disabled. Skybox restored."), 0);
+    }
 }
 
 void MainWindow::on_buttonSyncVR_clicked()

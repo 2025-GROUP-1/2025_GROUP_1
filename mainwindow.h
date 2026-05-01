@@ -17,6 +17,7 @@
 #include "ModelPart.h"
 #include "ModelPartList.h"
 #include "VRRenderThread.h"
+#include <vtkSkybox.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -97,6 +98,8 @@ signals:
     void statusUpdateMessage(const QString& message, int timeout);
 
 private:
+    // Add this to your private variables in mainwindow.h
+    bool m_passthroughEnabled = false;
     /** @brief Helper: get the currently selected ModelPart, or nullptr. */
     ModelPart* currentPart();
 

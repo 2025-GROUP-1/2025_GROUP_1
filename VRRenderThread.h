@@ -12,6 +12,7 @@
 #include <QList>
 #include <QString>
 #include <QColor>
+#include <vtkSkybox.h>
 
 class vtkActor;
 class vtkOpenVRRenderer;
@@ -28,8 +29,9 @@ enum class Command {
     ToggleShrink,
     ToggleClip,
     RotateY,
-    SetTransform
-};
+    SetTransform,
+    ToggleSkybox
+    };
 
 struct CommandPacket {
     Command type;
@@ -55,6 +57,8 @@ private:
     QQueue<CommandPacket> m_commandQueue;
     bool m_endRender = false;
     ModelPartList* m_partList = nullptr;
+    // Add this to your private variables in VRRenderThread.h
+    vtkSmartPointer<vtkSkybox> m_skybox;
     vtkSmartPointer<vtkOpenVRRenderer> m_renderer;
     vtkSmartPointer<vtkOpenVRRenderWindow> m_renderWindow;
     vtkSmartPointer<vtkOpenVRRenderWindowInteractor> m_interactor;
