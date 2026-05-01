@@ -11,6 +11,20 @@
 #include <vtkProperty.h>
 
 /**
+ * @defgroup data_model Data Model
+ * @brief Classes that own and manage the tree of CAD parts and their VTK rendering pipelines.
+ *
+ * ModelPart and ModelPartList together implement the Qt tree-model / item pattern.
+ * Each ModelPart node also owns its VTK STL → mapper → actor pipeline for both
+ * the GUI renderer and (when active) the VR renderer.
+ */
+
+/**
+ * @addtogroup data_model
+ * @{
+ */
+
+/**
  * @brief Represents a single CAD part in the application's tree model.
  *
  * Each ModelPart is a node in the hierarchy displayed by the QTreeView. It stores
@@ -19,6 +33,7 @@
  * viewport. Colour defaults to white (255, 255, 255) and visibility defaults to true.
  *
  * @see ModelPartList
+ * @ingroup data_model
  */
 class ModelPart {
 public:
@@ -187,5 +202,7 @@ private:
     int  blue;      ///< Blue colour component (0–255); defaults to 255.
     bool isVisible; ///< Visibility flag; true by default. Mirrored to the VTK actor on setVisible().
 };
+
+/** @} */ // end data_model
 
 #endif

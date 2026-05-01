@@ -9,6 +9,11 @@ class OptionDialog;
 }
 
 /**
+ * @addtogroup gui
+ * @{
+ */
+
+/**
  * @brief Modal dialog for viewing and editing the properties of a single ModelPart.
  *
  * Presents editable controls for the part's display name, RGB colour (three
@@ -67,5 +72,7 @@ public:
 private:
     Ui::OptionDialog* ui; ///< Generated UI class that owns all dialog widgets.
 };
+
+/** @} */ // end gui
 
 #endif // OPTIONDIALOG_H

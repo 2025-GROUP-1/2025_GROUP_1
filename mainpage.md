@@ -22,7 +22,7 @@ needed.
 
 | Feature | Description |
 |---------|-------------|
-| **STL File Loading** | Import multiple STL files into a structured tree view; each file gets its own VTK pipeline. |
+| **STL File Loading** | Import multiple STL files into a structured tree view; each file feeds its own VTK pipeline. |
 | **Per-Part Property Editing** | Rename parts, change their RGB colour, and toggle visibility without reloading geometry. |
 | **Shrink & Clip Filters** | Apply VTK shrink and clip filters to any part, individually or in any combination. |
 | **Explode-View Animation** | Smooth outward expansion from the model centre — great for VR assembly walkthroughs. |
@@ -35,7 +35,8 @@ needed.
 
 ## Architecture {#architecture}
 
-Two parallel VTK render pipelines keep the GUI viewport and the VR headset independent (VTK actors cannot be shared between renderers).
+Two parallel VTK render pipelines keep the GUI viewport and the VR headset independent
+(VTK actors cannot be shared between renderers — see [Why two actors per part](@ref two-actors)).
 
     Main thread                                VRRenderThread (dedicated)
     ────────────────────────────────           ────────────────────────────────────
@@ -45,21 +46,40 @@ Two parallel VTK render pipelines keep the GUI viewport and the VR headset indep
       │      │                                   │       │
       ├─ ModelPartList (QAbstractItemModel)       ├─ vtkRenderer  (VR)
       │      │                                   │       │
-      │  ModelPart ──────────────────────────────►  actor (VR copy)
-      │  (actor-GUI)                             │
+      │  ModelPart ──────────────────────────────►  actor-VR
+      │  actor-GUI                               │
       ├─ vtkRenderer (GUI viewport)              │
       │                                          │
-      └───── mutex-protected command queue ──────┘
-                  (GUI changes → VR thread)
+      └────── mutex-protected command queue ─────┘
+                   (GUI changes → VR thread)
 
 ### Class Responsibilities
 
-| Class | Responsibility |
-|-------|----------------|
-| `ModelPart` | Single tree node; owns VTK pipeline (STL reader → mapper → actor) |
-| `ModelPartList` | Qt tree model serving the `ModelPart` hierarchy to `QTreeView` |
-| `MainWindow` | Top-level window; owns renderer, render window, and part tree |
-| `OptionDialog` | Modal property editor for name, colour, and visibility |
+| Class | Module | Responsibility |
+|-------|--------|----------------|
+| `ModelPart` | @ref data_model | Single tree node; owns VTK pipeline (STL reader → mapper → actor) |
+| `ModelPartList` | @ref data_model | Qt tree model serving the `ModelPart` hierarchy to `QTreeView` |
+| `MainWindow` | @ref gui | Top-level window; owns renderer, render window, and part tree |
+| `OptionDialog` | @ref gui | Modal property editor for name, colour, and visibility |
+
+---
+
+## Topics {#modules}
+
+The codebase is grouped into three thematic topics:
+
+- **@ref gui** — Qt widgets and dialogs (MainWindow, OptionDialog)
+- **@ref data_model** — Tree model and CAD part management (ModelPart, ModelPartList)
+- **@ref rendering** — VTK render pipelines and VRRenderThread
+
+Use the **Topics** entry in the sidebar to browse grouped class lists.
+
+---
+
+## How It Works {#how-it-works-link}
+
+For a deeper walkthrough of three real scenarios — colour change, the two-actors design
+decision, and the explode animation — see the [How It Works](@ref how_it_works) page.
 
 ---
 

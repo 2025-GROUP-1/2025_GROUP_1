@@ -27,6 +27,28 @@
   letter-spacing: 0.04em;
 }
 
+/* ─── Bug 1: search icon overlaps placeholder text ───────────── */
+/* The magnifying-glass icon is ~28 px wide; shift the input text past it */
+#MSearchField {
+  padding-left: 28px;
+}
+
+/* ─── Bug 2+3: right-side "On this page" panel ───────────────── */
+/* Suppress #page-nav entirely — the left nav tree provides full
+   navigation, and the panel has light-mode colours stuck in dark mode.
+   Removing it is cleaner than fighting per-mode colour variables. */
+#page-nav {
+  display: none;
+}
+
+/* ─── Bug 4: duplicate project name ─────────────────────────── */
+/* The brand bar already shows "VR Base Station"; hide the auto-
+   generated Doxygen title box inside the left sidebar. */
+#projectname,
+#projectbrief {
+  display: none;
+}
+
 /* ─── Teal accent on section-header underline ────────────────── */
 h2.groupheader {
   border-bottom-color: var(--primary-color, #00B4A0);

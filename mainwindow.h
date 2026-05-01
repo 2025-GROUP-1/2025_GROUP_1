@@ -18,6 +18,19 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 /**
+ * @defgroup gui GUI Components
+ * @brief Qt widgets and dialogs that form the application's user interface.
+ *
+ * Contains the main window and all modal dialogs. These classes run exclusively
+ * on the Qt main thread and communicate with the data model via ModelPartList.
+ */
+
+/**
+ * @addtogroup gui
+ * @{
+ */
+
+/**
  * @brief Top-level application window.
  *
  * Owns the QTreeView (populated from a ModelPartList), the VTK renderer and
@@ -128,5 +141,7 @@ private:
     vtkSmartPointer<vtkRenderer>               renderer;     ///< VTK renderer for the GUI 3D viewport.
     vtkSmartPointer<vtkGenericOpenGLRenderWindow> renderWindow; ///< VTK render window embedded in the Qt widget.
 };
+
+/** @} */ // end gui
 
 #endif
