@@ -433,6 +433,17 @@ ModelPart* MainWindow::currentPart()
     return static_cast<ModelPart*>(idx.internalPointer());
 }
 
+QList<ModelPart*> MainWindow::selectedParts()
+{
+    QList<ModelPart*> parts;
+    for (const QModelIndex& idx : ui->treeView->selectionModel()->selectedIndexes()) {
+        if (idx.column() != 0) continue;
+        ModelPart* part = static_cast<ModelPart*>(idx.internalPointer());
+        if (part) parts.append(part);
+    }
+    return parts;
+}
+
 void MainWindow::applyTheme(Theme theme)
 {
     m_theme = theme;
@@ -492,6 +503,12 @@ void MainWindow::onCurrentSelectionChanged(const QModelIndex& current, const QMo
 // ---------------------------------------------------------------------------
 // File / Tree
 // ---------------------------------------------------------------------------
+
+void MainWindow::on_buttonSelectAll_clicked()
+{
+    ui->treeView->selectAll();
+    emit statusUpdateMessage(tr("All parts selected"), 0);
+}
 
 void MainWindow::on_actionImport_Mesh_triggered()
 {
@@ -685,56 +702,67 @@ void MainWindow::on_buttonViewportBackground_clicked()
 
 void MainWindow::on_buttonDiffuseColour_clicked()
 {
-    ModelPart* part = currentPart();
-    if (!part) {
+    QList<ModelPart*> parts = selectedParts();
+    if (parts.isEmpty()) {
         emit statusUpdateMessage(tr("No part selected"), 0);
         return;
     }
-    QColor chosen = QColorDialog::getColor(
-        part->getColour(), this, tr("Diffuse Colour"));
+    QColor seed = parts.first()->getColour();
+    QColor chosen = QColorDialog::getColor(seed, this, tr("Diffuse Colour"));
     if (!chosen.isValid()) return;
 
-    part->setColour(chosen);
-    if (m_vrThread && m_vrThread->isRunning())
-        m_vrThread->issueCommand(Command::SetColour, part->getID(), chosen);
+    for (ModelPart* part : parts) {
+        part->setColour(chosen);
+        if (m_vrThread && m_vrThread->isRunning())
+            m_vrThread->issueCommand(Command::SetColour, part->getID(), chosen);
+    }
     renderWindow->Render();
-    emit statusUpdateMessage(tr("Recoloured: %1").arg(part->data(0).toString()), 0);
+    emit statusUpdateMessage(
+        parts.size() == 1
+            ? tr("Recoloured: %1").arg(parts.first()->data(0).toString())
+            : tr("Recoloured %1 parts").arg(parts.size()), 0);
 }
 
 void MainWindow::on_checkShowPart_stateChanged(int state)
 {
-    ModelPart* part = currentPart();
-    if (!part) return;
-    part->setVisible(state == Qt::Checked);
-    if (m_vrThread && m_vrThread->isRunning())
-        m_vrThread->issueCommand(Command::SetVisible, part->getID(), part->getVisible());
+    QList<ModelPart*> parts = selectedParts();
+    bool visible = (state == Qt::Checked);
+    for (ModelPart* part : parts) {
+        part->setVisible(visible);
+        if (m_vrThread && m_vrThread->isRunning())
+            m_vrThread->issueCommand(Command::SetVisible, part->getID(), visible);
+    }
     updateRender();
 }
 
 void MainWindow::on_toggleShrink_toggled(bool checked)
 {
-    ModelPart* part = currentPart();
-    if (!part) return;
-    part->setShrinkFilter(checked);
-    if (m_vrThread && m_vrThread->isRunning())
-        m_vrThread->issueCommand(Command::ToggleShrink, part->getID(), checked);
+    QList<ModelPart*> parts = selectedParts();
+    for (ModelPart* part : parts) {
+        part->setShrinkFilter(checked);
+        if (m_vrThread && m_vrThread->isRunning())
+            m_vrThread->issueCommand(Command::ToggleShrink, part->getID(), checked);
+    }
     updateRender();
     emit statusUpdateMessage(
-        checked ? tr("Shrink filter on: %1").arg(part->data(0).toString())
-        : tr("Shrink filter off: %1").arg(part->data(0).toString()), 0);
+        parts.size() == 1
+            ? (checked ? tr("Shrink filter on: %1") : tr("Shrink filter off: %1")).arg(parts.first()->data(0).toString())
+            : tr("Shrink filter %1 on %2 parts").arg(checked ? tr("on") : tr("off")).arg(parts.size()), 0);
 }
 
 void MainWindow::on_toggleClip_toggled(bool checked)
 {
-    ModelPart* part = currentPart();
-    if (!part) return;
-    part->setClipFilter(checked);
-    if (m_vrThread && m_vrThread->isRunning())
-        m_vrThread->issueCommand(Command::ToggleClip, part->getID(), checked);
+    QList<ModelPart*> parts = selectedParts();
+    for (ModelPart* part : parts) {
+        part->setClipFilter(checked);
+        if (m_vrThread && m_vrThread->isRunning())
+            m_vrThread->issueCommand(Command::ToggleClip, part->getID(), checked);
+    }
     updateRender();
     emit statusUpdateMessage(
-        checked ? tr("Clip filter on: %1").arg(part->data(0).toString())
-        : tr("Clip filter off: %1").arg(part->data(0).toString()), 0);
+        parts.size() == 1
+            ? (checked ? tr("Clip filter on: %1") : tr("Clip filter off: %1")).arg(parts.first()->data(0).toString())
+            : tr("Clip filter %1 on %2 parts").arg(checked ? tr("on") : tr("off")).arg(parts.size()), 0);
 }
 
 // ---------------------------------------------------------------------------
