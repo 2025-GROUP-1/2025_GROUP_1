@@ -80,8 +80,10 @@ void VRRenderThread::run() {
         skybox->SetProjectionToSphere();
         skybox->PickableOff();
         m_renderer->AddActor(skybox);
-    }
 
+        m_skybox = skybox;
+
+    }
     m_renderWindow->Initialize();
 
     m_endRender = false;
@@ -148,7 +150,17 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
         break;
     }
     case Command::AddActor:
-    case Command::RemoveActor:
+    case Command::RemoveActor: 
+        break;
+    
+    case Command::ToggleSkybox: {
+        if (m_skybox && m_renderer) {
+            if (cmd.data.toBool())
+                m_renderer->AddActor(m_skybox);
+            else
+                m_renderer->RemoveActor(m_skybox);
+        }
         break;
     }
+   }
 }

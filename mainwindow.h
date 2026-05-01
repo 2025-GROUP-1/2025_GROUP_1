@@ -17,6 +17,7 @@
 #include "ModelPart.h"
 #include "ModelPartList.h"
 #include "VRRenderThread.h"
+#include <vtkSkybox.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -54,6 +55,7 @@ public slots:
     void onCurrentSelectionChanged(const QModelIndex& current, const QModelIndex& previous);
 
     // -- File / Tree actions --
+    void on_buttonSelectAll_clicked();
     void on_actionImport_Mesh_triggered();
     void on_actionImport_Folder_triggered();
     void on_actionEdit_Part_triggered();
@@ -97,8 +99,13 @@ signals:
     void statusUpdateMessage(const QString& message, int timeout);
 
 private:
+    // Add this to your private variables in mainwindow.h
+    bool m_passthroughEnabled = false;
     /** @brief Helper: get the currently selected ModelPart, or nullptr. */
     ModelPart* currentPart();
+
+    /** @brief Return all currently selected ModelParts (multi-selection). */
+    QList<ModelPart*> selectedParts();
 
     /** @brief Recompute scene centre and refresh per-part explode directions. */
     void refreshExplodeDirections();
