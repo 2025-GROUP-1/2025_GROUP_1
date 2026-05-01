@@ -5,7 +5,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets OpenGL OpenGLWidgets)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets OpenGL OpenGLWidgets Concurrent)
 find_package(VTK REQUIRED)
 
 qt_standard_project_setup()
@@ -19,6 +19,8 @@ set(PROJECT_SOURCES
     ModelPart.h
     ModelPartList.cpp
     ModelPartList.h
+    VRRenderThread.cpp
+    VRRenderThread.h
     icons.qrc
     optiondialog.cpp
     optiondialog.h
@@ -37,6 +39,7 @@ target_link_libraries(VRBaseStation
         Qt6::Widgets
         Qt6::OpenGL
         Qt6::OpenGLWidgets
+        Qt6::Concurrent
         ${VTK_LIBRARIES}
 )
 
@@ -48,7 +51,17 @@ vtk_module_autoinit(
 add_custom_target(VRBindings)
 add_custom_command(TARGET VRBindings PRE_BUILD
     COMMAND ${CMAKE_COMMAND} -E
-    copy_directory ${CMAKE_SOURCE_DIR}/vrbindings ${CMAKE_BINARY_DIR}/)
+    copy_directory ${CMAKE_SOURCE_DIR}/vrbindings ${CMAKE_BINARY_DIR}/vrbindings)
+
+# Copy room.jpg and vrbindings next to the exe after every build
+add_custom_command(TARGET VRBaseStation POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        ${CMAKE_SOURCE_DIR}/VRBaseStation/room.jpg
+        $<TARGET_FILE_DIR:VRBaseStation>/room.jpg
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/vrbindings
+        $<TARGET_FILE_DIR:VRBaseStation>/vrbindings
+)
 
 # ─── Install rules ────────────────────────────────────────────
 include(GNUInstallDirs)
@@ -75,11 +88,14 @@ install(CODE "
     )
 ")
 
-# Icons and VR bindings
+# Icons, VR bindings and skybox
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/icons
     DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/vrbindings
+    DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+install(FILES ${CMAKE_SOURCE_DIR}/VRBaseStation/room.jpg
     DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 

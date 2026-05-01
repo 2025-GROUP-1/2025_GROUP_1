@@ -90,6 +90,82 @@ bool ModelPart::loadSTL(QString fileName) {
     return true;
 }
 
+bool ModelPart::attachReader(vtkSmartPointer<vtkSTLReader> preloaded) {
+    file = preloaded;
+    if (!file || file->GetOutput()->GetNumberOfPoints() == 0) {
+        file = nullptr;
+        return false;
+    }
+    rebuildPipeline();
+    if (actor) {
+        double bounds[6];
+        actor->GetBounds(bounds);
+        m_originalCentre = QVector3D(
+            static_cast<float>((bounds[0] + bounds[1]) * 0.5),
+            static_cast<float>((bounds[2] + bounds[3]) * 0.5),
+            static_cast<float>((bounds[4] + bounds[5]) * 0.5));
+    }
+    return true;
+}
+
+void ModelPart::rebuildVRPipeline() {
+    if (!file)
+        return;
+
+    vtkSmartPointer<vtkDataSetMapper> newMapper = vtkSmartPointer<vtkDataSetMapper>::New();
+    vtkAlgorithmOutput* source = file->GetOutputPort();
+
+    if (m_clipEnabled) {
+        double bounds[6];
+        file->GetOutput()->GetBounds(bounds);
+        double cx     = (bounds[0] + bounds[1]) * 0.5;
+        double xMin   = bounds[0], xMax = bounds[1];
+        double planeX = cx + m_clipPlaneX * (xMax - xMin) * 0.5;
+
+        vtkSmartPointer<vtkPlane> plane = vtkSmartPointer<vtkPlane>::New();
+        plane->SetOrigin(planeX, 0.0, 0.0);
+        plane->SetNormal(-1.0, 0.0, 0.0);
+
+        vrClipFilter = vtkSmartPointer<vtkClipDataSet>::New();
+        vrClipFilter->SetInputConnection(source);
+        vrClipFilter->SetClipFunction(plane.Get());
+        vrClipFilter->Update();
+        source = vrClipFilter->GetOutputPort();
+    } else {
+        vrClipFilter = nullptr;
+    }
+
+    if (m_shrinkEnabled) {
+        vrShrinkFilter = vtkSmartPointer<vtkShrinkFilter>::New();
+        vrShrinkFilter->SetInputConnection(source);
+        vrShrinkFilter->SetShrinkFactor(m_shrinkFactor);
+        vrShrinkFilter->Update();
+        source = vrShrinkFilter->GetOutputPort();
+    } else {
+        vrShrinkFilter = nullptr;
+    }
+
+    newMapper->SetInputConnection(source);
+    vrMapper = newMapper;
+
+    if (!vrActor)
+        vrActor = vtkSmartPointer<vtkActor>::New();
+
+    vrActor->SetMapper(vrMapper);
+    vrActor->SetScale(0.001, 0.001, 0.001);
+    vrActor->GetProperty()->SetColor(
+        m_colour.redF(), m_colour.greenF(), m_colour.blueF());
+    vrActor->SetVisibility(m_isVisible ? 1 : 0);
+}
+
+vtkActor* ModelPart::getVRActor() const {
+    return vrActor;
+}
+
+int ModelPart::getID() const {
+    return reinterpret_cast<quintptr>(this) & 0x7fffffff;
+}
+
 void ModelPart::rebuildPipeline() {
     if (!file)
         return;

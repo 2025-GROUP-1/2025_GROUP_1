@@ -16,6 +16,7 @@
 
 #include "ModelPart.h"
 #include "ModelPartList.h"
+#include "VRRenderThread.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -39,11 +40,8 @@ public:
     /** @brief Destructor. */
     ~MainWindow();
 
-    /** @brief Rebuild the renderer's actor list from the current tree. */
+    /** @brief Trigger a render pass. Actors are managed directly — no tree walk needed. */
     void updateRender();
-
-    /** @brief Recursive walk used by updateRender(). */
-    void updateRenderFromTree(const QModelIndex& index);
 
     /** @brief Apply a colour theme (dark or light) across the whole window. */
     void applyTheme(Theme theme);
@@ -81,9 +79,10 @@ public slots:
     /** @brief Toggle between dark and light themes. */
     void on_actionToggle_Theme_triggered();
 
-    // -- VR (stubs for now, real impl in VRRenderThread) --
+    // -- VR --
     void on_actionEnter_VR_triggered();
     void on_actionExit_VR_triggered();
+    void on_actionEnable_Passthrough_triggered();
     void on_buttonSyncVR_clicked();
 
     // -- Help --
@@ -113,14 +112,16 @@ private:
     /** @brief Recursive helper for applyExplodeToAll(). */
     void applyExplodeFromTree(const QModelIndex& index, double amount);
 
-    Ui::MainWindow* ui;            ///< Generated UI.
-    ModelPartList* partList;      ///< Tree model.
-    vtkSmartPointer<vtkRenderer>                   renderer;      ///< Renderer for the GUI viewport.
-    vtkSmartPointer<vtkGenericOpenGLRenderWindow>  renderWindow;  ///< Render window inside vtkWidget.
-    vtkSmartPointer<vtkLight>                      light;         ///< Scene light controlled by the slider.
+    Ui::MainWindow* ui;
+    ModelPartList* partList;
+    vtkSmartPointer<vtkRenderer>                   renderer;
+    vtkSmartPointer<vtkGenericOpenGLRenderWindow>  renderWindow;
+    vtkSmartPointer<vtkLight>                      light;
 
-    Theme  m_theme;          ///< Currently applied theme.
-    double m_explodeAmount;  ///< Current explode value [0.0 - 1.0].
+    VRRenderThread* m_vrThread = nullptr;
+
+    Theme  m_theme;
+    double m_explodeAmount;
 };
 
 #endif

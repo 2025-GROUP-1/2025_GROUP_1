@@ -102,6 +102,19 @@ QModelIndex ModelPartList::appendChild(QModelIndex& parent, const QList<QVariant
     return createIndex(newRow, 0, childPart);
 }
 
+ModelPart* ModelPartList::findByID(int partID) const {
+    QList<ModelPart*> stack;
+    stack.append(rootItem);
+    while (!stack.isEmpty()) {
+        ModelPart* item = stack.takeFirst();
+        if (item != rootItem && item->getID() == partID)
+            return item;
+        for (int i = 0; i < item->childCount(); ++i)
+            stack.append(item->child(i));
+    }
+    return nullptr;
+}
+
 void ModelPartList::removeItem(const QModelIndex& index) {
     if (!index.isValid())
         return;
