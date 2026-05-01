@@ -23,6 +23,7 @@
 #include <vtkCommand.h>
 #include <vtkEventData.h>
 #include <vtkTransform.h>
+#include <vtkOpenVRInteractorStyle.h>
 
 // ---------------------------------------------------------------------------
 // Per-frame callback: dynamic ray + outline highlight on hovered actor
@@ -234,6 +235,13 @@ void VRRenderThread::run() {
 
     m_renderWindow->Initialize();
     m_interactor->Initialize();
+
+    // Hide the default red VTK rays — we draw our own
+    auto* style = vtkOpenVRInteractorStyle::SafeDownCast(m_interactor->GetInteractorStyle());
+    if (style) {
+        style->HideRay(vtkEventDataDevice::RightController);
+        style->HideRay(vtkEventDataDevice::LeftController);
+    }
 
     m_renderer->GetActiveCamera()->SetClippingRange(0.001, 100.0);
 
