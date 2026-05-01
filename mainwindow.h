@@ -55,6 +55,7 @@ public slots:
     void onCurrentSelectionChanged(const QModelIndex& current, const QModelIndex& previous);
 
     // -- File / Tree actions --
+    void on_buttonSelectAll_clicked();
     void on_actionImport_Mesh_triggered();
     void on_actionImport_Folder_triggered();
     void on_actionEdit_Part_triggered();
@@ -102,6 +103,9 @@ private:
     bool m_passthroughEnabled = false;
     /** @brief Helper: get the currently selected ModelPart, or nullptr. */
     ModelPart* currentPart();
+
+    /** @brief Return all currently selected ModelParts (multi-selection). */
+    QList<ModelPart*> selectedParts();
 
     /** @brief Recompute scene centre and refresh per-part explode directions. */
     void refreshExplodeDirections();
