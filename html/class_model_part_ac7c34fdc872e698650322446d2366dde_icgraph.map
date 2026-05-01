@@ -1,0 +1,5 @@
+<map id="ModelPart::removeChild" name="ModelPart::removeChild">
+<area shape="rect" id="Node000001" title="Remove and delete the child at the given row." alt="" coords="232,5,393,31"/>
+<area shape="rect" id="Node000002" href="$class_model_part_list.html#a331e367f122a0d84daa1e0298aa037e4" title="Remove and delete an item from the tree." alt="" coords="5,5,184,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,18,184,21,184,16,219,18"/>
+</map>

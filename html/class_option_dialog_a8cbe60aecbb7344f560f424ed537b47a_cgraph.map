@@ -1,0 +1,9 @@
+<map id="OptionDialog::saveToModelPart" name="OptionDialog::saveToModelPart">
+<area shape="rect" id="Node000001" title="Writes the dialog&#39;s current field values back to the given ModelPart." alt="" coords="5,55,211,80"/>
+<area shape="rect" id="Node000002" href="$class_model_part.html#aff9c4aa487b20ad057fca3dae43cc31b" title="Stores the RGB colour for this part." alt="" coords="259,5,404,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,51,258,34,253,36,170,57"/>
+<area shape="rect" id="Node000003" href="$class_model_part.html#a1b0dd7d3e3953b1aa8a4a44a7aa1349b" title="Replaces the stored value at the given column." alt="" coords="264,55,398,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="211,65,251,67,246,68,212,70"/>
+<area shape="rect" id="Node000004" href="$class_model_part.html#a4cfdee348fd6870756ce836f67b1ce75" title="Sets the visibility of this part." alt="" coords="259,104,404,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="170,78,258,99,253,101,169,84"/>
+</map>

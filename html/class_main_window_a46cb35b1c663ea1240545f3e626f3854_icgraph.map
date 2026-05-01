@@ -1,0 +1,14 @@
+<map id="MainWindow::applyExplodeFromTree" name="MainWindow::applyExplodeFromTree">
+<area shape="rect" id="Node000001" title="Recursive helper for applyExplodeToAll()." alt="" coords="487,104,669,145"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="614,88,602,85,578,83,556,85,543,89,538,95,540,105,535,102,533,94,540,85,555,79,578,77,603,80,619,89"/>
+<area shape="rect" id="Node000002" href="$class_main_window.html#a6db062f407bd66add549a10a7dc24a0f" title="Apply the current explode amount to every part." alt="" coords="257,104,439,145"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="469,125,440,127,439,122,474,124"/>
+<area shape="rect" id="Node000003" href="$class_main_window.html#ac8d2ec00c54dd53fc814c23cb396d526" title=" " alt="" coords="8,5,206,46"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="290,98,208,61,175,49,175,44,210,57,295,96"/>
+<area shape="rect" id="Node000004" href="$class_main_window.html#a8ae3a2bab6826c885e2d13f399e0b7c1" title=" " alt="" coords="8,71,206,111"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="238,110,207,107,206,102,244,109"/>
+<area shape="rect" id="Node000005" href="$class_main_window.html#a73b0020c4cde6b548e415d29234eeda6" title=" " alt="" coords="8,136,206,177"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="239,139,207,146,206,141,244,138"/>
+<area shape="rect" id="Node000006" href="$class_main_window.html#a2d56d0e63146cbcc6337b4379e83651a" title=" " alt="" coords="5,201,209,242"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="294,151,210,191,176,203,174,198,208,186,289,153"/>
+</map>

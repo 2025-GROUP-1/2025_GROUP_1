@@ -1,0 +1,8 @@
+<map id="ModelPart::appendChild" name="ModelPart::appendChild">
+<area shape="rect" id="Node000001" title="Appends a child item and sets its parent pointer to this item." alt="" coords="5,29,166,55"/>
+<area shape="rect" id="Node000002" href="$class_model_part.html#a4f22ba9a54525edde005cb4eb7366648" title="Constructs a ModelPart with the given column data and optional parent." alt="" coords="214,29,361,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,40,201,42,196,42,166,45"/>
+<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="257,28,251,21,255,11,267,5,287,3,309,5,322,15,316,14,307,10,287,8,269,10,259,15,257,20,262,30"/>
+<area shape="rect" id="Node000003" href="$class_model_part.html#a178655da543bd0dae2d0ed1e2ea38a56" title="Returns the display data for the given column." alt="" coords="409,29,522,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="362,40,396,42,391,42,362,45"/>
+</map>

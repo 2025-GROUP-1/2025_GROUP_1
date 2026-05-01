@@ -1,0 +1,40 @@
+<map id="2025_GROUP_1/optiondialog.cpp" name="2025_GROUP_1/optiondialog.cpp">
+<area shape="rect" id="Node000001" title="Implementation of the per&#45;part options dialog." alt="" coords="336,5,553,31"/>
+<area shape="rect" id="Node000002" href="$2025___g_r_o_u_p__1_2optiondialog_8h.html" title="Modal dialog for editing per&#45;part properties." alt="" coords="260,79,362,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="424,30,349,74,346,69,420,33"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="385,79,504,105"/>
+<area shape="poly" id="edge18_Node000001_Node000018" title=" " alt="" coords="446,29,447,65,442,62,443,33"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="528,79,628,105"/>
+<area shape="poly" id="edge19_Node000001_Node000019" title=" " alt="" coords="467,29,544,71,539,71,467,34"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="205,153,273,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="302,103,264,144,261,139,297,106"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,226,68,252"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="313,103,309,142,301,163,288,180,264,199,241,212,218,218,195,221,144,222,83,228,82,223,144,216,194,215,217,213,239,207,261,195,284,176,296,160,303,141,309,107"/>
+<area shape="rect" id="Node000005" href="$2025___g_r_o_u_p__1_2_model_part_8h.html" title="Declares ModelPart, the data class for a single part in the tree." alt="" coords="551,153,642,178"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="360,103,538,148,533,150,359,108"/>
+<area shape="poly" id="edge8_Node000005_Node000004" title=" " alt="" coords="548,170,351,190,219,207,83,229,82,223,219,201,351,185,553,169"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="92,226,144,252"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="548,171,382,191,273,207,160,228,159,223,272,202,381,186,553,170"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="168,226,239,252"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="553,173,421,197,255,228,254,223,420,192,548,174"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="262,226,328,252"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="553,177,343,228,342,223,548,177"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="352,226,438,252"/>
+<area shape="poly" id="edge9_Node000005_Node000009" title=" " alt="" coords="565,178,445,223,443,218,560,179"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="462,226,587,252"/>
+<area shape="poly" id="edge10_Node000005_Node000010" title=" " alt="" coords="587,178,549,217,546,213,582,180"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="611,226,726,252"/>
+<area shape="poly" id="edge11_Node000005_Node000011" title=" " alt="" coords="609,176,648,216,643,214,607,181"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="750,226,891,252"/>
+<area shape="poly" id="edge12_Node000005_Node000012" title=" " alt="" coords="635,176,771,221,765,221,634,182"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="915,226,995,252"/>
+<area shape="poly" id="edge13_Node000005_Node000013" title=" " alt="" coords="643,173,903,226,898,226,643,178"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="1020,226,1117,252"/>
+<area shape="poly" id="edge14_Node000005_Node000014" title=" " alt="" coords="643,170,1007,226,1002,226,643,176"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="1142,226,1257,252"/>
+<area shape="poly" id="edge15_Node000005_Node000015" title=" " alt="" coords="643,168,848,189,1128,226,1123,226,848,195,643,174"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="1281,226,1402,252"/>
+<area shape="poly" id="edge16_Node000005_Node000016" title=" " alt="" coords="643,167,903,187,1268,226,1263,226,903,192,643,173"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="1427,226,1510,252"/>
+<area shape="poly" id="edge17_Node000005_Node000017" title=" " alt="" coords="642,165,961,180,1182,197,1414,226,1409,226,1182,202,960,185,642,171"/>
+</map>

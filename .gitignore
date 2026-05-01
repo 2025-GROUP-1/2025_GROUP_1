@@ -1,0 +1,28 @@
+# Build artefacts
+build/
+out/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.exe
+*.obj
+*.o
+*.dll
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.user
+
+# macOS
+.DS_Store
+
+# Doxygen output (built by CI, not committed)
+docs/
+doxygen-warnings.log
+
+# Logs
+*.log

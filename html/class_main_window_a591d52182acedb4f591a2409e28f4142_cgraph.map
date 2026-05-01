@@ -1,0 +1,9 @@
+<map id="MainWindow::onCurrentSelectionChanged" name="MainWindow::onCurrentSelectionChanged">
+<area shape="rect" id="Node000001" title="Refresh side controls when the selected item changes." alt="" coords="5,47,221,88"/>
+<area shape="rect" id="Node000002" href="$class_model_part.html#a393860ebae3b634f2e46c828f702326c" title=" " alt="" coords="276,5,452,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,44,282,34,277,35,221,49"/>
+<area shape="rect" id="Node000003" href="$class_model_part.html#a3e83ff5e16369fecf12deaf91d9a6bfe" title=" " alt="" coords="269,55,459,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="221,65,255,67,250,68,221,70"/>
+<area shape="rect" id="Node000004" href="$class_model_part.html#a3bd31780c389deda3a6f28211eff719f" title=" " alt="" coords="291,104,436,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="220,86,282,100,277,101,220,91"/>
+</map>
