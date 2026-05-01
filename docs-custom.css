@@ -1,0 +1,38 @@
+/* ═══════════════════════════════════════════════════════════════
+   VR Base Station — Doxygen Awesome overrides (docs-custom.css)
+   Styles only elements Doxygen Awesome does not own.
+   HTML_COLORSTYLE_HUE = 168 drives Awesome's teal accent.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Brand bar (custom element injected via docs-header.html) ── */
+#vr-brand-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 24px;
+  background: linear-gradient(90deg, #0A1628 0%, #162340 55%, #005F56 100%);
+  border-bottom: 2px solid #00B4A0;
+}
+#vr-brand-bar .brand-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+#vr-brand-bar .brand-sub {
+  font-size: 11px;
+  color: #C8F0EC;
+  margin-left: auto;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ─── Teal accent on section-header underline ────────────────── */
+h2.groupheader {
+  border-bottom-color: var(--primary-color, #00B4A0);
+}
+
+/* ─── Nav tree selected item highlight ───────────────────────── */
+#nav-tree .selected a {
+  background: rgba(0, 180, 160, 0.12) !important;
+}
