@@ -41,7 +41,7 @@ struct ControllerRay {
 
     void init(vtkRenderer* ren, double r, double g, double b)
     {
-        picker->SetTolerance(0.005);
+        picker->SetTolerance(5.0);
 
         rayLine->SetPoint1(0, 0, 0);
         rayLine->SetPoint2(0, 0, -1);
@@ -163,7 +163,7 @@ public:
     }
 
 private:
-    static constexpr double MAX_RAY = 10.0;
+    static constexpr double MAX_RAY = 10000.0;
 };
 
 // ---------------------------------------------------------------------------
@@ -182,9 +182,9 @@ struct VRMenu {
     int targetPartID = -1;
     vtkRenderer* ren = nullptr;
 
-    static constexpr double BTN_W = 0.06;
-    static constexpr double BTN_H = 0.03;
-    static constexpr double GAP   = 0.008;
+    static constexpr double BTN_W = 60.0;
+    static constexpr double BTN_H = 30.0;
+    static constexpr double GAP   = 8.0;
 
     void create(vtkRenderer* r)
     {
@@ -227,7 +227,7 @@ struct VRMenu {
         targetPartID = partID;
 
         double startX = x - (2 * BTN_W + GAP) * 0.5;
-        double startY = y + 0.04;
+        double startY = y + 40.0;
 
         for (int i = 0; i < 2; i++) {
             buttons[i].actor->SetPosition(
@@ -441,6 +441,8 @@ void VRRenderThread::run() {
         m_skybox = skybox;
     }
 
+    // World is in mm; tell VTK so movement speed, stereo separation, etc. are correct
+    m_renderWindow->SetPhysicalScale(1000.0);
     m_renderWindow->Initialize();
 
     try {
@@ -458,7 +460,7 @@ void VRRenderThread::run() {
     }
 
     if (m_renderer->GetActiveCamera())
-        m_renderer->GetActiveCamera()->SetClippingRange(0.001, 100.0);
+        m_renderer->GetActiveCamera()->SetClippingRange(1.0, 100000.0);
 
     m_endRender = false;
     while (!m_endRender) {
