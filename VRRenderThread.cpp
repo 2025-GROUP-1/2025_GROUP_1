@@ -24,6 +24,7 @@
 #include <vtkEventData.h>
 #include <vtkTransform.h>
 #include <vtkOpenVRInteractorStyle.h>
+#include <vtkPlaneSource.h>
 
 // ---------------------------------------------------------------------------
 // Per-frame callback: dynamic ray + outline highlight on hovered actor
@@ -166,6 +167,196 @@ private:
 };
 
 // ---------------------------------------------------------------------------
+// In-VR editing menu (clip, shrink, colour) triggered by menu button
+// ---------------------------------------------------------------------------
+struct VRMenu {
+    enum Action { Clip, Shrink, ColRed, ColGreen, ColBlue, ColYellow, ColWhite, NUM_ACTIONS };
+
+    struct Button {
+        vtkSmartPointer<vtkActor> actor;
+        Action action;
+    };
+
+    std::vector<Button> buttons;
+    bool visible = false;
+    int targetPartID = -1;
+    vtkRenderer* ren = nullptr;
+
+    static constexpr double BTN_W = 0.06;
+    static constexpr double BTN_H = 0.03;
+    static constexpr double GAP   = 0.008;
+
+    void create(vtkRenderer* r)
+    {
+        ren = r;
+        addButton(Clip,       1.0, 0.5, 0.0);
+        addButton(Shrink,     0.6, 0.2, 0.8);
+        addButton(ColRed,     1.0, 0.15, 0.15);
+        addButton(ColGreen,   0.15, 0.8, 0.15);
+        addButton(ColBlue,    0.15, 0.4, 1.0);
+        addButton(ColYellow,  1.0, 1.0, 0.2);
+        addButton(ColWhite,   0.9, 0.9, 0.9);
+    }
+
+    void addButton(Action a, double cr, double cg, double cb)
+    {
+        vtkNew<vtkPlaneSource> plane;
+        plane->SetOrigin(0, 0, 0);
+        plane->SetPoint1(BTN_W, 0, 0);
+        plane->SetPoint2(0, BTN_H, 0);
+        plane->Update();
+
+        vtkNew<vtkPolyDataMapper> m;
+        m->SetInputConnection(plane->GetOutputPort());
+
+        vtkSmartPointer<vtkActor> act = vtkSmartPointer<vtkActor>::New();
+        act->SetMapper(m);
+        act->GetProperty()->SetColor(cr, cg, cb);
+        act->GetProperty()->SetAmbient(1.0);
+        act->GetProperty()->SetDiffuse(0.0);
+        act->SetVisibility(0);
+        act->PickableOn();
+        ren->AddActor(act);
+
+        buttons.push_back({act, a});
+    }
+
+    void show(double x, double y, double z, int partID)
+    {
+        visible = true;
+        targetPartID = partID;
+
+        double startX = x - (2 * BTN_W + GAP) * 0.5;
+        double startY = y + 0.04;
+
+        for (int i = 0; i < 2; i++) {
+            buttons[i].actor->SetPosition(
+                startX + i * (BTN_W + GAP), startY, z);
+            buttons[i].actor->SetVisibility(1);
+        }
+        double row2Y = startY - BTN_H - GAP;
+        int nCol = static_cast<int>(buttons.size()) - 2;
+        double row2StartX = x - (nCol * BTN_W + (nCol - 1) * GAP) * 0.5;
+        for (int i = 2; i < static_cast<int>(buttons.size()); i++) {
+            buttons[i].actor->SetPosition(
+                row2StartX + (i - 2) * (BTN_W + GAP), row2Y, z);
+            buttons[i].actor->SetVisibility(1);
+        }
+    }
+
+    void hide()
+    {
+        visible = false;
+        targetPartID = -1;
+        for (auto& b : buttons)
+            b.actor->SetVisibility(0);
+    }
+
+    int findButton(vtkActor* a) const
+    {
+        for (int i = 0; i < static_cast<int>(buttons.size()); i++)
+            if (buttons[i].actor.Get() == a)
+                return i;
+        return -1;
+    }
+
+    bool isMenuActor(vtkActor* a) const { return findButton(a) >= 0; }
+};
+
+class VRMenuCallback : public vtkCommand {
+public:
+    static VRMenuCallback* New() { return new VRMenuCallback; }
+
+    VRRayCallback* rays = nullptr;
+    VRMenu menu;
+    std::map<int, vtkSmartPointer<vtkActor>>* activeActors = nullptr;
+    ModelPartList* partList = nullptr;
+
+    void Execute(vtkObject*, unsigned long, void*) override
+    {
+        vtkActor* hovered = nullptr;
+        if (rays->right.hoveredActor)
+            hovered = rays->right.hoveredActor;
+        else if (rays->left.hoveredActor)
+            hovered = rays->left.hoveredActor;
+
+        int btnIdx = menu.findButton(hovered);
+        if (btnIdx >= 0) {
+            executeAction(menu.buttons[btnIdx]);
+            return;
+        }
+
+        if (hovered) {
+            int pid = findPartID(hovered);
+            if (pid >= 0) {
+                if (menu.visible && menu.targetPartID == pid) {
+                    menu.hide();
+                } else {
+                    double* center = hovered->GetCenter();
+                    menu.show(center[0], center[1], center[2], pid);
+                }
+                return;
+            }
+        }
+
+        if (menu.visible)
+            menu.hide();
+    }
+
+private:
+    int findPartID(vtkActor* a) const
+    {
+        if (!activeActors) return -1;
+        for (auto& [id, act] : *activeActors)
+            if (act.Get() == a) return id;
+        return -1;
+    }
+
+    void executeAction(const VRMenu::Button& btn)
+    {
+        if (!partList || menu.targetPartID < 0) return;
+        ModelPart* part = partList->findByID(menu.targetPartID);
+        if (!part) return;
+
+        switch (btn.action) {
+        case VRMenu::Clip:
+            part->setClipFilter(!part->getClipEnabled());
+            part->rebuildVRPipeline();
+            break;
+        case VRMenu::Shrink:
+            part->setShrinkFilter(!part->getShrinkEnabled());
+            part->rebuildVRPipeline();
+            break;
+        case VRMenu::ColRed:
+            applyColour(part, QColor(255, 50, 50));
+            break;
+        case VRMenu::ColGreen:
+            applyColour(part, QColor(50, 200, 50));
+            break;
+        case VRMenu::ColBlue:
+            applyColour(part, QColor(50, 100, 255));
+            break;
+        case VRMenu::ColYellow:
+            applyColour(part, QColor(255, 255, 50));
+            break;
+        case VRMenu::ColWhite:
+            applyColour(part, QColor(240, 240, 240));
+            break;
+        default:
+            break;
+        }
+    }
+
+    void applyColour(ModelPart* part, const QColor& c)
+    {
+        part->setColour(c);
+        vtkActor* vr = part->getVRActor();
+        if (vr)
+            vr->GetProperty()->SetColor(c.redF(), c.greenF(), c.blueF());
+    }
+};
+
+// ---------------------------------------------------------------------------
 // VRRenderThread
 // ---------------------------------------------------------------------------
 
@@ -221,6 +412,14 @@ void VRRenderThread::run() {
     rayCallback->init(m_renderer);
     m_interactor->AddObserver(vtkCommand::Move3DEvent, rayCallback, 1.0);
 
+    // In-VR editing menu (clip / shrink / colour)
+    vtkNew<VRMenuCallback> menuCallback;
+    menuCallback->rays = rayCallback;
+    menuCallback->activeActors = &m_activeActors;
+    menuCallback->partList = m_partList;
+    menuCallback->menu.create(m_renderer);
+    m_interactor->AddObserver(vtkCommand::Menu3DEvent, menuCallback, 2.0);
+
     // Skybox
     QString roomPath = QCoreApplication::applicationDirPath() + "/room.jpg";
     vtkNew<vtkJPEGReader> bgReader;
@@ -263,9 +462,20 @@ void VRRenderThread::run() {
 
     m_endRender = false;
     while (!m_endRender) {
-        m_renderWindow->Render();
         m_interactor->DoOneEvent(m_renderWindow, m_renderer);
+
+        // Suppress default VTK red rays every frame (VTK re-shows them during interactions)
+        try {
+            auto* style = vtkOpenVRInteractorStyle::SafeDownCast(
+                m_interactor->GetInteractorStyle());
+            if (style) {
+                style->HideRay(vtkEventDataDevice::RightController);
+                style->HideRay(vtkEventDataDevice::LeftController);
+            }
+        } catch (...) {}
+
         processCommands();
+        m_renderWindow->Render();
     }
 
     m_renderWindow->Finalize();

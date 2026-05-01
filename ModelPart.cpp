@@ -145,14 +145,22 @@ void ModelPart::rebuildVRPipeline() {
         vrShrinkFilter = nullptr;
     }
 
-    newMapper->SetInputConnection(source);
+    // Scale geometry from mm to metres in the data itself rather than
+    // using actor SetScale — actor-level scaling causes single-eye rendering in VR.
+    vtkSmartPointer<vtkTransform> scaleXform = vtkSmartPointer<vtkTransform>::New();
+    scaleXform->Scale(0.001, 0.001, 0.001);
+    vrScaleFilter = vtkSmartPointer<vtkTransformFilter>::New();
+    vrScaleFilter->SetInputConnection(source);
+    vrScaleFilter->SetTransform(scaleXform);
+    vrScaleFilter->Update();
+
+    newMapper->SetInputConnection(vrScaleFilter->GetOutputPort());
     vrMapper = newMapper;
 
     if (!vrActor)
         vrActor = vtkSmartPointer<vtkActor>::New();
 
     vrActor->SetMapper(vrMapper);
-    vrActor->SetScale(0.001, 0.001, 0.001);
     vrActor->GetProperty()->SetColor(
         m_colour.redF(), m_colour.greenF(), m_colour.blueF());
     vrActor->SetVisibility(m_isVisible ? 1 : 0);

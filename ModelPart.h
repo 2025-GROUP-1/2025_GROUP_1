@@ -21,6 +21,8 @@
 #include <vtkShrinkFilter.h>
 #include <vtkClipDataSet.h>
 #include <vtkPlane.h>
+#include <vtkTransformFilter.h>
+#include <vtkTransform.h>
 
  /**
   * @class ModelPart
@@ -138,6 +140,7 @@ private:
     vtkSmartPointer<vtkActor>         vrActor;       ///< Actor for the VR renderer.
     vtkSmartPointer<vtkShrinkFilter>  vrShrinkFilter;
     vtkSmartPointer<vtkClipDataSet>   vrClipFilter;
+    vtkSmartPointer<vtkTransformFilter> vrScaleFilter;
 
     QColor m_colour;            ///< RGB colour applied to the actor.
     bool   m_isVisible;         ///< Whether the part is shown.

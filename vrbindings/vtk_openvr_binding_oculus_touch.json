@@ -32,7 +32,7 @@
         {
           "inputs": {
             "click": {
-              "output": "/actions/vtk/in/nextcamerapose"
+              "output": "/actions/vtk/in/triggeraction"
             }
           },
           "mode": "trigger",
