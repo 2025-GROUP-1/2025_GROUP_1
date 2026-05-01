@@ -159,6 +159,7 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
                 m_renderer->AddActor(m_skybox);
             else
                 m_renderer->RemoveActor(m_skybox);
+            m_renderer->ResetCameraClippingRange();
         }
         break;
     }

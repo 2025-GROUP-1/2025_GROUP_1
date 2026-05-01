@@ -909,24 +909,32 @@ void MainWindow::on_actionExit_VR_triggered()
 
 void MainWindow::on_actionEnable_Passthrough_triggered()
 {
-    // 1. Flip our true/false state
     m_passthroughEnabled = !m_passthroughEnabled;
 
-    // 2. If VR is running, send the command to the thread
     if (m_vrThread && m_vrThread->isRunning()) {
-        // We pass !m_passthroughEnabled because if Passthrough is ON, Skybox visibility should be FALSE
+        // false = passthrough ON (remove skybox), true = passthrough OFF (restore skybox)
         m_vrThread->issueCommand(Command::ToggleSkybox, 0, !m_passthroughEnabled);
+
+        // Re-sync part visibility so actors reappear correctly after the skybox change
+        QList<ModelPart*> bfsQueue;
+        bfsQueue.append(partList->getRootItem());
+        while (!bfsQueue.isEmpty()) {
+            ModelPart* part = bfsQueue.takeFirst();
+            if (part != partList->getRootItem())
+                m_vrThread->issueCommand(Command::SetVisible, part->getID(), part->getVisible());
+            for (int i = 0; i < part->childCount(); ++i)
+                bfsQueue.append(part->child(i));
+        }
     }
 
-    // 3. Update the UI Text and Status Bar
-    if (m_passthroughEnabled) {
-        ui->actionEnable_Passthrough->setText("Disable Passthrough");
-        emit statusUpdateMessage(tr("Skybox hidden. Double-press Vive System button to see your room!"), 0);
-    }
-    else {
-        ui->actionEnable_Passthrough->setText("Enable Passthrough");
-        emit statusUpdateMessage(tr("Passthrough disabled. Skybox restored."), 0);
-    }
+    const QString label = m_passthroughEnabled ? tr("Disable Passthrough") : tr("Enable Passthrough");
+    ui->actionEnable_Passthrough->setText(label);
+    ui->buttonEnablePassthrough->setText(label);
+
+    emit statusUpdateMessage(
+        m_passthroughEnabled
+            ? tr("Skybox hidden — double-press headset system button to see your room")
+            : tr("Passthrough disabled — skybox restored"), 0);
 }
 
 void MainWindow::on_buttonSyncVR_clicked()
