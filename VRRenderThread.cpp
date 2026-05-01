@@ -27,32 +27,31 @@
 // ---------------------------------------------------------------------------
 // Per-frame callback: dynamic ray + outline highlight on hovered actor
 // ---------------------------------------------------------------------------
-class VRRayCallback : public vtkCommand {
-public:
-    static VRRayCallback* New() { return new VRRayCallback; }
+// Per-controller state for ray + outline
+struct ControllerRay {
+    vtkNew<vtkCellPicker>      picker;
+    vtkNew<vtkLineSource>      rayLine;
+    vtkNew<vtkActor>           rayActor;
+    vtkNew<vtkOutlineFilter>   outlineFilter;
+    vtkNew<vtkPolyDataMapper>  outlineMapper;
+    vtkNew<vtkActor>           outlineActor;
+    vtkActor*                  hoveredActor = nullptr;
 
-    vtkRenderer* renderer = nullptr;
-    vtkActor* hoveredActor = nullptr;
-
-    void init(vtkRenderer* ren)
+    void init(vtkRenderer* ren, double r, double g, double b)
     {
-        renderer = ren;
-
         picker->SetTolerance(0.005);
 
-        // Ray line
         rayLine->SetPoint1(0, 0, 0);
         rayLine->SetPoint2(0, 0, -1);
         vtkNew<vtkPolyDataMapper> rayMapper;
         rayMapper->SetInputConnection(rayLine->GetOutputPort());
         rayActor->SetMapper(rayMapper);
-        rayActor->GetProperty()->SetColor(0.2, 0.85, 1.0);
+        rayActor->GetProperty()->SetColor(r, g, b);
         rayActor->GetProperty()->SetLineWidth(2.0);
         rayActor->GetProperty()->SetOpacity(0.7);
         rayActor->PickableOff();
         ren->AddActor(rayActor);
 
-        // Outline box for hovered part
         outlineMapper->SetInputConnection(outlineFilter->GetOutputPort());
         outlineActor->SetMapper(outlineMapper);
         outlineActor->GetProperty()->SetColor(0.1, 1.0, 0.4);
@@ -62,51 +61,31 @@ public:
         ren->AddActor(outlineActor);
     }
 
-    void Execute(vtkObject*, unsigned long eventId, void* callData) override
+    void update(const double* pos, const double* ori, vtkRenderer* ren, double maxRay)
     {
-        if (eventId != vtkCommand::Move3DEvent || !renderer)
-            return;
-
-        auto* ed = static_cast<vtkEventData*>(callData);
-        auto* d3d = ed ? ed->GetAsEventDataDevice3D() : nullptr;
-        if (!d3d) return;
-
-        auto device = d3d->GetDevice();
-        if (device != vtkEventDataDevice::RightController &&
-            device != vtkEventDataDevice::Unknown &&
-            device != vtkEventDataDevice::Any)
-            return;
-
-        const double* pos = d3d->GetWorldPosition();
-        const double* ori = d3d->GetWorldOrientation();
-
-        // Compute forward direction from controller orientation (angle-axis)
         vtkNew<vtkTransform> xform;
         xform->RotateWXYZ(ori[0], ori[1], ori[2], ori[3]);
         double fwd[3] = { 0.0, 0.0, -1.0 };
         xform->TransformVector(fwd, fwd);
 
-        // Pick along the ray
         double p[3] = { pos[0], pos[1], pos[2] };
         double o[4] = { ori[0], ori[1], ori[2], ori[3] };
-        picker->Pick3DRay(p, o, renderer);
+        picker->Pick3DRay(p, o, ren);
 
         vtkActor* hit = vtkActor::SafeDownCast(picker->GetProp3D());
         double* hitPt = picker->GetPickPosition();
 
-        // Update ray endpoint
         rayLine->SetPoint1(pos[0], pos[1], pos[2]);
         if (hit && picker->GetCellId() >= 0) {
             rayLine->SetPoint2(hitPt[0], hitPt[1], hitPt[2]);
         } else {
             rayLine->SetPoint2(
-                pos[0] + fwd[0] * MAX_RAY,
-                pos[1] + fwd[1] * MAX_RAY,
-                pos[2] + fwd[2] * MAX_RAY);
+                pos[0] + fwd[0] * maxRay,
+                pos[1] + fwd[1] * maxRay,
+                pos[2] + fwd[2] * maxRay);
         }
         rayLine->Modified();
 
-        // Update outline highlight
         if (hit != hoveredActor) {
             if (hit && hit->GetMapper() && hit->GetMapper()->GetInput()) {
                 outlineFilter->SetInputData(hit->GetMapper()->GetInput());
@@ -121,22 +100,59 @@ public:
             hoveredActor = hit;
         }
 
-        // Keep outline transform in sync if part moves (explode, etc.)
         if (hoveredActor && outlineActor->GetVisibility()) {
             outlineActor->SetPosition(hoveredActor->GetPosition());
             outlineActor->SetScale(hoveredActor->GetScale());
             outlineActor->SetOrientation(hoveredActor->GetOrientation());
         }
     }
+};
+
+class VRRayCallback : public vtkCommand {
+public:
+    static VRRayCallback* New() { return new VRRayCallback; }
+
+    vtkRenderer* renderer = nullptr;
+    ControllerRay right;
+    ControllerRay left;
+
+    void init(vtkRenderer* ren)
+    {
+        renderer = ren;
+        right.init(ren, 0.2, 0.85, 1.0);   // cyan
+        left.init(ren,  1.0, 0.6,  0.2);    // orange
+    }
+
+    void Execute(vtkObject*, unsigned long eventId, void* callData) override
+    {
+        if (eventId != vtkCommand::Move3DEvent || !renderer)
+            return;
+
+        auto* ed = static_cast<vtkEventData*>(callData);
+        auto* d3d = ed ? ed->GetAsEventDataDevice3D() : nullptr;
+        if (!d3d) return;
+
+        auto device = d3d->GetDevice();
+        const double* pos = d3d->GetWorldPosition();
+        const double* ori = d3d->GetWorldOrientation();
+
+        if (device == vtkEventDataDevice::RightController ||
+            device == vtkEventDataDevice::Unknown ||
+            device == vtkEventDataDevice::Any)
+        {
+            right.update(pos, ori, renderer, MAX_RAY);
+        }
+
+        if (device == vtkEventDataDevice::LeftController ||
+            device == vtkEventDataDevice::Unknown ||
+            device == vtkEventDataDevice::Any)
+        {
+            left.update(pos, ori, renderer, MAX_RAY);
+        }
+    }
 
 private:
     static constexpr double MAX_RAY = 10.0;
-    vtkNew<vtkCellPicker>      picker;
-    vtkNew<vtkLineSource>      rayLine;
-    vtkNew<vtkActor>           rayActor;
-    vtkNew<vtkOutlineFilter>   outlineFilter;
-    vtkNew<vtkPolyDataMapper>  outlineMapper;
-    vtkNew<vtkActor>           outlineActor;
 };
 
 // ---------------------------------------------------------------------------
