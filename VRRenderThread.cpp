@@ -518,6 +518,16 @@ void VRRenderThread::run() {
     if (m_renderer->GetActiveCamera())
         m_renderer->ResetCameraClippingRange();
 
+    // Position user standing on the floor (not inside it)
+    // Shift VR origin so real-world floor level = bottom of scene geometry
+    {
+        double bounds[6];
+        m_renderer->ComputeVisiblePropBounds(bounds);
+        double* trans = m_renderWindow->GetPhysicalTranslation();
+        double floorY = bounds[2]; // Y-min of all geometry
+        m_renderWindow->SetPhysicalTranslation(trans[0], floorY, trans[2]);
+    }
+
     m_endRender = false;
     while (!m_endRender) {
         m_interactor->DoOneEvent(m_renderWindow, m_renderer);
