@@ -25,6 +25,68 @@
 #include <vtkTransform.h>
 #include <vtkOpenVRInteractorStyle.h>
 #include <vtkPlaneSource.h>
+#include <vtkObjectFactory.h>
+#include <vtkInteractorStyle3D.h>
+#include <vtkTimerLog.h>
+#include <vtkRenderWindowInteractor3D.h>
+#include <vtkQuaternion.h>
+#include <vtkMatrix3x3.h>
+#include <vtkMath.h>
+
+// Custom interactor style: blocks VTK's built-in menu, inverts dolly direction
+class VRCustomStyle : public vtkOpenVRInteractorStyle {
+public:
+    static VRCustomStyle* New();
+    vtkTypeMacro(VRCustomStyle, vtkOpenVRInteractorStyle);
+
+    void OnMenu3D(vtkEventData* edata) override
+    {
+        // Fire our custom event instead of VTK's built-in probe/clip menu
+        if (this->Interactor)
+            this->Interactor->InvokeEvent(vtkCommand::UserEvent, edata);
+    }
+
+    // Prevent VTK from ever drawing its built-in red rays
+    void UpdateRay(vtkEventDataDevice) override {}
+
+    void Dolly3D(vtkEventData* ed) override
+    {
+        if (!this->CurrentRenderer)
+            return;
+        auto* rwi = static_cast<vtkRenderWindowInteractor3D*>(this->Interactor);
+        auto* edd = static_cast<vtkEventDataDevice3D*>(ed);
+        const double* wori = edd->GetWorldOrientation();
+
+        vtkQuaternion<double> q1;
+        q1.SetRotationAngleAndAxis(vtkMath::RadiansFromDegrees(wori[0]), wori[1], wori[2], wori[3]);
+        double elem[3][3];
+        q1.ToMatrix3x3(elem);
+        double vdir[3] = { 0.0, 0.0, -1.0 };
+        vtkMatrix3x3::MultiplyPoint(elem[0], vdir, vdir);
+
+        double* trans = rwi->GetPhysicalTranslation(this->CurrentRenderer->GetActiveCamera());
+        if (edd->GetType() == vtkCommand::ViewerMovement3DEvent)
+            edd->GetTrackPadPosition(this->LastTrackPadPosition);
+
+        // Negate Y so trackpad-up = push away, trackpad-down = pull closer
+        double speedScale = -this->LastTrackPadPosition[1];
+        double physicalScale = rwi->GetPhysicalScale();
+
+        this->LastDolly3DEventTime->StopTimer();
+        double dist = speedScale * this->DollyPhysicalSpeed * physicalScale
+            * this->LastDolly3DEventTime->GetElapsedTime();
+        this->LastDolly3DEventTime->StartTimer();
+
+        rwi->SetPhysicalTranslation(this->CurrentRenderer->GetActiveCamera(),
+            trans[0] - vdir[0] * dist,
+            trans[1] - vdir[1] * dist,
+            trans[2] - vdir[2] * dist);
+
+        if (this->AutoAdjustCameraClippingRange)
+            this->CurrentRenderer->ResetCameraClippingRange();
+    }
+};
+vtkStandardNewMacro(VRCustomStyle);
 
 // ---------------------------------------------------------------------------
 // Per-frame callback: dynamic ray + outline highlight on hovered actor
@@ -395,6 +457,10 @@ void VRRenderThread::run() {
     m_interactor->SetActionManifestFileName(manifestPath.c_str());
     m_interactor->SetActionSetName("/actions/vtk");
 
+    // Use our custom style: blocks VTK's built-in menu, inverts dolly, hides default rays
+    vtkNew<VRCustomStyle> customStyle;
+    m_interactor->SetInteractorStyle(customStyle);
+
     m_renderWindow->AddRenderer(m_renderer);
     m_interactor->SetRenderWindow(m_renderWindow);
 
@@ -418,7 +484,7 @@ void VRRenderThread::run() {
     menuCallback->activeActors = &m_activeActors;
     menuCallback->partList = m_partList;
     menuCallback->menu.create(m_renderer);
-    m_interactor->AddObserver(vtkCommand::Menu3DEvent, menuCallback, 2.0);
+    m_interactor->AddObserver(vtkCommand::UserEvent, menuCallback, 2.0);
 
     // Skybox
     QString roomPath = QCoreApplication::applicationDirPath() + "/room.jpg";
@@ -445,16 +511,8 @@ void VRRenderThread::run() {
 
     try {
         m_interactor->Initialize();
-
-        // Hide the default red VTK rays — we draw our own
-        auto* style = vtkOpenVRInteractorStyle::SafeDownCast(
-            m_interactor->GetInteractorStyle());
-        if (style) {
-            style->HideRay(vtkEventDataDevice::RightController);
-            style->HideRay(vtkEventDataDevice::LeftController);
-        }
     } catch (...) {
-        // VR input system may not be available — continue without custom ray hiding
+        // VR input system may not be available
     }
 
     if (m_renderer->GetActiveCamera())
@@ -463,17 +521,6 @@ void VRRenderThread::run() {
     m_endRender = false;
     while (!m_endRender) {
         m_interactor->DoOneEvent(m_renderWindow, m_renderer);
-
-        // Suppress default VTK red rays every frame (VTK re-shows them during interactions)
-        try {
-            auto* style = vtkOpenVRInteractorStyle::SafeDownCast(
-                m_interactor->GetInteractorStyle());
-            if (style) {
-                style->HideRay(vtkEventDataDevice::RightController);
-                style->HideRay(vtkEventDataDevice::LeftController);
-            }
-        } catch (...) {}
-
         processCommands();
         m_renderWindow->Render();
     }
