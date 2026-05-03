@@ -2,7 +2,7 @@ name: doxygen-deploy
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]   # triggers whenever main is pushed
 
 jobs:
   deploy-docs:

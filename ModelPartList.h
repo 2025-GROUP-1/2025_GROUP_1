@@ -13,12 +13,19 @@
 #define VIEWER_MODELPARTLIST_H
 
 #include "ModelPart.h"
+ * @brief Tree model wrapping a hierarchy of ModelPart nodes for the QTreeView.
+ */
+
+#ifndef MODELPARTLIST_H
+#define MODELPARTLIST_H
 
 #include <QAbstractItemModel>
 #include <QModelIndex>
 #include <QVariant>
 #include <QString>
 #include <QList>
+
+#include "ModelPart.h"
 
 class ModelPart;
 

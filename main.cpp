@@ -1,11 +1,24 @@
+/**
+ * @file main.cpp
+ * @brief Application entry point. Configures the OpenGL surface format and launches MainWindow.
+ */
 #include "mainwindow.h"
 
 #include <QApplication>
+#include <QSurfaceFormat>
+#include <QVTKOpenGLNativeWidget.h>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-    QApplication a(argc, argv);
+    QSurfaceFormat::setDefaultFormat(QVTKOpenGLNativeWidget::defaultFormat());
+
+    QApplication app(argc, argv);
+
+    app.setApplicationName("VRBaseStation");
+    app.setOrganizationName("EEEE2076 Group 1");
+
     MainWindow w;
     w.show();
-    return a.exec();
+
+    return app.exec();
 }

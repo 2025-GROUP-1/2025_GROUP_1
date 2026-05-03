@@ -1,14 +1,25 @@
+/**
+ * @file ModelPart.h
+ * @brief Declares ModelPart, the data class for a single part in the tree.
+ */
+
 #ifndef MODELPART_H
 #define MODELPART_H
 
 #include <QList>
 #include <QVariant>
 #include <QString>
+#include <QColor>
+#include <QVector3D>
+
 #include <vtkSmartPointer.h>
 #include <vtkSTLReader.h>
-#include <vtkPolyDataMapper.h>
+#include <vtkDataSetMapper.h>
 #include <vtkActor.h>
 #include <vtkProperty.h>
+#include <vtkShrinkFilter.h>
+#include <vtkClipDataSet.h>
+#include <vtkPlane.h>
 
 /**
  * @defgroup data_model Data Model
