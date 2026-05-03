@@ -1,5 +1,6 @@
 /**
  * @file ModelPartList.h
+ * @brief This file defines the list/model manager for the CAD parts in the tree view.
  *
  * EEEE2076 - Software Engineering & VR Project
  *
