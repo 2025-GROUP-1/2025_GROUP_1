@@ -24,3 +24,4 @@ jobs:
         with:
           branch: gh-pages
           folder: ${{ github.workspace }}/html
+          token: ${{ secrets.GH_PAT }}
