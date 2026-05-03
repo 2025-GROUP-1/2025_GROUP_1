@@ -1,3 +1,8 @@
+/**
+ * @file mainwindow.h
+ * @brief This file defines the top-level MainWindow class, which manages the QTreeView, the GUI's VTK rendering pipeline, and user interactions.
+ */
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
