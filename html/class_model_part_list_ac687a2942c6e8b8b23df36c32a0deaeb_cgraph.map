@@ -1,0 +1,34 @@
+<map id="ModelPartList::appendChild" name="ModelPartList::appendChild">
+<area shape="rect" id="Node000001" title="Creates a new child ModelPart and appends it under parent." alt="" coords="5,81,187,107"/>
+<area shape="rect" id="Node000002" href="$class_model_part.html#a52074db110367665c3e262919e172c98" title="Appends a child item and sets its parent pointer to this item." alt="" coords="448,5,608,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,79,180,62,234,48,336,31,435,23,430,25,337,36,235,53,181,67,134,83"/>
+<area shape="rect" id="Node000005" href="$class_model_part_list.html#a60923d947a2eafb5dfabe1cf8461807e" title="Returns the display data for the item at index." alt="" coords="250,207,384,232"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="121,105,282,197,278,200,120,110"/>
+<area shape="rect" id="Node000009" href="$class_model_part_list.html#a2aeb9586030b325193894ddfe99e629c" title="Returns the parent index of the item at index." alt="" coords="656,132,802,158"/>
+<area shape="poly" id="edge17_Node000001_Node000009" title=" " alt="" coords="187,88,382,89,496,97,609,112,670,127,665,128,608,117,495,102,381,94,188,93"/>
+<area shape="rect" id="Node000011" href="$class_model_part_list.html#a05d52c5cac09750d28ad041ec6a3d5ab" title="Returns the number of child rows under parent." alt="" coords="235,107,400,132"/>
+<area shape="poly" id="edge18_Node000001_Node000011" title=" " alt="" coords="186,102,222,107,217,109,188,107"/>
+<area shape="rect" id="Node000003" href="$class_model_part.html#a4f22ba9a54525edde005cb4eb7366648" title="Constructs a ModelPart with the given column data and optional parent." alt="" coords="1048,156,1195,182"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="609,19,692,26,791,39,897,60,1001,92,1051,116,1094,147,1089,146,1048,121,999,97,896,66,791,44,692,31,609,24"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="1091,154,1086,147,1089,138,1102,132,1122,129,1143,132,1156,141,1151,140,1142,137,1122,135,1103,137,1093,141,1091,147,1096,157"/>
+<area shape="rect" id="Node000004" href="$class_model_part.html#a178655da543bd0dae2d0ed1e2ea38a56" title="Returns the display data for the given column." alt="" coords="1243,207,1357,232"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1170,180,1241,202,1235,202,1169,185"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="380,230,448,242,588,261,649,266,728,268,926,268,1007,264,1089,255,1225,235,1231,235,1089,261,1008,269,926,273,728,273,649,271,587,267,448,247,380,236"/>
+<area shape="rect" id="Node000006" href="$class_model_part_list.html#a5698ba9ca23f010369f12ff4a97976e2" title="Creates a QModelIndex for the item at row / column under parent." alt="" coords="458,207,598,232"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="385,217,445,219,440,220,385,222"/>
+<area shape="rect" id="Node000007" href="$class_model_part.html#af32381b69415f0aa6bdfd84435f842cc" title="Returns the child at the given row index." alt="" coords="671,207,787,232"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="599,217,659,219,653,220,599,222"/>
+<area shape="poly" id="edge12_Node000006_Node000009" title=" " alt="" coords="598,208,607,205,699,167,704,165,609,210,599,213"/>
+<area shape="poly" id="edge9_Node000007_Node000003" title=" " alt="" coords="787,213,886,205,1000,192,1046,186,1051,185,1000,197,887,211,787,219"/>
+<area shape="rect" id="Node000008" href="$class_model_part.html#a05bc0dd06a3658d9a2c46fa717dec910" title="Returns this item&#39;s row index within its parent&#39;s child list." alt="" coords="870,156,980,182"/>
+<area shape="poly" id="edge10_Node000007_Node000008" title=" " alt="" coords="781,203,855,187,860,186,782,209"/>
+<area shape="poly" id="edge11_Node000008_Node000003" title=" " alt="" coords="980,166,1035,169,1030,169,980,171"/>
+<area shape="poly" id="edge13_Node000009_Node000006" title=" " alt="" coords="675,158,609,186,560,203,559,198,607,181,670,159"/>
+<area shape="poly" id="edge16_Node000009_Node000008" title=" " alt="" coords="802,151,857,160,852,160,802,156"/>
+<area shape="rect" id="Node000010" href="$class_model_part.html#a9be3859d2a298e88d850a2480b7639f7" title="Returns a pointer to the parent ModelPart." alt="" coords="850,107,1000,132"/>
+<area shape="poly" id="edge14_Node000009_Node000010" title=" " alt="" coords="802,133,837,131,832,132,803,138"/>
+<area shape="poly" id="edge15_Node000010_Node000003" title=" " alt="" coords="979,130,1055,152,1050,152,979,136"/>
+<area shape="poly" id="edge20_Node000011_Node000009" title=" " alt="" coords="400,122,644,139,639,140,401,127"/>
+<area shape="rect" id="Node000012" href="$class_model_part.html#aea4bb035b2b3827c0abf677fb9dc68ce" title="Returns the number of direct children of this item." alt="" coords="453,157,603,183"/>
+<area shape="poly" id="edge19_Node000011_Node000012" title=" " alt="" coords="374,130,460,153,454,154,374,136"/>
+</map>

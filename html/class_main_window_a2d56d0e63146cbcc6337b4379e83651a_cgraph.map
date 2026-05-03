@@ -1,0 +1,12 @@
+<map id="MainWindow::on_sliderExplode_valueChanged" name="MainWindow::on_sliderExplode_valueChanged">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,63,209,103"/>
+<area shape="rect" id="Node000002" href="$class_main_window.html#a6db062f407bd66add549a10a7dc24a0f" title="Apply the current explode amount to every part." alt="" coords="257,29,439,70"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,66,244,64,238,65,210,72"/>
+<area shape="rect" id="Node000005" href="$class_main_window.html#a86443ea744fda3e9bad328c2fd1c3d6b" title=" " alt="" coords="257,95,439,135"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="209,94,244,101,238,101,209,99"/>
+<area shape="rect" id="Node000003" href="$class_main_window.html#a46cb35b1c663ea1240545f3e626f3854" title="Recursive helper for applyExplodeToAll()." alt="" coords="487,29,669,70"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="439,47,474,49,469,50,439,52"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="537,27,534,19,541,10,556,5,578,3,602,5,618,14,613,13,601,10,578,8,557,10,544,15,539,21,541,30"/>
+<area shape="rect" id="Node000004" href="$class_model_part.html#add8f9a9b7100f07bccaa68ac58d7821b" title="Apply the current explode amount (0.0 = original, 1.0 = full)." alt="" coords="717,37,884,62"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="669,47,704,49,699,50,670,52"/>
+</map>

@@ -1,36 +1,28 @@
-.vs/
-build/
-*.user
-*.suo
-.vs/
-.qtcreator/
+# Build artefacts
 build/
 out/
-x64/
-Debug/
-Release/
-
-*_autogen/
-CMakeFiles/
+cmake-build-*/
 CMakeCache.txt
+CMakeFiles/
 cmake_install.cmake
-compile_commands.json
-
-*.user
-*.suo
-*.VC.db
-*.opensdf
-*.sdf
-
+Makefile
 *.exe
-*.dll
-*.lib
 *.obj
-*.pdb
-*.ilk
-*.exp
-*.log
+*.o
+*.dll
 
-# Doxygen output
-html/
-latex/
+# IDE
+.vs/
+.vscode/
+.idea/
+*.user
+
+# macOS
+.DS_Store
+
+# Doxygen output (built by CI, not committed)
+docs/
+doxygen-warnings.log
+
+# Logs
+*.log

@@ -1,0 +1,7 @@
+<map id="ModelPartList::data" name="ModelPartList::data">
+<area shape="rect" id="Node000001" title="Returns the display data for the item at index." alt="" coords="243,31,377,56"/>
+<area shape="rect" id="Node000002" href="$class_model_part_list.html#ac687a2942c6e8b8b23df36c32a0deaeb" title="Creates a new child ModelPart and appends it under parent." alt="" coords="9,5,191,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,34,191,32,191,26,230,33"/>
+<area shape="rect" id="Node000003" href="$class_model_part_list.html#ab78590b83bc1a7a05636efd7f29a7862" title="&lt; Required Qt macro enabling signals, slots, and the meta&#45;object system." alt="" coords="5,55,195,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="225,53,195,59,195,54,230,53"/>
+</map>

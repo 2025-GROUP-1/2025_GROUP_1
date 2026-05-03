@@ -1,19 +1,20 @@
 /**
  * @file mainwindow.h
- * @brief Top-level window for the application.
+ * @brief This file defines the top-level MainWindow class, which manages the QTreeView, the GUI's VTK rendering pipeline, and user interactions.
  */
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QModelIndex>
-
+#include <QTreeView>
+#include <QFileDialog>
+#include <QFileInfo>
+#include <QStatusBar>
 #include <vtkSmartPointer.h>
 #include <vtkRenderer.h>
 #include <vtkGenericOpenGLRenderWindow.h>
-#include <vtkLight.h>
-
+#include <vtkActor.h>
 #include "ModelPart.h"
 #include "ModelPartList.h"
 
@@ -22,105 +23,130 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 /**
- * @class MainWindow
- * @brief Application main window. Holds parts browser, viewport, properties and theme.
+ * @defgroup gui GUI Components
+ * @brief Qt widgets and dialogs that form the application's user interface.
+ *
+ * Contains the main window and all modal dialogs. These classes run exclusively
+ * on the Qt main thread and communicate with the data model via ModelPartList.
  */
-    class MainWindow : public QMainWindow
+
+/**
+ * @addtogroup gui
+ * @{
+ */
+
+/**
+ * @brief Top-level application window.
+ *
+ * Owns the QTreeView (populated from a ModelPartList), the VTK renderer and
+ * render window, and all toolbar/menu actions.  Co-ordinates user interactions:
+ * STL file loading, per-part property editing via OptionDialog, and VTK render
+ * updates triggered by model changes.
+ *
+ * On construction a default tree of 3 top-level parts, each with 5 children,
+ * is created as a placeholder until the user loads real STL files.
+ *
+ * @see ModelPartList, ModelPart, OptionDialog
+ */
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    /** @brief Theme variants used by applyTheme(). */
-    enum class Theme { Dark, Light };
-
-    /** @brief Construct the window and set up renderer, lighting and theme. */
+    /**
+     * @brief Constructs the main window and wires up all subsystems.
+     *
+     * Sets up the VTK renderer and render window, builds the default placeholder
+     * part tree, and connects all Qt signals and slots.
+     *
+     * @param parent Optional parent widget; typically \c nullptr for a top-level window.
+     */
     MainWindow(QWidget* parent = nullptr);
 
-    /** @brief Destructor. */
+    /**
+     * @brief Destructor. Deletes the generated UI object.
+     */
     ~MainWindow();
 
-    /** @brief Rebuild the renderer's actor list from the current tree. */
+    /**
+     * @brief Clears the renderer and re-adds actors for every part in the tree.
+     *
+     * Removes all current actors, traverses the entire ModelPartList via
+     * updateRenderFromTree(), adds each non-null actor to the renderer, then
+     * calls Render() on the render window.
+     *
+     * @see updateRenderFromTree()
+     */
     void updateRender();
 
-    /** @brief Recursive walk used by updateRender(). */
+    /**
+     * @brief Recursively adds actors to the renderer starting from @p index.
+     *
+     * If the ModelPart at @p index has a non-null VTK actor it is added to the
+     * renderer.  The function then recurses into all child indices.
+     *
+     * @param index Root of the subtree to traverse; pass an invalid index to skip.
+     * @see updateRender()
+     */
     void updateRenderFromTree(const QModelIndex& index);
 
-    /** @brief Apply a colour theme (dark or light) across the whole window. */
-    void applyTheme(Theme theme);
-
 public slots:
-    /** @brief Status bar update when a tree item is clicked. */
+    /**
+     * @brief Emits a status bar message when button 1 is clicked.
+     */
+    void handleButton1();
+
+    /**
+     * @brief Opens OptionDialog for the selected tree item; saves and re-renders on accept.
+     *
+     * If no valid item is selected, posts "No item selected" to the status bar.
+     * On QDialog::Accepted: calls saveToModelPart(), emits dataChanged() across the
+     * whole model, calls updateRender(), and re-renders.
+     *
+     * @see on_actionItem_Options_triggered()
+     */
+    void handleButton2();
+
+    /**
+     * @brief Emits a status bar message naming the currently selected tree item.
+     */
     void handleTreeClicked();
 
-    /** @brief Refresh side controls when the selected item changes. */
-    void onCurrentSelectionChanged(const QModelIndex& current, const QModelIndex& previous);
+    /**
+     * @brief Opens a file dialog, loads the chosen STL into the selected tree item.
+     *
+     * Presents a file-open dialog filtered to STL files.  Sets the selected part's
+     * display name to the file's base name, calls ModelPart::loadSTL(), refreshes
+     * the tree model, re-renders, and resets the camera.
+     */
+    void on_actionOpen_File_triggered();
 
-    // -- File / Tree actions --
-    void on_actionImport_Mesh_triggered();
-    void on_actionImport_Folder_triggered();
-    void on_actionEdit_Part_triggered();
-    void on_actionDelete_Part_triggered();
-
-    // -- Camera / Scene --
-    void on_actionFrame_All_triggered();
-    void on_buttonViewportBackground_clicked();
-
-    // -- Properties: Part --
-    void on_buttonDiffuseColour_clicked();
-    void on_checkShowPart_stateChanged(int state);
-    void on_toggleShrink_toggled(bool checked);
-    void on_toggleClip_toggled(bool checked);
-
-    // -- Properties: Scene --
-    void on_sliderBrightness_valueChanged(int value);
-
-    // -- Explode view --
-    void on_sliderExplode_valueChanged(int value);
-
-    // -- Theme --
-    /** @brief Toggle between dark and light themes. */
-    void on_actionToggle_Theme_triggered();
-
-    // -- VR (stubs for now, real impl in VRRenderThread) --
-    void on_actionEnter_VR_triggered();
-    void on_actionExit_VR_triggered();
-    void on_buttonSyncVR_clicked();
-
-    // -- Help --
-    void on_actionAbout_triggered();
+    /**
+     * @brief Opens OptionDialog via the context-menu action; saves and re-renders on accept.
+     *
+     * Functionally identical to handleButton2() but also calls renderer->ResetCamera()
+     * after a successful edit.
+     *
+     * @see handleButton2()
+     */
+    void on_actionItem_Options_triggered();
 
 signals:
     /**
-     * @brief Emitted whenever the status bar should display a new message.
+     * @brief Emitted to display a message in the main window's status bar.
      * @param message Text to display.
-     * @param timeout Time in ms before the message is cleared (0 = permanent).
+     * @param timeout Display duration in milliseconds; 0 means persist until the next message.
      */
     void statusUpdateMessage(const QString& message, int timeout);
 
 private:
-    /** @brief Helper: get the currently selected ModelPart, or nullptr. */
-    ModelPart* currentPart();
+    Ui::MainWindow* ui;       ///< Generated UI class that owns all widgets.
+    ModelPartList*  partList; ///< Tree model providing data to the QTreeView.
 
-    /** @brief Recompute scene centre and refresh per-part explode directions. */
-    void refreshExplodeDirections();
-
-    /** @brief Recursive helper for refreshExplodeDirections(). */
-    void refreshExplodeDirectionsFromTree(const QModelIndex& index, double cx, double cy, double cz);
-
-    /** @brief Apply the current explode amount to every part. */
-    void applyExplodeToAll();
-
-    /** @brief Recursive helper for applyExplodeToAll(). */
-    void applyExplodeFromTree(const QModelIndex& index, double amount);
-
-    Ui::MainWindow* ui;            ///< Generated UI.
-    ModelPartList* partList;      ///< Tree model.
-    vtkSmartPointer<vtkRenderer>                   renderer;      ///< Renderer for the GUI viewport.
-    vtkSmartPointer<vtkGenericOpenGLRenderWindow>  renderWindow;  ///< Render window inside vtkWidget.
-    vtkSmartPointer<vtkLight>                      light;         ///< Scene light controlled by the slider.
-
-    Theme  m_theme;          ///< Currently applied theme.
-    double m_explodeAmount;  ///< Current explode value [0.0 - 1.0].
+    vtkSmartPointer<vtkRenderer>               renderer;     ///< VTK renderer for the GUI 3D viewport.
+    vtkSmartPointer<vtkGenericOpenGLRenderWindow> renderWindow; ///< VTK render window embedded in the Qt widget.
 };
+
+/** @} */ // end gui
 
 #endif

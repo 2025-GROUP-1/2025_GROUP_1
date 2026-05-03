@@ -21,116 +21,199 @@
 #include <vtkClipDataSet.h>
 #include <vtkPlane.h>
 
- /**
-  * @class ModelPart
-  * @brief Single node in the parts tree.
-  */
+/**
+ * @defgroup data_model Data Model
+ * @brief Classes that own and manage the tree of CAD parts and their VTK rendering pipelines.
+ *
+ * ModelPart and ModelPartList together implement the Qt tree-model / item pattern.
+ * Each ModelPart node also owns its VTK STL → mapper → actor pipeline for both
+ * the GUI renderer and (when active) the VR renderer.
+ */
+
+/**
+ * @addtogroup data_model
+ * @{
+ */
+
+/**
+ * @brief Represents a single CAD part in the application's tree model.
+ *
+ * Each ModelPart is a node in the hierarchy displayed by the QTreeView. It stores
+ * per-column display data (part name and visibility) and owns a VTK pipeline —
+ * STL reader → poly-data mapper → actor — used to render the geometry in the 3D
+ * viewport. Colour defaults to white (255, 255, 255) and visibility defaults to true.
+ *
+ * @see ModelPartList
+ * @ingroup data_model
+ */
 class ModelPart {
 public:
-    /** @brief Construct a new ModelPart. */
+    /**
+     * @brief Constructs a ModelPart with the given column data and optional parent.
+     *
+     * Colour is initialised to white (255, 255, 255) and visibility to true.
+     *
+     * @param data  Column values for the tree view, typically
+     *              \c {partName, "true"}.
+     * @param parent Pointer to the parent ModelPart, or \c nullptr for a root node.
+     */
     ModelPart(const QList<QVariant>& data, ModelPart* parent = nullptr);
 
-    /** @brief Destroys this part and recursively deletes its children. */
+    /**
+     * @brief Destructor. Recursively deletes all child ModelPart items.
+     */
     ~ModelPart();
 
-    /** @brief Add a child part. Ownership is transferred. */
+    /**
+     * @brief Appends a child item and sets its parent pointer to this item.
+     * @param item Pointer to the child to append. Ownership is transferred.
+     */
     void appendChild(ModelPart* item);
 
-    /** @brief Remove and delete the child at the given row. */
-    void removeChild(int row);
-
-    /** @return Child at the given row, or nullptr if out of range. */
+    /**
+     * @brief Returns the child at the given row index.
+     * @param row Zero-based index into the child list.
+     * @return Pointer to the child, or \c nullptr if @p row is out of range.
+     */
     ModelPart* child(int row);
 
-    /** @return Number of children. */
+    /**
+     * @brief Returns the number of direct children of this item.
+     * @return Child count (0 if this is a leaf node).
+     */
     int childCount() const;
 
-    /** @return Number of data columns. */
+    /**
+     * @brief Returns the number of data columns this item has.
+     * @return Size of the internal data list (normally 2: name and visibility).
+     */
     int columnCount() const;
 
-    /** @brief Get the data for a given column. */
+    /**
+     * @brief Returns the display data for the given column.
+     *
+     * Column 0 returns the part name. Column 1 returns the string \c "true" or
+     * \c "false" reflecting the current visibility state (not the raw stored value).
+     *
+     * @param column 0 for name, 1 for visibility.
+     * @return QVariant containing the value, or an invalid QVariant if @p column
+     *         is out of range.
+     */
     QVariant data(int column) const;
 
-    /** @brief Set the data for a given column. */
-    void setData(int column, QVariant value);
-
-    /** @return This node's row within its parent. */
+    /**
+     * @brief Returns this item's row index within its parent's child list.
+     * @return Zero-based row, or 0 if this item has no parent.
+     */
     int row() const;
 
-    /** @return Pointer to the parent node, or nullptr if root. */
+    /**
+     * @brief Returns a pointer to the parent ModelPart.
+     * @return Parent pointer, or \c nullptr if this is a root-level item.
+     */
     ModelPart* parentItem();
 
-    /** @brief Load an STL file and build the VTK pipeline. */
-    bool loadSTL(QString fileName);
+    /**
+     * @brief Replaces the stored value at the given column.
+     *
+     * Does nothing if @p column is out of range.
+     *
+     * @param column Column index to update.
+     * @param value  New value to store.
+     */
+    void setData(int column, QVariant value);
 
-    /** @brief Rebuild the mapper/actor with the current filter settings. */
-    void rebuildPipeline();
+    /**
+     * @brief Loads an STL file and builds the VTK rendering pipeline.
+     *
+     * Creates a vtkSTLReader → vtkPolyDataMapper → vtkActor chain. The actor is
+     * initialised with the current colour and visibility values.  If loadSTL()
+     * is called again on the same part, the existing pipeline is replaced.
+     *
+     * @param fileName Absolute path to the STL file.
+     * @see getActor()
+     */
+    void loadSTL(QString fileName);
 
-    /** @return The VTK actor (may be null if STL not yet loaded). */
+    /**
+     * @brief Returns the VTK actor for this part.
+     *
+     * The actor is \c null until loadSTL() has been called successfully.
+     *
+     * @return Smart pointer to the actor; may be a null smart pointer.
+     * @see loadSTL()
+     */
     vtkSmartPointer<vtkActor> getActor();
 
-    /** @brief Set the part's display colour. */
-    void setColour(const QColor& colour);
+    /**
+     * @brief Stores the RGB colour for this part.
+     *
+     * The stored values are applied to the VTK actor when loadSTL() is next
+     * called.  To update a live actor's colour, call loadSTL() again after
+     * setColour().
+     *
+     * @param r Red component (0–255).
+     * @param g Green component (0–255).
+     * @param b Blue component (0–255).
+     * @see getColourR(), getColourG(), getColourB()
+     */
+    void setColour(int r, int g, int b);
 
-    /** @return The current colour. */
-    QColor getColour() const;
+    /**
+     * @brief Returns the stored red colour component.
+     * @return Red value in the range 0–255.
+     * @see setColour()
+     */
+    int getColourR();
 
-    /** @brief Set whether the part is rendered. */
+    /**
+     * @brief Returns the stored green colour component.
+     * @return Green value in the range 0–255.
+     * @see setColour()
+     */
+    int getColourG();
+
+    /**
+     * @brief Returns the stored blue colour component.
+     * @return Blue value in the range 0–255.
+     * @see setColour()
+     */
+    int getColourB();
+
+    /**
+     * @brief Sets the visibility of this part.
+     *
+     * Updates the internal flag, synchronises column 1 of the tree data to
+     * \c "true" or \c "false", and immediately updates the VTK actor visibility
+     * if an actor exists.
+     *
+     * @param visible \c true to show the part, \c false to hide it.
+     * @see getVisible()
+     */
     void setVisible(bool visible);
 
-    /** @return true if currently visible. */
-    bool getVisible() const;
-
-    /** @brief Enable or disable the shrink filter. */
-    void setShrinkFilter(bool enabled);
-
-    /** @return true if the shrink filter is currently applied. */
-    bool getShrinkEnabled() const;
-
-    /** @brief Set the shrink factor (0.1 strong shrink ... 1.0 no shrink). */
-    void setShrinkFactor(double factor);
-
-    /** @return The current shrink factor. */
-    double getShrinkFactor() const;
-
-    /** @brief Enable or disable the clip filter. */
-    void setClipFilter(bool enabled);
-
-    /** @return true if the clip filter is currently applied. */
-    bool getClipEnabled() const;
-
-    /** @brief Set the X position of the clip plane. */
-    void setClipPlaneX(double x);
-
-    /** @return The clip plane X position. */
-    double getClipPlaneX() const;
-
-    /** @brief Compute the radial offset direction for explode view. */
-    void computeExplodeDirection(double cx, double cy, double cz);
-
-    /** @brief Apply the current explode amount (0.0 = original, 1.0 = full). */
-    void applyExplode(double amount);
+    /**
+     * @brief Returns the current visibility state.
+     * @return \c true if the part is visible, \c false if hidden.
+     * @see setVisible()
+     */
+    bool getVisible();
 
 private:
-    QList<ModelPart*> m_childItems;   ///< Children in the tree.
-    QList<QVariant>   m_itemData;     ///< Column data shown in the tree view.
-    ModelPart* m_parentItem;   ///< Parent node, or nullptr if root.
+    QList<ModelPart*>  m_childItems; ///< Ordered list of child nodes; owned by this item.
+    QList<QVariant>    m_itemData;   ///< Per-column data: index 0 = name, index 1 = visibility string.
+    ModelPart*         m_parentItem; ///< Non-owning pointer to the parent; nullptr for root nodes.
 
-    vtkSmartPointer<vtkSTLReader>     file;          ///< STL reader, source of the pipeline.
-    vtkSmartPointer<vtkDataSetMapper> mapper;        ///< Mapper between filtered data and the actor.
-    vtkSmartPointer<vtkActor>         actor;         ///< Actor placed in the renderer.
-    vtkSmartPointer<vtkShrinkFilter>  shrinkFilter;  ///< Shrink filter (only built when enabled).
-    vtkSmartPointer<vtkClipDataSet>   clipFilter;    ///< Clip filter (only built when enabled).
+    vtkSmartPointer<vtkSTLReader>      file;   ///< VTK reader for the STL geometry file.
+    vtkSmartPointer<vtkPolyDataMapper> mapper; ///< VTK mapper connecting the reader output to the actor.
+    vtkSmartPointer<vtkActor>          actor;  ///< VTK actor added to the renderer; null until loadSTL() is called.
 
-    QColor m_colour;            ///< RGB colour applied to the actor.
-    bool   m_isVisible;         ///< Whether the part is shown.
-    bool   m_shrinkEnabled;     ///< Shrink filter on/off.
-    double m_shrinkFactor;      ///< Shrink factor (0.1 - 1.0).
-    bool   m_clipEnabled;       ///< Clip filter on/off.
-    double m_clipPlaneX;        ///< Clip plane X offset.
-
-    QVector3D m_originalCentre; ///< Centre of mass at load time, used for explode.
-    QVector3D m_explodeDir;     ///< Unit vector pointing away from scene centre.
+    int  red;       ///< Red colour component (0–255); defaults to 255.
+    int  green;     ///< Green colour component (0–255); defaults to 255.
+    int  blue;      ///< Blue colour component (0–255); defaults to 255.
+    bool isVisible; ///< Visibility flag; true by default. Mirrored to the VTK actor on setVisible().
 };
+
+/** @} */ // end data_model
 
 #endif

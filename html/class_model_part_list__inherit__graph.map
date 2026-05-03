@@ -1,0 +1,5 @@
+<map id="ModelPartList" name="ModelPartList">
+<area shape="rect" id="Node000001" title="Qt tree model that manages the hierarchy of ModelPart nodes shown in the tree view." alt="" coords="11,120,131,389"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,136,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,84,73,120,68,119,70,89"/>
+</map>

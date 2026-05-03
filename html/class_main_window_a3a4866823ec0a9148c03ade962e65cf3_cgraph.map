@@ -1,0 +1,16 @@
+<map id="MainWindow::on_actionOpen_File_triggered" name="MainWindow::on_actionOpen_File_triggered">
+<area shape="rect" id="Node000001" title="Opens a file dialog, loads the chosen STL into the selected tree item." alt="" coords="5,76,197,117"/>
+<area shape="rect" id="Node000002" href="$class_model_part.html#a8d004c61b9f9cb0da895956a4c22b97b" title="Loads an STL file and builds the VTK rendering pipeline." alt="" coords="269,5,406,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,74,244,40,268,35,264,37,246,45,154,78"/>
+<area shape="rect" id="Node000003" href="$class_model_part.html#a1b0dd7d3e3953b1aa8a4a44a7aa1349b" title="Replaces the stored value at the given column." alt="" coords="270,55,404,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,82,258,77,253,79,198,88"/>
+<area shape="rect" id="Node000004" href="$class_main_window.html#a86443ea744fda3e9bad328c2fd1c3d6b" title="Emitted to display a message in the main window&#39;s status bar." alt="" coords="246,104,428,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="197,106,233,112,228,113,197,111"/>
+<area shape="rect" id="Node000005" href="$class_main_window.html#aa2a5945f9c4bf90022f0a7ad3db34c49" title="Clears the renderer and re&#45;adds actors for every part in the tree." alt="" coords="245,169,430,195"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="148,115,246,154,271,165,266,164,244,159,147,120"/>
+<area shape="rect" id="Node000006" href="$class_main_window.html#a3efc38e6be895f53a3f973906e4174b8" title="Recursively adds actors to the renderer starting from index." alt="" coords="478,162,663,202"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="430,180,465,182,460,182,431,185"/>
+<area shape="poly" id="edge7_Node000006_Node000006" title=" " alt="" coords="531,160,529,152,536,143,550,137,571,135,593,138,608,147,603,146,592,143,571,140,551,142,539,147,534,153,536,163"/>
+<area shape="rect" id="Node000007" href="$class_model_part.html#a3d845a3cb1d357a0c2f4ffb131e73116" title="Returns the VTK actor for this part." alt="" coords="711,169,849,195"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="664,180,699,182,693,182,664,185"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="MainWindow::applyExplodeToAll" name="MainWindow::applyExplodeToAll">
+<area shape="rect" id="Node000001" title="Apply the current explode amount to every part." alt="" coords="5,29,188,70"/>
+<area shape="rect" id="Node000002" href="$class_main_window.html#a46cb35b1c663ea1240545f3e626f3854" title="Recursive helper for applyExplodeToAll()." alt="" coords="236,29,418,70"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,47,223,49,217,50,188,52"/>
+<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="285,27,283,19,290,10,304,5,327,3,351,5,367,14,361,13,350,10,327,8,306,10,293,15,288,21,290,30"/>
+<area shape="rect" id="Node000003" href="$class_model_part.html#add8f9a9b7100f07bccaa68ac58d7821b" title="Apply the current explode amount (0.0 = original, 1.0 = full)." alt="" coords="466,37,632,62"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="418,47,453,50,448,50,418,52"/>
+</map>
