@@ -1,3 +1,8 @@
+/**
+ * @file optiondialog.h
+ * @brief This file defines the OptionDialog class, which provides a modal UI for editing the properties (name, colour, visibility) of a single ModelPart.
+ */
+
 #ifndef OPTIONDIALOG_H
 #define OPTIONDIALOG_H
 
