@@ -33,6 +33,48 @@
 </div>
 @endhtmlonly
 
+## Quick Start {#quickstart}
+
+@htmlonly
+<div class="vr-quickstart">
+  <div class="vr-quickstart-header">
+    <div>
+      <h3>Build the app</h3>
+      <p>Clone, configure and build the Windows desktop app.</p>
+    </div>
+    <a class="vr-button" href="https://github.com/2025-GROUP-1/2025_GROUP_1">Open repo</a>
+  </div>
+  <div class="vr-command-list">
+    <div class="vr-command">
+      <span class="vr-command-label">Clone</span>
+      <code>git clone https://github.com/2025-GROUP-1/2025_GROUP_1.git</code>
+      <button class="vr-copy-button" data-copy="git clone https://github.com/2025-GROUP-1/2025_GROUP_1.git">Copy</button>
+    </div>
+    <div class="vr-command">
+      <span class="vr-command-label">Configure</span>
+      <code>cmake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH="C:/Qt/6.10.2/msvc2022_64;C:/path/to/VTK"</code>
+      <button class="vr-copy-button" data-copy='cmake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH="C:/Qt/6.10.2/msvc2022_64;C:/path/to/VTK"'>Copy</button>
+    </div>
+    <div class="vr-command">
+      <span class="vr-command-label">Build</span>
+      <code>cmake --build build --config Release</code>
+      <button class="vr-copy-button" data-copy="cmake --build build --config Release">Copy</button>
+    </div>
+  </div>
+</div>
+
+<div class="vr-callout-grid">
+  <div class="vr-callout">
+    <h3>Requirements</h3>
+    <p>Visual Studio 2022+, Qt 6.10+, VTK 9 with OpenVR support, OpenVR SDK and CMake 3.20+.</p>
+  </div>
+  <div class="vr-callout">
+    <h3>VR hardware note</h3>
+    <p>The VR path targets OpenVR and the HTC Vive Pro 2 setup used for the project demo.</p>
+  </div>
+</div>
+@endhtmlonly
+
 ## Overview {#overview}
 
 The **VR Base Station** loads STL mesh files of a Formula Student race car, displays them in a
@@ -163,48 +205,6 @@ Use the **Topics** entry in the sidebar to browse grouped class lists.
 
 For a deeper walkthrough of three real scenarios, colour change, the two-actors design
 decision, and the explode animation, see the [How It Works](@ref how_it_works) page.
-
-## Building from Source {#build}
-
-@htmlonly
-<div class="vr-quickstart">
-  <div class="vr-quickstart-header">
-    <div>
-      <h3>Quick Start</h3>
-      <p>Clone, configure and build the Windows desktop app.</p>
-    </div>
-    <a class="vr-button" href="https://github.com/2025-GROUP-1/2025_GROUP_1">Open repo</a>
-  </div>
-  <div class="vr-command-list">
-    <div class="vr-command">
-      <span class="vr-command-label">Clone</span>
-      <code>git clone https://github.com/2025-GROUP-1/2025_GROUP_1.git</code>
-      <button class="vr-copy-button" data-copy="git clone https://github.com/2025-GROUP-1/2025_GROUP_1.git">Copy</button>
-    </div>
-    <div class="vr-command">
-      <span class="vr-command-label">Configure</span>
-      <code>cmake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH="C:/Qt/6.10.2/msvc2022_64;C:/path/to/VTK"</code>
-      <button class="vr-copy-button" data-copy='cmake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH="C:/Qt/6.10.2/msvc2022_64;C:/path/to/VTK"'>Copy</button>
-    </div>
-    <div class="vr-command">
-      <span class="vr-command-label">Build</span>
-      <code>cmake --build build --config Release</code>
-      <button class="vr-copy-button" data-copy="cmake --build build --config Release">Copy</button>
-    </div>
-  </div>
-</div>
-
-<div class="vr-callout-grid">
-  <div class="vr-callout">
-    <h3>Requirements</h3>
-    <p>Visual Studio 2022+, Qt 6.10+, VTK 9 with OpenVR support, OpenVR SDK and CMake 3.20+.</p>
-  </div>
-  <div class="vr-callout">
-    <h3>VR hardware note</h3>
-    <p>The VR path targets OpenVR and the HTC Vive Pro 2 setup used for the project demo.</p>
-  </div>
-</div>
-@endhtmlonly
 
 ## Team {#team}
 

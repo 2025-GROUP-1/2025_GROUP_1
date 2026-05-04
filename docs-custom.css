@@ -74,19 +74,21 @@ body {
   padding-left: 4px;
 }
 
-#vr-footer-links {
+#vr-site-footer {
   display: inline-flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-left: 12px;
+  margin: 32px 0 8px;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--separator-color);
 }
 
-#vr-footer-links a,
-#vr-footer-links span {
+#vr-site-footer a,
+#vr-site-footer span {
   color: var(--page-secondary-foreground-color) !important;
 }
 
-#vr-footer-links a:hover {
+#vr-site-footer a:hover {
   color: var(--primary-color) !important;
 }
 
@@ -204,6 +206,10 @@ body {
   display: none;
 }
 
+#doc-content > div > .header {
+  display: none;
+}
+
 h2.groupheader {
   border-bottom-color: var(--primary-color, var(--vr-teal));
 }
@@ -225,6 +231,14 @@ h2.groupheader {
 
 html.sidebar-collapsed #side-nav,
 html.sidebar-collapsed #splitbar {
+  display: none !important;
+}
+
+html.sidebar-collapsed #top,
+html.sidebar-collapsed #MSearchBox,
+html.sidebar-collapsed #MSearchResultsWindow,
+html.sidebar-collapsed #MSearchSelectWindow,
+html.sidebar-collapsed #search-hint {
   display: none !important;
 }
 
@@ -529,7 +543,6 @@ table.markdownTable {
 }
 
 @media screen and (max-width: 980px) {
-  .brand-link,
   #vr-brand-bar .brand-sub {
     display: none;
   }
@@ -570,5 +583,19 @@ table.markdownTable {
   .vr-team-grid,
   .vr-callout-grid {
     grid-template-columns: 1fr;
+  }
+
+  #sidebar-toggle {
+    display: none;
+  }
+
+  .brand-actions {
+    gap: 6px;
+  }
+
+  .brand-link {
+    min-width: 0;
+    padding: 0 8px;
+    font-size: 12px;
   }
 }

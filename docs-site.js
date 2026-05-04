@@ -59,16 +59,19 @@
     var bar = document.createElement("div");
     bar.id = "scroll-progress";
     document.body.appendChild(bar);
+    var scroller = document.getElementById("doc-content") || window;
 
     var update = function () {
-      var doc = document.documentElement;
-      var max = Math.max(1, doc.scrollHeight - window.innerHeight);
-      var progress = Math.min(1, Math.max(0, window.scrollY / max));
+      var scrollTop = scroller === window ? window.scrollY : scroller.scrollTop;
+      var scrollHeight = scroller === window ? document.documentElement.scrollHeight : scroller.scrollHeight;
+      var clientHeight = scroller === window ? window.innerHeight : scroller.clientHeight;
+      var max = Math.max(1, scrollHeight - clientHeight);
+      var progress = Math.min(1, Math.max(0, scrollTop / max));
       bar.style.transform = "scaleX(" + progress + ")";
     };
 
     update();
-    window.addEventListener("scroll", update, { passive: true });
+    scroller.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
   }
 
@@ -79,17 +82,23 @@
     button.textContent = "Top";
     button.setAttribute("aria-label", "Back to top");
     document.body.appendChild(button);
+    var scroller = document.getElementById("doc-content") || window;
 
     var update = function () {
-      button.classList.toggle("visible", window.scrollY > 360);
+      var scrollTop = scroller === window ? window.scrollY : scroller.scrollTop;
+      button.classList.toggle("visible", scrollTop > 360);
     };
 
     button.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (scroller === window) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        scroller.scrollTo({ top: 0, behavior: "smooth" });
+      }
     });
 
     update();
-    window.addEventListener("scroll", update, { passive: true });
+    scroller.addEventListener("scroll", update, { passive: true });
   }
 
   function setupCopyButtons() {
@@ -120,13 +129,15 @@
   }
 
   function enhanceFooter() {
-    var footer = document.querySelector("#nav-path li.footer");
-    if (!footer || document.getElementById("vr-footer-links")) return;
+    if (document.getElementById("vr-site-footer")) return;
 
-    var links = document.createElement("span");
-    links.id = "vr-footer-links";
-    links.innerHTML = '<a href="https://github.com/2025-GROUP-1/2025_GROUP_1">Repository</a><span>Docs v1.1.0</span><span>EEEE2076 Group 1</span>';
-    footer.appendChild(links);
+    var content = document.querySelector("#doc-content .contents");
+    if (!content) return;
+
+    var footer = document.createElement("div");
+    footer.id = "vr-site-footer";
+    footer.innerHTML = '<a href="https://github.com/2025-GROUP-1/2025_GROUP_1">Repository</a><span>Docs v1.1.0</span><span>EEEE2076 Group 1</span>';
+    content.appendChild(footer);
   }
 
   ready(function () {

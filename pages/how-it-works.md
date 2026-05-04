@@ -1,12 +1,25 @@
 @page how_it_works How It Works
 
-# How It Works
-
 This page traces three concrete scenarios through the codebase to show how the
-classes interact.  Read the [Architecture section](@ref architecture) on the main
+classes interact. Read the [Architecture section](@ref architecture) on the main
 page first for a high-level overview.
 
----
+@htmlonly
+<div class="vr-callout-grid">
+  <div class="vr-callout">
+    <h3>Colour edits</h3>
+    <p>Follow a property change from the Qt dialog through the model tree and into the render window.</p>
+  </div>
+  <div class="vr-callout">
+    <h3>Actor ownership</h3>
+    <p>See why desktop and VR rendering use separate actors while sharing the same mesh data.</p>
+  </div>
+  <div class="vr-callout">
+    <h3>Explode view</h3>
+    <p>Trace how each part moves away from the assembly centre during the animation.</p>
+  </div>
+</div>
+@endhtmlonly
 
 ## 1. When the User Changes a Colour {#colour-change}
 
@@ -117,7 +130,7 @@ in the GUI branch, integrated post-merge) follows this sequence:
    Parts already at `C` (degenerate case) receive a zero displacement.
 
 3. **Animate over N frames.**  
-   A `QTimer` fires at ~60 Hz.  On each tick `t` (0.0 → 1.0):
+   A `QTimer` fires at ~60 Hz. On each tick `t` (0.0 to 1.0):
    ```
    applyExplodeOffset(part, t)
        actor->SetPosition(restPosition + t * scale * d)
@@ -128,5 +141,5 @@ in the GUI branch, integrated post-merge) follows this sequence:
 
 4. **Reset.**  
    Calling explode a second time (or clicking *Reset*) runs the same interpolation
-   in reverse (`t` from 1.0 → 0.0), smoothly returning all parts to their resting
+   in reverse (`t` from 1.0 to 0.0), smoothly returning all parts to their resting
    positions.
