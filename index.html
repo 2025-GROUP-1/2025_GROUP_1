@@ -160,6 +160,14 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   </div>
 </div>
 </p>
+<p> 
+<div class="vr-badge-row">
+  <a class="vr-badge" href="https://github.com/2025-GROUP-1/2025_GROUP_1"><span>Repo</span> GitHub</a>
+  <a class="vr-badge" href="https://github.com/2025-GROUP-1/2025_GROUP_1/actions"><span>Build</span> Actions</a>
+  <a class="vr-badge" href="classes.html"><span>Docs</span> Class index</a>
+  <a class="vr-badge" href="files.html"><span>Source</span> File browser</a>
+</div>
+</p>
 <h2><a class="anchor" id="overview"></a>
 Overview</h2>
 <p>The <b>VR Base Station</b> loads STL mesh files of a Formula Student race car, displays them in a 3D viewport alongside a tree-organised list of editable parts, and launches a live VR session that mirrors the model inside a virtual environment. Changes made in the GUI, including colour, visibility and filter settings, appear in the headset within one frame with no headset restart needed.</p>
@@ -283,26 +291,71 @@ How It Works</h2>
 <p>For a deeper walkthrough of three real scenarios, colour change, the two-actors design decision, and the explode animation, see the <a class="el" href="how_it_works.html">How It Works</a> page.</p>
 <h2><a class="anchor" id="build"></a>
 Building from Source</h2>
-<pre class="fragment">git clone https://github.com/2025-GROUP-1/2025_GROUP_1.git
-cd 2025_GROUP_1
-cmake -B build -G "Visual Studio 17 2022" -A x64 ^
-    -DCMAKE_PREFIX_PATH="C:/Qt/6.10.2/msvc2022_64;C:/path/to/VTK"
-cmake --build build --config Release
-</pre><p> <b>Requirements:</b> Visual Studio 2022+, Qt 6.10+, VTK 9 with OpenVR support, OpenVR SDK, CMake 3.20+.</p>
+<p> 
+<div class="vr-quickstart">
+  <div class="vr-quickstart-header">
+    <div>
+      <h3>Quick Start</h3>
+      <p>Clone, configure and build the Windows desktop app.</p>
+    </div>
+    <a class="vr-button" href="https://github.com/2025-GROUP-1/2025_GROUP_1">Open repo</a>
+  </div>
+  <div class="vr-command-list">
+    <div class="vr-command">
+      <span class="vr-command-label">Clone</span>
+      <code>git clone https://github.com/2025-GROUP-1/2025_GROUP_1.git</code>
+      <button class="vr-copy-button" data-copy="git clone https://github.com/2025-GROUP-1/2025_GROUP_1.git">Copy</button>
+    </div>
+    <div class="vr-command">
+      <span class="vr-command-label">Configure</span>
+      <code>cmake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH="C:/Qt/6.10.2/msvc2022_64;C:/path/to/VTK"</code>
+      <button class="vr-copy-button" data-copy='cmake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH="C:/Qt/6.10.2/msvc2022_64;C:/path/to/VTK"'>Copy</button>
+    </div>
+    <div class="vr-command">
+      <span class="vr-command-label">Build</span>
+      <code>cmake --build build --config Release</code>
+      <button class="vr-copy-button" data-copy="cmake --build build --config Release">Copy</button>
+    </div>
+  </div>
+</div>
+
+<div class="vr-callout-grid">
+  <div class="vr-callout">
+    <h3>Requirements</h3>
+    <p>Visual Studio 2022+, Qt 6.10+, VTK 9 with OpenVR support, OpenVR SDK and CMake 3.20+.</p>
+  </div>
+  <div class="vr-callout">
+    <h3>VR hardware note</h3>
+    <p>The VR path targets OpenVR and the HTC Vive Pro 2 setup used for the project demo.</p>
+  </div>
+</div>
+</p>
 <h2><a class="anchor" id="team"></a>
 Team</h2>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Role   </th><th class="markdownTableHeadNone">Member    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">GUI &amp; Installer Co-Lead   </td><td class="markdownTableBodyNone">Ashvath    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">GUI &amp; Installer Co-Lead   </td><td class="markdownTableBodyNone">Joseph    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">VTK &amp; VR Threading Lead   </td><td class="markdownTableBodyNone">Senthil    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Documentation, Doxygen &amp; Build Lead   </td><td class="markdownTableBodyNone">Hamza   </td></tr>
-</table>
+<p> 
+<div class="vr-team-grid">
+  <div class="vr-team-card">
+    <strong>Ashvath</strong>
+    <div class="vr-team-role">GUI &amp; Installer Co-Lead</div>
+    <p>Worked on the Qt interface, installer packaging and user-facing controls.</p>
+  </div>
+  <div class="vr-team-card">
+    <strong>Joseph</strong>
+    <div class="vr-team-role">GUI &amp; Installer Co-Lead</div>
+    <p>Integrated GUI behaviour with rendering updates and helped polish the app workflow.</p>
+  </div>
+  <div class="vr-team-card">
+    <strong>Senthil</strong>
+    <div class="vr-team-role">VTK &amp; VR Threading Lead</div>
+    <p>Led the VR render thread, OpenVR setup and headset-side interaction pipeline.</p>
+  </div>
+  <div class="vr-team-card">
+    <strong>Hamza</strong>
+    <div class="vr-team-role">Documentation, Doxygen &amp; Build Lead</div>
+    <p>Owned the documentation site, Doxygen setup and build/deployment workflow.</p>
+  </div>
+</div>
+</p>
 <h2><a class="anchor" id="autotoc_md1"></a>
 Licence</h2>
 <p>See <code>LICENSE.txt</code> in the repository root. </p>
