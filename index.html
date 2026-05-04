@@ -1,4 +1,4 @@
-<!-- HTML header for doxygen 1.16.1-->
+<!-- HTML header for doxygen 1.16.1 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 <head>
@@ -36,29 +36,33 @@
 DoxygenAwesomeDarkModeToggle.init()
 DoxygenAwesomeFragmentCopyButton.init()
 </script>
+<script type="text/javascript" src="docs-site.js"></script>
 </head>
 <body>
-<!-- ═══ VR Base Station brand bar ═══════════════════════════════ -->
 <div id="vr-brand-bar">
   <div class="brand-logo">
-    <!-- Stylised "VR" hexagon logo in teal -->
     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" aria-label="VR Base Station logo">
-      <!-- Hexagon outline -->
       <polygon points="18,2 32,9.5 32,26.5 18,34 4,26.5 4,9.5"
                fill="none" stroke="#00B4A0" stroke-width="1.8"/>
-      <!-- Inner teal fill (faint) -->
       <polygon points="18,5 29,11.5 29,24.5 18,31 7,24.5 7,11.5"
                fill="rgba(0,180,160,0.12)"/>
-      <!-- "VR" text -->
       <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
             font-family="'Inter',sans-serif" font-weight="700" font-size="11"
             fill="#00B4A0" letter-spacing="0.5">VR</text>
     </svg>
   </div>
   <span class="brand-title">VR Base Station</span>
-  <span class="brand-sub">EEEE2076 &mdash; Group&nbsp;1</span>
+  <span class="brand-sub">EEEE2076 Group&nbsp;1</span>
+  <div class="brand-actions">
+    <a class="brand-link" href="index.html">Overview</a>
+    <a class="brand-link" href="classes.html">Classes</a>
+    <a class="brand-link" href="files.html">Files</a>
+    <span id="theme-toggle-slot" class="theme-toggle-slot" title="Toggle light and dark mode"></span>
+    <button id="sidebar-toggle" type="button" aria-label="Toggle navigation panel" title="Toggle navigation panel">
+      <span></span>
+    </button>
+  </div>
 </div>
-<!-- ══════════════════════════════════════════════════════════════ -->
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
@@ -67,7 +71,7 @@ DoxygenAwesomeFragmentCopyButton.init()
   <td id="projectalign">
    <div id="projectname">VR Base Station<span id="projectnumber">&#160;v1.1.0</span>
    </div>
-   <div id="projectbrief">Qt/VTK CAD viewer with VR support — EEEE2076 Group 1</div>
+   <div id="projectbrief">Qt/VTK CAD viewer with VR support, EEEE2076 Group 1</div>
   </td>
  </tr>
  </tbody>
@@ -133,61 +137,105 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <div class="headertitle"><div class="title">VR Base Station </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md0"></a>
-VR Base Station</h1>
-<p><b>Qt 6 · VTK 9 · OpenVR</b> CAD viewer for the HTC Vive Pro 2</p>
-<p><em>EEEE2076 Group 1 · University of Nottingham · Spring 2026</em></p>
-<hr  />
+<div class="textblock"><p> 
+<div class="vr-hero">
+  <div class="vr-hero-inner">
+    <div class="vr-kicker">Qt 6 / VTK 9 / OpenVR</div>
+    <h1>VR Base Station</h1>
+    <p>
+      A Formula Student CAD viewer for desktop inspection and HTC Vive Pro 2 walkthroughs.
+      The GUI and VR session stay in sync while parts are loaded, filtered, coloured and explored.
+    </p>
+    <div class="vr-hero-actions">
+      <a class="vr-button" href="#features">Explore features</a>
+      <a class="vr-button secondary" href="classes.html">Browse classes</a>
+      <a class="vr-button secondary" href="how_it_works.html">Read how it works</a>
+    </div>
+    <div class="vr-chip-row">
+      <span class="vr-chip">STL loading</span>
+      <span class="vr-chip">Threaded VR renderer</span>
+      <span class="vr-chip">Explode view</span>
+      <span class="vr-chip">NSIS installer</span>
+    </div>
+  </div>
+</div>
+</p>
 <h2><a class="anchor" id="overview"></a>
 Overview</h2>
 <p>The <b>VR Base Station</b> loads STL mesh files of a Formula Student race car, displays them in a 3D viewport alongside a tree-organised list of editable parts, and launches a live VR session that mirrors the model inside a virtual environment. Changes made in the GUI, including colour, visibility and filter settings, appear in the headset within one frame with no headset restart needed.</p>
-<hr  />
+<p> 
+<div class="vr-stat-grid">
+  <div class="vr-stat">
+    <strong>2</strong>
+    <p>render pipelines for desktop and VR</p>
+  </div>
+  <div class="vr-stat">
+    <strong>3</strong>
+    <p>main modules: GUI, data model and rendering</p>
+  </div>
+  <div class="vr-stat">
+    <strong>60 Hz</strong>
+    <p>target update rhythm for interactive VR changes</p>
+  </div>
+  <div class="vr-stat">
+    <strong>1</strong>
+    <p>Windows installer for the full runtime bundle</p>
+  </div>
+</div>
+</p>
 <h2><a class="anchor" id="features"></a>
 Features</h2>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Feature   </th><th class="markdownTableHeadNone">Description    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b>STL File Loading</b>   </td><td class="markdownTableBodyNone">Import multiple STL files into a structured tree view; each file feeds its own VTK pipeline.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><b>Per-Part Property Editing</b>   </td><td class="markdownTableBodyNone">Rename parts, change their RGB colour, and toggle visibility without reloading geometry.    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b>Shrink &amp; Clip Filters</b>   </td><td class="markdownTableBodyNone">Apply VTK shrink and clip filters to any part, individually or in any combination.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><b>Explode-View Animation</b>   </td><td class="markdownTableBodyNone">Smooth outward expansion from the model centre for VR assembly walkthroughs.    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b>Live VR Session</b>   </td><td class="markdownTableBodyNone">OpenVR session via HTC Vive Pro 2 with skybox lighting, updating in real time as the GUI changes.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><b>Threaded VR Renderer</b>   </td><td class="markdownTableBodyNone">GUI on the main thread; VR in a dedicated <code><a class="el" href="classVRRenderThread.html">VRRenderThread</a></code> with a mutex-protected command queue.    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b>Windows Installer</b>   </td><td class="markdownTableBodyNone">NSIS installer bundles Qt, VTK, and OpenVR runtimes so the end user does not need separate prerequisites.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><b>Build System</b>   </td><td class="markdownTableBodyNone">CMake 3.20+ with VTK module autoinit, Qt6 MOC/UIC, and post-build asset copying.   </td></tr>
-</table>
-<hr  />
+<p> 
+<div class="vr-card-grid">
+  <div class="vr-card">
+    <h3>Load and organise CAD</h3>
+    <p>Import multiple STL files into a structured tree, with each part feeding its own VTK pipeline.</p>
+  </div>
+  <div class="vr-card">
+    <h3>Edit part properties</h3>
+    <p>Rename parts, change RGB colour values and toggle visibility from the Qt property dialog.</p>
+  </div>
+  <div class="vr-card">
+    <h3>Inspect internal detail</h3>
+    <p>Use shrink, clip and explode-view controls to separate assemblies and inspect hidden areas.</p>
+  </div>
+  <div class="vr-card">
+    <h3>Mirror changes in VR</h3>
+    <p>Send GUI updates to the headset through a mutex-protected command queue.</p>
+  </div>
+  <div class="vr-card">
+    <h3>Package for Windows</h3>
+    <p>Build an NSIS installer that bundles Qt, VTK and OpenVR runtimes.</p>
+  </div>
+  <div class="vr-card">
+    <h3>Navigate the codebase</h3>
+    <p>Use class pages, grouped topics and source listings to move quickly through the implementation.</p>
+  </div>
+</div>
+</p>
 <h2><a class="anchor" id="architecture"></a>
 Architecture</h2>
-<p>Two parallel VTK render pipelines keep the GUI viewport and the VR headset independent (VTK actors cannot be shared between renderers; see <a class="el" href="how_it_works.html#two-actors">Why two actors per part</a>). </p><pre class="fragment">Main thread                                VRRenderThread (dedicated)
-────────────────────────────────           ────────────────────────────────────
-Qt event loop                              Continuous VR render loop
-  │                                          │
-  ├─ QTreeView                               ├─ OpenVR compositor
-  │      │                                   │       │
-  ├─ ModelPartList (QAbstractItemModel)       ├─ vtkRenderer  (VR)
-  │      │                                   │       │
-  │  ModelPart ──────────────────────────────►  actor-VR
-  │  actor-GUI                               │
-  ├─ vtkRenderer (GUI viewport)              │
-  │                                          │
-  └────── mutex-protected command queue ─────┘
-               (GUI changes → VR thread)
-</pre> <h3><a class="anchor" id="autotoc_md4"></a>
+<p>Two parallel VTK render pipelines keep the GUI viewport and the VR headset independent (VTK actors cannot be shared between renderers; see <a class="el" href="how_it_works.html#two-actors">Why two actors per part</a>). </p><pre class="fragment">Main thread                                  VRRenderThread
+--------------------------------           --------------------------------
+Qt event loop                               Continuous VR render loop
+  |                                           |
+  +-- QTreeView                               +-- OpenVR compositor
+  |      |                                    |      |
+  +-- ModelPartList                           +-- vtkRenderer (VR)
+  |      |                                    |      |
+  |   ModelPart ---------------------------&gt;  actor-VR
+  |   actor-GUI
+  |
+  +-- vtkRenderer (GUI viewport)
+  |
+  +-- mutex-protected command queue -------&gt;  VR thread
+</pre> <h3><a class="anchor" id="autotoc_md0"></a>
 Class Responsibilities</h3>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Class   </th><th class="markdownTableHeadNone">Module   </th><th class="markdownTableHeadNone">Responsibility    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code><a class="el" href="classModelPart.html">ModelPart</a></code>   </td><td class="markdownTableBodyNone"><a class="el" href="group__data__model.html">Data Model</a>   </td><td class="markdownTableBodyNone">Single tree node; owns VTK pipeline (STL reader → mapper → actor)    </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="classModelPart.html">ModelPart</a></code>   </td><td class="markdownTableBodyNone"><a class="el" href="group__data__model.html">Data Model</a>   </td><td class="markdownTableBodyNone">Single tree node; owns VTK pipeline (STL reader to mapper to actor)    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code><a class="el" href="classModelPartList.html">ModelPartList</a></code>   </td><td class="markdownTableBodyNone"><a class="el" href="group__data__model.html">Data Model</a>   </td><td class="markdownTableBodyNone">Qt tree model serving the <code><a class="el" href="classModelPart.html">ModelPart</a></code> hierarchy to <code>QTreeView</code>    </td></tr>
 <tr class="markdownTableRowOdd">
@@ -195,7 +243,32 @@ Class Responsibilities</h3>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code><a class="el" href="classOptionDialog.html">OptionDialog</a></code>   </td><td class="markdownTableBodyNone"><a class="el" href="group__gui.html">Qt GUI</a>   </td><td class="markdownTableBodyNone">Modal property editor for name, colour, and visibility   </td></tr>
 </table>
-<hr  />
+<h2><a class="anchor" id="workflow"></a>
+Typical Workflow</h2>
+<p> 
+<div class="vr-flow">
+  <div class="vr-step">
+    <span class="vr-step-number">1</span>
+    <h3>Load</h3>
+    <p>Import STL files and build the model tree.</p>
+  </div>
+  <div class="vr-step">
+    <span class="vr-step-number">2</span>
+    <h3>Edit</h3>
+    <p>Adjust names, colours, visibility and filters.</p>
+  </div>
+  <div class="vr-step">
+    <span class="vr-step-number">3</span>
+    <h3>Explore</h3>
+    <p>Open the VR session and inspect the CAD model at scale.</p>
+  </div>
+  <div class="vr-step">
+    <span class="vr-step-number">4</span>
+    <h3>Package</h3>
+    <p>Build and distribute the Windows installer.</p>
+  </div>
+</div>
+</p>
 <h2><a class="anchor" id="modules"></a>
 Topics</h2>
 <p>The codebase is grouped into three thematic topics:</p>
@@ -205,11 +278,9 @@ Topics</h2>
 <li><b><a class="el" href="group__rendering.html">VTK &amp; VR Rendering</a></b>: VTK render pipelines and <a class="el" href="classVRRenderThread.html">VRRenderThread</a></li>
 </ul>
 <p>Use the <b>Topics</b> entry in the sidebar to browse grouped class lists.</p>
-<hr  />
 <h2><a class="anchor" id="how-it-works-link"></a>
 How It Works</h2>
 <p>For a deeper walkthrough of three real scenarios, colour change, the two-actors design decision, and the explode animation, see the <a class="el" href="how_it_works.html">How It Works</a> page.</p>
-<hr  />
 <h2><a class="anchor" id="build"></a>
 Building from Source</h2>
 <pre class="fragment">git clone https://github.com/2025-GROUP-1/2025_GROUP_1.git
@@ -218,7 +289,6 @@ cmake -B build -G "Visual Studio 17 2022" -A x64 ^
     -DCMAKE_PREFIX_PATH="C:/Qt/6.10.2/msvc2022_64;C:/path/to/VTK"
 cmake --build build --config Release
 </pre><p> <b>Requirements:</b> Visual Studio 2022+, Qt 6.10+, VTK 9 with OpenVR support, OpenVR SDK, CMake 3.20+.</p>
-<hr  />
 <h2><a class="anchor" id="team"></a>
 Team</h2>
 <table class="markdownTable">
@@ -233,8 +303,7 @@ Team</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Documentation, Doxygen &amp; Build Lead   </td><td class="markdownTableBodyNone">Hamza   </td></tr>
 </table>
-<hr  />
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md1"></a>
 Licence</h2>
 <p>See <code>LICENSE.txt</code> in the repository root. </p>
 </div></div><!-- PageDoc -->

@@ -25,32 +25,31 @@
 var NAVTREE =
 [
   [ "VR Base Station", "index.html", [
-    [ "VR Base Station", "index.html#autotoc_md0", [
+    [ "How It Works", "how_it_works.html", [
       [ "Overview", "index.html#overview", null ],
       [ "Features", "index.html#features", null ],
       [ "Architecture", "index.html#architecture", [
-        [ "Class Responsibilities", "index.html#autotoc_md4", null ]
+        [ "Class Responsibilities", "index.html#autotoc_md0", null ]
       ] ],
+      [ "Typical Workflow", "index.html#workflow", null ],
       [ "Topics", "index.html#modules", null ],
       [ "How It Works", "index.html#how-it-works-link", null ],
       [ "Building from Source", "index.html#build", null ],
       [ "Team", "index.html#team", null ],
-      [ "Licence", "index.html#autotoc_md10", null ]
-    ] ],
-    [ "How It Works", "how_it_works.html", [
-      [ "How It Works", "how_it_works.html#autotoc_md11", [
+      [ "Licence", "index.html#autotoc_md1", null ],
+      [ "How It Works", "how_it_works.html#autotoc_md2", [
         [ "1. When the User Changes a Colour", "how_it_works.html#colour-change", null ],
         [ "2. Why Two Actors per Part", "how_it_works.html#two-actors", null ],
         [ "3. What the Explode Animation Does Internally", "how_it_works.html#explode-animation", null ]
       ] ]
     ] ],
     [ "VR Base Station", "md_README.html", [
-      [ "Project overview", "md_README.html#autotoc_md16", null ],
-      [ "Features", "md_README.html#autotoc_md17", null ],
-      [ "Building from source", "md_README.html#autotoc_md18", null ],
-      [ "Architecture", "md_README.html#autotoc_md19", null ],
-      [ "Team", "md_README.html#autotoc_md20", null ],
-      [ "Licence", "md_README.html#autotoc_md21", null ]
+      [ "Project overview", "md_README.html#autotoc_md7", null ],
+      [ "Features", "md_README.html#autotoc_md8", null ],
+      [ "Building from source", "md_README.html#autotoc_md9", null ],
+      [ "Architecture", "md_README.html#autotoc_md10", null ],
+      [ "Team", "md_README.html#autotoc_md11", null ],
+      [ "Licence", "md_README.html#autotoc_md12", null ]
     ] ],
     [ "Topics", "topics.html", "topics" ],
     [ "Namespaces", "namespaces.html", [

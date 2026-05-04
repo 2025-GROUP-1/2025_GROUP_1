@@ -1,4 +1,4 @@
-<!-- HTML header for doxygen 1.16.1-->
+<!-- HTML header for doxygen 1.16.1 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 <head>
@@ -36,29 +36,33 @@
 DoxygenAwesomeDarkModeToggle.init()
 DoxygenAwesomeFragmentCopyButton.init()
 </script>
+<script type="text/javascript" src="docs-site.js"></script>
 </head>
 <body>
-<!-- ═══ VR Base Station brand bar ═══════════════════════════════ -->
 <div id="vr-brand-bar">
   <div class="brand-logo">
-    <!-- Stylised "VR" hexagon logo in teal -->
     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" aria-label="VR Base Station logo">
-      <!-- Hexagon outline -->
       <polygon points="18,2 32,9.5 32,26.5 18,34 4,26.5 4,9.5"
                fill="none" stroke="#00B4A0" stroke-width="1.8"/>
-      <!-- Inner teal fill (faint) -->
       <polygon points="18,5 29,11.5 29,24.5 18,31 7,24.5 7,11.5"
                fill="rgba(0,180,160,0.12)"/>
-      <!-- "VR" text -->
       <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
             font-family="'Inter',sans-serif" font-weight="700" font-size="11"
             fill="#00B4A0" letter-spacing="0.5">VR</text>
     </svg>
   </div>
   <span class="brand-title">VR Base Station</span>
-  <span class="brand-sub">EEEE2076 &mdash; Group&nbsp;1</span>
+  <span class="brand-sub">EEEE2076 Group&nbsp;1</span>
+  <div class="brand-actions">
+    <a class="brand-link" href="index.html">Overview</a>
+    <a class="brand-link" href="classes.html">Classes</a>
+    <a class="brand-link" href="files.html">Files</a>
+    <span id="theme-toggle-slot" class="theme-toggle-slot" title="Toggle light and dark mode"></span>
+    <button id="sidebar-toggle" type="button" aria-label="Toggle navigation panel" title="Toggle navigation panel">
+      <span></span>
+    </button>
+  </div>
 </div>
-<!-- ══════════════════════════════════════════════════════════════ -->
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
@@ -67,7 +71,7 @@ DoxygenAwesomeFragmentCopyButton.init()
   <td id="projectalign">
    <div id="projectname">VR Base Station<span id="projectnumber">&#160;v1.1.0</span>
    </div>
-   <div id="projectbrief">Qt/VTK CAD viewer with VR support — EEEE2076 Group 1</div>
+   <div id="projectbrief">Qt/VTK CAD viewer with VR support, EEEE2076 Group 1</div>
   </td>
  </tr>
  </tbody>
@@ -133,11 +137,11 @@ $(document).ready(function(){initNavTree('md_README.html',''); initResizable(); 
   <div class="headertitle"><div class="title">VR Base Station</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md15"></a> A Windows desktop application for viewing Formula Student CAD models in virtual reality. Built with Qt 6, VTK 9 and OpenVR for the HTC Vive Pro 2.</p>
-<h1><a class="anchor" id="autotoc_md16"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md6"></a> A Windows desktop application for viewing Formula Student CAD models in virtual reality. Built with Qt 6, VTK 9 and OpenVR for the HTC Vive Pro 2.</p>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Project overview</h1>
 <p>The VR Base Station loads STL CAD files of a Formula Student race car, displays them in a 3D viewport with a tree-organised list of editable parts, and launches a VR session that mirrors the model in a virtual environment. Users can change colours, toggle visibility, apply shrink and clip filters, and trigger an explode-view animation. Changes update live in VR without restarting the headset.</p>
-<h1><a class="anchor" id="autotoc_md17"></a>
+<h1><a class="anchor" id="autotoc_md8"></a>
 Features</h1>
 <ul>
 <li>Load multiple STL files into a structured tree view</li>
@@ -148,7 +152,7 @@ Features</h1>
 <li>Explode-view animation pulling parts smoothly outward from the model centre</li>
 <li>Windows installer via NSIS, bundling Qt, VTK and OpenVR runtimes</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md18"></a>
+<h1><a class="anchor" id="autotoc_md9"></a>
 Building from source</h1>
 <div class="fragment"><div class="line">git clone https://github.com/2025-GROUP-1/2025_GROUP_1.git</div>
 <div class="line">cd 2025_GROUP_1</div>
@@ -156,11 +160,11 @@ Building from source</h1>
 <div class="line">    -DCMAKE_PREFIX_PATH=&quot;C:/Qt/6.10.2/msvc2022_64;C:/path/to/VTK&quot;</div>
 <div class="line">cmake --build build --config Release</div>
 </div><!-- fragment --><p>Requirements: Visual Studio 2022 or later, Qt 6.10+, VTK 9 with OpenVR support, OpenVR SDK, CMake 3.20+.</p>
-<h1><a class="anchor" id="autotoc_md19"></a>
+<h1><a class="anchor" id="autotoc_md10"></a>
 Architecture</h1>
 <p>The application uses two parallel VTK render pipelines: one for the GUI viewport on the main thread, and one for the VR headset on a dedicated thread. Each <code><a class="el" href="classModelPart.html">ModelPart</a></code> owns separate actors for each renderer, since VTK actors cannot be shared between renderers. Cross-thread communication uses a mutex-protected command queue inside <code><a class="el" href="classVRRenderThread.html">VRRenderThread</a></code>.</p>
 <p>For full architectural detail see the <a href="https://2025-group-1.github.io/2025_GROUP_1/">generated documentation</a>.</p>
-<h1><a class="anchor" id="autotoc_md20"></a>
+<h1><a class="anchor" id="autotoc_md11"></a>
 Team</h1>
 <p>EEEE2076 Group 1, University of Nottingham, Spring 2026.</p>
 <table class="markdownTable">
@@ -175,7 +179,7 @@ Team</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Documentation, Doxygen &amp; Build Lead   </td><td class="markdownTableBodyNone">Hamza   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md21"></a>
+<h1><a class="anchor" id="autotoc_md12"></a>
 Licence</h1>
 <p>See <code>LICENSE.txt</code>. </p>
 </div></div><!-- contents -->

@@ -1,4 +1,4 @@
-<!-- HTML header for doxygen 1.16.1-->
+<!-- HTML header for doxygen 1.16.1 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 <head>
@@ -36,29 +36,33 @@
 DoxygenAwesomeDarkModeToggle.init()
 DoxygenAwesomeFragmentCopyButton.init()
 </script>
+<script type="text/javascript" src="docs-site.js"></script>
 </head>
 <body>
-<!-- ═══ VR Base Station brand bar ═══════════════════════════════ -->
 <div id="vr-brand-bar">
   <div class="brand-logo">
-    <!-- Stylised "VR" hexagon logo in teal -->
     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" aria-label="VR Base Station logo">
-      <!-- Hexagon outline -->
       <polygon points="18,2 32,9.5 32,26.5 18,34 4,26.5 4,9.5"
                fill="none" stroke="#00B4A0" stroke-width="1.8"/>
-      <!-- Inner teal fill (faint) -->
       <polygon points="18,5 29,11.5 29,24.5 18,31 7,24.5 7,11.5"
                fill="rgba(0,180,160,0.12)"/>
-      <!-- "VR" text -->
       <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
             font-family="'Inter',sans-serif" font-weight="700" font-size="11"
             fill="#00B4A0" letter-spacing="0.5">VR</text>
     </svg>
   </div>
   <span class="brand-title">VR Base Station</span>
-  <span class="brand-sub">EEEE2076 &mdash; Group&nbsp;1</span>
+  <span class="brand-sub">EEEE2076 Group&nbsp;1</span>
+  <div class="brand-actions">
+    <a class="brand-link" href="index.html">Overview</a>
+    <a class="brand-link" href="classes.html">Classes</a>
+    <a class="brand-link" href="files.html">Files</a>
+    <span id="theme-toggle-slot" class="theme-toggle-slot" title="Toggle light and dark mode"></span>
+    <button id="sidebar-toggle" type="button" aria-label="Toggle navigation panel" title="Toggle navigation panel">
+      <span></span>
+    </button>
+  </div>
 </div>
-<!-- ══════════════════════════════════════════════════════════════ -->
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
@@ -67,7 +71,7 @@ DoxygenAwesomeFragmentCopyButton.init()
   <td id="projectalign">
    <div id="projectname">VR Base Station<span id="projectnumber">&#160;v1.1.0</span>
    </div>
-   <div id="projectbrief">Qt/VTK CAD viewer with VR support — EEEE2076 Group 1</div>
+   <div id="projectbrief">Qt/VTK CAD viewer with VR support, EEEE2076 Group 1</div>
   </td>
  </tr>
  </tbody>
@@ -133,7 +137,7 @@ $(document).ready(function(){initNavTree('how_it_works.html',''); initResizable(
   <div class="headertitle"><div class="title">How It Works</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md11"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md2"></a>
 How It Works</h1>
 <p>This page traces three concrete scenarios through the codebase to show how the classes interact. Read the <a class="el" href="index.html#architecture">Architecture section</a> on the main page first for a high-level overview.</p>
 <hr  />

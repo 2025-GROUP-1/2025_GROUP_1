@@ -17,7 +17,7 @@ var searchData=
   ['rendering_20module_14',['for the VTK &amp; VR Rendering module.',['../group__entry.html',1,'']]],
   ['rendering_2eh_15',['rendering.h',['../rendering_8h.html',1,'']]],
   ['renderwindow_16',['renderWindow',['../classMainWindow.html#a74028a929c64ac0436e962017971dee6',1,'MainWindow']]],
-  ['responsibilities_17',['Class Responsibilities',['../index.html#autotoc_md4',1,'']]],
+  ['responsibilities_17',['Class Responsibilities',['../index.html#autotoc_md0',1,'']]],
   ['right_18',['right',['../classVRRayCallback.html#a18633ab5535aebf053bcf2e200191a25',1,'VRRayCallback']]],
   ['rootitem_19',['rootItem',['../classModelPartList.html#a464a7abc3799ad9498c0ace03f38f87e',1,'ModelPartList']]],
   ['rotatey_20',['RotateY',['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153aea0928ab345567847020e1544892fba0',1,'VRRenderThread.h']]],
