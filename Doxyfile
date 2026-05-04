@@ -10,7 +10,16 @@ CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
 
 # --- What to document ------------------------------------------
-INPUT                  = . README.md mainpage.md pages/how-it-works.md
+INPUT                  = mainpage.md \
+                         pages/how-it-works.md \
+                         main.cpp \
+                         mainwindow.cpp mainwindow.h \
+                         ModelPart.cpp ModelPart.h \
+                         ModelPartList.cpp ModelPartList.h \
+                         optiondialog.cpp optiondialog.h \
+                         VRRenderThread.cpp VRRenderThread.h \
+                         gui.h data_model.h rendering.h \
+                         vrbindings
 FILE_PATTERNS          = *.cpp *.h *.md
 RECURSIVE              = YES
 EXCLUDE                = build doxygen-awesome VRBaseStation codex-scratch .claude html

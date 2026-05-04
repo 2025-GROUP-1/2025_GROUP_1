@@ -1,4 +1,4 @@
-@mainpage VR Base Station
+# VR Base Station
 
 @htmlonly
 <div class="vr-hero">
@@ -200,11 +200,6 @@ The codebase is grouped into three thematic topics:
 - **@ref rendering**: VTK render pipelines and VRRenderThread
 
 Use the **Topics** entry in the sidebar to browse grouped class lists.
-
-## How It Works {#how-it-works-link}
-
-For a deeper walkthrough of three real scenarios, colour change, the two-actors design
-decision, and the explode animation, see the [How It Works](@ref how_it_works) page.
 
 ## Team {#team}
 

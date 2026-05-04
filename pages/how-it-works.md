@@ -21,7 +21,7 @@ page first for a high-level overview.
 </div>
 @endhtmlonly
 
-## 1. When the User Changes a Colour {#colour-change}
+# 1. When the User Changes a Colour {#colour-change}
 
 The following steps trace a colour edit from the GUI dialog down to the renderer.
 
@@ -79,7 +79,7 @@ The following steps trace a colour edit from the GUI dialog down to the renderer
 
 ---
 
-## 2. Why Two Actors per Part {#two-actors}
+# 2. Why Two Actors per Part {#two-actors}
 
 VTK actors are tightly coupled to a single `vtkRenderer`, which in turn belongs
 to a single `vtkRenderWindow`.  The application runs two render windows:
@@ -111,7 +111,7 @@ differs between the two copies, so the geometry is not duplicated in memory.
 
 ---
 
-## 3. What the Explode Animation Does Internally {#explode-animation}
+# 3. What the Explode Animation Does Internally {#explode-animation}
 
 The explode view pulls every part outward from the model's centre of mass,
 revealing internal geometry and assembly structure.  The implementation (present
