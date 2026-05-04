@@ -118,14 +118,23 @@
     });
   }
 
-  function addSearchHint() {
+  function polishSearchBox() {
     var box = document.getElementById("MSearchBox");
-    if (!box || document.getElementById("search-hint")) return;
+    var field = document.getElementById("MSearchField");
+    var hint = document.getElementById("search-hint");
 
-    var hint = document.createElement("div");
-    hint.id = "search-hint";
-    hint.textContent = "Search classes, files and functions";
-    box.insertAdjacentElement("afterend", hint);
+    if (field) {
+      field.setAttribute("placeholder", "Search classes, files and functions");
+      field.setAttribute("aria-label", "Search classes, files and functions");
+    }
+
+    if (box) {
+      box.setAttribute("title", "Search classes, files and functions");
+    }
+
+    if (hint) {
+      hint.remove();
+    }
   }
 
   function enhanceFooter() {
@@ -147,12 +156,13 @@
     setupProgressBar();
     setupBackToTop();
     setupCopyButtons();
-    addSearchHint();
+    polishSearchBox();
     enhanceFooter();
 
     setTimeout(moveThemeToggle, 250);
     setTimeout(tidyNavControls, 250);
-    setTimeout(addSearchHint, 250);
+    setTimeout(polishSearchBox, 250);
+    setTimeout(polishSearchBox, 750);
     setTimeout(enhanceFooter, 250);
 
     window.addEventListener("resize", function () {
