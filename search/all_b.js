@@ -5,5 +5,5 @@ var searchData=
   ['internally_2',['3. What the Explode Animation Does Internally',['../how_it_works.html#explode-animation',1,'']]],
   ['ismenuactor_3',['isMenuActor',['../structVRMenu.html#afd244fd16f110e7b941137db4e28734c',1,'VRMenu']]],
   ['issuecommand_4',['issueCommand',['../classVRRenderThread.html#a0e5e7126b3e42c9d98fc14d1cd983fdf',1,'VRRenderThread']]],
-  ['it_20works_5',['it works',['../how_it_works.html',1,'How It Works'],['../index.html#how-it-works-link',1,'How It Works']]]
+  ['it_20works_5',['How It Works',['../how_it_works.html',1,'']]]
 ];

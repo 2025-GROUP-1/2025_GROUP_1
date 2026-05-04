@@ -1,7 +1,7 @@
 var searchData=
 [
   ['targetpartid_0',['targetPartID',['../structVRMenu.html#a210df57b2ae0de81acc33a9511664ed2',1,'VRMenu']]],
-  ['team_1',['team',['../index.html#team',1,'Team'],['../md_README.html#autotoc_md9',1,'Team']]],
+  ['team_1',['Team',['../index.html#team',1,'']]],
   ['the_20explode_20animation_20does_20internally_2',['3. What the Explode Animation Does Internally',['../how_it_works.html#explode-animation',1,'']]],
   ['the_20user_20changes_20a_20colour_3',['1. When the User Changes a Colour',['../how_it_works.html#colour-change',1,'']]],
   ['the_20vtk_20vr_20rendering_20module_4',['for the VTK &amp; VR Rendering module.',['../group__entry.html',1,'']]],

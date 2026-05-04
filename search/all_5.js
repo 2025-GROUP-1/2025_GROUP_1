@@ -3,7 +3,7 @@ var searchData=
   ['changes_20a_20colour_0',['1. When the User Changes a Colour',['../how_it_works.html#colour-change',1,'']]],
   ['child_1',['child',['../classModelPart.html#af32381b69415f0aa6bdfd84435f842cc',1,'ModelPart']]],
   ['childcount_2',['childCount',['../classModelPart.html#aea4bb035b2b3827c0abf677fb9dc68ce',1,'ModelPart']]],
-  ['class_20responsibilities_3',['Class Responsibilities',['../index.html#autotoc_md0',1,'']]],
+  ['class_20responsibilities_3',['Class Responsibilities',['../index.html#autotoc_md1',1,'']]],
   ['clip_4',['Clip',['../structVRMenu.html#a008bbe773a1645b633ba1beafb7c955da33d72bba228619830537a61418d8470f',1,'VRMenu']]],
   ['clipfilter_5',['clipFilter',['../classModelPart.html#a1dbcd342953666a43f81f3835145045e',1,'ModelPart']]],
   ['colblue_6',['ColBlue',['../structVRMenu.html#a008bbe773a1645b633ba1beafb7c955da1f2337fd28706b672ebcc6dd3e5c744a',1,'VRMenu']]],

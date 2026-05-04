@@ -137,7 +137,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <div class="headertitle"><div class="title">VR Base Station </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p> 
+<div class="textblock"><p><a class="anchor" id="md_mainpage"></a>  
 <div class="vr-hero">
   <div class="vr-hero-inner">
     <div class="vr-kicker">Qt 6 / VTK 9 / OpenVR</div>
@@ -168,8 +168,8 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <a class="vr-badge" href="files.html"><span>Source</span> File browser</a>
 </div>
 </p>
-<h2><a class="anchor" id="quickstart"></a>
-Quick Start</h2>
+<h1><a class="anchor" id="quickstart"></a>
+Quick Start</h1>
 <p> 
 <div class="vr-quickstart">
   <div class="vr-quickstart-header">
@@ -209,8 +209,8 @@ Quick Start</h2>
   </div>
 </div>
 </p>
-<h2><a class="anchor" id="overview"></a>
-Overview</h2>
+<h1><a class="anchor" id="overview"></a>
+Overview</h1>
 <p>The <b>VR Base Station</b> loads STL mesh files of a Formula Student race car, displays them in a 3D viewport alongside a tree-organised list of editable parts, and launches a live VR session that mirrors the model inside a virtual environment. Changes made in the GUI, including colour, visibility and filter settings, appear in the headset within one frame with no headset restart needed.</p>
 <p> 
 <div class="vr-stat-grid">
@@ -232,8 +232,8 @@ Overview</h2>
   </div>
 </div>
 </p>
-<h2><a class="anchor" id="features"></a>
-Features</h2>
+<h1><a class="anchor" id="features"></a>
+Features</h1>
 <p> 
 <div class="vr-card-grid">
   <div class="vr-card">
@@ -262,8 +262,8 @@ Features</h2>
   </div>
 </div>
 </p>
-<h2><a class="anchor" id="architecture"></a>
-Architecture</h2>
+<h1><a class="anchor" id="architecture"></a>
+Architecture</h1>
 <p>Two parallel VTK render pipelines keep the GUI viewport and the VR headset independent (VTK actors cannot be shared between renderers; see <a class="el" href="how_it_works.html#two-actors">Why two actors per part</a>). </p><pre class="fragment">Main thread                                  VRRenderThread
 --------------------------------           --------------------------------
 Qt event loop                               Continuous VR render loop
@@ -278,8 +278,8 @@ Qt event loop                               Continuous VR render loop
   +-- vtkRenderer (GUI viewport)
   |
   +-- mutex-protected command queue -------&gt;  VR thread
-</pre> <h3><a class="anchor" id="autotoc_md0"></a>
-Class Responsibilities</h3>
+</pre> <h2><a class="anchor" id="autotoc_md1"></a>
+Class Responsibilities</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Class   </th><th class="markdownTableHeadNone">Module   </th><th class="markdownTableHeadNone">Responsibility    </th></tr>
@@ -292,8 +292,8 @@ Class Responsibilities</h3>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code><a class="el" href="classOptionDialog.html">OptionDialog</a></code>   </td><td class="markdownTableBodyNone"><a class="el" href="group__gui.html">Qt GUI</a>   </td><td class="markdownTableBodyNone">Modal property editor for name, colour, and visibility   </td></tr>
 </table>
-<h2><a class="anchor" id="workflow"></a>
-Typical Workflow</h2>
+<h1><a class="anchor" id="workflow"></a>
+Typical Workflow</h1>
 <p> 
 <div class="vr-flow">
   <div class="vr-step">
@@ -318,8 +318,8 @@ Typical Workflow</h2>
   </div>
 </div>
 </p>
-<h2><a class="anchor" id="modules"></a>
-Topics</h2>
+<h1><a class="anchor" id="modules"></a>
+Topics</h1>
 <p>The codebase is grouped into three thematic topics:</p>
 <ul>
 <li><b><a class="el" href="group__gui.html">Qt GUI</a></b>: Qt widgets and dialogs (<a class="el" href="classMainWindow.html">MainWindow</a>, <a class="el" href="classOptionDialog.html">OptionDialog</a>)</li>
@@ -327,11 +327,8 @@ Topics</h2>
 <li><b><a class="el" href="group__rendering.html">VTK &amp; VR Rendering</a></b>: VTK render pipelines and <a class="el" href="classVRRenderThread.html">VRRenderThread</a></li>
 </ul>
 <p>Use the <b>Topics</b> entry in the sidebar to browse grouped class lists.</p>
-<h2><a class="anchor" id="how-it-works-link"></a>
-How It Works</h2>
-<p>For a deeper walkthrough of three real scenarios, colour change, the two-actors design decision, and the explode animation, see the <a class="el" href="how_it_works.html">How It Works</a> page.</p>
-<h2><a class="anchor" id="team"></a>
-Team</h2>
+<h1><a class="anchor" id="team"></a>
+Team</h1>
 <p> 
 <div class="vr-team-grid">
   <div class="vr-team-card">
@@ -356,8 +353,8 @@ Team</h2>
   </div>
 </div>
 </p>
-<h2><a class="anchor" id="autotoc_md1"></a>
-Licence</h2>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Licence</h1>
 <p>See <code>LICENSE.txt</code> in the repository root. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->

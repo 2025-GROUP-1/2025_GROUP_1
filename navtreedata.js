@@ -25,30 +25,20 @@
 var NAVTREE =
 [
   [ "VR Base Station", "index.html", [
-    [ "How It Works", "how_it_works.html", [
-      [ "Quick Start", "index.html#quickstart", null ],
-      [ "Overview", "index.html#overview", null ],
-      [ "Features", "index.html#features", null ],
-      [ "Architecture", "index.html#architecture", [
-        [ "Class Responsibilities", "index.html#autotoc_md0", null ]
-      ] ],
-      [ "Typical Workflow", "index.html#workflow", null ],
-      [ "Topics", "index.html#modules", null ],
-      [ "How It Works", "index.html#how-it-works-link", null ],
-      [ "Team", "index.html#team", null ],
-      [ "Licence", "index.html#autotoc_md1", [
-        [ "1. When the User Changes a Colour", "how_it_works.html#colour-change", null ],
-        [ "2. Why Two Actors per Part", "how_it_works.html#two-actors", null ],
-        [ "3. What the Explode Animation Does Internally", "how_it_works.html#explode-animation", null ]
-      ] ]
+    [ "Quick Start", "index.html#quickstart", null ],
+    [ "Overview", "index.html#overview", null ],
+    [ "Features", "index.html#features", null ],
+    [ "Architecture", "index.html#architecture", [
+      [ "Class Responsibilities", "index.html#autotoc_md1", null ]
     ] ],
-    [ "VR Base Station", "md_README.html", [
-      [ "Project overview", "md_README.html#autotoc_md5", null ],
-      [ "Features", "md_README.html#autotoc_md6", null ],
-      [ "Building from source", "md_README.html#autotoc_md7", null ],
-      [ "Architecture", "md_README.html#autotoc_md8", null ],
-      [ "Team", "md_README.html#autotoc_md9", null ],
-      [ "Licence", "md_README.html#autotoc_md10", null ]
+    [ "Typical Workflow", "index.html#workflow", null ],
+    [ "Topics", "index.html#modules", null ],
+    [ "Team", "index.html#team", null ],
+    [ "Licence", "index.html#autotoc_md2", null ],
+    [ "How It Works", "how_it_works.html", [
+      [ "1. When the User Changes a Colour", "how_it_works.html#colour-change", null ],
+      [ "2. Why Two Actors per Part", "how_it_works.html#two-actors", null ],
+      [ "3. What the Explode Animation Does Internally", "how_it_works.html#explode-animation", null ]
     ] ],
     [ "Topics", "topics.html", "topics" ],
     [ "Namespaces", "namespaces.html", [
@@ -81,7 +71,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ModelPartList_8cpp.html",
-"rendering_8h.html"
+"structControllerRay.html#a087fdcadc3c64d4f6d45d0a693bceb4e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

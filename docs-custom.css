@@ -210,6 +210,13 @@ body {
   display: none;
 }
 
+.contents h1.doxsection {
+  font-size: 30px;
+  line-height: 1.18;
+  margin-top: 34px;
+  margin-bottom: 18px;
+}
+
 h2.groupheader {
   border-bottom-color: var(--primary-color, var(--vr-teal));
 }

@@ -154,8 +154,8 @@ $(document).ready(function(){initNavTree('how_it_works.html',''); initResizable(
   </div>
 </div>
 </p>
-<h2><a class="anchor" id="colour-change"></a>
-1. When the User Changes a Colour</h2>
+<h1><a class="anchor" id="colour-change"></a>
+1. When the User Changes a Colour</h1>
 <p>The following steps trace a colour edit from the GUI dialog down to the renderer.</p>
 <ol type="1">
 <li><b>User opens the property editor.</b> <br  />
@@ -189,8 +189,8 @@ $(document).ready(function(){initNavTree('how_it_works.html',''); initResizable(
  A mutex-protected command is enqueued on <code><a class="el" href="classVRRenderThread.html">VRRenderThread</a></code>. At the start of the next VR frame the thread drains the queue, updates its own copy of the actor (the VR actor, separate from the GUI actor), and calls its VR renderer's <code>Render()</code>. The headset sees the change within one frame.</li>
 </ol>
 <hr  />
-<h2><a class="anchor" id="two-actors"></a>
-2. Why Two Actors per Part</h2>
+<h1><a class="anchor" id="two-actors"></a>
+2. Why Two Actors per Part</h1>
 <p>VTK actors are tightly coupled to a single <code>vtkRenderer</code>, which in turn belongs to a single <code>vtkRenderWindow</code>. The application runs two render windows:</p>
 <ul>
 <li><b>GUI viewport</b>: a <code>vtkGenericOpenGLRenderWindow</code> embedded inside the Qt widget via <code>QVTKOpenGLNativeWidget</code>.</li>
@@ -205,8 +205,8 @@ $(document).ready(function(){initNavTree('how_it_works.html',''); initResizable(
 <p><b>The solution: two actors, one mapper:</b></p>
 <p>Each <code><a class="el" href="classModelPart.html">ModelPart</a></code> constructs two actors that both point to the same <code>vtkPolyDataMapper</code> (and thus the same geometry data, which is read-only after <code>loadSTL()</code> completes). Only actor-level state (colour, visibility, transform) differs between the two copies, so the geometry is not duplicated in memory.</p>
 <hr  />
-<h2><a class="anchor" id="explode-animation"></a>
-3. What the Explode Animation Does Internally</h2>
+<h1><a class="anchor" id="explode-animation"></a>
+3. What the Explode Animation Does Internally</h1>
 <p>The explode view pulls every part outward from the model's centre of mass, revealing internal geometry and assembly structure. The implementation (present in the GUI branch, integrated post-merge) follows this sequence:</p>
 <ol type="1">
 <li><b>Compute the model centre.</b> <br  />

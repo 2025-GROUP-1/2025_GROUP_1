@@ -28,5 +28,5 @@ var searchData=
   ['outlineactor_25',['outlineActor',['../structControllerRay.html#a41003e156af44a37c40e54eb288cfe36',1,'ControllerRay']]],
   ['outlinefilter_26',['outlineFilter',['../structControllerRay.html#acce22b5c851da929bed5cc017944f95d',1,'ControllerRay']]],
   ['outlinemapper_27',['outlineMapper',['../structControllerRay.html#a087fdcadc3c64d4f6d45d0a693bceb4e',1,'ControllerRay']]],
-  ['overview_28',['overview',['../index.html#overview',1,'Overview'],['../md_README.html#autotoc_md5',1,'Project overview']]]
+  ['overview_28',['Overview',['../index.html#overview',1,'']]]
 ];
