@@ -9,8 +9,8 @@ The VR Base Station loads STL CAD files of a Formula Student race car,
 displays them in a 3D viewport with a tree-organised list of editable
 parts, and launches a VR session that mirrors the model in a virtual
 environment. Users can change colours, toggle visibility, apply shrink
-and clip filters, and trigger an explode-view animation — and see all of
-those changes update live in VR without restarting the headset.
+and clip filters, and trigger an explode-view animation. Changes update
+live in VR without restarting the headset.
 
 ## Features
 
@@ -37,8 +37,8 @@ support, OpenVR SDK, CMake 3.20+.
 
 ## Architecture
 
-The application uses two parallel VTK render pipelines — one for the GUI
-viewport (main thread) and one for the VR headset (dedicated thread).
+The application uses two parallel VTK render pipelines: one for the GUI
+viewport on the main thread, and one for the VR headset on a dedicated thread.
 Each `ModelPart` owns separate actors for each renderer, since VTK
 actors cannot be shared between renderers. Cross-thread communication
 uses a mutex-protected command queue inside `VRRenderThread`.
@@ -48,7 +48,7 @@ For full architectural detail see the
 
 ## Team
 
-EEEE2076 Group 1 — University of Nottingham, Spring 2026.
+EEEE2076 Group 1, University of Nottingham, Spring 2026.
 
 | Role | Member |
 |------|--------|

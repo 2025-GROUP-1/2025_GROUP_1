@@ -18,12 +18,12 @@ The following steps trace a colour edit from the GUI dialog down to the renderer
 
 2. **Selection is validated.**  
    `ui->treeView->currentIndex()` returns the active `QModelIndex`. Its
-   `internalPointer()` is cast to `ModelPart*` — this is the part to edit.
+   `internalPointer()` is cast to `ModelPart*`, which is the part to edit.
 
 3. **Dialog is populated.**  
    An `OptionDialog` is constructed and `OptionDialog::loadFromModelPart(part)` is
    called (optiondialog.cpp:15). This reads `part->getColourR/G/B()` and sets the
-   three `QSpinBox` widgets (0–255 each) plus the name `QLineEdit` and visibility
+   three `QSpinBox` widgets (0 to 255 each) plus the name `QLineEdit` and visibility
    `QCheckBox`.
 
 4. **User adjusts the spinboxes and clicks OK.**  
@@ -32,9 +32,9 @@ The following steps trace a colour edit from the GUI dialog down to the renderer
 5. **Changes are written back.**  
    On `QDialog::Accepted`, `OptionDialog::saveToModelPart(part)` is called
    (optiondialog.cpp:30):
-   - `part->setData(0, name)` — updates the display name in column 0.
-   - `part->setColour(r, g, b)` — stores the three RGB integers in `ModelPart::red/green/blue`.
-   - `part->setVisible(checked)` — updates `ModelPart::isVisible`, syncs column 1
+   - `part->setData(0, name)`: updates the display name in column 0.
+   - `part->setColour(r, g, b)`: stores the three RGB integers in `ModelPart::red/green/blue`.
+   - `part->setVisible(checked)`: updates `ModelPart::isVisible`, syncs column 1
      to `"true"`/`"false"`, and calls `actor->SetVisibility()` immediately.
 
 6. **Important caveat on colour.**  
@@ -71,9 +71,9 @@ The following steps trace a colour edit from the GUI dialog down to the renderer
 VTK actors are tightly coupled to a single `vtkRenderer`, which in turn belongs
 to a single `vtkRenderWindow`.  The application runs two render windows:
 
-- **GUI viewport** — a `vtkGenericOpenGLRenderWindow` embedded inside the Qt
+- **GUI viewport**: a `vtkGenericOpenGLRenderWindow` embedded inside the Qt
   widget via `QVTKOpenGLNativeWidget`.
-- **VR headset** — a `vtkOpenVRRenderWindow` driven by OpenVR.
+- **VR headset**: a `vtkOpenVRRenderWindow` driven by OpenVR.
 
 Each render window has its own OpenGL context.  A `vtkActor` stores a reference
 to the mapper output *and* is tied to the graphics state of its renderer's
@@ -89,7 +89,7 @@ provide a mechanism for sharing a single actor between two renderers.
 - Thread-safety is violated: the GUI main thread and `VRRenderThread` would race
   to modify the same actor object without synchronisation.
 
-**The solution — two actors, one mapper:**
+**The solution: two actors, one mapper:**
 
 Each `ModelPart` constructs two actors that both point to the same
 `vtkPolyDataMapper` (and thus the same geometry data, which is read-only after
@@ -122,7 +122,7 @@ in the GUI branch, integrated post-merge) follows this sequence:
    applyExplodeOffset(part, t)
        actor->SetPosition(restPosition + t * scale * d)
    ```
-   Both the GUI actor and the corresponding VR actor are updated — the GUI actor
+   Both the GUI actor and the corresponding VR actor are updated. The GUI actor
    directly on the main thread, the VR actor via a command queued to
    `VRRenderThread`.
 
