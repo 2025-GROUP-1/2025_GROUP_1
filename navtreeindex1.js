@@ -1,6 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"pages.html":[],
 "rendering_8h.html":[5,0,12],
 "rendering_8h_source.html":[5,0,12],
 "structCommandPacket.html":[4,0,0],

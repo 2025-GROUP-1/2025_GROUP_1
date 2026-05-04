@@ -16,6 +16,6 @@ var searchData=
   ['applyexplodefromtree_13',['applyExplodeFromTree',['../classMainWindow.html#a46cb35b1c663ea1240545f3e626f3854',1,'MainWindow']]],
   ['applyexplodetoall_14',['applyExplodeToAll',['../classMainWindow.html#a6db062f407bd66add549a10a7dc24a0f',1,'MainWindow']]],
   ['applytheme_15',['applyTheme',['../classMainWindow.html#af66d427fde435ca9aa38c3382525c9ec',1,'MainWindow']]],
-  ['architecture_16',['architecture',['../index.html#architecture',1,'Architecture'],['../md_README.html#autotoc_md10',1,'Architecture']]],
+  ['architecture_16',['architecture',['../index.html#architecture',1,'Architecture'],['../md_README.html#autotoc_md8',1,'Architecture']]],
   ['attachreader_17',['attachReader',['../classModelPart.html#a144a7bac750b15625a846f9e8fc180d0',1,'ModelPart']]]
 ];

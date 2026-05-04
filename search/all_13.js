@@ -14,7 +14,8 @@ var searchData=
   ['show_11',['show',['../structVRMenu.html#a8a9754bc105c5edc90d9df747721eff8',1,'VRMenu']]],
   ['shrink_12',['Shrink',['../structVRMenu.html#a008bbe773a1645b633ba1beafb7c955da4253b3f876b11b0f560420bd64269b28',1,'VRMenu']]],
   ['shrinkfilter_13',['shrinkFilter',['../classModelPart.html#a8f2cc5db4e5cf99509a48d61320801e9',1,'ModelPart']]],
-  ['source_14',['source',['../index.html#build',1,'Building from Source'],['../md_README.html#autotoc_md9',1,'Building from source']]],
-  ['station_15',['station',['../md_README.html',1,'VR Base Station'],['../index.html',1,'VR Base Station']]],
-  ['statusupdatemessage_16',['statusUpdateMessage',['../classMainWindow.html#a86443ea744fda3e9bad328c2fd1c3d6b',1,'MainWindow']]]
+  ['source_14',['Building from source',['../md_README.html#autotoc_md7',1,'']]],
+  ['start_15',['Quick Start',['../index.html#quickstart',1,'']]],
+  ['station_16',['station',['../md_README.html',1,'VR Base Station'],['../index.html',1,'VR Base Station']]],
+  ['statusupdatemessage_17',['statusUpdateMessage',['../classMainWindow.html#a86443ea744fda3e9bad328c2fd1c3d6b',1,'MainWindow']]]
 ];
