@@ -1,0 +1,9 @@
+<map id="ModelPartList::getRootItem" name="ModelPartList::getRootItem">
+<area shape="rect" id="Node000001" title=" " alt="" coords="273,77,472,102"/>
+<area shape="rect" id="Node000002" href="$classMainWindow.html#a666ed04c2b87d813bd698a2a7199bb2b" title=" " alt="" coords="5,5,225,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="307,76,196,48,197,43,308,71"/>
+<area shape="rect" id="Node000003" href="$classMainWindow.html#a597961838262c9f16a02e6b37d184d5e" title=" " alt="" coords="10,69,221,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="260,92,221,92,221,87,260,87"/>
+<area shape="rect" id="Node000004" href="$classMainWindow.html#a0441e8dc0d171ff074c1b0d6e27433f0" title=" " alt="" coords="11,133,220,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="308,108,197,136,196,131,307,103"/>
+</map>

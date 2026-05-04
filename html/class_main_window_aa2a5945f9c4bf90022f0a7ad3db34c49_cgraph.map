@@ -1,8 +1,0 @@
-<map id="MainWindow::updateRender" name="MainWindow::updateRender">
-<area shape="rect" id="Node000001" title="Clears the renderer and re&#45;adds actors for every part in the tree." alt="" coords="5,37,191,62"/>
-<area shape="rect" id="Node000002" href="$class_main_window.html#a3efc38e6be895f53a3f973906e4174b8" title="Recursively adds actors to the renderer starting from index." alt="" coords="239,29,424,70"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,47,226,49,220,50,191,52"/>
-<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="292,27,290,19,296,10,310,5,331,3,354,5,369,14,364,13,353,10,331,8,311,10,299,15,295,20,296,30"/>
-<area shape="rect" id="Node000003" href="$class_model_part.html#a3d845a3cb1d357a0c2f4ffb131e73116" title="Returns the VTK actor for this part." alt="" coords="472,37,609,62"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="424,47,459,50,454,50,425,52"/>
-</map>

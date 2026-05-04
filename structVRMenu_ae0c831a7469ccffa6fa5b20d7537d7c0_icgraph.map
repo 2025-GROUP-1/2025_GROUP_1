@@ -1,0 +1,7 @@
+<map id="VRMenu::findButton" name="VRMenu::findButton">
+<area shape="rect" id="Node000001" title=" " alt="" coords="244,31,395,56"/>
+<area shape="rect" id="Node000002" href="$classVRMenuCallback.html#aa8d4b0b3d16a598f35da79fd6d156332" title=" " alt="" coords="5,5,196,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,36,196,32,197,26,231,30"/>
+<area shape="rect" id="Node000003" href="$structVRMenu.html#afd244fd16f110e7b941137db4e28734c" title=" " alt="" coords="18,55,183,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="231,56,184,61,183,56,230,50"/>
+</map>

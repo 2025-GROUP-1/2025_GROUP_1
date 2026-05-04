@@ -1,4 +1,0 @@
-<map id="ModelPart" name="ModelPart">
-<area shape="rect" id="Node000001" title="Represents a single CAD part in the application&#39;s tree model." alt="" coords="5,5,114,438"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="114,139,126,148,134,165,139,189,141,222,138,263,129,291,124,288,132,262,136,221,134,190,129,166,122,151,115,144"/>
-</map>

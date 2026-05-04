@@ -1,0 +1,11 @@
+<map id="MainWindow::handleTreeClicked" name="MainWindow::handleTreeClicked">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,236,80"/>
+<area shape="rect" id="Node000002" href="$classMainWindow.html#a3c769f260aadd2fef6ad5218df03ae74" title=" " alt="" coords="292,5,476,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,52,301,31,302,36,190,57"/>
+<area shape="rect" id="Node000003" href="$classModelPart.html#a178655da543bd0dae2d0ed1e2ea38a56" title=" " alt="" coords="322,55,446,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="236,65,308,65,308,70,236,70"/>
+<area shape="rect" id="Node000005" href="$classMainWindow.html#a86443ea744fda3e9bad328c2fd1c3d6b" title=" " alt="" coords="284,105,484,145"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="180,77,279,99,278,104,179,83"/>
+<area shape="rect" id="Node000004" href="$classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910" title=" " alt="" coords="532,55,651,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="446,65,518,65,518,70,446,70"/>
+</map>
