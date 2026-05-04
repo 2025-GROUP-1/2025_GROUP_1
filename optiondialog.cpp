@@ -1,7 +1,4 @@
-/**
- * @file optiondialog.cpp
- * @brief Implementation of the per-part options dialog.
- */
+// handles the per-part options popup (colour picker, visibility, shrink/clip toggles)
 
 #include "optiondialog.h"
 #include "ui_optiondialog.h"
@@ -45,6 +42,7 @@ void OptionDialog::saveToModelPart(ModelPart* part) {
     part->setClipFilter(ui->clipCheck->isChecked());
 }
 
+// opens the system colour picker
 void OptionDialog::on_colourButton_clicked() {
     QColor chosen = QColorDialog::getColor(m_colour, this, tr("Select Colour"));
     if (chosen.isValid()) {
@@ -53,6 +51,7 @@ void OptionDialog::on_colourButton_clicked() {
     }
 }
 
+// paints the swatch label to match the selected colour
 void OptionDialog::updateSwatch() {
     ui->colourSwatch->setStyleSheet(
         QString("background-color: %1; border: 1px solid #444;")

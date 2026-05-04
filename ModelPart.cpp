@@ -1,7 +1,4 @@
-/**
- * @file ModelPart.cpp
- * @brief Implementation of ModelPart, including the VTK filter pipeline and explode view.
- */
+// implements the VTK pipeline for each part - STL loading, filter chain, colour/visibility, explode
 
 #include "ModelPart.h"
 #include <cmath>
@@ -23,6 +20,8 @@ ModelPart::ModelPart(const QList<QVariant>& data, ModelPart* parent)
 ModelPart::~ModelPart() {
     qDeleteAll(m_childItems);
 }
+
+// ---- tree structure ----
 
 void ModelPart::appendChild(ModelPart* item) {
     item->m_parentItem = this;
@@ -66,6 +65,8 @@ int ModelPart::row() const {
     return 0;
 }
 
+// ---- STL loading ----
+
 bool ModelPart::loadSTL(QString fileName) {
     file = vtkSmartPointer<vtkSTLReader>::New();
     file->SetFileName(fileName.toStdString().c_str());
@@ -78,6 +79,7 @@ bool ModelPart::loadSTL(QString fileName) {
 
     rebuildPipeline();
 
+    // store the centre position for explode view later
     if (actor) {
         double bounds[6];
         actor->GetBounds(bounds);
@@ -90,6 +92,7 @@ bool ModelPart::loadSTL(QString fileName) {
     return true;
 }
 
+// used for batch import - reader already has data loaded
 bool ModelPart::attachReader(vtkSmartPointer<vtkSTLReader> preloaded) {
     file = preloaded;
     if (!file || file->GetOutput()->GetNumberOfPoints() == 0) {
@@ -108,6 +111,8 @@ bool ModelPart::attachReader(vtkSmartPointer<vtkSTLReader> preloaded) {
     return true;
 }
 
+// ---- VR pipeline (separate from GUI so they don't interfere) ----
+
 void ModelPart::rebuildVRPipeline() {
     if (!file)
         return;
@@ -115,6 +120,7 @@ void ModelPart::rebuildVRPipeline() {
     vtkSmartPointer<vtkDataSetMapper> newMapper = vtkSmartPointer<vtkDataSetMapper>::New();
     vtkAlgorithmOutput* source = file->GetOutputPort();
 
+    // clip filter - cuts geometry along an X-axis plane
     if (m_clipEnabled) {
         double bounds[6];
         file->GetOutput()->GetBounds(bounds);
@@ -135,6 +141,7 @@ void ModelPart::rebuildVRPipeline() {
         vrClipFilter = nullptr;
     }
 
+    // shrink filter - pulls faces inward
     if (m_shrinkEnabled) {
         vrShrinkFilter = vtkSmartPointer<vtkShrinkFilter>::New();
         vrShrinkFilter->SetInputConnection(source);
@@ -161,10 +168,14 @@ vtkActor* ModelPart::getVRActor() const {
     return vrActor;
 }
 
+// unique ID derived from the object pointer - used to match parts across threads
 int ModelPart::getID() const {
     return reinterpret_cast<quintptr>(this) & 0x7fffffff;
 }
 
+// ---- GUI pipeline ----
+
+// builds: STL reader -> (clip) -> (shrink) -> mapper -> actor
 void ModelPart::rebuildPipeline() {
     if (!file)
         return;
@@ -173,16 +184,13 @@ void ModelPart::rebuildPipeline() {
 
     vtkAlgorithmOutput* source = file->GetOutputPort();
 
-    // Apply clip first (it operates on PolyData from the STL reader directly).
+    // clip first since it works on the raw polydata
     if (m_clipEnabled) {
-        // Compute clip plane position relative to the STL bounds so the
-        // slider range maps to the actual model.
         double bounds[6];
         file->GetOutput()->GetBounds(bounds);
         double cx = (bounds[0] + bounds[1]) * 0.5;
         double xMin = bounds[0];
         double xMax = bounds[1];
-        // m_clipPlaneX is normalised (-1..1); map it to model space.
         double planeX = cx + m_clipPlaneX * (xMax - xMin) * 0.5;
 
         vtkSmartPointer<vtkPlane> plane = vtkSmartPointer<vtkPlane>::New();
@@ -196,7 +204,7 @@ void ModelPart::rebuildPipeline() {
         source = clipFilter->GetOutputPort();
     }
 
-    // Shrink filter operates on whatever's upstream.
+    // shrink runs on whatever's upstream
     if (m_shrinkEnabled) {
         shrinkFilter = vtkSmartPointer<vtkShrinkFilter>::New();
         shrinkFilter->SetInputConnection(source);
@@ -218,6 +226,8 @@ void ModelPart::rebuildPipeline() {
 
 vtkSmartPointer<vtkActor> ModelPart::getActor() { return actor; }
 
+// ---- display properties ----
+
 void ModelPart::setColour(const QColor& colour) {
     m_colour = colour;
     if (actor)
@@ -237,6 +247,8 @@ void ModelPart::setVisible(bool visible) {
 
 bool ModelPart::getVisible() const { return m_isVisible; }
 
+// ---- shrink filter ----
+
 void ModelPart::setShrinkFilter(bool enabled) {
     m_shrinkEnabled = enabled;
     rebuildPipeline();
@@ -254,6 +266,8 @@ void ModelPart::setShrinkFactor(double factor) {
 
 double ModelPart::getShrinkFactor() const { return m_shrinkFactor; }
 
+// ---- clip filter ----
+
 void ModelPart::setClipFilter(bool enabled) {
     m_clipEnabled = enabled;
     rebuildPipeline();
@@ -269,6 +283,9 @@ void ModelPart::setClipPlaneX(double x) {
 
 double ModelPart::getClipPlaneX() const { return m_clipPlaneX; }
 
+// ---- explode view ----
+
+// works out which direction this part should fly when the explode slider moves
 void ModelPart::computeExplodeDirection(double cx, double cy, double cz) {
     QVector3D scene(static_cast<float>(cx), static_cast<float>(cy), static_cast<float>(cz));
     m_explodeDir = m_originalCentre - scene;
@@ -276,6 +293,7 @@ void ModelPart::computeExplodeDirection(double cx, double cy, double cz) {
         m_explodeDir.normalize();
 }
 
+// shifts the actor position based on the explode amount (0 = normal, 1 = full)
 void ModelPart::applyExplode(double amount) {
     if (!actor)
         return;
