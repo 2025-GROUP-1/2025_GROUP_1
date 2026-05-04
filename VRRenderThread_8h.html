@@ -140,6 +140,9 @@ $(document).ready(function(){initNavTree('VRRenderThread_8h.html',''); initResiz
   <div class="headertitle"><div class="title">VRRenderThread.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Declares <a class="el" href="classVRRenderThread.html" title="Dedicated thread that runs the OpenVR render loop and processes GUI commands.">VRRenderThread</a> — runs the OpenVR render loop on a dedicated thread.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;QThread&gt;</code><br />
 <code>#include &lt;QMutex&gt;</code><br />
 <code>#include &lt;QQueue&gt;</code><br />
@@ -168,8 +171,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCommandPacket.html">CommandPacket</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bundles a command type with its target part ID and payload data.  <a href="structCommandPacket.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVRRenderThread.html">VRRenderThread</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dedicated thread that runs the OpenVR render loop and processes GUI commands.  <a href="classVRRenderThread.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -189,9 +194,14 @@ Enumerations</h2></td></tr>
 , <a class="el" href="VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153a7b6dcb09897ecf893574c2b70f61c7ff">ToggleSkybox</a>
 <br />
  }</td></tr>
+<tr class="memdesc:a2afce0a47a93eee73a314d53e4890153"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commands the GUI thread can send to the VR render loop.  <a href="VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153">More...</a><br /></td></tr>
 <tr class="separator:a2afce0a47a93eee73a314d53e4890153"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Declares <a class="el" href="classVRRenderThread.html" title="Dedicated thread that runs the OpenVR render loop and processes GUI commands.">VRRenderThread</a> — runs the OpenVR render loop on a dedicated thread. </p>
+
+<p class="definition">Definition in file <a class="el" href="VRRenderThread_8h_source.html">VRRenderThread.h</a>.</p>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a2afce0a47a93eee73a314d53e4890153" name="a2afce0a47a93eee73a314d53e4890153"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2afce0a47a93eee73a314d53e4890153">&#9670;&#160;</a></span>Command</h2>
 
@@ -211,6 +221,8 @@ Enumerations</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Commands the GUI thread can send to the VR render loop. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a2afce0a47a93eee73a314d53e4890153a89881b50a5d91d4a3a4d57529bb814a8" name="a2afce0a47a93eee73a314d53e4890153a89881b50a5d91d4a3a4d57529bb814a8"></a>EndRender&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a2afce0a47a93eee73a314d53e4890153a147bfed3f0b5a142250281d6a54db443" name="a2afce0a47a93eee73a314d53e4890153a147bfed3f0b5a142250281d6a54db443"></a>AddActor&#160;</td><td class="fielddoc"></td></tr>
@@ -224,7 +236,7 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="a2afce0a47a93eee73a314d53e4890153a7b6dcb09897ecf893574c2b70f61c7ff" name="a2afce0a47a93eee73a314d53e4890153a7b6dcb09897ecf893574c2b70f61c7ff"></a>ToggleSkybox&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8h_source.html#l00026">26</a> of file <a class="el" href="VRRenderThread_8h_source.html">VRRenderThread.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8h_source.html#l00028">28</a> of file <a class="el" href="VRRenderThread_8h_source.html">VRRenderThread.h</a>.</p>
 
 </div>
 </div>

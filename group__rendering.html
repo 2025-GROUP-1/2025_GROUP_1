@@ -141,8 +141,7 @@ $(document).ready(function(){initNavTree('group__rendering.html',''); initResiza
 <p>VTK render pipelines and the dedicated VR render thread.  
 </p>
 <p>VTK render pipelines and the dedicated VR render thread. </p>
-<p>Handles all GPU-side work: OpenGL via VTK for the GUI viewport, and OpenVR via vtkOpenVRRenderWindow for the headset. <a class="el" href="classVRRenderThread.html">VRRenderThread</a> runs a continuous render loop on a dedicated OS thread, receiving GUI updates via a mutex-protected command queue. Each <a class="el" href="classModelPart.html">ModelPart</a> owns separate actors for the GUI renderer and the VR renderer because VTK actors cannot be shared between render windows.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__data__model.html" title="Tree model and CAD part management.">Data Model</a>, how_it_works </dd></dl>
+<p>Handles all GPU-side work: OpenGL via VTK for the GUI viewport, and OpenVR via vtkOpenVRRenderWindow for the headset. <a class="el" href="classVRRenderThread.html" title="Dedicated thread that runs the OpenVR render loop and processes GUI commands.">VRRenderThread</a> runs a continuous render loop on a dedicated OS thread, receiving GUI updates via a mutex-protected command queue. Each <a class="el" href="classModelPart.html" title="Single node in the parts tree — owns VTK pipeline (STL reader, filters, mapper, actor).">ModelPart</a> owns separate actors for the GUI renderer and the VR renderer because VTK actors cannot be shared between render windows. </p>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

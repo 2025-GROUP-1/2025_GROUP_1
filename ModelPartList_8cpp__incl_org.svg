@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="ModelPartList implementation — insert, remove, lookup, and Qt model interface.">
 <polygon fill="#999999" stroke="#666666" points="315,-184 212,-184 212,-165 315,-165 315,-184"/>
 <text text-anchor="middle" x="263.5" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPartList.cpp</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="ModelPartList_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="ModelPartList_8h.html" target="_top" xlink:title="Declares ModelPartList — the QAbstractItemModel that backs the QTreeView.">
 <polygon fill="white" stroke="#666666" points="309.5,-129 217.5,-129 217.5,-110 309.5,-110 309.5,-129"/>
 <text text-anchor="middle" x="263.5" y="-117" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPartList.h</text>
 </a>
@@ -128,7 +128,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="ModelPart_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="ModelPart_8h.html" target="_top" xlink:title="Declares ModelPart — one STL part with its VTK pipeline, filters, and display state.">
 <polygon fill="white" stroke="#666666" points="884.5,-74 810.5,-74 810.5,-55 884.5,-55 884.5,-74"/>
 <text text-anchor="middle" x="847.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPart.h</text>
 </a>

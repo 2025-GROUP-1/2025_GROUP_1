@@ -1,7 +1,7 @@
 <map id="VRRayCallback" name="VRRayCallback">
-<area shape="rect" id="Node000001" title=" " alt="" coords="68,288,181,413"/>
+<area shape="rect" id="Node000001" title="VTK callback that updates both controller rays on each Move3D event." alt="" coords="68,288,181,413"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,75,108,141"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="72,153,110,287,105,289,67,155"/>
-<area shape="rect" id="Node000003" href="$structControllerRay.html" title=" " alt="" coords="133,5,255,211"/>
+<area shape="rect" id="Node000003" href="$structControllerRay.html" title="Per&#45;controller state — coloured ray line and outline box around hovered actors." alt="" coords="133,5,255,211"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="167,212,150,273,144,271,162,210"/>
 </map>

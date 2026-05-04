@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Top&#45;level window — owns the renderer, tree view, properties panel, and VR thread.">
 <polygon fill="#999999" stroke="transparent" points="245.5,-516 75.5,-516 75.5,0 245.5,0 245.5,-516"/>
 <text text-anchor="start" x="128.5" y="-504" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow</text>
 <text text-anchor="start" x="82" y="-489" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>
@@ -109,7 +109,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classModelPartList.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classModelPartList.html" target="_top" xlink:title="Qt tree model backed by a hierarchy of ModelPart objects.">
 <polygon fill="white" stroke="transparent" points="303,-1113 200,-1113 200,-884 303,-884 303,-1113"/>
 <text text-anchor="start" x="218.5" y="-1100.5" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPartList</text>
 <text text-anchor="start" x="250" y="-1085.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -158,7 +158,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="classVRRenderThread.html" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="classVRRenderThread.html" target="_top" xlink:title="Dedicated thread that runs the OpenVR render loop and processes GUI commands.">
 <polygon fill="white" stroke="transparent" points="221.5,-837 99.5,-837 99.5,-563 221.5,-563 221.5,-837"/>
 <text text-anchor="start" x="119.5" y="-825" font-family="Helvetica,sans-Serif" font-size="10.00">VRRenderThread</text>
 <text text-anchor="start" x="106" y="-810" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>
@@ -238,7 +238,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classModelPart.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="classModelPart.html" target="_top" xlink:title="Single node in the parts tree — owns VTK pipeline (STL reader, filters, mapper, actor).">
 <polygon fill="white" stroke="transparent" points="434,-1509 279,-1509 279,-1160 434,-1160 434,-1509"/>
 <text text-anchor="start" x="332.5" y="-1496.5" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPart</text>
 <text text-anchor="start" x="286" y="-1481.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>

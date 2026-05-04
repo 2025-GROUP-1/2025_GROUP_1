@@ -1,6 +1,6 @@
 <map id="VRRenderThread.cpp" name="VRRenderThread.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="2243,5,2402,31"/>
-<area shape="rect" id="Node000002" href="$VRRenderThread_8h.html" title=" " alt="" coords="365,152,507,177"/>
+<area shape="rect" id="Node000001" title="VRRenderThread implementation — OpenVR setup, custom interactor, ray casting, in&#45;VR menu." alt="" coords="2243,5,2402,31"/>
+<area shape="rect" id="Node000002" href="$VRRenderThread_8h.html" title="Declares VRRenderThread — runs the OpenVR render loop on a dedicated thread." alt="" coords="365,152,507,177"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2243,23,1289,42,781,59,610,69,556,75,528,81,506,93,486,109,454,143,450,139,482,105,503,89,526,76,555,70,609,64,781,54,1288,36,2243,18"/>
 <area shape="rect" id="Node000013" title=" " alt="" coords="679,225,745,251"/>
 <area shape="poly" id="edge22_Node000001_Node000013" title=" " alt="" coords="2243,22,1859,22,1330,29,1073,36,853,47,694,62,646,71,623,81,616,92,610,113,612,141,625,176,645,200,671,217,668,221,641,204,620,179,606,142,605,112,611,90,620,77,645,66,694,57,852,42,1073,31,1330,24,1859,17,2243,16"/>
@@ -24,9 +24,9 @@
 <area shape="poly" id="edge21_Node000001_Node000022" title=" " alt="" coords="2245,33,1940,81,1936,82,1935,77,1940,76,2244,28"/>
 <area shape="rect" id="Node000023" title=" " alt="" coords="1932,225,2023,251"/>
 <area shape="poly" id="edge23_Node000001_Node000023" title=" " alt="" coords="2273,33,2213,52,2151,81,2104,113,2061,150,1998,217,1994,213,2058,146,2101,109,2148,76,2211,47,2271,28"/>
-<area shape="rect" id="Node000024" href="$ModelPartList_8h.html" title=" " alt="" coords="932,79,1055,104"/>
+<area shape="rect" id="Node000024" href="$ModelPartList_8h.html" title="Declares ModelPartList — the QAbstractItemModel that backs the QTreeView." alt="" coords="932,79,1055,104"/>
 <area shape="poly" id="edge24_Node000001_Node000024" title=" " alt="" coords="2243,23,2040,27,1751,36,1415,54,1068,81,1068,76,1415,48,1751,31,2040,21,2243,17"/>
-<area shape="rect" id="Node000027" href="$ModelPart_8h.html" title=" " alt="" coords="1384,152,1483,177"/>
+<area shape="rect" id="Node000027" href="$ModelPart_8h.html" title="Declares ModelPart — one STL part with its VTK pipeline, filters, and display state." alt="" coords="1384,152,1483,177"/>
 <area shape="poly" id="edge44_Node000001_Node000027" title=" " alt="" coords="2243,23,2156,28,2051,37,1938,55,1828,81,1802,93,1777,106,1703,127,1627,143,1497,161,1496,155,1627,137,1702,122,1775,102,1800,89,1826,76,1937,49,2051,32,2156,22,2243,18"/>
 <area shape="rect" id="Node000030" title=" " alt="" coords="2047,225,2209,251"/>
 <area shape="poly" id="edge51_Node000001_Node000030" title=" " alt="" coords="2260,33,2214,51,2192,64,2174,80,2154,112,2141,147,2134,182,2131,212,2126,211,2129,181,2136,146,2149,109,2170,77,2189,60,2211,46,2258,28"/>

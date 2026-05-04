@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Dedicated thread that runs the OpenVR render loop and processes GUI commands.">
 <polygon fill="#999999" stroke="transparent" points="122,-274 0,-274 0,0 122,0 122,-274"/>
 <text text-anchor="start" x="20" y="-262" font-family="Helvetica,sans-Serif" font-size="10.00">VRRenderThread</text>
 <text text-anchor="start" x="6.5" y="-247" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>
@@ -81,7 +81,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classModelPartList.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classModelPartList.html" target="_top" xlink:title="Qt tree model backed by a hierarchy of ModelPart objects.">
 <polygon fill="white" stroke="transparent" points="192.5,-550 89.5,-550 89.5,-321 192.5,-321 192.5,-550"/>
 <text text-anchor="start" x="108" y="-537.5" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPartList</text>
 <text text-anchor="start" x="139.5" y="-522.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -153,7 +153,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classModelPart.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="classModelPart.html" target="_top" xlink:title="Single node in the parts tree — owns VTK pipeline (STL reader, filters, mapper, actor).">
 <polygon fill="white" stroke="transparent" points="323.5,-946 168.5,-946 168.5,-597 323.5,-597 323.5,-946"/>
 <text text-anchor="start" x="222" y="-933.5" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPart</text>
 <text text-anchor="start" x="175.5" y="-918.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>

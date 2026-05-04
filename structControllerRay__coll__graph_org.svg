@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Per&#45;controller state — coloured ray line and outline box around hovered actors.">
 <polygon fill="#999999" stroke="transparent" points="92,-154 0,-154 0,0 92,0 92,-154"/>
 <text text-anchor="start" x="12.5" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00">ControllerRay</text>
 <text text-anchor="start" x="4" y="-127" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>

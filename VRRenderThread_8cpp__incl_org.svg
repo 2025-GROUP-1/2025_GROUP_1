@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="VRRenderThread implementation — OpenVR setup, custom interactor, ray casting, in&#45;VR menu.">
 <polygon fill="#999999" stroke="#666666" points="1797.5,-184 1678.5,-184 1678.5,-165 1797.5,-165 1797.5,-184"/>
 <text text-anchor="middle" x="1738" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">VRRenderThread.cpp</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="VRRenderThread_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="VRRenderThread_8h.html" target="_top" xlink:title="Declares VRRenderThread — runs the OpenVR render loop on a dedicated thread.">
 <polygon fill="white" stroke="#666666" points="376.5,-74 269.5,-74 269.5,-55 376.5,-55 376.5,-74"/>
 <text text-anchor="middle" x="323" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">VRRenderThread.h</text>
 </a>
@@ -236,7 +236,7 @@
 <!-- Node24 -->
 <g id="Node000024" class="node">
 <title>Node24</title>
-<g id="a_Node000024"><a xlink:href="ModelPartList_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000024"><a xlink:href="ModelPartList_8h.html" target="_top" xlink:title="Declares ModelPartList — the QAbstractItemModel that backs the QTreeView.">
 <polygon fill="white" stroke="#666666" points="787,-129 695,-129 695,-110 787,-110 787,-129"/>
 <text text-anchor="middle" x="741" y="-117" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPartList.h</text>
 </a>
@@ -254,7 +254,7 @@
 <!-- Node27 -->
 <g id="Node000027" class="node">
 <title>Node27</title>
-<g id="a_Node000027"><a xlink:href="ModelPart_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000027"><a xlink:href="ModelPart_8h.html" target="_top" xlink:title="Declares ModelPart — one STL part with its VTK pipeline, filters, and display state.">
 <polygon fill="#fff0f0" stroke="red" points="1108,-74 1034,-74 1034,-55 1108,-55 1108,-74"/>
 <text text-anchor="middle" x="1071" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPart.h</text>
 </a>

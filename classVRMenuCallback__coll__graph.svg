@@ -57,7 +57,7 @@ var sectionId = 'dynsection-1';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="VTK callback for menu button presses — opens/closes the in&#45;VR menu and runs actions.">
 <polygon fill="#999999" stroke="transparent" points="236.5,-109 138.5,-109 138.5,0 236.5,0 236.5,-109"/>
 <text text-anchor="start" x="146" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRMenuCallback</text>
 <text text-anchor="start" x="142.5" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -105,7 +105,7 @@ var sectionId = 'dynsection-1';
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classVRRayCallback.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classVRRayCallback.html" target="_top" xlink:title="VTK callback that updates both controller rays on each Move3D event.">
 <polygon fill="white" stroke="transparent" points="152,-317.5 67,-317.5 67,-223.5 152,-223.5 152,-317.5"/>
 <text text-anchor="start" x="72.5" y="-305.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRRayCallback</text>
 <text text-anchor="start" x="75.5" y="-290.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -147,7 +147,7 @@ var sectionId = 'dynsection-1';
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="structControllerRay.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="structControllerRay.html" target="_top" xlink:title="Per&#45;controller state — coloured ray line and outline box around hovered actors.">
 <polygon fill="white" stroke="transparent" points="187.5,-694.5 95.5,-694.5 95.5,-540.5 187.5,-540.5 187.5,-694.5"/>
 <text text-anchor="start" x="108" y="-682.5" font-family="Helvetica,sans-Serif" font-size="10.00">ControllerRay</text>
 <text text-anchor="start" x="99.5" y="-667.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -189,7 +189,7 @@ var sectionId = 'dynsection-1';
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="structVRMenu.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="structVRMenu.html" target="_top" xlink:title="In&#45;VR editing menu — shows coloured buttons above a hovered part for clip/shrink/colour.">
 <polygon fill="white" stroke="transparent" points="260.5,-377.5 170.5,-377.5 170.5,-163.5 260.5,-163.5 260.5,-377.5"/>
 <text text-anchor="start" x="195" y="-365.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRMenu</text>
 <text text-anchor="start" x="174.5" y="-350.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -238,7 +238,7 @@ var sectionId = 'dynsection-1';
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="classModelPartList.html" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="classModelPartList.html" target="_top" xlink:title="Qt tree model backed by a hierarchy of ModelPart objects.">
 <polygon fill="white" stroke="transparent" points="382,-385 279,-385 279,-156 382,-156 382,-385"/>
 <text text-anchor="start" x="297.5" y="-372.5" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPartList</text>
 <text text-anchor="start" x="329" y="-357.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -310,7 +310,7 @@ var sectionId = 'dynsection-1';
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="classModelPart.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="classModelPart.html" target="_top" xlink:title="Single node in the parts tree — owns VTK pipeline (STL reader, filters, mapper, actor).">
 <polygon fill="white" stroke="transparent" points="533,-792 378,-792 378,-443 533,-443 533,-792"/>
 <text text-anchor="start" x="431.5" y="-779.5" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPart</text>
 <text text-anchor="start" x="385" y="-764.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>

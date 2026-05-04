@@ -57,7 +57,7 @@ var sectionId = 'dynsection-0';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Top&#45;level window — owns the renderer, tree view, properties panel, and VR thread.">
 <polygon fill="#999999" stroke="transparent" points="170,-546 0,-546 0,0 170,0 170,-546"/>
 <text text-anchor="start" x="53" y="-534" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow</text>
 <text text-anchor="start" x="6.5" y="-519" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>
