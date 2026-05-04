@@ -1,6 +1,5 @@
 /**
  * @file rendering.h
- * @brief Doxygen @defgroup entry for the VTK & VR Rendering module.
  *
  * This file contains no compiled code. It exists solely to define the
  * @ref rendering group so that VRRenderThread (integrated post-merge) and
