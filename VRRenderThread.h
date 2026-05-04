@@ -56,6 +56,9 @@ public:
     // thread-safe: queue a command for the VR loop to pick up
     void issueCommand(Command c, int partID, const QVariant& data);
 
+    // overload that also carries an actor (used by AddActor / RemoveActor)
+    void issueCommand(Command c, int partID, vtkActor* actor);
+
     void setPartList(ModelPartList* list);
 
 protected:

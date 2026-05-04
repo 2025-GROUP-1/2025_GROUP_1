@@ -481,6 +481,12 @@ void VRRenderThread::issueCommand(Command c, int partID, const QVariant& data) {
     m_commandQueue.enqueue({ c, partID, data, nullptr });
 }
 
+// overload for commands that need an actor (AddActor, RemoveActor)
+void VRRenderThread::issueCommand(Command c, int partID, vtkActor* actor) {
+    QMutexLocker locker(&m_mutex);
+    m_commandQueue.enqueue({ c, partID, QVariant(), vtkSmartPointer<vtkActor>(actor) });
+}
+
 // the main VR loop - sets up OpenVR, adds actors, runs render loop
 void VRRenderThread::run() {
     m_renderer      = vtkSmartPointer<vtkOpenVRRenderer>::New();
@@ -631,9 +637,23 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
         p->rebuildVRPipeline();
         break;
     }
-    case Command::AddActor:
-    case Command::RemoveActor:
+    case Command::AddActor: {
+        if (cmd.actor && m_renderer) {
+            m_renderer->AddActor(cmd.actor);
+            m_activeActors[cmd.partID] = cmd.actor;
+            m_renderer->ResetCameraClippingRange();
+        }
         break;
+    }
+    case Command::RemoveActor: {
+        auto it = m_activeActors.find(cmd.partID);
+        if (it != m_activeActors.end() && m_renderer) {
+            m_renderer->RemoveActor(it->second);
+            m_activeActors.erase(it);
+            m_renderer->ResetCameraClippingRange();
+        }
+        break;
+    }
     case Command::ToggleSkybox: {
         if (m_skybox && m_renderer) {
             if (cmd.data.toBool())

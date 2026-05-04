@@ -557,6 +557,13 @@ void MainWindow::on_actionImport_Mesh_triggered()
     renderer->ResetCamera();
     renderWindow->Render();
 
+    // push to VR if the thread is already running
+    if (m_vrThread && m_vrThread->isRunning()) {
+        newPart->rebuildVRPipeline();
+        if (newPart->getVRActor())
+            m_vrThread->issueCommand(Command::AddActor, newPart->getID(), newPart->getVRActor());
+    }
+
     emit statusUpdateMessage(tr("Imported: %1").arg(info.fileName()), 0);
 }
 
@@ -635,6 +642,22 @@ void MainWindow::on_actionImport_Folder_triggered()
     renderer->ResetCamera();
     renderWindow->Render();
 
+    // push all newly loaded parts to VR if the thread is running
+    if (m_vrThread && m_vrThread->isRunning()) {
+        QList<ModelPart*> bfs;
+        bfs.append(partList->getRootItem());
+        while (!bfs.isEmpty()) {
+            ModelPart* p = bfs.takeFirst();
+            if (p != partList->getRootItem() && p->getActor() && !p->getVRActor()) {
+                p->rebuildVRPipeline();
+                if (p->getVRActor())
+                    m_vrThread->issueCommand(Command::AddActor, p->getID(), p->getVRActor());
+            }
+            for (int i = 0; i < p->childCount(); ++i)
+                bfs.append(p->child(i));
+        }
+    }
+
     emit statusUpdateMessage(tr("Imported %1/%2 mesh(es) from %3")
         .arg(loaded).arg(tasks.size()).arg(dirPath), 0);
 }
@@ -661,6 +684,15 @@ void MainWindow::on_actionEdit_Part_triggered()
 
     dialog.saveToModelPart(part);
 
+    // push edited properties to VR
+    if (m_vrThread && m_vrThread->isRunning()) {
+        int id = part->getID();
+        m_vrThread->issueCommand(Command::SetColour,   id, part->getColour());
+        m_vrThread->issueCommand(Command::SetVisible,   id, part->getVisible());
+        m_vrThread->issueCommand(Command::ToggleShrink, id, part->getShrinkEnabled());
+        m_vrThread->issueCommand(Command::ToggleClip,   id, part->getClipEnabled());
+    }
+
     emit partList->dataChanged(
         partList->index(0, 0, QModelIndex()),
         partList->index(partList->rowCount(QModelIndex()) - 1, 1, QModelIndex()));
@@ -683,6 +715,11 @@ void MainWindow::on_actionDelete_Part_triggered()
     if (!part) return;
 
     QString name = part->data(0).toString();
+
+    // remove from VR first (before the part is destroyed)
+    if (m_vrThread && m_vrThread->isRunning())
+        m_vrThread->issueCommand(Command::RemoveActor, part->getID(), part->getVRActor());
+
     if (part->getActor())
         renderer->RemoveActor(part->getActor());
     partList->removeItem(index);
@@ -971,12 +1008,21 @@ void MainWindow::on_buttonSyncVR_clicked()
         return;
     }
 
+    // full sync: add any parts that are missing in VR, update colour/visibility for all
     QList<ModelPart*> queue;
     queue.append(partList->getRootItem());
     while (!queue.isEmpty()) {
         ModelPart* part = queue.takeFirst();
         if (part != partList->getRootItem()) {
             int id = part->getID();
+
+            // if this part doesn't have a VR actor yet, build and push it
+            if (!part->getVRActor() && part->getActor()) {
+                part->rebuildVRPipeline();
+                if (part->getVRActor())
+                    m_vrThread->issueCommand(Command::AddActor, id, part->getVRActor());
+            }
+
             m_vrThread->issueCommand(Command::SetVisible, id, part->getVisible());
             m_vrThread->issueCommand(Command::SetColour, id, part->getColour());
         }
