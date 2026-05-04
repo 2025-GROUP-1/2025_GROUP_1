@@ -1,60 +1,361 @@
-/* ═══════════════════════════════════════════════════════════════
-   VR Base Station — Doxygen Awesome overrides (docs-custom.css)
-   Styles only elements Doxygen Awesome does not own.
-   HTML_COLORSTYLE_HUE = 168 drives Awesome's teal accent.
-   ═══════════════════════════════════════════════════════════════ */
+/* VR Base Station Doxygen site overrides. */
 
-/* ─── Brand bar (custom element injected via docs-header.html) ── */
+:root {
+  --primary-color: #007f74;
+  --primary-dark-color: #005f56;
+  --primary-light-color: #d8fbf7;
+  --vr-teal: #00b4a0;
+  --vr-teal-dark: #007f74;
+  --vr-ink: #17212f;
+  --vr-panel: rgba(255, 255, 255, 0.88);
+  --vr-panel-border: rgba(0, 99, 92, 0.18);
+  --vr-soft: #eefaf8;
+}
+
+html.dark-mode {
+  --primary-color: #00d1bd;
+  --primary-dark-color: #5ce8d9;
+  --primary-light-color: #103d39;
+  --vr-panel: rgba(32, 36, 40, 0.88);
+  --vr-panel-border: rgba(92, 232, 217, 0.22);
+  --vr-soft: rgba(0, 180, 160, 0.10);
+}
+
 #vr-brand-bar {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 24px;
-  background: linear-gradient(90deg, #0A1628 0%, #162340 55%, #005F56 100%);
-  border-bottom: 2px solid #00B4A0;
-}
-#vr-brand-bar .brand-title {
-  font-size: 15px;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: 0.02em;
-}
-#vr-brand-bar .brand-sub {
-  font-size: 11px;
-  color: #C8F0EC;
-  margin-left: auto;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  min-height: 56px;
+  padding: 10px 22px;
+  background: linear-gradient(90deg, #0a1628 0%, #162340 54%, #005f56 100%);
+  border-bottom: 2px solid var(--vr-teal);
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 
-/* ─── Bug 1: search icon overlaps placeholder text ───────────── */
-/* The magnifying-glass icon is ~28 px wide; shift the input text past it */
+#vr-brand-bar .brand-logo {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+}
+
+#vr-brand-bar .brand-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+#vr-brand-bar .brand-sub {
+  font-size: 11px;
+  color: #c8f0ec;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.brand-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.brand-link,
+#sidebar-toggle,
+.theme-toggle-slot doxygen-awesome-dark-mode-toggle {
+  min-width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.brand-link {
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.brand-link:hover,
+#sidebar-toggle:hover,
+.theme-toggle-slot doxygen-awesome-dark-mode-toggle:hover {
+  background: rgba(0, 180, 160, 0.22);
+  border-color: rgba(0, 180, 160, 0.72);
+}
+
+#sidebar-toggle {
+  cursor: pointer;
+  padding: 0;
+}
+
+#sidebar-toggle span,
+#sidebar-toggle span::before,
+#sidebar-toggle span::after {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  content: "";
+}
+
+#sidebar-toggle span::before {
+  transform: translateY(-5px);
+}
+
+#sidebar-toggle span::after {
+  transform: translateY(3px);
+}
+
+.theme-toggle-slot doxygen-awesome-dark-mode-toggle {
+  margin: 0;
+  padding: 0;
+}
+
 #MSearchField {
   padding-left: 28px;
 }
 
-/* ─── Bug 2+3: right-side "On this page" panel ───────────────── */
-/* Suppress #page-nav entirely — the left nav tree provides full
-   navigation, and the panel has light-mode colours stuck in dark mode.
-   Removing it is cleaner than fighting per-mode colour variables. */
 #page-nav {
   display: none;
 }
 
-/* ─── Bug 4: duplicate project name ─────────────────────────── */
-/* The brand bar already shows "VR Base Station"; hide the auto-
-   generated Doxygen title box inside the left sidebar. */
 #projectname,
 #projectbrief {
   display: none;
 }
 
-/* ─── Teal accent on section-header underline ────────────────── */
 h2.groupheader {
-  border-bottom-color: var(--primary-color, #00B4A0);
+  border-bottom-color: var(--primary-color, var(--vr-teal));
 }
 
-/* ─── Nav tree selected item highlight ───────────────────────── */
 #nav-tree .selected a {
   background: rgba(0, 180, 160, 0.12) !important;
+}
+
+#splitbar,
+.ui-resizable-handle {
+  width: 1px !important;
+  background: var(--separator-color) !important;
+  cursor: default !important;
+}
+
+#nav-sync {
+  bottom: 12px !important;
+  top: auto !important;
+  right: 12px !important;
+  opacity: 0.72;
+}
+
+#nav-sync:hover {
+  opacity: 1;
+}
+
+html.sidebar-collapsed #side-nav,
+html.sidebar-collapsed #splitbar {
+  display: none !important;
+}
+
+html.sidebar-collapsed #doc-content {
+  margin-left: 0 !important;
+}
+
+html.sidebar-collapsed #container {
+  grid-template-columns: auto !important;
+}
+
+.vr-hero {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--vr-panel-border);
+  border-radius: 8px;
+  min-height: 320px;
+  margin: 0 0 28px;
+  background:
+    linear-gradient(90deg, rgba(5, 13, 26, 0.86), rgba(5, 13, 26, 0.50), rgba(0, 88, 78, 0.24)),
+    url("room2.png") center center / cover no-repeat;
+  box-shadow: var(--box-shadow);
+}
+
+.vr-hero-inner {
+  position: relative;
+  max-width: 760px;
+  padding: 38px 34px;
+  color: #ffffff;
+}
+
+.vr-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #a8fff4;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.vr-hero h1 {
+  color: #ffffff;
+  font-size: 40px;
+  line-height: 1.08;
+  margin: 0 0 12px;
+}
+
+.vr-hero p {
+  color: #eef6f5;
+  font-size: 17px;
+  max-width: 620px;
+}
+
+.vr-hero-actions,
+.vr-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.vr-button,
+.vr-chip {
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  box-sizing: border-box;
+}
+
+.vr-button {
+  padding: 0 14px;
+  background: var(--vr-teal);
+  color: #06201d !important;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.vr-button.secondary {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.vr-chip {
+  padding: 0 10px;
+  color: #ddfffb;
+  background: rgba(0, 180, 160, 0.15);
+  border: 1px solid rgba(0, 180, 160, 0.34);
+  font-size: 13px;
+}
+
+.vr-card-grid,
+.vr-stat-grid,
+.vr-flow {
+  display: grid;
+  gap: 14px;
+  margin: 16px 0 26px;
+}
+
+.vr-card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.vr-stat-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.vr-flow {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.vr-card,
+.vr-stat,
+.vr-step {
+  border: 1px solid var(--vr-panel-border);
+  border-radius: 8px;
+  background: var(--vr-panel);
+  padding: 16px;
+}
+
+.vr-card h3,
+.vr-step h3 {
+  margin: 0 0 8px;
+}
+
+.vr-card p,
+.vr-step p,
+.vr-stat p {
+  margin: 0;
+}
+
+.vr-stat strong {
+  display: block;
+  font-size: 24px;
+  color: var(--primary-color);
+  margin-bottom: 4px;
+}
+
+.vr-step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--vr-soft);
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+table.markdownTable {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 980px) {
+  .brand-link,
+  #vr-brand-bar .brand-sub {
+    display: none;
+  }
+
+  .vr-card-grid,
+  .vr-stat-grid,
+  .vr-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 640px) {
+  #vr-brand-bar {
+    padding: 8px 12px;
+  }
+
+  .vr-hero {
+    min-height: 0;
+  }
+
+  .vr-hero-inner {
+    padding: 26px 20px;
+  }
+
+  .vr-hero h1 {
+    font-size: 30px;
+  }
+
+  .vr-card-grid,
+  .vr-stat-grid,
+  .vr-flow {
+    grid-template-columns: 1fr;
+  }
 }

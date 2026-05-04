@@ -1,10 +1,10 @@
-# Doxyfile for VR Base Station — EEEE2076 Group 1
+# Doxyfile for VR Base Station, EEEE2076 Group 1
 # ----------------------------------------------------------------
 
 # --- Project identity ------------------------------------------
 PROJECT_NAME           = "VR Base Station"
 PROJECT_NUMBER         = v1.1.0
-PROJECT_BRIEF          = "Qt/VTK CAD viewer with VR support — EEEE2076 Group 1"
+PROJECT_BRIEF          = "Qt/VTK CAD viewer with VR support, EEEE2076 Group 1"
 OUTPUT_DIRECTORY       = .
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
@@ -53,7 +53,9 @@ HTML_EXTRA_STYLESHEET  = doxygen-awesome/doxygen-awesome.css \
                          doxygen-awesome/doxygen-awesome-sidebar-only.css \
                          docs-custom.css
 HTML_EXTRA_FILES       = doxygen-awesome/doxygen-awesome-darkmode-toggle.js \
-                         doxygen-awesome/doxygen-awesome-fragment-copy-button.js
+                         doxygen-awesome/doxygen-awesome-fragment-copy-button.js \
+                         docs-site.js \
+                         room2.png
 
 # --- Diagrams (graphviz) ---------------------------------------
 HAVE_DOT               = YES

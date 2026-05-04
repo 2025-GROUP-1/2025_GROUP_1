@@ -1,12 +1,28 @@
 @mainpage VR Base Station
 
-# VR Base Station
-
-**Qt 6 · VTK 9 · OpenVR** CAD viewer for the HTC Vive Pro 2
-
-*EEEE2076 Group 1 · University of Nottingham · Spring 2026*
-
----
+@htmlonly
+<div class="vr-hero">
+  <div class="vr-hero-inner">
+    <div class="vr-kicker">Qt 6 / VTK 9 / OpenVR</div>
+    <h1>VR Base Station</h1>
+    <p>
+      A Formula Student CAD viewer for desktop inspection and HTC Vive Pro 2 walkthroughs.
+      The GUI and VR session stay in sync while parts are loaded, filtered, coloured and explored.
+    </p>
+    <div class="vr-hero-actions">
+      <a class="vr-button" href="#features">Explore features</a>
+      <a class="vr-button secondary" href="classes.html">Browse classes</a>
+      <a class="vr-button secondary" href="how_it_works.html">Read how it works</a>
+    </div>
+    <div class="vr-chip-row">
+      <span class="vr-chip">STL loading</span>
+      <span class="vr-chip">Threaded VR renderer</span>
+      <span class="vr-chip">Explode view</span>
+      <span class="vr-chip">NSIS installer</span>
+    </div>
+  </div>
+</div>
+@endhtmlonly
 
 ## Overview {#overview}
 
@@ -16,53 +32,113 @@ that mirrors the model inside a virtual environment. Changes made in the GUI, in
 visibility and filter settings, appear in the headset within one frame with no headset restart
 needed.
 
----
+@htmlonly
+<div class="vr-stat-grid">
+  <div class="vr-stat">
+    <strong>2</strong>
+    <p>render pipelines for desktop and VR</p>
+  </div>
+  <div class="vr-stat">
+    <strong>3</strong>
+    <p>main modules: GUI, data model and rendering</p>
+  </div>
+  <div class="vr-stat">
+    <strong>60 Hz</strong>
+    <p>target update rhythm for interactive VR changes</p>
+  </div>
+  <div class="vr-stat">
+    <strong>1</strong>
+    <p>Windows installer for the full runtime bundle</p>
+  </div>
+</div>
+@endhtmlonly
 
 ## Features {#features}
 
-| Feature | Description |
-|---------|-------------|
-| **STL File Loading** | Import multiple STL files into a structured tree view; each file feeds its own VTK pipeline. |
-| **Per-Part Property Editing** | Rename parts, change their RGB colour, and toggle visibility without reloading geometry. |
-| **Shrink & Clip Filters** | Apply VTK shrink and clip filters to any part, individually or in any combination. |
-| **Explode-View Animation** | Smooth outward expansion from the model centre for VR assembly walkthroughs. |
-| **Live VR Session** | OpenVR session via HTC Vive Pro 2 with skybox lighting, updating in real time as the GUI changes. |
-| **Threaded VR Renderer** | GUI on the main thread; VR in a dedicated `VRRenderThread` with a mutex-protected command queue. |
-| **Windows Installer** | NSIS installer bundles Qt, VTK, and OpenVR runtimes so the end user does not need separate prerequisites. |
-| **Build System** | CMake 3.20+ with VTK module autoinit, Qt6 MOC/UIC, and post-build asset copying. |
-
----
+@htmlonly
+<div class="vr-card-grid">
+  <div class="vr-card">
+    <h3>Load and organise CAD</h3>
+    <p>Import multiple STL files into a structured tree, with each part feeding its own VTK pipeline.</p>
+  </div>
+  <div class="vr-card">
+    <h3>Edit part properties</h3>
+    <p>Rename parts, change RGB colour values and toggle visibility from the Qt property dialog.</p>
+  </div>
+  <div class="vr-card">
+    <h3>Inspect internal detail</h3>
+    <p>Use shrink, clip and explode-view controls to separate assemblies and inspect hidden areas.</p>
+  </div>
+  <div class="vr-card">
+    <h3>Mirror changes in VR</h3>
+    <p>Send GUI updates to the headset through a mutex-protected command queue.</p>
+  </div>
+  <div class="vr-card">
+    <h3>Package for Windows</h3>
+    <p>Build an NSIS installer that bundles Qt, VTK and OpenVR runtimes.</p>
+  </div>
+  <div class="vr-card">
+    <h3>Navigate the codebase</h3>
+    <p>Use class pages, grouped topics and source listings to move quickly through the implementation.</p>
+  </div>
+</div>
+@endhtmlonly
 
 ## Architecture {#architecture}
 
 Two parallel VTK render pipelines keep the GUI viewport and the VR headset independent
 (VTK actors cannot be shared between renderers; see [Why two actors per part](@ref two-actors)).
 
-    Main thread                                VRRenderThread (dedicated)
-    ────────────────────────────────           ────────────────────────────────────
-    Qt event loop                              Continuous VR render loop
-      │                                          │
-      ├─ QTreeView                               ├─ OpenVR compositor
-      │      │                                   │       │
-      ├─ ModelPartList (QAbstractItemModel)       ├─ vtkRenderer  (VR)
-      │      │                                   │       │
-      │  ModelPart ──────────────────────────────►  actor-VR
-      │  actor-GUI                               │
-      ├─ vtkRenderer (GUI viewport)              │
-      │                                          │
-      └────── mutex-protected command queue ─────┘
-                   (GUI changes → VR thread)
+    Main thread                                  VRRenderThread
+    --------------------------------           --------------------------------
+    Qt event loop                               Continuous VR render loop
+      |                                           |
+      +-- QTreeView                               +-- OpenVR compositor
+      |      |                                    |      |
+      +-- ModelPartList                           +-- vtkRenderer (VR)
+      |      |                                    |      |
+      |   ModelPart --------------------------->  actor-VR
+      |   actor-GUI
+      |
+      +-- vtkRenderer (GUI viewport)
+      |
+      +-- mutex-protected command queue ------->  VR thread
 
 ### Class Responsibilities
 
 | Class | Module | Responsibility |
 |-------|--------|----------------|
-| `ModelPart` | @ref data_model | Single tree node; owns VTK pipeline (STL reader → mapper → actor) |
+| `ModelPart` | @ref data_model | Single tree node; owns VTK pipeline (STL reader to mapper to actor) |
 | `ModelPartList` | @ref data_model | Qt tree model serving the `ModelPart` hierarchy to `QTreeView` |
 | `MainWindow` | @ref gui | Top-level window; owns renderer, render window, and part tree |
 | `OptionDialog` | @ref gui | Modal property editor for name, colour, and visibility |
 
----
+## Typical Workflow {#workflow}
+
+@htmlonly
+<div class="vr-flow">
+  <div class="vr-step">
+    <span class="vr-step-number">1</span>
+    <h3>Load</h3>
+    <p>Import STL files and build the model tree.</p>
+  </div>
+  <div class="vr-step">
+    <span class="vr-step-number">2</span>
+    <h3>Edit</h3>
+    <p>Adjust names, colours, visibility and filters.</p>
+  </div>
+  <div class="vr-step">
+    <span class="vr-step-number">3</span>
+    <h3>Explore</h3>
+    <p>Open the VR session and inspect the CAD model at scale.</p>
+  </div>
+  <div class="vr-step">
+    <span class="vr-step-number">4</span>
+    <h3>Package</h3>
+    <p>Build and distribute the Windows installer.</p>
+  </div>
+</div>
+@endhtmlonly
 
 ## Topics {#modules}
 
@@ -74,14 +150,10 @@ The codebase is grouped into three thematic topics:
 
 Use the **Topics** entry in the sidebar to browse grouped class lists.
 
----
-
 ## How It Works {#how-it-works-link}
 
 For a deeper walkthrough of three real scenarios, colour change, the two-actors design
 decision, and the explode animation, see the [How It Works](@ref how_it_works) page.
-
----
 
 ## Building from Source {#build}
 
@@ -93,8 +165,6 @@ decision, and the explode animation, see the [How It Works](@ref how_it_works) p
 
 **Requirements:** Visual Studio 2022+, Qt 6.10+, VTK 9 with OpenVR support, OpenVR SDK, CMake 3.20+.
 
----
-
 ## Team {#team}
 
 | Role | Member |
@@ -103,8 +173,6 @@ decision, and the explode animation, see the [How It Works](@ref how_it_works) p
 | GUI & Installer Co-Lead | Joseph |
 | VTK & VR Threading Lead | Senthil |
 | Documentation, Doxygen & Build Lead | Hamza |
-
----
 
 ## Licence
 
