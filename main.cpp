@@ -1,7 +1,5 @@
-/**
- * @file main.cpp
- * @brief Application entry point. Configures the OpenGL surface format and launches MainWindow.
- */
+// entry point - sets up OpenGL surface format and launches the main window
+
 #include "mainwindow.h"
 
 #include <QApplication>
@@ -10,6 +8,7 @@
 
 int main(int argc, char* argv[])
 {
+    // VTK needs this surface format set before any Qt widgets are created
     QSurfaceFormat::setDefaultFormat(QVTKOpenGLNativeWidget::defaultFormat());
 
     QApplication app(argc, argv);

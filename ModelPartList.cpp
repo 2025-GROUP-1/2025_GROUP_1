@@ -1,7 +1,4 @@
-/**
- * @file ModelPartList.cpp
- * @brief Implementation of the tree model.
- */
+// implements the tree model - handles insert/remove and maps rows to ModelPart pointers
 
 #include "ModelPartList.h"
 
@@ -9,7 +6,7 @@ ModelPartList::ModelPartList(const QString& data, QObject* parent)
     : QAbstractItemModel(parent)
 {
     Q_UNUSED(data);
-    // The root item provides the column headers and is never displayed.
+    // root item is never shown, just provides column headers
     rootItem = new ModelPart({ tr("Part"), tr("Visible?") });
 }
 
@@ -44,6 +41,7 @@ QVariant ModelPartList::headerData(int section, Qt::Orientation orientation, int
     return QVariant();
 }
 
+// creates an index for a specific row/column under a parent
 QModelIndex ModelPartList::index(int row, int column, const QModelIndex& parent) const {
     ModelPart* parentItem;
 
@@ -59,6 +57,7 @@ QModelIndex ModelPartList::index(int row, int column, const QModelIndex& parent)
     return QModelIndex();
 }
 
+// walks up to find the parent index
 QModelIndex ModelPartList::parent(const QModelIndex& index) const {
     if (!index.isValid())
         return QModelIndex();
@@ -87,6 +86,7 @@ ModelPart* ModelPartList::getRootItem() {
     return rootItem;
 }
 
+// adds a new child under the given parent and notifies the view
 QModelIndex ModelPartList::appendChild(QModelIndex& parent, const QList<QVariant>& data) {
     ModelPart* parentPart = parent.isValid()
         ? static_cast<ModelPart*>(parent.internalPointer())
@@ -102,6 +102,7 @@ QModelIndex ModelPartList::appendChild(QModelIndex& parent, const QList<QVariant
     return createIndex(newRow, 0, childPart);
 }
 
+// BFS search for a part by its unique ID
 ModelPart* ModelPartList::findByID(int partID) const {
     QList<ModelPart*> stack;
     stack.append(rootItem);
@@ -115,6 +116,7 @@ ModelPart* ModelPartList::findByID(int partID) const {
     return nullptr;
 }
 
+// removes a part from the tree and deletes it
 void ModelPartList::removeItem(const QModelIndex& index) {
     if (!index.isValid())
         return;

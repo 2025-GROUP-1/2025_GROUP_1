@@ -1,3 +1,5 @@
+// VR render thread implementation - OpenVR setup, custom interactor, ray casting, in-VR menu
+
 #include "VRRenderThread.h"
 #include <QMutexLocker>
 #include <QCoreApplication>
@@ -33,22 +35,29 @@
 #include <vtkMatrix3x3.h>
 #include <vtkMath.h>
 
-// Custom interactor style: blocks VTK's built-in menu, inverts dolly direction
+// ---------------------------------------------------------------------------
+// custom VR interactor style
+// - blocks VTK's built-in probe/clip/exit menu
+// - fires a UserEvent instead so our menu callback gets it
+// - kills VTK's default red rays (we draw our own)
+// - inverts dolly direction so trackpad-up = push away
+// ---------------------------------------------------------------------------
 class VRCustomStyle : public vtkOpenVRInteractorStyle {
 public:
     static VRCustomStyle* New();
     vtkTypeMacro(VRCustomStyle, vtkOpenVRInteractorStyle);
 
+    // replaces VTK's built-in menu with our custom event
     void OnMenu3D(vtkEventData* edata) override
     {
-        // Fire our custom event instead of VTK's built-in probe/clip menu
         if (this->Interactor)
             this->Interactor->InvokeEvent(vtkCommand::UserEvent, edata);
     }
 
-    // Prevent VTK from ever drawing its built-in red rays
+    // no-op so VTK never draws its red rays
     void UpdateRay(vtkEventDataDevice) override {}
 
+    // overrides dolly to negate Y direction (trackpad-up = away, down = towards)
     void Dolly3D(vtkEventData* ed) override
     {
         if (!this->CurrentRenderer)
@@ -57,6 +66,7 @@ public:
         auto* edd = static_cast<vtkEventDataDevice3D*>(ed);
         const double* wori = edd->GetWorldOrientation();
 
+        // convert controller orientation to a forward vector
         vtkQuaternion<double> q1;
         q1.SetRotationAngleAndAxis(vtkMath::RadiansFromDegrees(wori[0]), wori[1], wori[2], wori[3]);
         double elem[3][3];
@@ -68,7 +78,7 @@ public:
         if (edd->GetType() == vtkCommand::ViewerMovement3DEvent)
             edd->GetTrackPadPosition(this->LastTrackPadPosition);
 
-        // Negate Y so trackpad-up = push away, trackpad-down = pull closer
+        // negate so up = push away, down = pull closer
         double speedScale = -this->LastTrackPadPosition[1];
         double physicalScale = rwi->GetPhysicalScale();
 
@@ -89,9 +99,9 @@ public:
 vtkStandardNewMacro(VRCustomStyle);
 
 // ---------------------------------------------------------------------------
-// Per-frame callback: dynamic ray + outline highlight on hovered actor
+// controller ray + outline highlight
+// each controller gets a coloured ray and an outline box around hovered actors
 // ---------------------------------------------------------------------------
-// Per-controller state for ray + outline
 struct ControllerRay {
     vtkNew<vtkCellPicker>      picker;
     vtkNew<vtkLineSource>      rayLine;
@@ -101,6 +111,7 @@ struct ControllerRay {
     vtkNew<vtkActor>           outlineActor;
     vtkActor*                  hoveredActor = nullptr;
 
+    // creates the ray line and outline actors, adds them to the renderer
     void init(vtkRenderer* ren, double r, double g, double b)
     {
         picker->SetTolerance(5.0);
@@ -125,10 +136,12 @@ struct ControllerRay {
         ren->AddActor(outlineActor);
     }
 
+    // fires a pick ray from the controller, updates the ray line endpoint and outline
     void update(const double* pos, const double* ori, vtkRenderer* ren, double maxRay)
     {
         if (!ren) return;
 
+        // work out which direction the controller is pointing
         vtkNew<vtkTransform> xform;
         xform->RotateWXYZ(ori[0], ori[1], ori[2], ori[3]);
         double fwd[3] = { 0.0, 0.0, -1.0 };
@@ -137,6 +150,7 @@ struct ControllerRay {
         double p[3] = { pos[0], pos[1], pos[2] };
         double o[4] = { ori[0], ori[1], ori[2], ori[3] };
 
+        // try to pick an actor along the ray
         vtkActor* hit = nullptr;
         double hitPt[3] = { 0.0, 0.0, 0.0 };
         try {
@@ -148,6 +162,7 @@ struct ControllerRay {
             hit = nullptr;
         }
 
+        // ray goes from controller to hit point (or extends to max length)
         rayLine->SetPoint1(pos[0], pos[1], pos[2]);
         if (hit && picker->GetCellId() >= 0) {
             rayLine->SetPoint2(hitPt[0], hitPt[1], hitPt[2]);
@@ -159,6 +174,7 @@ struct ControllerRay {
         }
         rayLine->Modified();
 
+        // show an outline box around whatever the ray is pointing at
         if (hit != hoveredActor) {
             if (hit && hit->GetMapper() && hit->GetMapper()->GetInput()) {
                 outlineFilter->SetInputData(hit->GetMapper()->GetInput());
@@ -173,6 +189,7 @@ struct ControllerRay {
             hoveredActor = hit;
         }
 
+        // keep the outline tracking the actor if it moves
         if (hoveredActor && outlineActor->GetVisibility()) {
             outlineActor->SetPosition(hoveredActor->GetPosition());
             outlineActor->SetScale(hoveredActor->GetScale());
@@ -181,6 +198,7 @@ struct ControllerRay {
     }
 };
 
+// handles Move3D events and updates both controller rays each frame
 class VRRayCallback : public vtkCommand {
 public:
     static VRRayCallback* New() { return new VRRayCallback; }
@@ -192,8 +210,8 @@ public:
     void init(vtkRenderer* ren)
     {
         renderer = ren;
-        right.init(ren, 0.2, 0.85, 1.0);   // cyan
-        left.init(ren,  1.0, 0.6,  0.2);    // orange
+        right.init(ren, 0.2, 0.85, 1.0);   // cyan for right
+        left.init(ren,  1.0, 0.6,  0.2);    // orange for left
     }
 
     void Execute(vtkObject*, unsigned long eventId, void* callData) override
@@ -225,11 +243,12 @@ public:
     }
 
 private:
-    static constexpr double MAX_RAY = 10000.0;
+    static constexpr double MAX_RAY = 10000.0;   // ray length in mm
 };
 
 // ---------------------------------------------------------------------------
-// In-VR editing menu (clip, shrink, colour) triggered by menu button
+// in-VR editing menu
+// shows coloured buttons above a hovered part for clip/shrink/colour changes
 // ---------------------------------------------------------------------------
 struct VRMenu {
     enum Action { Clip, Shrink, ColRed, ColGreen, ColBlue, ColYellow, ColWhite, NUM_ACTIONS };
@@ -244,15 +263,17 @@ struct VRMenu {
     int targetPartID = -1;
     vtkRenderer* ren = nullptr;
 
+    // button sizes in mm
     static constexpr double BTN_W = 60.0;
     static constexpr double BTN_H = 30.0;
     static constexpr double GAP   = 8.0;
 
+    // builds all the menu button actors
     void create(vtkRenderer* r)
     {
         ren = r;
-        addButton(Clip,       1.0, 0.5, 0.0);
-        addButton(Shrink,     0.6, 0.2, 0.8);
+        addButton(Clip,       1.0, 0.5, 0.0);    // orange
+        addButton(Shrink,     0.6, 0.2, 0.8);    // purple
         addButton(ColRed,     1.0, 0.15, 0.15);
         addButton(ColGreen,   0.15, 0.8, 0.15);
         addButton(ColBlue,    0.15, 0.4, 1.0);
@@ -283,11 +304,13 @@ struct VRMenu {
         buttons.push_back({act, a});
     }
 
+    // positions the menu above the given world position
     void show(double x, double y, double z, int partID)
     {
         visible = true;
         targetPartID = partID;
 
+        // top row: clip + shrink
         double startX = x - (2 * BTN_W + GAP) * 0.5;
         double startY = y + 40.0;
 
@@ -296,6 +319,8 @@ struct VRMenu {
                 startX + i * (BTN_W + GAP), startY, z);
             buttons[i].actor->SetVisibility(1);
         }
+
+        // bottom row: colour swatches
         double row2Y = startY - BTN_H - GAP;
         int nCol = static_cast<int>(buttons.size()) - 2;
         double row2StartX = x - (nCol * BTN_W + (nCol - 1) * GAP) * 0.5;
@@ -325,6 +350,7 @@ struct VRMenu {
     bool isMenuActor(vtkActor* a) const { return findButton(a) >= 0; }
 };
 
+// handles menu button presses - fires when the user hits the menu button on the controller
 class VRMenuCallback : public vtkCommand {
 public:
     static VRMenuCallback* New() { return new VRMenuCallback; }
@@ -336,18 +362,21 @@ public:
 
     void Execute(vtkObject*, unsigned long, void*) override
     {
+        // check what the controller is pointing at
         vtkActor* hovered = nullptr;
         if (rays->right.hoveredActor)
             hovered = rays->right.hoveredActor;
         else if (rays->left.hoveredActor)
             hovered = rays->left.hoveredActor;
 
+        // if pointing at a menu button, run its action
         int btnIdx = menu.findButton(hovered);
         if (btnIdx >= 0) {
             executeAction(menu.buttons[btnIdx]);
             return;
         }
 
+        // if pointing at a part, toggle the menu for that part
         if (hovered) {
             int pid = findPartID(hovered);
             if (pid >= 0) {
@@ -361,11 +390,13 @@ public:
             }
         }
 
+        // pointing at nothing - close menu
         if (menu.visible)
             menu.hide();
     }
 
 private:
+    // looks up which part ID an actor belongs to
     int findPartID(vtkActor* a) const
     {
         if (!activeActors) return -1;
@@ -374,6 +405,7 @@ private:
         return -1;
     }
 
+    // runs the selected menu action on the target part
     void executeAction(const VRMenu::Button& btn)
     {
         if (!partList || menu.targetPartID < 0) return;
@@ -437,33 +469,38 @@ void VRRenderThread::setPartList(ModelPartList* list) {
     m_partList = list;
 }
 
+// registers an actor before the thread starts (called from the GUI thread)
 void VRRenderThread::addActorOffline(vtkActor* actor, int partID) {
     if (!actor) return;
     m_pendingActors.emplace_back(partID, vtkSmartPointer<vtkActor>(actor));
 }
 
+// thread-safe command queue - GUI pushes, VR loop pops
 void VRRenderThread::issueCommand(Command c, int partID, const QVariant& data) {
     QMutexLocker locker(&m_mutex);
     m_commandQueue.enqueue({ c, partID, data, nullptr });
 }
 
+// the main VR loop - sets up OpenVR, adds actors, runs render loop
 void VRRenderThread::run() {
     m_renderer      = vtkSmartPointer<vtkOpenVRRenderer>::New();
     m_renderWindow  = vtkSmartPointer<vtkOpenVRRenderWindow>::New();
     m_interactor    = vtkSmartPointer<vtkOpenVRRenderWindowInteractor>::New();
 
+    // point the interactor at our SteamVR action bindings
     const std::string manifestPath =
         (QCoreApplication::applicationDirPath() + "/vrbindings/vtk_openvr_actions.json").toStdString();
     m_interactor->SetActionManifestFileName(manifestPath.c_str());
     m_interactor->SetActionSetName("/actions/vtk");
 
-    // Use our custom style: blocks VTK's built-in menu, inverts dolly, hides default rays
+    // custom style: blocks VTK's built-in menu, inverts dolly, hides default rays
     vtkNew<VRCustomStyle> customStyle;
     m_interactor->SetInteractorStyle(customStyle);
 
     m_renderWindow->AddRenderer(m_renderer);
     m_interactor->SetRenderWindow(m_renderWindow);
 
+    // add all the parts that were queued before the thread started
     for (auto& [id, actor] : m_pendingActors) {
         m_renderer->AddActor(actor);
         m_activeActors[id] = actor;
@@ -473,12 +510,12 @@ void VRRenderThread::run() {
     m_renderer->ResetCamera();
     m_renderer->ResetCameraClippingRange();
 
-    // Dynamic ray + outline highlight
+    // set up dual-controller ray casting + outline highlight
     vtkNew<VRRayCallback> rayCallback;
     rayCallback->init(m_renderer);
     m_interactor->AddObserver(vtkCommand::Move3DEvent, rayCallback, 1.0);
 
-    // In-VR editing menu (clip / shrink / colour)
+    // in-VR editing menu (clip / shrink / colour buttons)
     vtkNew<VRMenuCallback> menuCallback;
     menuCallback->rays = rayCallback;
     menuCallback->activeActors = &m_activeActors;
@@ -486,7 +523,7 @@ void VRRenderThread::run() {
     menuCallback->menu.create(m_renderer);
     m_interactor->AddObserver(vtkCommand::UserEvent, menuCallback, 2.0);
 
-    // Skybox
+    // load the skybox image
     QString roomPath = QCoreApplication::applicationDirPath() + "/room.jpg";
     vtkNew<vtkJPEGReader> bgReader;
 
@@ -518,16 +555,17 @@ void VRRenderThread::run() {
     if (m_renderer->GetActiveCamera())
         m_renderer->ResetCameraClippingRange();
 
-    // Position user standing on the floor (not inside it)
-    // Shift VR origin so real-world floor level = bottom of scene geometry
+    // position user standing on the floor, not inside it
+    // shifts VR origin so real-world floor = bottom of scene geometry
     {
         double bounds[6];
         m_renderer->ComputeVisiblePropBounds(bounds);
         double* trans = m_renderWindow->GetPhysicalTranslation();
-        double floorY = bounds[2]; // Y-min of all geometry
+        double floorY = bounds[2];   // Y-min of all geometry
         m_renderWindow->SetPhysicalTranslation(trans[0], floorY, trans[2]);
     }
 
+    // render loop - process one VR frame, handle commands, repeat
     m_endRender = false;
     while (!m_endRender) {
         m_interactor->DoOneEvent(m_renderWindow, m_renderer);
@@ -541,6 +579,7 @@ void VRRenderThread::run() {
     m_interactor    = nullptr;
 }
 
+// drains the command queue (called from the VR thread each frame)
 void VRRenderThread::processCommands() {
     QMutexLocker locker(&m_mutex);
     while (!m_commandQueue.isEmpty()) {
@@ -548,6 +587,7 @@ void VRRenderThread::processCommands() {
     }
 }
 
+// executes a single command from the GUI
 void VRRenderThread::applyCommand(const CommandPacket& cmd) {
     switch (cmd.type) {
     case Command::EndRender:
