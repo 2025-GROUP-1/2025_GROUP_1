@@ -135,12 +135,12 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="autotoc_md0"></a>
 VR Base Station</h1>
-<p><b>Qt 6 · VTK 9 · OpenVR</b> — Formula Student CAD viewer for the HTC Vive Pro 2</p>
+<p><b>Qt 6 · VTK 9 · OpenVR</b> CAD viewer for the HTC Vive Pro 2</p>
 <p><em>EEEE2076 Group 1 · University of Nottingham · Spring 2026</em></p>
 <hr  />
 <h2><a class="anchor" id="overview"></a>
 Overview</h2>
-<p>The <b>VR Base Station</b> loads STL mesh files of a Formula Student race car, displays them in a 3D viewport alongside a tree-organised list of editable parts, and launches a live VR session that mirrors the model inside a virtual environment. Every change made in the GUI — colour, visibility, filter settings — appears in the headset within one frame, with no headset restart needed.</p>
+<p>The <b>VR Base Station</b> loads STL mesh files of a Formula Student race car, displays them in a 3D viewport alongside a tree-organised list of editable parts, and launches a live VR session that mirrors the model inside a virtual environment. Changes made in the GUI, including colour, visibility and filter settings, appear in the headset within one frame with no headset restart needed.</p>
 <hr  />
 <h2><a class="anchor" id="features"></a>
 Features</h2>
@@ -154,20 +154,20 @@ Features</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><b>Shrink &amp; Clip Filters</b>   </td><td class="markdownTableBodyNone">Apply VTK shrink and clip filters to any part, individually or in any combination.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><b>Explode-View Animation</b>   </td><td class="markdownTableBodyNone">Smooth outward expansion from the model centre — great for VR assembly walkthroughs.    </td></tr>
+<td class="markdownTableBodyNone"><b>Explode-View Animation</b>   </td><td class="markdownTableBodyNone">Smooth outward expansion from the model centre for VR assembly walkthroughs.    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><b>Live VR Session</b>   </td><td class="markdownTableBodyNone">OpenVR session via HTC Vive Pro 2 with skybox lighting, updating in real time as the GUI changes.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><b>Threaded VR Renderer</b>   </td><td class="markdownTableBodyNone">GUI on the main thread; VR in a dedicated <code><a class="el" href="classVRRenderThread.html">VRRenderThread</a></code> with a mutex-protected command queue.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b>Windows Installer</b>   </td><td class="markdownTableBodyNone">NSIS installer bundles Qt, VTK, and OpenVR runtimes — no prerequisites for the end user.    </td></tr>
+<td class="markdownTableBodyNone"><b>Windows Installer</b>   </td><td class="markdownTableBodyNone">NSIS installer bundles Qt, VTK, and OpenVR runtimes so the end user does not need separate prerequisites.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><b>Modern Build System</b>   </td><td class="markdownTableBodyNone">CMake 3.20+ with VTK module autoinit, Qt6 MOC/UIC, and post-build asset copying.   </td></tr>
+<td class="markdownTableBodyNone"><b>Build System</b>   </td><td class="markdownTableBodyNone">CMake 3.20+ with VTK module autoinit, Qt6 MOC/UIC, and post-build asset copying.   </td></tr>
 </table>
 <hr  />
 <h2><a class="anchor" id="architecture"></a>
 Architecture</h2>
-<p>Two parallel VTK render pipelines keep the GUI viewport and the VR headset independent (VTK actors cannot be shared between renderers — see <a class="el" href="how_it_works.html#two-actors">Why two actors per part</a>). </p><pre class="fragment">Main thread                                VRRenderThread (dedicated)
+<p>Two parallel VTK render pipelines keep the GUI viewport and the VR headset independent (VTK actors cannot be shared between renderers; see <a class="el" href="how_it_works.html#two-actors">Why two actors per part</a>). </p><pre class="fragment">Main thread                                VRRenderThread (dedicated)
 ────────────────────────────────           ────────────────────────────────────
 Qt event loop                              Continuous VR render loop
   │                                          │
@@ -200,19 +200,19 @@ Class Responsibilities</h3>
 Topics</h2>
 <p>The codebase is grouped into three thematic topics:</p>
 <ul>
-<li><b><a class="el" href="group__gui.html">Qt GUI</a></b> — Qt widgets and dialogs (<a class="el" href="classMainWindow.html">MainWindow</a>, <a class="el" href="classOptionDialog.html">OptionDialog</a>)</li>
-<li><b><a class="el" href="group__data__model.html">Data Model</a></b> — Tree model and CAD part management (<a class="el" href="classModelPart.html">ModelPart</a>, <a class="el" href="classModelPartList.html">ModelPartList</a>)</li>
-<li><b><a class="el" href="group__rendering.html">VTK &amp; VR Rendering</a></b> — VTK render pipelines and <a class="el" href="classVRRenderThread.html">VRRenderThread</a></li>
+<li><b><a class="el" href="group__gui.html">Qt GUI</a></b>: Qt widgets and dialogs (<a class="el" href="classMainWindow.html">MainWindow</a>, <a class="el" href="classOptionDialog.html">OptionDialog</a>)</li>
+<li><b><a class="el" href="group__data__model.html">Data Model</a></b>: Tree model and CAD part management (<a class="el" href="classModelPart.html">ModelPart</a>, <a class="el" href="classModelPartList.html">ModelPartList</a>)</li>
+<li><b><a class="el" href="group__rendering.html">VTK &amp; VR Rendering</a></b>: VTK render pipelines and <a class="el" href="classVRRenderThread.html">VRRenderThread</a></li>
 </ul>
 <p>Use the <b>Topics</b> entry in the sidebar to browse grouped class lists.</p>
 <hr  />
 <h2><a class="anchor" id="how-it-works-link"></a>
 How It Works</h2>
-<p>For a deeper walkthrough of three real scenarios — colour change, the two-actors design decision, and the explode animation — see the <a class="el" href="how_it_works.html">How It Works</a> page.</p>
+<p>For a deeper walkthrough of three real scenarios, colour change, the two-actors design decision, and the explode animation, see the <a class="el" href="how_it_works.html">How It Works</a> page.</p>
 <hr  />
 <h2><a class="anchor" id="build"></a>
 Building from Source</h2>
-<pre class="fragment">git clone https://github.com/senthil-zzz/2025_GROUP_1.git
+<pre class="fragment">git clone https://github.com/2025-GROUP-1/2025_GROUP_1.git
 cd 2025_GROUP_1
 cmake -B build -G "Visual Studio 17 2022" -A x64 ^
     -DCMAKE_PREFIX_PATH="C:/Qt/6.10.2/msvc2022_64;C:/path/to/VTK"

@@ -144,16 +144,16 @@ How It Works</h1>
 <li><b>User opens the property editor.</b> <br  />
  Right-clicking a tree item and choosing <em>Item Options</em> triggers <code>MainWindow::on_actionItem_Options_triggered()</code> (<a class="el" href="mainwindow_8cpp.html">mainwindow.cpp</a>:200).</li>
 <li><b>Selection is validated.</b> <br  />
- <code>ui-&gt;treeView-&gt;currentIndex()</code> returns the active <code>QModelIndex</code>. Its <code>internalPointer()</code> is cast to <code>ModelPart*</code> — this is the part to edit.</li>
+ <code>ui-&gt;treeView-&gt;currentIndex()</code> returns the active <code>QModelIndex</code>. Its <code>internalPointer()</code> is cast to <code>ModelPart*</code>, which is the part to edit.</li>
 <li><b>Dialog is populated.</b> <br  />
- An <code><a class="el" href="classOptionDialog.html">OptionDialog</a></code> is constructed and <code>OptionDialog::loadFromModelPart(part)</code> is called (<a class="el" href="optiondialog_8cpp.html">optiondialog.cpp</a>:15). This reads <code>part-&gt;getColourR/G/B()</code> and sets the three <code>QSpinBox</code> widgets (0–255 each) plus the name <code>QLineEdit</code> and visibility <code>QCheckBox</code>.</li>
+ An <code><a class="el" href="classOptionDialog.html">OptionDialog</a></code> is constructed and <code>OptionDialog::loadFromModelPart(part)</code> is called (<a class="el" href="optiondialog_8cpp.html">optiondialog.cpp</a>:15). This reads <code>part-&gt;getColourR/G/B()</code> and sets the three <code>QSpinBox</code> widgets (0 to 255 each) plus the name <code>QLineEdit</code> and visibility <code>QCheckBox</code>.</li>
 <li><b>User adjusts the spinboxes and clicks OK.</b> <br  />
  <code>dialog.exec()</code> blocks until the user accepts or cancels.</li>
 <li><b>Changes are written back.</b> <br  />
  On <code>QDialog::Accepted</code>, <code>OptionDialog::saveToModelPart(part)</code> is called (<a class="el" href="optiondialog_8cpp.html">optiondialog.cpp</a>:30):<ul>
-<li><code>part-&gt;setData(0, name)</code> — updates the display name in column 0.</li>
-<li><code>part-&gt;setColour(r, g, b)</code> — stores the three RGB integers in <code><a class="el" href="classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910">ModelPart::red</a>/green/blue</code>.</li>
-<li><code>part-&gt;setVisible(checked)</code> — updates <code><a class="el" href="classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910">ModelPart::isVisible</a></code>, syncs column 1 to <code>"true"</code>/<code>"false"</code>, and calls <code>actor-&gt;SetVisibility()</code> immediately.</li>
+<li><code>part-&gt;setData(0, name)</code>: updates the display name in column 0.</li>
+<li><code>part-&gt;setColour(r, g, b)</code>: stores the three RGB integers in <code><a class="el" href="classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910">ModelPart::red</a>/green/blue</code>.</li>
+<li><code>part-&gt;setVisible(checked)</code>: updates <code><a class="el" href="classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910">ModelPart::isVisible</a></code>, syncs column 1 to <code>"true"</code>/<code>"false"</code>, and calls <code>actor-&gt;SetVisibility()</code> immediately.</li>
 </ul>
 </li>
 <li><b>Important caveat on colour.</b> <br  />
@@ -176,8 +176,8 @@ How It Works</h1>
 2. Why Two Actors per Part</h2>
 <p>VTK actors are tightly coupled to a single <code>vtkRenderer</code>, which in turn belongs to a single <code>vtkRenderWindow</code>. The application runs two render windows:</p>
 <ul>
-<li><b>GUI viewport</b> — a <code>vtkGenericOpenGLRenderWindow</code> embedded inside the Qt widget via <code>QVTKOpenGLNativeWidget</code>.</li>
-<li><b>VR headset</b> — a <code>vtkOpenVRRenderWindow</code> driven by OpenVR.</li>
+<li><b>GUI viewport</b>: a <code>vtkGenericOpenGLRenderWindow</code> embedded inside the Qt widget via <code>QVTKOpenGLNativeWidget</code>.</li>
+<li><b>VR headset</b>: a <code>vtkOpenVRRenderWindow</code> driven by OpenVR.</li>
 </ul>
 <p>Each render window has its own OpenGL context. A <code>vtkActor</code> stores a reference to the mapper output <em>and</em> is tied to the graphics state of its renderer's context (GPU buffer handles, transform state, visibility flags). VTK does not provide a mechanism for sharing a single actor between two renderers.</p>
 <p><b>What happens if you try to share an actor:</b></p>
@@ -185,7 +185,7 @@ How It Works</h1>
 <li>Both renderers call <code>actor-&gt;Render(renderer, ...)</code> concurrently. The actor's cached render state (built during the first <code>Render</code> call) is immediately invalidated by the second renderer's context, causing corrupted or missing geometry in one or both viewports.</li>
 <li>Thread-safety is violated: the GUI main thread and <code><a class="el" href="classVRRenderThread.html">VRRenderThread</a></code> would race to modify the same actor object without synchronisation.</li>
 </ul>
-<p><b>The solution — two actors, one mapper:</b></p>
+<p><b>The solution: two actors, one mapper:</b></p>
 <p>Each <code><a class="el" href="classModelPart.html">ModelPart</a></code> constructs two actors that both point to the same <code>vtkPolyDataMapper</code> (and thus the same geometry data, which is read-only after <code>loadSTL()</code> completes). Only actor-level state (colour, visibility, transform) differs between the two copies, so the geometry is not duplicated in memory.</p>
 <hr  />
 <h2><a class="anchor" id="explode-animation"></a>
@@ -200,7 +200,7 @@ How It Works</h1>
 <li><b>Animate over N frames.</b> <br  />
  A <code>QTimer</code> fires at ~60 Hz. On each tick <code>t</code> (0.0 → 1.0): <div class="fragment"><div class="line">applyExplodeOffset(part, t)</div>
 <div class="line">    actor-&gt;SetPosition(restPosition + t * scale * d)</div>
-</div><!-- fragment --> Both the GUI actor and the corresponding VR actor are updated — the GUI actor directly on the main thread, the VR actor via a command queued to <code><a class="el" href="classVRRenderThread.html">VRRenderThread</a></code>.</li>
+</div><!-- fragment --> Both the GUI actor and the corresponding VR actor are updated. The GUI actor directly on the main thread, the VR actor via a command queued to <code><a class="el" href="classVRRenderThread.html">VRRenderThread</a></code>.</li>
 <li><b>Reset.</b> <br  />
  Calling explode a second time (or clicking <em>Reset</em>) runs the same interpolation in reverse (<code>t</code> from 1.0 → 0.0), smoothly returning all parts to their resting positions. </li>
 </ol>

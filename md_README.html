@@ -136,7 +136,7 @@ $(document).ready(function(){initNavTree('md_README.html',''); initResizable(); 
 <div class="textblock"><p><a class="anchor" id="autotoc_md15"></a> A Windows desktop application for viewing Formula Student CAD models in virtual reality. Built with Qt 6, VTK 9 and OpenVR for the HTC Vive Pro 2.</p>
 <h1><a class="anchor" id="autotoc_md16"></a>
 Project overview</h1>
-<p>The VR Base Station loads STL CAD files of a Formula Student race car, displays them in a 3D viewport with a tree-organised list of editable parts, and launches a VR session that mirrors the model in a virtual environment. Users can change colours, toggle visibility, apply shrink and clip filters, and trigger an explode-view animation — and see all of those changes update live in VR without restarting the headset.</p>
+<p>The VR Base Station loads STL CAD files of a Formula Student race car, displays them in a 3D viewport with a tree-organised list of editable parts, and launches a VR session that mirrors the model in a virtual environment. Users can change colours, toggle visibility, apply shrink and clip filters, and trigger an explode-view animation. Changes update live in VR without restarting the headset.</p>
 <h1><a class="anchor" id="autotoc_md17"></a>
 Features</h1>
 <ul>
@@ -158,11 +158,11 @@ Building from source</h1>
 </div><!-- fragment --><p>Requirements: Visual Studio 2022 or later, Qt 6.10+, VTK 9 with OpenVR support, OpenVR SDK, CMake 3.20+.</p>
 <h1><a class="anchor" id="autotoc_md19"></a>
 Architecture</h1>
-<p>The application uses two parallel VTK render pipelines — one for the GUI viewport (main thread) and one for the VR headset (dedicated thread). Each <code><a class="el" href="classModelPart.html">ModelPart</a></code> owns separate actors for each renderer, since VTK actors cannot be shared between renderers. Cross-thread communication uses a mutex-protected command queue inside <code><a class="el" href="classVRRenderThread.html">VRRenderThread</a></code>.</p>
+<p>The application uses two parallel VTK render pipelines: one for the GUI viewport on the main thread, and one for the VR headset on a dedicated thread. Each <code><a class="el" href="classModelPart.html">ModelPart</a></code> owns separate actors for each renderer, since VTK actors cannot be shared between renderers. Cross-thread communication uses a mutex-protected command queue inside <code><a class="el" href="classVRRenderThread.html">VRRenderThread</a></code>.</p>
 <p>For full architectural detail see the <a href="https://2025-group-1.github.io/2025_GROUP_1/">generated documentation</a>.</p>
 <h1><a class="anchor" id="autotoc_md20"></a>
 Team</h1>
-<p>EEEE2076 Group 1 — University of Nottingham, Spring 2026.</p>
+<p>EEEE2076 Group 1, University of Nottingham, Spring 2026.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Role   </th><th class="markdownTableHeadNone">Member    </th></tr>
