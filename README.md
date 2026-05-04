@@ -25,7 +25,7 @@ those changes update live in VR without restarting the headset.
 ## Building from source
 
 ```bash
-git clone https://github.com/senthil-zzz/2025_GROUP_1.git
+git clone https://github.com/2025-GROUP-1/2025_GROUP_1.git
 cd 2025_GROUP_1
 cmake -B build -G "Visual Studio 17 2022" -A x64 \
     -DCMAKE_PREFIX_PATH="C:/Qt/6.10.2/msvc2022_64;C:/path/to/VTK"
@@ -44,7 +44,7 @@ actors cannot be shared between renderers. Cross-thread communication
 uses a mutex-protected command queue inside `VRRenderThread`.
 
 For full architectural detail see the
-[generated documentation](https://senthil-zzz.github.io/2025_GROUP_1/).
+[generated documentation](https://2025-group-1.github.io/2025_GROUP_1/).
 
 ## Team
 
@@ -52,10 +52,10 @@ EEEE2076 Group 1 — University of Nottingham, Spring 2026.
 
 | Role | Member |
 |------|--------|
-| GUI & Interaction Lead | Joe |
+| GUI & Installer Co-Lead | Ashvath |
+| GUI & Installer Co-Lead | Joseph |
 | VTK & VR Threading Lead | Senthil |
-| Data Model & STL Pipeline Lead | Hamza |
-| Build, Docs & Release Lead | Ash |
+| Documentation, Doxygen & Build Lead | Hamza |
 
 ## Licence
 
