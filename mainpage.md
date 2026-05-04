@@ -24,6 +24,15 @@
 </div>
 @endhtmlonly
 
+@htmlonly
+<div class="vr-badge-row">
+  <a class="vr-badge" href="https://github.com/2025-GROUP-1/2025_GROUP_1"><span>Repo</span> GitHub</a>
+  <a class="vr-badge" href="https://github.com/2025-GROUP-1/2025_GROUP_1/actions"><span>Build</span> Actions</a>
+  <a class="vr-badge" href="classes.html"><span>Docs</span> Class index</a>
+  <a class="vr-badge" href="files.html"><span>Source</span> File browser</a>
+</div>
+@endhtmlonly
+
 ## Overview {#overview}
 
 The **VR Base Station** loads STL mesh files of a Formula Student race car, displays them in a
@@ -157,22 +166,72 @@ decision, and the explode animation, see the [How It Works](@ref how_it_works) p
 
 ## Building from Source {#build}
 
-    git clone https://github.com/2025-GROUP-1/2025_GROUP_1.git
-    cd 2025_GROUP_1
-    cmake -B build -G "Visual Studio 17 2022" -A x64 ^
-        -DCMAKE_PREFIX_PATH="C:/Qt/6.10.2/msvc2022_64;C:/path/to/VTK"
-    cmake --build build --config Release
+@htmlonly
+<div class="vr-quickstart">
+  <div class="vr-quickstart-header">
+    <div>
+      <h3>Quick Start</h3>
+      <p>Clone, configure and build the Windows desktop app.</p>
+    </div>
+    <a class="vr-button" href="https://github.com/2025-GROUP-1/2025_GROUP_1">Open repo</a>
+  </div>
+  <div class="vr-command-list">
+    <div class="vr-command">
+      <span class="vr-command-label">Clone</span>
+      <code>git clone https://github.com/2025-GROUP-1/2025_GROUP_1.git</code>
+      <button class="vr-copy-button" data-copy="git clone https://github.com/2025-GROUP-1/2025_GROUP_1.git">Copy</button>
+    </div>
+    <div class="vr-command">
+      <span class="vr-command-label">Configure</span>
+      <code>cmake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH="C:/Qt/6.10.2/msvc2022_64;C:/path/to/VTK"</code>
+      <button class="vr-copy-button" data-copy='cmake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH="C:/Qt/6.10.2/msvc2022_64;C:/path/to/VTK"'>Copy</button>
+    </div>
+    <div class="vr-command">
+      <span class="vr-command-label">Build</span>
+      <code>cmake --build build --config Release</code>
+      <button class="vr-copy-button" data-copy="cmake --build build --config Release">Copy</button>
+    </div>
+  </div>
+</div>
 
-**Requirements:** Visual Studio 2022+, Qt 6.10+, VTK 9 with OpenVR support, OpenVR SDK, CMake 3.20+.
+<div class="vr-callout-grid">
+  <div class="vr-callout">
+    <h3>Requirements</h3>
+    <p>Visual Studio 2022+, Qt 6.10+, VTK 9 with OpenVR support, OpenVR SDK and CMake 3.20+.</p>
+  </div>
+  <div class="vr-callout">
+    <h3>VR hardware note</h3>
+    <p>The VR path targets OpenVR and the HTC Vive Pro 2 setup used for the project demo.</p>
+  </div>
+</div>
+@endhtmlonly
 
 ## Team {#team}
 
-| Role | Member |
-|------|--------|
-| GUI & Installer Co-Lead | Ashvath |
-| GUI & Installer Co-Lead | Joseph |
-| VTK & VR Threading Lead | Senthil |
-| Documentation, Doxygen & Build Lead | Hamza |
+@htmlonly
+<div class="vr-team-grid">
+  <div class="vr-team-card">
+    <strong>Ashvath</strong>
+    <div class="vr-team-role">GUI &amp; Installer Co-Lead</div>
+    <p>Worked on the Qt interface, installer packaging and user-facing controls.</p>
+  </div>
+  <div class="vr-team-card">
+    <strong>Joseph</strong>
+    <div class="vr-team-role">GUI &amp; Installer Co-Lead</div>
+    <p>Integrated GUI behaviour with rendering updates and helped polish the app workflow.</p>
+  </div>
+  <div class="vr-team-card">
+    <strong>Senthil</strong>
+    <div class="vr-team-role">VTK &amp; VR Threading Lead</div>
+    <p>Led the VR render thread, OpenVR setup and headset-side interaction pipeline.</p>
+  </div>
+  <div class="vr-team-card">
+    <strong>Hamza</strong>
+    <div class="vr-team-role">Documentation, Doxygen &amp; Build Lead</div>
+    <p>Owned the documentation site, Doxygen setup and build/deployment workflow.</p>
+  </div>
+</div>
+@endhtmlonly
 
 ## Licence
 

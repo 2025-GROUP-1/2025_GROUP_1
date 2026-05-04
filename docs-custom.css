@@ -21,6 +21,75 @@ html.dark-mode {
   --vr-soft: rgba(0, 180, 160, 0.10);
 }
 
+body {
+  scroll-behavior: smooth;
+}
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--vr-teal);
+  transform: scaleX(0);
+  transform-origin: left center;
+  z-index: 60;
+}
+
+#back-to-top {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  min-width: 44px;
+  height: 36px;
+  border: 1px solid var(--vr-panel-border);
+  border-radius: 8px;
+  background: var(--page-background-color);
+  color: var(--primary-dark-color);
+  box-shadow: var(--box-shadow);
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 140ms ease, transform 140ms ease;
+  z-index: 30;
+}
+
+#back-to-top.visible {
+  opacity: 0.94;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+#back-to-top:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+#search-hint {
+  color: var(--page-secondary-foreground-color);
+  font-size: 11px;
+  margin: 6px 0 2px;
+  padding-left: 4px;
+}
+
+#vr-footer-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-left: 12px;
+}
+
+#vr-footer-links a,
+#vr-footer-links span {
+  color: var(--page-secondary-foreground-color) !important;
+}
+
+#vr-footer-links a:hover {
+  color: var(--primary-color) !important;
+}
+
 #vr-brand-bar {
   display: flex;
   align-items: center;
@@ -221,7 +290,8 @@ html.sidebar-collapsed #container {
 }
 
 .vr-button,
-.vr-chip {
+.vr-chip,
+.vr-copy-button {
   border-radius: 6px;
   display: inline-flex;
   align-items: center;
@@ -243,6 +313,32 @@ html.sidebar-collapsed #container {
   border: 1px solid rgba(255, 255, 255, 0.24);
 }
 
+.vr-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 28px;
+}
+
+.vr-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  border: 1px solid var(--vr-panel-border);
+  border-radius: 8px;
+  background: var(--vr-panel);
+  padding: 0 12px;
+  color: var(--page-foreground-color) !important;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.vr-badge span {
+  color: var(--page-secondary-foreground-color);
+  font-weight: 600;
+}
+
 .vr-chip {
   padding: 0 10px;
   color: #ddfffb;
@@ -253,7 +349,8 @@ html.sidebar-collapsed #container {
 
 .vr-card-grid,
 .vr-stat-grid,
-.vr-flow {
+.vr-flow,
+.vr-team-grid {
   display: grid;
   gap: 14px;
   margin: 16px 0 26px;
@@ -269,6 +366,121 @@ html.sidebar-collapsed #container {
 
 .vr-flow {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.vr-quickstart {
+  border: 1px solid var(--vr-panel-border);
+  border-radius: 8px;
+  background: var(--vr-panel);
+  margin: 16px 0 24px;
+  overflow: hidden;
+}
+
+.vr-quickstart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid var(--separator-color);
+}
+
+.vr-quickstart-header h3 {
+  margin: 0;
+}
+
+.vr-quickstart-header p {
+  margin: 4px 0 0;
+}
+
+.vr-command-list {
+  display: grid;
+  gap: 1px;
+  background: var(--separator-color);
+}
+
+.vr-command {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  background: var(--page-background-color);
+  padding: 12px 16px;
+}
+
+.vr-command-label {
+  color: var(--page-secondary-foreground-color);
+  font-weight: 700;
+}
+
+.vr-command code {
+  white-space: normal;
+}
+
+.vr-copy-button {
+  min-height: 30px;
+  border: 1px solid var(--separator-color);
+  background: var(--vr-soft);
+  color: var(--primary-dark-color);
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0 10px;
+}
+
+.vr-copy-button:hover {
+  border-color: var(--primary-color);
+}
+
+.vr-callout-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 16px 0 24px;
+}
+
+.vr-callout {
+  border: 1px solid var(--vr-panel-border);
+  border-left: 4px solid var(--primary-color);
+  border-radius: 8px;
+  background: var(--vr-panel);
+  padding: 15px 16px;
+}
+
+.vr-callout h3 {
+  margin: 0 0 8px;
+}
+
+.vr-callout p,
+.vr-callout ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.vr-team-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.vr-team-card {
+  border: 1px solid var(--vr-panel-border);
+  border-radius: 8px;
+  background: var(--vr-panel);
+  padding: 16px;
+}
+
+.vr-team-card strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.vr-team-role {
+  color: var(--primary-dark-color);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.vr-team-card p {
+  margin: 0;
 }
 
 .vr-card,
@@ -324,8 +536,14 @@ table.markdownTable {
 
   .vr-card-grid,
   .vr-stat-grid,
-  .vr-flow {
+  .vr-flow,
+  .vr-team-grid,
+  .vr-callout-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vr-command {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -348,7 +566,9 @@ table.markdownTable {
 
   .vr-card-grid,
   .vr-stat-grid,
-  .vr-flow {
+  .vr-flow,
+  .vr-team-grid,
+  .vr-callout-grid {
     grid-template-columns: 1fr;
   }
 }
