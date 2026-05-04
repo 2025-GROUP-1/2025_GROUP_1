@@ -1,9 +1,5 @@
-/**
- * @file rendering.h
- *
- * This file contains no compiled code. It exists solely to define the
- * @ref rendering group so that VRRenderThread (integrated post-merge) and
- * any future VTK helper classes can be documented under this module.
+/** @file rendering.h
+ *  @brief Doxygen group definition for the VTK & VR Rendering module (no compiled code).
  */
 
 /**
@@ -16,6 +12,4 @@
  * updates via a mutex-protected command queue.  Each ModelPart owns
  * separate actors for the GUI renderer and the VR renderer because VTK
  * actors cannot be shared between render windows.
- *
- * @see data_model, how_it_works
  */

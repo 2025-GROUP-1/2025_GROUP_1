@@ -1,4 +1,6 @@
-// entry point - sets up OpenGL surface format and launches the main window
+/** @file main.cpp
+ *  @brief Application entry point — sets up OpenGL and launches the main window.
+ */
 
 #include "mainwindow.h"
 

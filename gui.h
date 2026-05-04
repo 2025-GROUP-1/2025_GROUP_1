@@ -1,4 +1,6 @@
-// doxygen group definition for the GUI module (no compiled code)
+/** @file gui.h
+ *  @brief Doxygen group definition for the Qt GUI module (no compiled code).
+ */
 
 /**
  * @defgroup gui Qt GUI
@@ -6,6 +8,4 @@
  *
  * Covers the main window (MainWindow), the per-part property editor
  * (OptionDialog), stylesheet theming, and all toolbar/menu actions.
- *
- * @see data_model, rendering
  */

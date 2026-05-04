@@ -1,4 +1,6 @@
-// dialog for editing a single part's properties (name, colour, visibility, filters)
+/** @file optiondialog.h
+ *  @brief Declares OptionDialog — modal editor for part name, colour, visibility, and filters.
+ */
 
 #ifndef OPTIONDIALOG_H
 #define OPTIONDIALOG_H
@@ -8,10 +10,12 @@
 
 #include "ModelPart.h"
 
+/** @brief Auto-generated UI namespace — holds the form classes created by Qt Designer. */
 namespace Ui {
     class OptionDialog;
 }
 
+/** @brief Modal dialog for editing a single part's name, colour, visibility, and filters. */
 class OptionDialog : public QDialog {
     Q_OBJECT
 

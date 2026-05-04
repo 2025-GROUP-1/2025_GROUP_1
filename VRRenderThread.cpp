@@ -1,4 +1,6 @@
-// VR render thread implementation - OpenVR setup, custom interactor, ray casting, in-VR menu
+/** @file VRRenderThread.cpp
+ *  @brief VRRenderThread implementation — OpenVR setup, custom interactor, ray casting, in-VR menu.
+ */
 
 #include "VRRenderThread.h"
 #include <QMutexLocker>
@@ -35,13 +37,7 @@
 #include <vtkMatrix3x3.h>
 #include <vtkMath.h>
 
-// ---------------------------------------------------------------------------
-// custom VR interactor style
-// - blocks VTK's built-in probe/clip/exit menu
-// - fires a UserEvent instead so our menu callback gets it
-// - kills VTK's default red rays (we draw our own)
-// - inverts dolly direction so trackpad-up = push away
-// ---------------------------------------------------------------------------
+/** @brief Custom VR interactor — blocks VTK's built-in menu, kills default rays, inverts dolly. */
 class VRCustomStyle : public vtkOpenVRInteractorStyle {
 public:
     static VRCustomStyle* New();
@@ -98,10 +94,7 @@ public:
 };
 vtkStandardNewMacro(VRCustomStyle);
 
-// ---------------------------------------------------------------------------
-// controller ray + outline highlight
-// each controller gets a coloured ray and an outline box around hovered actors
-// ---------------------------------------------------------------------------
+/** @brief Per-controller state — coloured ray line and outline box around hovered actors. */
 struct ControllerRay {
     vtkNew<vtkCellPicker>      picker;
     vtkNew<vtkLineSource>      rayLine;
@@ -198,7 +191,7 @@ struct ControllerRay {
     }
 };
 
-// handles Move3D events and updates both controller rays each frame
+/** @brief VTK callback that updates both controller rays on each Move3D event. */
 class VRRayCallback : public vtkCommand {
 public:
     static VRRayCallback* New() { return new VRRayCallback; }
@@ -246,10 +239,7 @@ private:
     static constexpr double MAX_RAY = 10000.0;   // ray length in mm
 };
 
-// ---------------------------------------------------------------------------
-// in-VR editing menu
-// shows coloured buttons above a hovered part for clip/shrink/colour changes
-// ---------------------------------------------------------------------------
+/** @brief In-VR editing menu — shows coloured buttons above a hovered part for clip/shrink/colour. */
 struct VRMenu {
     enum Action { Clip, Shrink, ColRed, ColGreen, ColBlue, ColYellow, ColWhite, NUM_ACTIONS };
 
@@ -350,7 +340,7 @@ struct VRMenu {
     bool isMenuActor(vtkActor* a) const { return findButton(a) >= 0; }
 };
 
-// handles menu button presses - fires when the user hits the menu button on the controller
+/** @brief VTK callback for menu button presses — opens/closes the in-VR menu and runs actions. */
 class VRMenuCallback : public vtkCommand {
 public:
     static VRMenuCallback* New() { return new VRMenuCallback; }

@@ -1,4 +1,6 @@
-// main application window - parts browser, 3D viewport, properties panel, VR controls
+/** @file mainwindow.h
+ *  @brief Main application window — parts browser, 3D viewport, properties panel, VR controls.
+ */
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
@@ -17,9 +19,11 @@
 #include <vtkSkybox.h>
 
 QT_BEGIN_NAMESPACE
+/** @brief Auto-generated UI namespace — holds the form classes created by Qt Designer. */
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+/** @brief Top-level window — owns the renderer, tree view, properties panel, and VR thread. */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

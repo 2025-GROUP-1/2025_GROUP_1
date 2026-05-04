@@ -1,4 +1,6 @@
-// implements the tree model - handles insert/remove and maps rows to ModelPart pointers
+/** @file ModelPartList.cpp
+ *  @brief ModelPartList implementation — insert, remove, lookup, and Qt model interface.
+ */
 
 #include "ModelPartList.h"
 

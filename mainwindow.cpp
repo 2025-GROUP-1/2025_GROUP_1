@@ -1,4 +1,6 @@
-// main window - sets up the UI, renderer, themes, and handles all toolbar/menu actions
+/** @file mainwindow.cpp
+ *  @brief MainWindow implementation — UI setup, theming, toolbar actions, VR lifecycle.
+ */
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
