@@ -40,6 +40,5 @@ var searchData=
   ['modelpart_2eh_37',['ModelPart.h',['../ModelPart_8h.html',1,'']]],
   ['modelpartlist_38',['modelpartlist',['../classModelPartList.html#ab78590b83bc1a7a05636efd7f29a7862',1,'ModelPartList::ModelPartList()'],['../classModelPartList.html',1,'ModelPartList']]],
   ['modelpartlist_2ecpp_39',['ModelPartList.cpp',['../ModelPartList_8cpp.html',1,'']]],
-  ['modelpartlist_2eh_40',['ModelPartList.h',['../ModelPartList_8h.html',1,'']]],
-  ['module_41',['for the VTK &amp; VR Rendering module.',['../group__entry.html',1,'']]]
+  ['modelpartlist_2eh_40',['ModelPartList.h',['../ModelPartList_8h.html',1,'']]]
 ];

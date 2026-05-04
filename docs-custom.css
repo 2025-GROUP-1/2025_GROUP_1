@@ -68,12 +68,12 @@ body {
 }
 
 #vr-site-footer {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 10px 14px;
   width: 100%;
   box-sizing: border-box;
-  margin: 32px 0 8px;
+  margin: 34px 0 8px;
   padding: 16px 0 0;
   border-top: 1px solid var(--separator-color);
 }
@@ -81,6 +81,7 @@ body {
 #vr-site-footer a,
 #vr-site-footer span {
   color: var(--page-secondary-foreground-color) !important;
+  text-decoration: none;
 }
 
 #vr-site-footer a:hover {
@@ -186,6 +187,8 @@ body {
 .theme-toggle-slot doxygen-awesome-dark-mode-toggle {
   margin: 0;
   padding: 0;
+  position: static !important;
+  transform: none !important;
 }
 
 #MSearchField {
@@ -591,11 +594,72 @@ table.markdownTable {
   }
 
   #vr-brand-bar {
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 0;
+    padding: 8px 12px;
+    position: relative;
+  }
+
+  #vr-brand-bar .brand-logo {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+
+  #vr-brand-bar .brand-title {
+    flex: 1 1 auto;
+    min-width: 150px;
+  }
+
+  .brand-actions {
+    order: 2;
+    width: 100%;
+    margin-left: 0;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .theme-toggle-slot {
+    margin-left: auto;
+  }
+
+  .theme-toggle-slot doxygen-awesome-dark-mode-toggle {
+    flex: 0 0 34px;
+    position: static !important;
+    transform: none !important;
+  }
+
+  #top {
+    height: auto !important;
+    margin-bottom: 0 !important;
+    max-width: none !important;
+    overflow: visible !important;
+  }
+
+  #titlearea {
     padding: 8px 12px;
   }
 
+  label.main-menu-btn ~ #searchBoxPos1 {
+    display: flex !important;
+    left: auto !important;
+    position: static !important;
+    right: auto !important;
+    top: auto !important;
+    width: 100%;
+  }
+
+  #MSearchBox {
+    flex: 1 1 auto !important;
+    margin: 0 !important;
+    min-width: 0;
+    width: auto !important;
+  }
+
   #MSearchField {
-    width: calc(100vw - 126px) !important;
+    width: calc(100vw - 138px) !important;
   }
 
   .vr-hero {
@@ -620,10 +684,6 @@ table.markdownTable {
 
   #sidebar-toggle {
     display: none;
-  }
-
-  .brand-actions {
-    gap: 6px;
   }
 
   .brand-link {

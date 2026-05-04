@@ -141,13 +141,20 @@
     var content = document.querySelector("#doc-content .contents");
     if (!content) return;
 
-    var target = content.querySelector(".textblock") || content;
     var footer = document.getElementById("vr-site-footer");
+    var isAuthoredDocsPage = content.querySelector(".vr-hero, .vr-page-heading");
+
+    if (!isAuthoredDocsPage) {
+      if (footer) footer.remove();
+      return;
+    }
+
+    var target = content.querySelector(".textblock") || content;
 
     if (!footer) {
       footer = document.createElement("div");
       footer.id = "vr-site-footer";
-      footer.innerHTML = '<a href="https://github.com/2025-GROUP-1/2025_GROUP_1">Repository</a><span>Docs v1.1.0</span><span>EEEE2076 Group 1</span>';
+      footer.innerHTML = '<a href="https://github.com/2025-GROUP-1/2025_GROUP_1">Repository</a><a href="index.html">Overview</a><a href="classes.html">Classes</a><a href="files.html">Files</a><span>Docs v1.1.0</span><span>EEEE2076 Group 1</span>';
     }
 
     if (footer.parentElement !== target) {

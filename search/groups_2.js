@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gui_0',['Qt GUI',['../group__gui.html',1,'']]]
+  ['model_0',['Data Model',['../group__data__model.html',1,'']]]
 ];

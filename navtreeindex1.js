@@ -1,6 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"structControllerRay.html#a087fdcadc3c64d4f6d45d0a693bceb4e":[11,0,1,5],
 "structControllerRay.html#a164774596165a8fd1df208109bb36867":[11,0,1,0],
 "structControllerRay.html#a3265e22e12783bb0680bb8db09607ab0":[11,0,1,7],
 "structControllerRay.html#a41003e156af44a37c40e54eb288cfe36":[11,0,1,3],

@@ -206,7 +206,6 @@ var NAVTREEINDEX0 =
 "globals_func.html":[12,1,1],
 "globals_vars.html":[12,1,2],
 "group__data__model.html":[9,0],
-"group__entry.html":[9,3],
 "group__gui.html":[9,1],
 "group__rendering.html":[9,2],
 "gui_8h.html":[12,0,2],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "structCommandPacket.html#a76888a6f02af6f331c3c7992d0d55c22":[11,0,0,2],
 "structCommandPacket.html#ae731eeaf73432df90f975ae47d479246":[11,0,0,3],
 "structCommandPacket.html#af88ddaa6fe5f223689a39f6d043014b9":[11,0,0,0],
-"structControllerRay.html":[11,0,1]
+"structControllerRay.html":[11,0,1],
+"structControllerRay.html#a087fdcadc3c64d4f6d45d0a693bceb4e":[11,0,1,5]
 };
