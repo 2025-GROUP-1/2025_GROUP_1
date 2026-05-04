@@ -19,6 +19,9 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: doxygen Doxyfile
 
+      - name: Disable Jekyll for GitHub Pages
+        run: touch ${{ github.workspace }}/html/.nojekyll
+
       - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4.6.1
         with:
