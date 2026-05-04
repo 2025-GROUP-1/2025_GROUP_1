@@ -99,7 +99,7 @@ decision, and the explode animation — see the [How It Works](@ref how_it_works
 
 | Role | Member |
 |------|--------|
-| GUI & Installer Lead | Ashvath |
+| GUI & Installer Co-Lead | Ashvath |
 | GUI & Installer Co-Lead | Joseph |
 | VTK & VR Threading Lead | Senthil |
 | Documentation, Doxygen & Build Lead | Hamza |
