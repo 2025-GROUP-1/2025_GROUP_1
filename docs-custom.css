@@ -151,14 +151,7 @@ h2.groupheader {
 }
 
 #nav-sync {
-  bottom: 12px !important;
-  top: auto !important;
-  right: 12px !important;
-  opacity: 0.72;
-}
-
-#nav-sync:hover {
-  opacity: 1;
+  display: none !important;
 }
 
 html.sidebar-collapsed #side-nav,
