@@ -1,7 +1,4 @@
-/**
- * @file mainwindow.cpp
- * @brief Implementation of MainWindow including theming, toggle switches and explode view.
- */
+// main window - sets up the UI, renderer, themes, and handles all toolbar/menu actions
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -13,15 +10,22 @@
 #include <QColorDialog>
 #include <QMessageBox>
 #include <QItemSelectionModel>
+#include <QProgressDialog>
+#include <QFutureWatcher>
+#include <QEventLoop>
+#include <QtConcurrent>
+
+#include <vtkSTLReader.h>
 
 #include <vtkRenderer.h>
 #include <vtkGenericOpenGLRenderWindow.h>
 #include <vtkActor.h>
 #include <vtkCamera.h>
+#include <vtkSkybox.h>
 
- // ===========================================================================
- // Stylesheets
- // ===========================================================================
+// ===========================================================================
+// dark theme stylesheet
+// ===========================================================================
 
 static const char* DARK_QSS = R"qss(
 * {
@@ -86,6 +90,10 @@ QPushButton#buttonExitVR {
     background-color: #c54848; border-color: #c54848; color: white; font-weight: 600;
 }
 QPushButton#buttonExitVR:hover { background-color: #d85757; }
+QPushButton#buttonEnablePassthrough {
+    background-color: #3976c8; border-color: #3976c8; color: white; font-weight: 600;
+}
+QPushButton#buttonEnablePassthrough:hover { background-color: #4686db; }
 QTreeView {
     background-color: #1e1f24;
     border: 1px solid #34373f;
@@ -114,7 +122,7 @@ QSlider::handle:horizontal {
 QSlider::handle:horizontal:hover { background: #20b88a; }
 QSlider::sub-page:horizontal { background: #1aa179; border-radius: 2px; }
 
-/* Default checkbox (small square tick) */
+/* default checkbox (small square tick) */
 QCheckBox::indicator {
     width: 18px; height: 18px;
     border: 1px solid #4a4e58;
@@ -126,68 +134,52 @@ QCheckBox::indicator:checked{
     background-color: #1aa179; border-color: #1aa179;
 }
 
-/* iOS-style toggle switches: pill shape, accent fill when on */
-QCheckBox#checkShowPart::indicator,
-QCheckBox#toggleShrink::indicator,
-QCheckBox#toggleClip::indicator {
-    width: 44px; height: 22px;
+/* iOS-style toggle switches for show/shrink/clip/theme */
+QCheckBox#checkShowPart, QCheckBox#toggleShrink, QCheckBox#toggleClip, QCheckBox#themeToggle {
+    min-width: 44px; max-width: 44px;
+    min-height: 22px; max-height: 22px;
     border-radius: 11px;
     border: 1px solid #4a4e58;
     background-color: #34373f;
+    padding: 0px;
 }
-QCheckBox#checkShowPart::indicator:hover,
-QCheckBox#toggleShrink::indicator:hover,
-QCheckBox#toggleClip::indicator:hover {
+QCheckBox#checkShowPart:hover, QCheckBox#toggleShrink:hover, QCheckBox#toggleClip:hover, QCheckBox#themeToggle:hover {
     border-color: #5b606b;
 }
-QCheckBox#checkShowPart::indicator:checked,
-QCheckBox#toggleShrink::indicator:checked,
-QCheckBox#toggleClip::indicator:checked {
+QCheckBox#checkShowPart:checked, QCheckBox#toggleShrink:checked, QCheckBox#toggleClip:checked, QCheckBox#themeToggle:checked {
     background-color: #1aa179;
     border-color: #1aa179;
 }
-
-QLineEdit, QSpinBox {
-    background-color: #1e1f24;
-    border: 1px solid #4a4e58;
-    border-radius: 4px;
-    padding: 4px 6px;
-    selection-background-color: #1aa179;
-}
-QMenuBar {
-    background-color: #25272d;
-    border-bottom: 1px solid #34373f;
-}
-QMenuBar::item:selected { background-color: #3a3d46; }
-QMenu {
-    background-color: #25272d;
-    border: 1px solid #34373f;
-    padding: 4px;
-}
-QMenu::item { padding: 6px 24px; border-radius: 3px; }
-QMenu::item:selected { background-color: #1aa179; color: white; }
-QToolBar {
-    background-color: #25272d;
+/* sliding white thumb */
+QCheckBox#checkShowPart::indicator, QCheckBox#toggleShrink::indicator, QCheckBox#toggleClip::indicator, QCheckBox#themeToggle::indicator {
+    width: 18px; height: 18px;
+    border-radius: 9px;
+    background-color: #e6e8eb;
     border: none;
-    spacing: 4px;
-    padding: 4px;
 }
-QToolButton {
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    padding: 4px 8px;
+/* thumb left (unchecked) */
+QCheckBox#checkShowPart::indicator:unchecked, QCheckBox#toggleShrink::indicator:unchecked, QCheckBox#toggleClip::indicator:unchecked, QCheckBox#themeToggle::indicator:unchecked {
+    margin-left: 2px;
 }
-QToolButton:hover  { background-color: #3a3d46; border-color: #4a4e58; }
-QToolButton:pressed{ background-color: #2f3138; }
-QStatusBar {
-    background-color: #25272d;
-    border-top: 1px solid #34373f;
-    color: #b8bcc6;
+/* thumb right (checked) */
+QCheckBox#checkShowPart::indicator:checked, QCheckBox#toggleShrink::indicator:checked, QCheckBox#toggleClip::indicator:checked, QCheckBox#themeToggle::indicator:checked {
+    margin-left: 24px;
 }
-QSplitter::handle { background-color: #34373f; }
+QSplitter {
+    background: transparent;
+    border: none;
+}
+QSplitter::handle {
+    background-color: #34373f;
+    image: none;
+}
 QSplitter::handle:hover { background-color: #1aa179; }
+
 )qss";
+
+// ===========================================================================
+// light theme stylesheet
+// ===========================================================================
 
 static const char* LIGHT_QSS = R"qss(
 * {
@@ -252,6 +244,10 @@ QPushButton#buttonExitVR {
     background-color: #c54848; border-color: #c54848; color: white; font-weight: 600;
 }
 QPushButton#buttonExitVR:hover { background-color: #d85757; }
+QPushButton#buttonEnablePassthrough {
+    background-color: #3976c8; border-color: #3976c8; color: white; font-weight: 600;
+}
+QPushButton#buttonEnablePassthrough:hover { background-color: #4686db; }
 QTreeView {
     background-color: #ffffff;
     border: 1px solid #d8dbe0;
@@ -280,7 +276,7 @@ QSlider::handle:horizontal {
 QSlider::handle:horizontal:hover { background: #20b88a; }
 QSlider::sub-page:horizontal { background: #1aa179; border-radius: 2px; }
 
-/* Default checkbox */
+/* default checkbox */
 QCheckBox::indicator {
     width: 18px; height: 18px;
     border: 1px solid #c8ccd2;
@@ -293,69 +289,49 @@ QCheckBox::indicator:checked{
 }
 
 /* iOS-style toggle switches */
-QCheckBox#checkShowPart::indicator,
-QCheckBox#toggleShrink::indicator,
-QCheckBox#toggleClip::indicator {
-    width: 44px; height: 22px;
+QCheckBox#checkShowPart, QCheckBox#toggleShrink, QCheckBox#toggleClip, QCheckBox#themeToggle {
+    min-width: 44px; max-width: 44px;
+    min-height: 22px; max-height: 22px;
     border-radius: 11px;
     border: 1px solid #c8ccd2;
     background-color: #e0e3e7;
+    padding: 0px;
 }
-QCheckBox#checkShowPart::indicator:hover,
-QCheckBox#toggleShrink::indicator:hover,
-QCheckBox#toggleClip::indicator:hover {
+QCheckBox#checkShowPart:hover, QCheckBox#toggleShrink:hover, QCheckBox#toggleClip:hover, QCheckBox#themeToggle:hover {
     border-color: #b8bcc6;
 }
-QCheckBox#checkShowPart::indicator:checked,
-QCheckBox#toggleShrink::indicator:checked,
-QCheckBox#toggleClip::indicator:checked {
+QCheckBox#checkShowPart:checked, QCheckBox#toggleShrink:checked, QCheckBox#toggleClip:checked, QCheckBox#themeToggle:checked {
     background-color: #1aa179;
     border-color: #1aa179;
 }
-
-QLineEdit, QSpinBox {
-    background-color: #ffffff;
-    border: 1px solid #c8ccd2;
-    border-radius: 4px;
-    padding: 4px 6px;
-    selection-background-color: #1aa179;
-}
-QMenuBar {
-    background-color: #ffffff;
-    border-bottom: 1px solid #d8dbe0;
-}
-QMenuBar::item:selected { background-color: #f0f2f4; }
-QMenu {
-    background-color: #ffffff;
-    border: 1px solid #d8dbe0;
-    padding: 4px;
-}
-QMenu::item { padding: 6px 24px; border-radius: 3px; }
-QMenu::item:selected { background-color: #1aa179; color: white; }
-QToolBar {
+/* sliding white thumb */
+QCheckBox#checkShowPart::indicator, QCheckBox#toggleShrink::indicator, QCheckBox#toggleClip::indicator, QCheckBox#themeToggle::indicator {
+    width: 18px; height: 18px;
+    border-radius: 9px;
     background-color: #ffffff;
     border: none;
-    spacing: 4px;
-    padding: 4px;
-    border-bottom: 1px solid #d8dbe0;
 }
-QToolButton {
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    padding: 4px 8px;
+/* thumb left (unchecked) */
+QCheckBox#checkShowPart::indicator:unchecked, QCheckBox#toggleShrink::indicator:unchecked, QCheckBox#toggleClip::indicator:unchecked, QCheckBox#themeToggle::indicator:unchecked {
+    margin-left: 2px;
 }
-QToolButton:hover  { background-color: #f0f2f4; border-color: #c8ccd2; }
-QToolButton:pressed{ background-color: #e6e8eb; }
-QStatusBar {
-    background-color: #ffffff;
-    border-top: 1px solid #d8dbe0;
-    color: #4a4e58;
+/* thumb right (checked) */
+QCheckBox#checkShowPart::indicator:checked, QCheckBox#toggleShrink::indicator:checked, QCheckBox#toggleClip::indicator:checked, QCheckBox#themeToggle::indicator:checked {
+    margin-left: 24px;
 }
-QSplitter::handle { background-color: #e0e3e7; }
+QSplitter {
+    background: transparent;
+    border: none;
+}
+QSplitter::handle {
+    background-color: #e0e3e7;
+    image: none;
+}
 QSplitter::handle:hover { background-color: #1aa179; }
 )qss";
 
+// ===========================================================================
+// constructor / destructor
 // ===========================================================================
 
 MainWindow::MainWindow(QWidget* parent)
@@ -366,6 +342,7 @@ MainWindow::MainWindow(QWidget* parent)
 {
     ui->setupUi(this);
 
+    // set up VTK renderer and render window inside the Qt widget
     renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
     ui->vtkWidget->setRenderWindow(renderWindow);
 
@@ -373,6 +350,7 @@ MainWindow::MainWindow(QWidget* parent)
     renderer->SetBackground(0.08, 0.08, 0.10);
     renderWindow->AddRenderer(renderer);
 
+    // headlight so parts are always lit from the camera direction
     light = vtkSmartPointer<vtkLight>::New();
     light->SetLightTypeToHeadlight();
     light->SetIntensity(0.8);
@@ -380,11 +358,13 @@ MainWindow::MainWindow(QWidget* parent)
 
     renderWindow->Render();
 
+    // parts tree model
     partList = new ModelPartList("PartsList");
     ui->treeView->setModel(partList);
     ui->treeView->addAction(ui->actionEdit_Part);
     ui->treeView->addAction(ui->actionDelete_Part);
 
+    // wire up signals
     connect(this, &MainWindow::statusUpdateMessage,
         ui->statusbar, &QStatusBar::showMessage);
     connect(ui->treeView, &QTreeView::clicked,
@@ -392,6 +372,7 @@ MainWindow::MainWindow(QWidget* parent)
     connect(ui->treeView->selectionModel(), &QItemSelectionModel::currentChanged,
         this, &MainWindow::onCurrentSelectionChanged);
 
+    // disable property controls until something is selected
     ui->buttonDiffuseColour->setEnabled(false);
     ui->checkShowPart->setEnabled(false);
     ui->toggleShrink->setEnabled(false);
@@ -400,13 +381,58 @@ MainWindow::MainWindow(QWidget* parent)
     applyTheme(Theme::Dark);
 
     emit statusUpdateMessage(tr("Ready"), 0);
+
+    // move theme toggle + VR buttons out of the toolbar to rearrange them
+    ui->toolBar->removeAction(ui->actionToggle_Theme);
+    ui->toolBar->removeAction(ui->actionEnter_VR);
+    ui->toolBar->removeAction(ui->actionExit_VR);
+    ui->toolBar->removeAction(ui->actionEnable_Passthrough);
+
+    // spacer pushes the theme toggle to the far right
+    QWidget* spacer = new QWidget();
+    spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    ui->toolBar->addWidget(spacer);
+
+    // theme toggle container (pill switch + label)
+    QWidget* themeContainer = new QWidget(this);
+    QHBoxLayout* themeLayout = new QHBoxLayout(themeContainer);
+    themeLayout->setContentsMargins(0, 0, 10, 0);
+    themeLayout->setSpacing(8);
+
+    QCheckBox* themeToggle = new QCheckBox(themeContainer);
+    themeToggle->setObjectName("themeToggle");
+    themeToggle->setCursor(Qt::PointingHandCursor);
+
+    QLabel* themeLabel = new QLabel("🌜 Dark Mode", themeContainer);
+    themeLabel->setMinimumWidth(100);
+    themeLabel->setStyleSheet("background: transparent; border: none; font-weight: 600;");
+
+    themeLayout->addWidget(themeToggle);
+    themeLayout->addWidget(themeLabel);
+    ui->toolBar->addWidget(themeContainer);
+
+    connect(themeToggle, &QCheckBox::toggled, this, [this, themeLabel](bool checked) {
+        applyTheme(checked ? Theme::Light : Theme::Dark);
+        themeLabel->setText(checked ? "🌞 Light Mode" : "🌜 Dark Mode");
+        emit statusUpdateMessage(checked ? tr("Switched to light mode") : tr("Switched to dark mode"), 0);
+        });
 }
 
 MainWindow::~MainWindow()
 {
+    if (m_vrThread && m_vrThread->isRunning()) {
+        m_vrThread->issueCommand(Command::EndRender, 0, QVariant());
+        m_vrThread->wait();
+    }
+    delete m_vrThread;
     delete ui;
 }
 
+// ===========================================================================
+// helpers
+// ===========================================================================
+
+// returns the part currently highlighted in the tree, or nullptr
 ModelPart* MainWindow::currentPart()
 {
     QModelIndex idx = ui->treeView->currentIndex();
@@ -414,6 +440,22 @@ ModelPart* MainWindow::currentPart()
         return nullptr;
     return static_cast<ModelPart*>(idx.internalPointer());
 }
+
+// returns all parts that are selected (for multi-select operations)
+QList<ModelPart*> MainWindow::selectedParts()
+{
+    QList<ModelPart*> parts;
+    for (const QModelIndex& idx : ui->treeView->selectionModel()->selectedIndexes()) {
+        if (idx.column() != 0) continue;
+        ModelPart* part = static_cast<ModelPart*>(idx.internalPointer());
+        if (part) parts.append(part);
+    }
+    return parts;
+}
+
+// ===========================================================================
+// theme
+// ===========================================================================
 
 void MainWindow::applyTheme(Theme theme)
 {
@@ -432,34 +474,12 @@ void MainWindow::applyTheme(Theme theme)
 
 void MainWindow::updateRender()
 {
-    renderer->RemoveAllViewProps();
-
-    int topLevelCount = partList->rowCount(QModelIndex());
-    for (int i = 0; i < topLevelCount; i++)
-        updateRenderFromTree(partList->index(i, 0, QModelIndex()));
-
-    renderer->AddLight(light);
     renderWindow->Render();
 }
 
-void MainWindow::updateRenderFromTree(const QModelIndex& index)
-{
-    if (index.isValid()) {
-        ModelPart* part = static_cast<ModelPart*>(index.internalPointer());
-        if (part) {
-            vtkSmartPointer<vtkActor> actor = part->getActor();
-            if (actor != nullptr)
-                renderer->AddActor(actor);
-        }
-    }
-
-    if (!partList->hasChildren(index) || (index.flags() & Qt::ItemNeverHasChildren))
-        return;
-
-    int rows = partList->rowCount(index);
-    for (int i = 0; i < rows; i++)
-        updateRenderFromTree(partList->index(i, 0, index));
-}
+// ===========================================================================
+// tree interaction
+// ===========================================================================
 
 void MainWindow::handleTreeClicked()
 {
@@ -469,6 +489,7 @@ void MainWindow::handleTreeClicked()
         tr("Selected: %1").arg(part->data(0).toString()), 0);
 }
 
+// updates the side panel controls when the selected part changes
 void MainWindow::onCurrentSelectionChanged(const QModelIndex& current, const QModelIndex& previous)
 {
     Q_UNUSED(previous);
@@ -484,6 +505,7 @@ void MainWindow::onCurrentSelectionChanged(const QModelIndex& current, const QMo
     ModelPart* part = static_cast<ModelPart*>(current.internalPointer());
     if (!part) return;
 
+    // block signals so we don't accidentally trigger toggle handlers
     ui->toggleShrink->blockSignals(true);
     ui->toggleClip->blockSignals(true);
     ui->checkShowPart->blockSignals(true);
@@ -497,10 +519,17 @@ void MainWindow::onCurrentSelectionChanged(const QModelIndex& current, const QMo
     ui->checkShowPart->blockSignals(false);
 }
 
-// ---------------------------------------------------------------------------
-// File / Tree
-// ---------------------------------------------------------------------------
+// ===========================================================================
+// file / tree actions
+// ===========================================================================
 
+void MainWindow::on_buttonSelectAll_clicked()
+{
+    ui->treeView->selectAll();
+    emit statusUpdateMessage(tr("All parts selected"), 0);
+}
+
+// imports a single STL file
 void MainWindow::on_actionImport_Mesh_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName(
@@ -511,9 +540,7 @@ void MainWindow::on_actionImport_Mesh_triggered()
     QModelIndex parent = ui->treeView->currentIndex();
     QFileInfo info(fileName);
 
-    QModelIndex newIndex = partList->appendChild(
-        parent, { info.fileName(), QString("true") });
-
+    QModelIndex newIndex = partList->appendChild(parent, { info.fileName(), QString("true") });
     ModelPart* newPart = static_cast<ModelPart*>(newIndex.internalPointer());
     if (!newPart) return;
 
@@ -523,55 +550,96 @@ void MainWindow::on_actionImport_Mesh_triggered()
         return;
     }
 
+    renderer->AddActor(newPart->getActor());
     ui->treeView->expand(parent);
     refreshExplodeDirections();
     applyExplodeToAll();
-    updateRender();
     renderer->ResetCamera();
     renderWindow->Render();
 
     emit statusUpdateMessage(tr("Imported: %1").arg(info.fileName()), 0);
 }
 
+// imports all STL files from a folder (parallel file I/O)
 void MainWindow::on_actionImport_Folder_triggered()
 {
-    QString dirPath = QFileDialog::getExistingDirectory(
-        this, tr("Import Folder of Meshes"));
+    QString dirPath = QFileDialog::getExistingDirectory(this, tr("Import Folder of Meshes"));
     if (dirPath.isEmpty()) return;
 
     QDir dir(dirPath);
-    QStringList stlFiles = dir.entryList(
-        QStringList() << "*.stl", QDir::Files, QDir::Name);
-
-    if (stlFiles.isEmpty()) {
-        emit statusUpdateMessage(tr("No STL meshes found in %1").arg(dirPath), 0);
+    QStringList fileNames = dir.entryList(QStringList() << "*.stl", QDir::Files, QDir::Name);
+    if (fileNames.isEmpty()) {
+        emit statusUpdateMessage(tr("No STL files found in %1").arg(dirPath), 0);
         return;
     }
 
-    QModelIndex parent = ui->treeView->currentIndex();
-    int loaded = 0;
+    // one reader per file, Update() runs in parallel for speed
+    struct LoadTask { QString fullPath; QString fileName; vtkSmartPointer<vtkSTLReader> reader; };
+    QVector<LoadTask> tasks;
+    tasks.reserve(fileNames.size());
+    for (const QString& f : fileNames)
+        tasks.append({ dir.absoluteFilePath(f), f, nullptr });
 
-    for (const QString& fileName : stlFiles) {
-        QString fullPath = dir.absoluteFilePath(fileName);
-        QModelIndex newIndex = partList->appendChild(
-            parent, { fileName, QString("true") });
-        ModelPart* newPart = static_cast<ModelPart*>(newIndex.internalPointer());
-        if (!newPart) continue;
-        if (newPart->loadSTL(fullPath)) loaded++;
-        else partList->removeItem(newIndex);
+    // create readers on the main thread (VTK factory isn't thread-safe)
+    for (LoadTask& t : tasks) {
+        t.reader = vtkSmartPointer<vtkSTLReader>::New();
+        t.reader->SetFileName(t.fullPath.toStdString().c_str());
     }
 
+    // read files in parallel with a progress bar
+    QProgressDialog progress(tr("Reading %1 STL files...").arg(tasks.size()),
+        tr("Cancel"), 0, tasks.size(), this);
+    progress.setWindowModality(Qt::WindowModal);
+
+    QFutureWatcher<void> watcher;
+    connect(&watcher, &QFutureWatcher<void>::progressValueChanged,
+        &progress, &QProgressDialog::setValue);
+    connect(&progress, &QProgressDialog::canceled, &watcher, &QFutureWatcher<void>::cancel);
+
+    watcher.setFuture(QtConcurrent::map(tasks, [](LoadTask& t) {
+        t.reader->Update();
+        }));
+
+    QEventLoop loop;
+    connect(&watcher, &QFutureWatcher<void>::finished, &loop, &QEventLoop::quit);
+    loop.exec();
+
+    if (watcher.isCanceled()) {
+        emit statusUpdateMessage(tr("Import cancelled"), 0);
+        return;
+    }
+
+    // build VTK pipelines and add to tree on the main thread
+    QModelIndex parent = ui->treeView->currentIndex();
+    ui->treeView->setUpdatesEnabled(false);
+    int loaded = 0;
+
+    for (const LoadTask& t : tasks) {
+        QModelIndex newIndex = partList->appendChild(parent, { t.fileName, QString("true") });
+        ModelPart* newPart = static_cast<ModelPart*>(newIndex.internalPointer());
+        if (!newPart) continue;
+
+        if (newPart->attachReader(t.reader)) {
+            renderer->AddActor(newPart->getActor());
+            loaded++;
+        }
+        else {
+            partList->removeItem(newIndex);
+        }
+    }
+
+    ui->treeView->setUpdatesEnabled(true);
     ui->treeView->expand(parent);
     refreshExplodeDirections();
     applyExplodeToAll();
-    updateRender();
     renderer->ResetCamera();
     renderWindow->Render();
 
-    emit statusUpdateMessage(
-        tr("Imported %1 mesh(es) from %2").arg(loaded).arg(dirPath), 0);
+    emit statusUpdateMessage(tr("Imported %1/%2 mesh(es) from %3")
+        .arg(loaded).arg(tasks.size()).arg(dirPath), 0);
 }
 
+// opens the edit dialog for the selected part
 void MainWindow::on_actionEdit_Part_triggered()
 {
     QModelIndex index = ui->treeView->currentIndex();
@@ -603,6 +671,7 @@ void MainWindow::on_actionEdit_Part_triggered()
     emit statusUpdateMessage(tr("Updated: %1").arg(part->data(0).toString()), 0);
 }
 
+// removes the selected part from the tree and renderer
 void MainWindow::on_actionDelete_Part_triggered()
 {
     QModelIndex index = ui->treeView->currentIndex();
@@ -614,18 +683,20 @@ void MainWindow::on_actionDelete_Part_triggered()
     if (!part) return;
 
     QString name = part->data(0).toString();
+    if (part->getActor())
+        renderer->RemoveActor(part->getActor());
     partList->removeItem(index);
 
     refreshExplodeDirections();
     applyExplodeToAll();
-    updateRender();
+    renderWindow->Render();
 
     emit statusUpdateMessage(tr("Deleted: %1").arg(name), 0);
 }
 
-// ---------------------------------------------------------------------------
-// Camera / Scene
-// ---------------------------------------------------------------------------
+// ===========================================================================
+// camera / scene
+// ===========================================================================
 
 void MainWindow::on_actionFrame_All_triggered()
 {
@@ -648,59 +719,78 @@ void MainWindow::on_buttonViewportBackground_clicked()
     emit statusUpdateMessage(tr("Background updated"), 0);
 }
 
-// ---------------------------------------------------------------------------
-// Properties: Part
-// ---------------------------------------------------------------------------
+// ===========================================================================
+// part properties
+// ===========================================================================
 
 void MainWindow::on_buttonDiffuseColour_clicked()
 {
-    ModelPart* part = currentPart();
-    if (!part) {
+    QList<ModelPart*> parts = selectedParts();
+    if (parts.isEmpty()) {
         emit statusUpdateMessage(tr("No part selected"), 0);
         return;
     }
-    QColor chosen = QColorDialog::getColor(
-        part->getColour(), this, tr("Diffuse Colour"));
+    QColor seed = parts.first()->getColour();
+    QColor chosen = QColorDialog::getColor(seed, this, tr("Diffuse Colour"));
     if (!chosen.isValid()) return;
 
-    part->setColour(chosen);
+    for (ModelPart* part : parts) {
+        part->setColour(chosen);
+        if (m_vrThread && m_vrThread->isRunning())
+            m_vrThread->issueCommand(Command::SetColour, part->getID(), chosen);
+    }
     renderWindow->Render();
-    emit statusUpdateMessage(tr("Recoloured: %1").arg(part->data(0).toString()), 0);
+    emit statusUpdateMessage(
+        parts.size() == 1
+            ? tr("Recoloured: %1").arg(parts.first()->data(0).toString())
+            : tr("Recoloured %1 parts").arg(parts.size()), 0);
 }
 
 void MainWindow::on_checkShowPart_stateChanged(int state)
 {
-    ModelPart* part = currentPart();
-    if (!part) return;
-    part->setVisible(state == Qt::Checked);
+    QList<ModelPart*> parts = selectedParts();
+    bool visible = (state == Qt::Checked);
+    for (ModelPart* part : parts) {
+        part->setVisible(visible);
+        if (m_vrThread && m_vrThread->isRunning())
+            m_vrThread->issueCommand(Command::SetVisible, part->getID(), visible);
+    }
     updateRender();
 }
 
 void MainWindow::on_toggleShrink_toggled(bool checked)
 {
-    ModelPart* part = currentPart();
-    if (!part) return;
-    part->setShrinkFilter(checked);
+    QList<ModelPart*> parts = selectedParts();
+    for (ModelPart* part : parts) {
+        part->setShrinkFilter(checked);
+        if (m_vrThread && m_vrThread->isRunning())
+            m_vrThread->issueCommand(Command::ToggleShrink, part->getID(), checked);
+    }
     updateRender();
     emit statusUpdateMessage(
-        checked ? tr("Shrink filter on: %1").arg(part->data(0).toString())
-        : tr("Shrink filter off: %1").arg(part->data(0).toString()), 0);
+        parts.size() == 1
+            ? (checked ? tr("Shrink filter on: %1") : tr("Shrink filter off: %1")).arg(parts.first()->data(0).toString())
+            : tr("Shrink filter %1 on %2 parts").arg(checked ? tr("on") : tr("off")).arg(parts.size()), 0);
 }
 
 void MainWindow::on_toggleClip_toggled(bool checked)
 {
-    ModelPart* part = currentPart();
-    if (!part) return;
-    part->setClipFilter(checked);
+    QList<ModelPart*> parts = selectedParts();
+    for (ModelPart* part : parts) {
+        part->setClipFilter(checked);
+        if (m_vrThread && m_vrThread->isRunning())
+            m_vrThread->issueCommand(Command::ToggleClip, part->getID(), checked);
+    }
     updateRender();
     emit statusUpdateMessage(
-        checked ? tr("Clip filter on: %1").arg(part->data(0).toString())
-        : tr("Clip filter off: %1").arg(part->data(0).toString()), 0);
+        parts.size() == 1
+            ? (checked ? tr("Clip filter on: %1") : tr("Clip filter off: %1")).arg(parts.first()->data(0).toString())
+            : tr("Clip filter %1 on %2 parts").arg(checked ? tr("on") : tr("off")).arg(parts.size()), 0);
 }
 
-// ---------------------------------------------------------------------------
-// Properties: Scene
-// ---------------------------------------------------------------------------
+// ===========================================================================
+// scene properties
+// ===========================================================================
 
 void MainWindow::on_sliderBrightness_valueChanged(int value)
 {
@@ -709,9 +799,9 @@ void MainWindow::on_sliderBrightness_valueChanged(int value)
     renderWindow->Render();
 }
 
-// ---------------------------------------------------------------------------
-// Explode view
-// ---------------------------------------------------------------------------
+// ===========================================================================
+// explode view
+// ===========================================================================
 
 void MainWindow::on_sliderExplode_valueChanged(int value)
 {
@@ -721,6 +811,7 @@ void MainWindow::on_sliderExplode_valueChanged(int value)
     emit statusUpdateMessage(tr("Explode: %1%").arg(value), 0);
 }
 
+// computes the average centre of all parts, then sets each part's explode direction
 void MainWindow::refreshExplodeDirections()
 {
     double xSum = 0.0, ySum = 0.0, zSum = 0.0;
@@ -750,6 +841,7 @@ void MainWindow::refreshExplodeDirections()
         refreshExplodeDirectionsFromTree(partList->index(i, 0, QModelIndex()), cx, cy, cz);
 }
 
+// recursive helper - sets explode direction for a part and all its children
 void MainWindow::refreshExplodeDirectionsFromTree(const QModelIndex& index, double cx, double cy, double cz)
 {
     if (index.isValid()) {
@@ -761,6 +853,7 @@ void MainWindow::refreshExplodeDirectionsFromTree(const QModelIndex& index, doub
         refreshExplodeDirectionsFromTree(partList->index(i, 0, index), cx, cy, cz);
 }
 
+// applies the current slider amount to every part in the tree
 void MainWindow::applyExplodeToAll()
 {
     int topLevelCount = partList->rowCount(QModelIndex());
@@ -779,28 +872,124 @@ void MainWindow::applyExplodeFromTree(const QModelIndex& index, double amount)
         applyExplodeFromTree(partList->index(i, 0, index), amount);
 }
 
-// ---------------------------------------------------------------------------
-// Theme
-// ---------------------------------------------------------------------------
+// ===========================================================================
+// theme toggle (toolbar action fallback)
+// ===========================================================================
 
 void MainWindow::on_actionToggle_Theme_triggered()
 {
-    applyTheme(m_theme == Theme::Dark ? Theme::Light : Theme::Dark);
-    emit statusUpdateMessage(
-        m_theme == Theme::Dark ? tr("Switched to dark mode") : tr("Switched to light mode"), 0);
+    QCheckBox* toggle = this->findChild<QCheckBox*>("themeToggle");
+    if (toggle) {
+        toggle->setChecked(!toggle->isChecked());
+    }
 }
 
-// ---------------------------------------------------------------------------
-// VR (stubs)
-// ---------------------------------------------------------------------------
+// ===========================================================================
+// VR
+// ===========================================================================
 
-void MainWindow::on_actionEnter_VR_triggered() { emit statusUpdateMessage(tr("VR not yet implemented"), 0); }
-void MainWindow::on_actionExit_VR_triggered() { emit statusUpdateMessage(tr("VR not yet implemented"), 0); }
-void MainWindow::on_buttonSyncVR_clicked() { emit statusUpdateMessage(tr("VR not yet implemented"), 0); }
+// spins up the VR render thread and sends all loaded parts to it
+void MainWindow::on_actionEnter_VR_triggered()
+{
+    if (m_vrThread && m_vrThread->isRunning()) {
+        emit statusUpdateMessage(tr("VR is already running"), 0);
+        return;
+    }
 
-// ---------------------------------------------------------------------------
-// Help
-// ---------------------------------------------------------------------------
+    m_vrThread = new VRRenderThread(this);
+    m_vrThread->setPartList(partList);
+
+    // walk the tree, build VR pipelines, and register each actor
+    QList<ModelPart*> queue;
+    queue.append(partList->getRootItem());
+    while (!queue.isEmpty()) {
+        ModelPart* part = queue.takeFirst();
+        if (part != partList->getRootItem()) {
+            part->rebuildVRPipeline();
+            if (part->getVRActor())
+                m_vrThread->addActorOffline(part->getVRActor(), part->getID());
+        }
+        for (int i = 0; i < part->childCount(); ++i)
+            queue.append(part->child(i));
+    }
+
+    m_vrThread->start();
+    emit statusUpdateMessage(tr("VR started"), 0);
+}
+
+// stops the VR thread and cleans up
+void MainWindow::on_actionExit_VR_triggered()
+{
+    if (!m_vrThread || !m_vrThread->isRunning()) {
+        emit statusUpdateMessage(tr("VR is not running"), 0);
+        return;
+    }
+
+    m_vrThread->issueCommand(Command::EndRender, 0, QVariant());
+    m_vrThread->wait();
+    delete m_vrThread;
+    m_vrThread = nullptr;
+
+    emit statusUpdateMessage(tr("VR stopped"), 0);
+}
+
+// toggles the skybox on/off for AR passthrough mode
+void MainWindow::on_actionEnable_Passthrough_triggered()
+{
+    m_passthroughEnabled = !m_passthroughEnabled;
+
+    if (m_vrThread && m_vrThread->isRunning()) {
+        m_vrThread->issueCommand(Command::ToggleSkybox, 0, !m_passthroughEnabled);
+
+        // re-sync part visibility after skybox change
+        QList<ModelPart*> bfsQueue;
+        bfsQueue.append(partList->getRootItem());
+        while (!bfsQueue.isEmpty()) {
+            ModelPart* part = bfsQueue.takeFirst();
+            if (part != partList->getRootItem())
+                m_vrThread->issueCommand(Command::SetVisible, part->getID(), part->getVisible());
+            for (int i = 0; i < part->childCount(); ++i)
+                bfsQueue.append(part->child(i));
+        }
+    }
+
+    const QString label = m_passthroughEnabled ? tr("Disable Passthrough") : tr("Enable Passthrough");
+    ui->actionEnable_Passthrough->setText(label);
+    ui->buttonEnablePassthrough->setText(label);
+
+    emit statusUpdateMessage(
+        m_passthroughEnabled
+            ? tr("Skybox hidden — double-press headset system button to see your room")
+            : tr("Passthrough disabled — skybox restored"), 0);
+}
+
+// pushes current GUI state (colour, visibility) to the VR thread
+void MainWindow::on_buttonSyncVR_clicked()
+{
+    if (!m_vrThread || !m_vrThread->isRunning()) {
+        emit statusUpdateMessage(tr("Start VR first"), 0);
+        return;
+    }
+
+    QList<ModelPart*> queue;
+    queue.append(partList->getRootItem());
+    while (!queue.isEmpty()) {
+        ModelPart* part = queue.takeFirst();
+        if (part != partList->getRootItem()) {
+            int id = part->getID();
+            m_vrThread->issueCommand(Command::SetVisible, id, part->getVisible());
+            m_vrThread->issueCommand(Command::SetColour, id, part->getColour());
+        }
+        for (int i = 0; i < part->childCount(); ++i)
+            queue.append(part->child(i));
+    }
+
+    emit statusUpdateMessage(tr("Synced to VR"), 0);
+}
+
+// ===========================================================================
+// help
+// ===========================================================================
 
 void MainWindow::on_actionAbout_triggered()
 {

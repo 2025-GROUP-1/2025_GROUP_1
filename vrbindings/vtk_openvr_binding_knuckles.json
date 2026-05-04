@@ -20,10 +20,10 @@
         {
           "inputs": {
             "click": {
-              "output": "/actions/vtk/in/startelevation"
+              "output": "/actions/vtk/in/startmovement"
             },
             "position": {
-              "output": "/actions/vtk/in/elevation"
+              "output": "/actions/vtk/in/movement"
             }
           },
           "mode": "joystick",
@@ -41,7 +41,7 @@
         {
           "inputs": {
             "click": {
-              "output": "/actions/vtk/in/nextcamerapose"
+              "output": "/actions/vtk/in/triggeraction"
             }
           },
           "mode": "button",
@@ -59,7 +59,7 @@
         {
           "inputs": {
             "click": {
-              "output": "/actions/vtk/in/leftgripaction"
+              "output": "/actions/vtk/in/complexgestureaction"
             }
           },
           "mode": "button",
@@ -68,7 +68,7 @@
         {
           "inputs": {
             "click": {
-              "output": "/actions/vtk/in/rightgripaction"
+              "output": "/actions/vtk/in/complexgestureaction_event2"
             }
           },
           "mode": "button",

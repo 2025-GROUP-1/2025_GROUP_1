@@ -1,27 +1,54 @@
-# Build artefacts
+# Build directories
 build/
+bin/
 out/
+x64/
+Debug/
+Release/
 cmake-build-*/
-CMakeCache.txt
+
+# CMake
 CMakeFiles/
+CMakeCache.txt
 cmake_install.cmake
+compile_commands.json
+*_autogen/
 Makefile
+
+# Visual Studio
+.vs/
+*.sln
+*.vcxproj
+*.user
+*.suo
+*.VC.db
+*.opensdf
+*.sdf
+
+# Qt Creator
+.qtcreator/
+
+# Qt generated files
+ui_*.h
+moc_*.cpp
+qrc_*.cpp
+
+# Binaries
 *.exe
 *.obj
 *.o
 *.dll
 
 # IDE
-.vs/
 .vscode/
 .idea/
-*.user
 
 # macOS
 .DS_Store
 
 # Doxygen output (built by CI, not committed)
-docs/
+html/
+latex/
 doxygen-warnings.log
 
 # Logs

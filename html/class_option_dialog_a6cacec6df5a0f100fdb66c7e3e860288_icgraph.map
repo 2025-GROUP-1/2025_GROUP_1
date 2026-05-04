@@ -1,5 +1,0 @@
-<map id="OptionDialog::updateSwatch" name="OptionDialog::updateSwatch">
-<area shape="rect" id="Node000001" title="Repaint the swatch to show the currently selected colour." alt="" coords="252,13,439,38"/>
-<area shape="rect" id="Node000002" href="$class_option_dialog.html#a60b3cfa6b96d9a8114e9bb53185a1298" title="Open QColorDialog when the colour button is pressed." alt="" coords="5,5,204,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="233,26,204,28,204,23,239,26"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="ModelPartList" name="ModelPartList">
-<area shape="rect" id="Node000001" title="Qt tree model that manages the hierarchy of ModelPart nodes shown in the tree view." alt="" coords="32,509,152,778"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,188,136,255"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,267,88,509,83,509,72,272"/>
-<area shape="rect" id="Node000003" href="$class_model_part.html" title="Represents a single CAD part in the application&#39;s tree model." alt="" coords="160,5,269,438"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="161,406,138,493,133,491,159,411"/>
-<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="268,172,280,177,289,188,294,202,296,222,293,244,286,260,281,258,288,243,291,221,289,203,284,190,277,182,270,177"/>
-</map>

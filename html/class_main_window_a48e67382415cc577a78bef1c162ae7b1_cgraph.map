@@ -1,7 +1,0 @@
-<map id="MainWindow::on_actionToggle_Theme_triggered" name="MainWindow::on_actionToggle_Theme_triggered">
-<area shape="rect" id="Node000001" title="Toggle between dark and light themes." alt="" coords="5,27,204,68"/>
-<area shape="rect" id="Node000002" href="$class_main_window.html#af66d427fde435ca9aa38c3382525c9ec" title="Apply a colour theme (dark or light) across the whole window." alt="" coords="255,5,430,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,33,242,30,237,31,205,38"/>
-<area shape="rect" id="Node000003" href="$class_main_window.html#a86443ea744fda3e9bad328c2fd1c3d6b" title=" " alt="" coords="252,55,434,96"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="204,57,239,63,234,63,204,62"/>
-</map>

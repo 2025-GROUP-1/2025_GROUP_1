@@ -1,8 +1,0 @@
-<map id="ModelPart::appendChild" name="ModelPart::appendChild">
-<area shape="rect" id="Node000001" title="Appends a child item and sets its parent pointer to this item." alt="" coords="235,43,395,68"/>
-<area shape="rect" id="Node000002" href="$class_model_part_list.html#ac687a2942c6e8b8b23df36c32a0deaeb" title="Creates a new child ModelPart and appends it under parent." alt="" coords="5,5,187,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,40,175,34,175,29,223,39"/>
-<area shape="rect" id="Node000003" href="$class_main_window.html#a996c5a2b6f77944776856f08ec30858d" title="Constructs the main window and wires up all subsystems." alt="" coords="6,79,186,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="222,71,178,81,178,75,217,72"/>
-<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="133,64,121,60,96,57,73,59,60,64,58,69,64,78,59,78,52,70,57,60,72,54,96,52,123,55,138,64"/>
-</map>
