@@ -71,6 +71,8 @@ body {
   display: inline-flex;
   flex-wrap: wrap;
   gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
   margin: 32px 0 8px;
   padding: 16px 0 0;
   border-top: 1px solid var(--separator-color);

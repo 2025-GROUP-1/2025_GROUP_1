@@ -138,15 +138,21 @@
   }
 
   function enhanceFooter() {
-    if (document.getElementById("vr-site-footer")) return;
-
     var content = document.querySelector("#doc-content .contents");
     if (!content) return;
 
-    var footer = document.createElement("div");
-    footer.id = "vr-site-footer";
-    footer.innerHTML = '<a href="https://github.com/2025-GROUP-1/2025_GROUP_1">Repository</a><span>Docs v1.1.0</span><span>EEEE2076 Group 1</span>';
-    content.appendChild(footer);
+    var target = content.querySelector(".textblock") || content;
+    var footer = document.getElementById("vr-site-footer");
+
+    if (!footer) {
+      footer = document.createElement("div");
+      footer.id = "vr-site-footer";
+      footer.innerHTML = '<a href="https://github.com/2025-GROUP-1/2025_GROUP_1">Repository</a><span>Docs v1.1.0</span><span>EEEE2076 Group 1</span>';
+    }
+
+    if (footer.parentElement !== target) {
+      target.appendChild(footer);
+    }
   }
 
   ready(function () {
