@@ -67,13 +67,6 @@ body {
   color: var(--primary-color);
 }
 
-#search-hint {
-  color: var(--page-secondary-foreground-color);
-  font-size: 11px;
-  margin: 6px 0 2px;
-  padding-left: 4px;
-}
-
 #vr-site-footer {
   display: inline-flex;
   flex-wrap: wrap;
@@ -103,7 +96,7 @@ body {
   box-sizing: border-box;
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 80;
 }
 
 #vr-brand-bar .brand-logo {
@@ -195,6 +188,7 @@ body {
 
 #MSearchField {
   padding-left: 28px;
+  width: calc(100% - 48px) !important;
 }
 
 #page-nav {
@@ -217,6 +211,28 @@ body {
   margin-bottom: 18px;
 }
 
+.vr-page-heading {
+  border-bottom: 1px solid var(--separator-color);
+  margin: 0 0 18px;
+  padding: 0 0 16px;
+}
+
+.vr-page-heading span {
+  display: block;
+  color: var(--primary-dark-color);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.vr-page-heading h1 {
+  font-size: 38px;
+  line-height: 1.1;
+  margin: 0;
+}
+
 h2.groupheader {
   border-bottom-color: var(--primary-color, var(--vr-teal));
 }
@@ -229,6 +245,7 @@ h2.groupheader {
 .ui-resizable-handle {
   width: 1px !important;
   background: var(--separator-color) !important;
+  box-shadow: none !important;
   cursor: default !important;
 }
 
@@ -244,8 +261,7 @@ html.sidebar-collapsed #splitbar {
 html.sidebar-collapsed #top,
 html.sidebar-collapsed #MSearchBox,
 html.sidebar-collapsed #MSearchResultsWindow,
-html.sidebar-collapsed #MSearchSelectWindow,
-html.sidebar-collapsed #search-hint {
+html.sidebar-collapsed #MSearchSelectWindow {
   display: none !important;
 }
 
@@ -568,8 +584,16 @@ table.markdownTable {
 }
 
 @media screen and (max-width: 640px) {
+  html {
+    --searchbar-width: calc(100vw - 30px);
+  }
+
   #vr-brand-bar {
     padding: 8px 12px;
+  }
+
+  #MSearchField {
+    width: calc(100vw - 126px) !important;
   }
 
   .vr-hero {

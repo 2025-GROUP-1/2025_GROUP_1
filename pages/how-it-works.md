@@ -1,5 +1,12 @@
 @page how_it_works How It Works
 
+@htmlonly
+<div class="vr-page-heading">
+  <span>Implementation walkthroughs</span>
+  <h1>How It Works</h1>
+</div>
+@endhtmlonly
+
 This page traces three concrete scenarios through the codebase to show how the
 classes interact. Read the [Architecture section](@ref architecture) on the main
 page first for a high-level overview.
