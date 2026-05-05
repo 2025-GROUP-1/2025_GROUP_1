@@ -1,0 +1,35 @@
+<map id="ModelPart.h" name="ModelPart.h">
+<area shape="rect" id="Node000001" title="Declares ModelPart — one STL part with its VTK pipeline, filters, and display state." alt="" coords="915,5,1014,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,60,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="915,22,773,23,567,30,324,48,199,63,74,81,73,76,198,57,324,43,566,25,773,17,915,16"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="84,79,163,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="915,23,607,38,396,55,177,81,176,76,395,50,607,33,915,18"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="187,79,257,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="915,24,645,40,461,57,271,82,271,76,461,51,644,34,915,18"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="282,79,349,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="915,24,680,41,524,58,363,81,362,76,524,53,680,36,915,19"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="373,79,463,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="915,27,727,47,478,81,477,76,727,42,915,21"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="487,79,626,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="916,31,636,79,635,74,915,25"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="650,79,773,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="925,33,766,77,765,72,923,28"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="797,79,951,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="952,33,901,72,898,68,948,29"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="975,79,1138,104"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="981,29,1033,68,1029,72,978,33"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="1162,79,1250,104"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1004,28,1154,72,1153,77,1003,33"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="1275,79,1383,104"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="1015,26,1262,74,1261,80,1014,32"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="1407,79,1535,104"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="1015,23,1394,76,1393,81,1014,29"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="1560,79,1692,104"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="1014,21,1240,42,1547,76,1546,81,1240,48,1014,26"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="1717,79,1807,104"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="1014,19,1303,36,1499,52,1703,76,1703,81,1499,58,1302,41,1014,24"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="1831,79,1983,104"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="1015,19,1347,38,1578,55,1818,76,1817,81,1578,60,1347,44,1014,24"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="2007,79,2127,104"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="1014,18,1415,33,1699,50,1994,76,1993,81,1699,56,1415,38,1014,23"/>
+</map>

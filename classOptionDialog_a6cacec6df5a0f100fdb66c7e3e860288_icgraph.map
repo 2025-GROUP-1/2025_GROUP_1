@@ -1,0 +1,11 @@
+<map id="OptionDialog::updateSwatch" name="OptionDialog::updateSwatch">
+<area shape="rect" id="Node000001" title=" " alt="" coords="544,70,751,95"/>
+<area shape="rect" id="Node000002" href="$classOptionDialog.html#a5f2578ef11d7940ca5821f2fcbf79e4d" title=" " alt="" coords="255,13,496,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="573,70,495,53,436,41,437,35,497,48,574,65"/>
+<area shape="rect" id="Node000004" href="$classOptionDialog.html#a60b3cfa6b96d9a8114e9bb53185a1298" title=" " alt="" coords="265,63,486,103"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="530,85,486,85,486,80,530,80"/>
+<area shape="rect" id="Node000005" href="$classOptionDialog.html#a4540736a5c6e4468dad5165c7aefc8bc" title=" " alt="" coords="275,127,475,153"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="574,101,497,117,437,130,436,125,495,112,573,96"/>
+<area shape="rect" id="Node000003" href="$classMainWindow.html#ac0f0034dd8ee8a9cb96cf81366fca941" title=" " alt="" coords="5,5,207,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="241,28,207,28,207,23,241,23"/>
+</map>

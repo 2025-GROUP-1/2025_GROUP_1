@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['dark_0',['Dark',['../classMainWindow.html#a2c9c9b9196ffc44d9f32205b1bef5f1daa18366b217ebf811ad1886e4f4f865b2',1,'MainWindow']]],
-  ['dark_5fqss_1',['DARK_QSS',['../mainwindow_8cpp.html#acf9fd99cbb4e220d0e52dbdd39e227d5',1,'mainwindow.cpp']]],
-  ['data_2',['data',['../structCommandPacket.html#a6553161d7eb04fd34038f2d91436c994',1,'CommandPacket::data'],['../classModelPart.html#a178655da543bd0dae2d0ed1e2ea38a56',1,'ModelPart::data()'],['../classModelPartList.html#a59ef0e03a214d3440d1ce86e5c64ba32',1,'ModelPartList::data()']]],
-  ['data_20model_3',['Data Model',['../group__data__model.html',1,'']]],
-  ['data_5fmodel_2eh_4',['data_model.h',['../data__model_8h.html',1,'']]],
-  ['dolly3d_5',['Dolly3D',['../classVRCustomStyle.html#a82af7eed1836b7c557e10d87a46feefb',1,'VRCustomStyle']]],
-  ['dragenterevent_6',['dragEnterEvent',['../classMainWindow.html#a505572442d73419f3cab4afc8158621c',1,'MainWindow']]],
-  ['dropevent_7',['dropEvent',['../classMainWindow.html#af809c2679376142b241371e36aedc279',1,'MainWindow']]]
+  ['base_20station_0',['VR Base Station',['../index.html',1,'']]],
+  ['btn_5fh_1',['BTN_H',['../structVRMenu.html#ab11d64e4872a612d384506c915da8fe8',1,'VRMenu']]],
+  ['btn_5fw_2',['BTN_W',['../structVRMenu.html#a98120665fa5cb63e9aca0863df5482cf',1,'VRMenu']]],
+  ['button_3',['Button',['../structVRMenu_1_1Button.html',1,'VRMenu']]],
+  ['buttons_4',['buttons',['../structVRMenu.html#a4fff6b2b76c8942d54ac38944b8ef346',1,'VRMenu']]]
 ];

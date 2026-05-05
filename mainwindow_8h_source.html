@@ -1,4 +1,4 @@
-<!-- HTML header for doxygen 1.16.1-->
+<!-- HTML header for doxygen 1.16.1 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 <head>
@@ -6,32 +6,72 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>VRBaseStation: mainwindow.h Source File</title>
+<title>VR Base Station: mainwindow.h Source File</title>
 <!--BEGIN PROJECT_ICON-->
 <link rel="icon" href="$projecticon" type="image/x-icon" />
 <!--END PROJECT_ICON-->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <!--BEGIN COPY_CLIPBOARD-->
 <script type="text/javascript" src="clipboard.js"></script>
 <!--END COPY_CLIPBOARD-->
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="docs-custom.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+DoxygenAwesomeDarkModeToggle.init()
+DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="docs-site.js"></script>
 </head>
 <body>
+<div id="vr-brand-bar">
+  <div class="brand-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" aria-label="VR Base Station logo">
+      <polygon points="18,2 32,9.5 32,26.5 18,34 4,26.5 4,9.5"
+               fill="none" stroke="#00B4A0" stroke-width="1.8"/>
+      <polygon points="18,5 29,11.5 29,24.5 18,31 7,24.5 7,11.5"
+               fill="rgba(0,180,160,0.12)"/>
+      <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
+            font-family="'Inter',sans-serif" font-weight="700" font-size="11"
+            fill="#00B4A0" letter-spacing="0.5">VR</text>
+    </svg>
+  </div>
+  <span class="brand-title">VR Base Station</span>
+  <span class="brand-sub">EEEE2076 Group&nbsp;1</span>
+  <div class="brand-actions">
+    <a class="brand-link" href="index.html">Overview</a>
+    <a class="brand-link" href="classes.html">Classes</a>
+    <a class="brand-link" href="files.html">Files</a>
+    <span id="theme-toggle-slot" class="theme-toggle-slot" title="Toggle light and dark mode"></span>
+    <button id="sidebar-toggle" type="button" aria-label="Toggle navigation panel" title="Toggle navigation panel">
+      <span></span>
+    </button>
+  </div>
+</div>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
-  <td id="projectlogo"><a href="index.html"><img alt="Logo" src="VRBaseStationLogo.ico"$logosize/></a></td>
   <td id="projectalign">
-   <div id="projectname"><a href="index.html" style="color:inherit;text-decoration:none;">VRBaseStation</a><span id="projectnumber">&#160;1.0.0</span>
+   <div id="projectname">VR Base Station<span id="projectnumber">&#160;v1.1.0</span>
    </div>
-   <div id="projectbrief"><a href="index.html" style="color:inherit;text-decoration:none;">Qt/VTK CAD viewer with VR support – EEEE2076 Group 1</a></div>
+   <div id="projectbrief">Qt/VTK CAD viewer with VR support, EEEE2076 Group 1</div>
   </td>
  </tr>
  </tbody>
@@ -61,6 +101,22 @@ $(document).ready(function() { init_codefold(0); });
 /* @license-end */
 </script>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('mainwindow_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -139,9 +195,9 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// part properties</span></div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="classMainWindow.html#adfd4eeb03c59e57fec68571a2ea4ce72">on_buttonDiffuseColour_clicked</a>();</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="classMainWindow.html#ae2cd85ce3391e898b49dbaea0b5fe43c">on_buttonToggleVisible_clicked</a>(<span class="keywordtype">bool</span> checked);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="classMainWindow.html#a6ed75addd0974730e3405a55022e5c82">on_buttonToggleShrink_clicked</a>(<span class="keywordtype">bool</span> checked);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="classMainWindow.html#a187a9f6018036ed6ed69d43d5c99b4be">on_buttonToggleClip_clicked</a>(<span class="keywordtype">bool</span> checked);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="classMainWindow.html#a45e03fc6b470814598896604201d820f">on_checkShowPart_stateChanged</a>(<span class="keywordtype">int</span> state);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="classMainWindow.html#aa898f33303bb3b0cd4b4dee5fde9fed0">on_toggleShrink_toggled</a>(<span class="keywordtype">bool</span> checked);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="classMainWindow.html#a1ae45557a1bfce3f448fd1bf0ca8d18a">on_toggleClip_toggled</a>(<span class="keywordtype">bool</span> checked);</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// scene properties</span></div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="classMainWindow.html#abf8d0dc36dea7c9edc57a19e3c2b1b2f">on_sliderBrightness_valueChanged</a>(<span class="keywordtype">int</span> value);</div>
@@ -164,94 +220,92 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>signals:</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classMainWindow.html#a86443ea744fda3e9bad328c2fd1c3d6b">   81</a></span>    <span class="keywordtype">void</span> <a class="code hl_signal" href="classMainWindow.html#a86443ea744fda3e9bad328c2fd1c3d6b">statusUpdateMessage</a>(<span class="keyword">const</span> QString&amp; message, <span class="keywordtype">int</span> timeout);</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMainWindow.html#a505572442d73419f3cab4afc8158621c">dragEnterEvent</a>(QDragEnterEvent* event) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMainWindow.html#af809c2679376142b241371e36aedc279">dropEvent</a>(QDropEvent* event) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classMainWindow.html#ad9f3c0909e0ed237071de951969cbf09">   88</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMainWindow.html#ad9f3c0909e0ed237071de951969cbf09">m_passthroughEnabled</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classMainWindow.html#ad9f3c0909e0ed237071de951969cbf09">   84</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMainWindow.html#ad9f3c0909e0ed237071de951969cbf09">m_passthroughEnabled</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="comment">// helpers</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <a class="code hl_class" href="classModelPart.html">ModelPart</a>* <a class="code hl_function" href="classMainWindow.html#a3c769f260aadd2fef6ad5218df03ae74">currentPart</a>();</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    QList&lt;ModelPart*&gt; <a class="code hl_function" href="classMainWindow.html#a15a4966f9e4285ab2895a35f94878175">selectedParts</a>();</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="comment">// helpers</span></div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <a class="code hl_class" href="classModelPart.html">ModelPart</a>* <a class="code hl_function" href="classMainWindow.html#a3c769f260aadd2fef6ad5218df03ae74">currentPart</a>();</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    QList&lt;ModelPart*&gt; <a class="code hl_function" href="classMainWindow.html#a15a4966f9e4285ab2895a35f94878175">selectedParts</a>();</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// explode view internals</span></div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMainWindow.html#ad0f3f72f92f2fe5aa922ad43c13fe3b9">refreshExplodeDirections</a>();</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMainWindow.html#a0246192046d6d7c2844424ca1ff7e134">refreshExplodeDirectionsFromTree</a>(<span class="keyword">const</span> QModelIndex&amp; index, <span class="keywordtype">double</span> cx, <span class="keywordtype">double</span> cy, <span class="keywordtype">double</span> cz);</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMainWindow.html#a6db062f407bd66add549a10a7dc24a0f">applyExplodeToAll</a>();</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMainWindow.html#a46cb35b1c663ea1240545f3e626f3854">applyExplodeFromTree</a>(<span class="keyword">const</span> QModelIndex&amp; index, <span class="keywordtype">double</span> amount);</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classMainWindow.html#a35466a70ed47252a0191168126a352a5">  100</a></span>    Ui::MainWindow* <a class="code hl_variable" href="classMainWindow.html#a35466a70ed47252a0191168126a352a5">ui</a>;</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classMainWindow.html#a3fddd2c840f105b232035192fadaeee8">  101</a></span>    <a class="code hl_class" href="classModelPartList.html">ModelPartList</a>* <a class="code hl_variable" href="classMainWindow.html#a3fddd2c840f105b232035192fadaeee8">partList</a>;</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classMainWindow.html#a0886430bf0d0de4d3e3d892d535ea052">  102</a></span>    vtkSmartPointer&lt;vtkRenderer&gt;                   <a class="code hl_variable" href="classMainWindow.html#a0886430bf0d0de4d3e3d892d535ea052">renderer</a>;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classMainWindow.html#a74028a929c64ac0436e962017971dee6">  103</a></span>    vtkSmartPointer&lt;vtkGenericOpenGLRenderWindow&gt;  <a class="code hl_variable" href="classMainWindow.html#a74028a929c64ac0436e962017971dee6">renderWindow</a>;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classMainWindow.html#a3f46f38f8603c05a64be2afb4c98e575">  104</a></span>    vtkSmartPointer&lt;vtkLight&gt;                      <a class="code hl_variable" href="classMainWindow.html#a3f46f38f8603c05a64be2afb4c98e575">light</a>;</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classMainWindow.html#ae2556ac3163fd33424f2c34c8ff757b0">  106</a></span>    <a class="code hl_class" href="classVRRenderThread.html">VRRenderThread</a>* <a class="code hl_variable" href="classMainWindow.html#ae2556ac3163fd33424f2c34c8ff757b0">m_vrThread</a> = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classMainWindow.html#ae46392d9d834f059b571975c9973d605">  108</a></span>    <a class="code hl_enumeration" href="classMainWindow.html#a2c9c9b9196ffc44d9f32205b1bef5f1d">Theme</a>  <a class="code hl_variable" href="classMainWindow.html#ae46392d9d834f059b571975c9973d605">m_theme</a>;</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classMainWindow.html#a8ed3d629355053c18e1fcac52125466a">  109</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classMainWindow.html#a8ed3d629355053c18e1fcac52125466a">m_explodeAmount</a>;</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>};</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="comment">// explode view internals</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMainWindow.html#ad0f3f72f92f2fe5aa922ad43c13fe3b9">refreshExplodeDirections</a>();</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMainWindow.html#a0246192046d6d7c2844424ca1ff7e134">refreshExplodeDirectionsFromTree</a>(<span class="keyword">const</span> QModelIndex&amp; index, <span class="keywordtype">double</span> cx, <span class="keywordtype">double</span> cy, <span class="keywordtype">double</span> cz);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMainWindow.html#a6db062f407bd66add549a10a7dc24a0f">applyExplodeToAll</a>();</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMainWindow.html#a46cb35b1c663ea1240545f3e626f3854">applyExplodeFromTree</a>(<span class="keyword">const</span> QModelIndex&amp; index, <span class="keywordtype">double</span> amount);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classMainWindow.html#a35466a70ed47252a0191168126a352a5">   96</a></span>    Ui::MainWindow* <a class="code hl_variable" href="classMainWindow.html#a35466a70ed47252a0191168126a352a5">ui</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classMainWindow.html#a3fddd2c840f105b232035192fadaeee8">   97</a></span>    <a class="code hl_class" href="classModelPartList.html">ModelPartList</a>* <a class="code hl_variable" href="classMainWindow.html#a3fddd2c840f105b232035192fadaeee8">partList</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classMainWindow.html#a0886430bf0d0de4d3e3d892d535ea052">   98</a></span>    vtkSmartPointer&lt;vtkRenderer&gt;                   <a class="code hl_variable" href="classMainWindow.html#a0886430bf0d0de4d3e3d892d535ea052">renderer</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classMainWindow.html#a74028a929c64ac0436e962017971dee6">   99</a></span>    vtkSmartPointer&lt;vtkGenericOpenGLRenderWindow&gt;  <a class="code hl_variable" href="classMainWindow.html#a74028a929c64ac0436e962017971dee6">renderWindow</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classMainWindow.html#a3f46f38f8603c05a64be2afb4c98e575">  100</a></span>    vtkSmartPointer&lt;vtkLight&gt;                      <a class="code hl_variable" href="classMainWindow.html#a3f46f38f8603c05a64be2afb4c98e575">light</a>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classMainWindow.html#ae2556ac3163fd33424f2c34c8ff757b0">  102</a></span>    <a class="code hl_class" href="classVRRenderThread.html">VRRenderThread</a>* <a class="code hl_variable" href="classMainWindow.html#ae2556ac3163fd33424f2c34c8ff757b0">m_vrThread</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classMainWindow.html#ae46392d9d834f059b571975c9973d605">  104</a></span>    <a class="code hl_enumeration" href="classMainWindow.html#a2c9c9b9196ffc44d9f32205b1bef5f1d">Theme</a>  <a class="code hl_variable" href="classMainWindow.html#ae46392d9d834f059b571975c9973d605">m_theme</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classMainWindow.html#a8ed3d629355053c18e1fcac52125466a">  105</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classMainWindow.html#a8ed3d629355053c18e1fcac52125466a">m_explodeAmount</a>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>};</div>
 </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aModelPartList_8h_html"><div class="ttname"><a href="ModelPartList_8h.html">ModelPartList.h</a></div><div class="ttdoc">Declares ModelPartList — the QAbstractItemModel that backs the QTreeView.</div></div>
 <div class="ttc" id="aModelPart_8h_html"><div class="ttname"><a href="ModelPart_8h.html">ModelPart.h</a></div><div class="ttdoc">Declares ModelPart — one STL part with its VTK pipeline, filters, and display state.</div></div>
 <div class="ttc" id="aVRRenderThread_8h_html"><div class="ttname"><a href="VRRenderThread_8h.html">VRRenderThread.h</a></div><div class="ttdoc">Declares VRRenderThread — runs the OpenVR render loop on a dedicated thread.</div></div>
-<div class="ttc" id="aclassMainWindow_html"><div class="ttname"><a href="classMainWindow.html">MainWindow</a></div><div class="ttdoc">Top-level window — owns the renderer, tree view, properties panel, and VR thread.</div><div class="ttdef"><b>Definition</b> mainwindow.h:28</div></div>
-<div class="ttc" id="aclassMainWindow_html_a0246192046d6d7c2844424ca1ff7e134"><div class="ttname"><a href="classMainWindow.html#a0246192046d6d7c2844424ca1ff7e134">MainWindow::refreshExplodeDirectionsFromTree</a></div><div class="ttdeci">void refreshExplodeDirectionsFromTree(const QModelIndex &amp;index, double cx, double cy, double cz)</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:911</div></div>
-<div class="ttc" id="aclassMainWindow_html_a0441e8dc0d171ff074c1b0d6e27433f0"><div class="ttname"><a href="classMainWindow.html#a0441e8dc0d171ff074c1b0d6e27433f0">MainWindow::on_buttonSyncVR_clicked</a></div><div class="ttdeci">void on_buttonSyncVR_clicked()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:1050</div></div>
-<div class="ttc" id="aclassMainWindow_html_a0886430bf0d0de4d3e3d892d535ea052"><div class="ttname"><a href="classMainWindow.html#a0886430bf0d0de4d3e3d892d535ea052">MainWindow::renderer</a></div><div class="ttdeci">vtkSmartPointer&lt; vtkRenderer &gt; renderer</div><div class="ttdef"><b>Definition</b> mainwindow.h:102</div></div>
-<div class="ttc" id="aclassMainWindow_html_a143bb60757a3e3f88e208eedb2af7539"><div class="ttname"><a href="classMainWindow.html#a143bb60757a3e3f88e208eedb2af7539">MainWindow::handleTreeClicked</a></div><div class="ttdeci">void handleTreeClicked()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:514</div></div>
-<div class="ttc" id="aclassMainWindow_html_a15a4966f9e4285ab2895a35f94878175"><div class="ttname"><a href="classMainWindow.html#a15a4966f9e4285ab2895a35f94878175">MainWindow::selectedParts</a></div><div class="ttdeci">QList&lt; ModelPart * &gt; selectedParts()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:475</div></div>
-<div class="ttc" id="aclassMainWindow_html_a187a9f6018036ed6ed69d43d5c99b4be"><div class="ttname"><a href="classMainWindow.html#a187a9f6018036ed6ed69d43d5c99b4be">MainWindow::on_buttonToggleClip_clicked</a></div><div class="ttdeci">void on_buttonToggleClip_clicked(bool checked)</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:842</div></div>
-<div class="ttc" id="aclassMainWindow_html_a1efd78ee0c7868d6c0aabe16566da4ce"><div class="ttname"><a href="classMainWindow.html#a1efd78ee0c7868d6c0aabe16566da4ce">MainWindow::on_buttonSelectAll_clicked</a></div><div class="ttdeci">void on_buttonSelectAll_clicked()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:556</div></div>
-<div class="ttc" id="aclassMainWindow_html_a2c9c9b9196ffc44d9f32205b1bef5f1d"><div class="ttname"><a href="classMainWindow.html#a2c9c9b9196ffc44d9f32205b1bef5f1d">MainWindow::Theme</a></div><div class="ttdeci">Theme</div><div class="ttdef"><b>Definition</b> mainwindow.h:32</div></div>
+<div class="ttc" id="aclassMainWindow_html"><div class="ttname"><a href="classMainWindow.html">MainWindow</a></div><div class="ttdoc">Top-level window — owns the renderer, tree view, properties panel, and VR thread.</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00027">mainwindow.h:28</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a0246192046d6d7c2844424ca1ff7e134"><div class="ttname"><a href="classMainWindow.html#a0246192046d6d7c2844424ca1ff7e134">MainWindow::refreshExplodeDirectionsFromTree</a></div><div class="ttdeci">void refreshExplodeDirectionsFromTree(const QModelIndex &amp;index, double cx, double cy, double cz)</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00847">mainwindow.cpp:847</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a0441e8dc0d171ff074c1b0d6e27433f0"><div class="ttname"><a href="classMainWindow.html#a0441e8dc0d171ff074c1b0d6e27433f0">MainWindow::on_buttonSyncVR_clicked</a></div><div class="ttdeci">void on_buttonSyncVR_clicked()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00969">mainwindow.cpp:969</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a0886430bf0d0de4d3e3d892d535ea052"><div class="ttname"><a href="classMainWindow.html#a0886430bf0d0de4d3e3d892d535ea052">MainWindow::renderer</a></div><div class="ttdeci">vtkSmartPointer&lt; vtkRenderer &gt; renderer</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00098">mainwindow.h:98</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a143bb60757a3e3f88e208eedb2af7539"><div class="ttname"><a href="classMainWindow.html#a143bb60757a3e3f88e208eedb2af7539">MainWindow::handleTreeClicked</a></div><div class="ttdeci">void handleTreeClicked()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00486">mainwindow.cpp:486</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a15a4966f9e4285ab2895a35f94878175"><div class="ttname"><a href="classMainWindow.html#a15a4966f9e4285ab2895a35f94878175">MainWindow::selectedParts</a></div><div class="ttdeci">QList&lt; ModelPart * &gt; selectedParts()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00447">mainwindow.cpp:447</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a1ae45557a1bfce3f448fd1bf0ca8d18a"><div class="ttname"><a href="classMainWindow.html#a1ae45557a1bfce3f448fd1bf0ca8d18a">MainWindow::on_toggleClip_toggled</a></div><div class="ttdeci">void on_toggleClip_toggled(bool checked)</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00778">mainwindow.cpp:778</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a1efd78ee0c7868d6c0aabe16566da4ce"><div class="ttname"><a href="classMainWindow.html#a1efd78ee0c7868d6c0aabe16566da4ce">MainWindow::on_buttonSelectAll_clicked</a></div><div class="ttdeci">void on_buttonSelectAll_clicked()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00528">mainwindow.cpp:528</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a2c9c9b9196ffc44d9f32205b1bef5f1d"><div class="ttname"><a href="classMainWindow.html#a2c9c9b9196ffc44d9f32205b1bef5f1d">MainWindow::Theme</a></div><div class="ttdeci">Theme</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00032">mainwindow.h:32</a></div></div>
 <div class="ttc" id="aclassMainWindow_html_a2c9c9b9196ffc44d9f32205b1bef5f1da9914a0ce04a7b7b6a8e39bec55064b82"><div class="ttname"><a href="classMainWindow.html#a2c9c9b9196ffc44d9f32205b1bef5f1da9914a0ce04a7b7b6a8e39bec55064b82">MainWindow::Theme::Light</a></div><div class="ttdeci">@ Light</div></div>
 <div class="ttc" id="aclassMainWindow_html_a2c9c9b9196ffc44d9f32205b1bef5f1daa18366b217ebf811ad1886e4f4f865b2"><div class="ttname"><a href="classMainWindow.html#a2c9c9b9196ffc44d9f32205b1bef5f1daa18366b217ebf811ad1886e4f4f865b2">MainWindow::Theme::Dark</a></div><div class="ttdeci">@ Dark</div></div>
-<div class="ttc" id="aclassMainWindow_html_a2d56d0e63146cbcc6337b4379e83651a"><div class="ttname"><a href="classMainWindow.html#a2d56d0e63146cbcc6337b4379e83651a">MainWindow::on_sliderExplode_valueChanged</a></div><div class="ttdeci">void on_sliderExplode_valueChanged(int value)</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:872</div></div>
-<div class="ttc" id="aclassMainWindow_html_a35466a70ed47252a0191168126a352a5"><div class="ttname"><a href="classMainWindow.html#a35466a70ed47252a0191168126a352a5">MainWindow::ui</a></div><div class="ttdeci">Ui::MainWindow * ui</div><div class="ttdef"><b>Definition</b> mainwindow.h:100</div></div>
-<div class="ttc" id="aclassMainWindow_html_a3c769f260aadd2fef6ad5218df03ae74"><div class="ttname"><a href="classMainWindow.html#a3c769f260aadd2fef6ad5218df03ae74">MainWindow::currentPart</a></div><div class="ttdeci">ModelPart * currentPart()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:466</div></div>
-<div class="ttc" id="aclassMainWindow_html_a3f46f38f8603c05a64be2afb4c98e575"><div class="ttname"><a href="classMainWindow.html#a3f46f38f8603c05a64be2afb4c98e575">MainWindow::light</a></div><div class="ttdeci">vtkSmartPointer&lt; vtkLight &gt; light</div><div class="ttdef"><b>Definition</b> mainwindow.h:104</div></div>
-<div class="ttc" id="aclassMainWindow_html_a3fddd2c840f105b232035192fadaeee8"><div class="ttname"><a href="classMainWindow.html#a3fddd2c840f105b232035192fadaeee8">MainWindow::partList</a></div><div class="ttdeci">ModelPartList * partList</div><div class="ttdef"><b>Definition</b> mainwindow.h:101</div></div>
-<div class="ttc" id="aclassMainWindow_html_a46cb35b1c663ea1240545f3e626f3854"><div class="ttname"><a href="classMainWindow.html#a46cb35b1c663ea1240545f3e626f3854">MainWindow::applyExplodeFromTree</a></div><div class="ttdeci">void applyExplodeFromTree(const QModelIndex &amp;index, double amount)</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:930</div></div>
-<div class="ttc" id="aclassMainWindow_html_a48e67382415cc577a78bef1c162ae7b1"><div class="ttname"><a href="classMainWindow.html#a48e67382415cc577a78bef1c162ae7b1">MainWindow::on_actionToggle_Theme_triggered</a></div><div class="ttdeci">void on_actionToggle_Theme_triggered()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:945</div></div>
-<div class="ttc" id="aclassMainWindow_html_a4f3ebda1ba39e0ef4d678b44893c9c7f"><div class="ttname"><a href="classMainWindow.html#a4f3ebda1ba39e0ef4d678b44893c9c7f">MainWindow::on_actionAbout_triggered</a></div><div class="ttdeci">void on_actionAbout_triggered()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:1086</div></div>
-<div class="ttc" id="aclassMainWindow_html_a505572442d73419f3cab4afc8158621c"><div class="ttname"><a href="classMainWindow.html#a505572442d73419f3cab4afc8158621c">MainWindow::dragEnterEvent</a></div><div class="ttdeci">void dragEnterEvent(QDragEnterEvent *event) override</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:1101</div></div>
-<div class="ttc" id="aclassMainWindow_html_a5844d2e1bb5a1c59a36534b2e91fd700"><div class="ttname"><a href="classMainWindow.html#a5844d2e1bb5a1c59a36534b2e91fd700">MainWindow::on_actionFrame_All_triggered</a></div><div class="ttdeci">void on_actionFrame_All_triggered()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:768</div></div>
-<div class="ttc" id="aclassMainWindow_html_a591d52182acedb4f591a2409e28f4142"><div class="ttname"><a href="classMainWindow.html#a591d52182acedb4f591a2409e28f4142">MainWindow::onCurrentSelectionChanged</a></div><div class="ttdeci">void onCurrentSelectionChanged(const QModelIndex &amp;current, const QModelIndex &amp;previous)</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:523</div></div>
-<div class="ttc" id="aclassMainWindow_html_a597961838262c9f16a02e6b37d184d5e"><div class="ttname"><a href="classMainWindow.html#a597961838262c9f16a02e6b37d184d5e">MainWindow::on_actionEnter_VR_triggered</a></div><div class="ttdeci">void on_actionEnter_VR_triggered()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:958</div></div>
-<div class="ttc" id="aclassMainWindow_html_a5f1ab238dddc869bfbbd14ebb62fdad2"><div class="ttname"><a href="classMainWindow.html#a5f1ab238dddc869bfbbd14ebb62fdad2">MainWindow::on_actionExit_VR_triggered</a></div><div class="ttdeci">void on_actionExit_VR_triggered()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:1004</div></div>
-<div class="ttc" id="aclassMainWindow_html_a666ed04c2b87d813bd698a2a7199bb2b"><div class="ttname"><a href="classMainWindow.html#a666ed04c2b87d813bd698a2a7199bb2b">MainWindow::on_actionEnable_Passthrough_triggered</a></div><div class="ttdeci">void on_actionEnable_Passthrough_triggered()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:1020</div></div>
-<div class="ttc" id="aclassMainWindow_html_a6db062f407bd66add549a10a7dc24a0f"><div class="ttname"><a href="classMainWindow.html#a6db062f407bd66add549a10a7dc24a0f">MainWindow::applyExplodeToAll</a></div><div class="ttdeci">void applyExplodeToAll()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:923</div></div>
-<div class="ttc" id="aclassMainWindow_html_a6ed75addd0974730e3405a55022e5c82"><div class="ttname"><a href="classMainWindow.html#a6ed75addd0974730e3405a55022e5c82">MainWindow::on_buttonToggleShrink_clicked</a></div><div class="ttdeci">void on_buttonToggleShrink_clicked(bool checked)</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:827</div></div>
-<div class="ttc" id="aclassMainWindow_html_a73b0020c4cde6b548e415d29234eeda6"><div class="ttname"><a href="classMainWindow.html#a73b0020c4cde6b548e415d29234eeda6">MainWindow::on_actionImport_Mesh_triggered</a></div><div class="ttdeci">void on_actionImport_Mesh_triggered()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:563</div></div>
-<div class="ttc" id="aclassMainWindow_html_a73f689fc9d641aaacd570e4710e6fabb"><div class="ttname"><a href="classMainWindow.html#a73f689fc9d641aaacd570e4710e6fabb">MainWindow::on_buttonViewportBackground_clicked</a></div><div class="ttdeci">void on_buttonViewportBackground_clicked()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:775</div></div>
-<div class="ttc" id="aclassMainWindow_html_a74028a929c64ac0436e962017971dee6"><div class="ttname"><a href="classMainWindow.html#a74028a929c64ac0436e962017971dee6">MainWindow::renderWindow</a></div><div class="ttdeci">vtkSmartPointer&lt; vtkGenericOpenGLRenderWindow &gt; renderWindow</div><div class="ttdef"><b>Definition</b> mainwindow.h:103</div></div>
+<div class="ttc" id="aclassMainWindow_html_a2d56d0e63146cbcc6337b4379e83651a"><div class="ttname"><a href="classMainWindow.html#a2d56d0e63146cbcc6337b4379e83651a">MainWindow::on_sliderExplode_valueChanged</a></div><div class="ttdeci">void on_sliderExplode_valueChanged(int value)</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00808">mainwindow.cpp:808</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a35466a70ed47252a0191168126a352a5"><div class="ttname"><a href="classMainWindow.html#a35466a70ed47252a0191168126a352a5">MainWindow::ui</a></div><div class="ttdeci">Ui::MainWindow * ui</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00096">mainwindow.h:96</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a3c769f260aadd2fef6ad5218df03ae74"><div class="ttname"><a href="classMainWindow.html#a3c769f260aadd2fef6ad5218df03ae74">MainWindow::currentPart</a></div><div class="ttdeci">ModelPart * currentPart()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00438">mainwindow.cpp:438</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a3f46f38f8603c05a64be2afb4c98e575"><div class="ttname"><a href="classMainWindow.html#a3f46f38f8603c05a64be2afb4c98e575">MainWindow::light</a></div><div class="ttdeci">vtkSmartPointer&lt; vtkLight &gt; light</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00100">mainwindow.h:100</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a3fddd2c840f105b232035192fadaeee8"><div class="ttname"><a href="classMainWindow.html#a3fddd2c840f105b232035192fadaeee8">MainWindow::partList</a></div><div class="ttdeci">ModelPartList * partList</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00097">mainwindow.h:97</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a45e03fc6b470814598896604201d820f"><div class="ttname"><a href="classMainWindow.html#a45e03fc6b470814598896604201d820f">MainWindow::on_checkShowPart_stateChanged</a></div><div class="ttdeci">void on_checkShowPart_stateChanged(int state)</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00751">mainwindow.cpp:751</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a46cb35b1c663ea1240545f3e626f3854"><div class="ttname"><a href="classMainWindow.html#a46cb35b1c663ea1240545f3e626f3854">MainWindow::applyExplodeFromTree</a></div><div class="ttdeci">void applyExplodeFromTree(const QModelIndex &amp;index, double amount)</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00866">mainwindow.cpp:866</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a48e67382415cc577a78bef1c162ae7b1"><div class="ttname"><a href="classMainWindow.html#a48e67382415cc577a78bef1c162ae7b1">MainWindow::on_actionToggle_Theme_triggered</a></div><div class="ttdeci">void on_actionToggle_Theme_triggered()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00881">mainwindow.cpp:881</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a4f3ebda1ba39e0ef4d678b44893c9c7f"><div class="ttname"><a href="classMainWindow.html#a4f3ebda1ba39e0ef4d678b44893c9c7f">MainWindow::on_actionAbout_triggered</a></div><div class="ttdeci">void on_actionAbout_triggered()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00996">mainwindow.cpp:996</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a5844d2e1bb5a1c59a36534b2e91fd700"><div class="ttname"><a href="classMainWindow.html#a5844d2e1bb5a1c59a36534b2e91fd700">MainWindow::on_actionFrame_All_triggered</a></div><div class="ttdeci">void on_actionFrame_All_triggered()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00703">mainwindow.cpp:703</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a591d52182acedb4f591a2409e28f4142"><div class="ttname"><a href="classMainWindow.html#a591d52182acedb4f591a2409e28f4142">MainWindow::onCurrentSelectionChanged</a></div><div class="ttdeci">void onCurrentSelectionChanged(const QModelIndex &amp;current, const QModelIndex &amp;previous)</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00495">mainwindow.cpp:495</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a597961838262c9f16a02e6b37d184d5e"><div class="ttname"><a href="classMainWindow.html#a597961838262c9f16a02e6b37d184d5e">MainWindow::on_actionEnter_VR_triggered</a></div><div class="ttdeci">void on_actionEnter_VR_triggered()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00894">mainwindow.cpp:894</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a5f1ab238dddc869bfbbd14ebb62fdad2"><div class="ttname"><a href="classMainWindow.html#a5f1ab238dddc869bfbbd14ebb62fdad2">MainWindow::on_actionExit_VR_triggered</a></div><div class="ttdeci">void on_actionExit_VR_triggered()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00923">mainwindow.cpp:923</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a666ed04c2b87d813bd698a2a7199bb2b"><div class="ttname"><a href="classMainWindow.html#a666ed04c2b87d813bd698a2a7199bb2b">MainWindow::on_actionEnable_Passthrough_triggered</a></div><div class="ttdeci">void on_actionEnable_Passthrough_triggered()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00939">mainwindow.cpp:939</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a6db062f407bd66add549a10a7dc24a0f"><div class="ttname"><a href="classMainWindow.html#a6db062f407bd66add549a10a7dc24a0f">MainWindow::applyExplodeToAll</a></div><div class="ttdeci">void applyExplodeToAll()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00859">mainwindow.cpp:859</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a73b0020c4cde6b548e415d29234eeda6"><div class="ttname"><a href="classMainWindow.html#a73b0020c4cde6b548e415d29234eeda6">MainWindow::on_actionImport_Mesh_triggered</a></div><div class="ttdeci">void on_actionImport_Mesh_triggered()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00535">mainwindow.cpp:535</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a73f689fc9d641aaacd570e4710e6fabb"><div class="ttname"><a href="classMainWindow.html#a73f689fc9d641aaacd570e4710e6fabb">MainWindow::on_buttonViewportBackground_clicked</a></div><div class="ttdeci">void on_buttonViewportBackground_clicked()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00710">mainwindow.cpp:710</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a74028a929c64ac0436e962017971dee6"><div class="ttname"><a href="classMainWindow.html#a74028a929c64ac0436e962017971dee6">MainWindow::renderWindow</a></div><div class="ttdeci">vtkSmartPointer&lt; vtkGenericOpenGLRenderWindow &gt; renderWindow</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00099">mainwindow.h:99</a></div></div>
 <div class="ttc" id="aclassMainWindow_html_a86443ea744fda3e9bad328c2fd1c3d6b"><div class="ttname"><a href="classMainWindow.html#a86443ea744fda3e9bad328c2fd1c3d6b">MainWindow::statusUpdateMessage</a></div><div class="ttdeci">void statusUpdateMessage(const QString &amp;message, int timeout)</div></div>
-<div class="ttc" id="aclassMainWindow_html_a8ae3a2bab6826c885e2d13f399e0b7c1"><div class="ttname"><a href="classMainWindow.html#a8ae3a2bab6826c885e2d13f399e0b7c1">MainWindow::on_actionImport_Folder_triggered</a></div><div class="ttdeci">void on_actionImport_Folder_triggered()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:601</div></div>
-<div class="ttc" id="aclassMainWindow_html_a8ed3d629355053c18e1fcac52125466a"><div class="ttname"><a href="classMainWindow.html#a8ed3d629355053c18e1fcac52125466a">MainWindow::m_explodeAmount</a></div><div class="ttdeci">double m_explodeAmount</div><div class="ttdef"><b>Definition</b> mainwindow.h:109</div></div>
-<div class="ttc" id="aclassMainWindow_html_aa2a5945f9c4bf90022f0a7ad3db34c49"><div class="ttname"><a href="classMainWindow.html#aa2a5945f9c4bf90022f0a7ad3db34c49">MainWindow::updateRender</a></div><div class="ttdeci">void updateRender()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:505</div></div>
-<div class="ttc" id="aclassMainWindow_html_abf8d0dc36dea7c9edc57a19e3c2b1b2f"><div class="ttname"><a href="classMainWindow.html#abf8d0dc36dea7c9edc57a19e3c2b1b2f">MainWindow::on_sliderBrightness_valueChanged</a></div><div class="ttdeci">void on_sliderBrightness_valueChanged(int value)</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:861</div></div>
-<div class="ttc" id="aclassMainWindow_html_ac0f0034dd8ee8a9cb96cf81366fca941"><div class="ttname"><a href="classMainWindow.html#ac0f0034dd8ee8a9cb96cf81366fca941">MainWindow::on_actionEdit_Part_triggered</a></div><div class="ttdeci">void on_actionEdit_Part_triggered()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:696</div></div>
-<div class="ttc" id="aclassMainWindow_html_ac8d2ec00c54dd53fc814c23cb396d526"><div class="ttname"><a href="classMainWindow.html#ac8d2ec00c54dd53fc814c23cb396d526">MainWindow::on_actionDelete_Part_triggered</a></div><div class="ttdeci">void on_actionDelete_Part_triggered()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:737</div></div>
-<div class="ttc" id="aclassMainWindow_html_ad0f3f72f92f2fe5aa922ad43c13fe3b9"><div class="ttname"><a href="classMainWindow.html#ad0f3f72f92f2fe5aa922ad43c13fe3b9">MainWindow::refreshExplodeDirections</a></div><div class="ttdeci">void refreshExplodeDirections()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:881</div></div>
-<div class="ttc" id="aclassMainWindow_html_ad9f3c0909e0ed237071de951969cbf09"><div class="ttname"><a href="classMainWindow.html#ad9f3c0909e0ed237071de951969cbf09">MainWindow::m_passthroughEnabled</a></div><div class="ttdeci">bool m_passthroughEnabled</div><div class="ttdef"><b>Definition</b> mainwindow.h:88</div></div>
-<div class="ttc" id="aclassMainWindow_html_adfd4eeb03c59e57fec68571a2ea4ce72"><div class="ttname"><a href="classMainWindow.html#adfd4eeb03c59e57fec68571a2ea4ce72">MainWindow::on_buttonDiffuseColour_clicked</a></div><div class="ttdeci">void on_buttonDiffuseColour_clicked()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:793</div></div>
-<div class="ttc" id="aclassMainWindow_html_ae2556ac3163fd33424f2c34c8ff757b0"><div class="ttname"><a href="classMainWindow.html#ae2556ac3163fd33424f2c34c8ff757b0">MainWindow::m_vrThread</a></div><div class="ttdeci">VRRenderThread * m_vrThread</div><div class="ttdef"><b>Definition</b> mainwindow.h:106</div></div>
-<div class="ttc" id="aclassMainWindow_html_ae2cd85ce3391e898b49dbaea0b5fe43c"><div class="ttname"><a href="classMainWindow.html#ae2cd85ce3391e898b49dbaea0b5fe43c">MainWindow::on_buttonToggleVisible_clicked</a></div><div class="ttdeci">void on_buttonToggleVisible_clicked(bool checked)</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:816</div></div>
-<div class="ttc" id="aclassMainWindow_html_ae46392d9d834f059b571975c9973d605"><div class="ttname"><a href="classMainWindow.html#ae46392d9d834f059b571975c9973d605">MainWindow::m_theme</a></div><div class="ttdeci">Theme m_theme</div><div class="ttdef"><b>Definition</b> mainwindow.h:108</div></div>
-<div class="ttc" id="aclassMainWindow_html_ae98d00a93bc118200eeef9f9bba1dba7"><div class="ttname"><a href="classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7">MainWindow::~MainWindow</a></div><div class="ttdeci">~MainWindow()</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:451</div></div>
-<div class="ttc" id="aclassMainWindow_html_af66d427fde435ca9aa38c3382525c9ec"><div class="ttname"><a href="classMainWindow.html#af66d427fde435ca9aa38c3382525c9ec">MainWindow::applyTheme</a></div><div class="ttdeci">void applyTheme(Theme theme)</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:490</div></div>
-<div class="ttc" id="aclassMainWindow_html_af809c2679376142b241371e36aedc279"><div class="ttname"><a href="classMainWindow.html#af809c2679376142b241371e36aedc279">MainWindow::dropEvent</a></div><div class="ttdeci">void dropEvent(QDropEvent *event) override</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:1113</div></div>
-<div class="ttc" id="aclassModelPartList_html"><div class="ttname"><a href="classModelPartList.html">ModelPartList</a></div><div class="ttdoc">Qt tree model backed by a hierarchy of ModelPart objects.</div><div class="ttdef"><b>Definition</b> ModelPartList.h:19</div></div>
-<div class="ttc" id="aclassModelPart_html"><div class="ttname"><a href="classModelPart.html">ModelPart</a></div><div class="ttdoc">Single node in the parts tree — owns VTK pipeline (STL reader, filters, mapper, actor).</div><div class="ttdef"><b>Definition</b> ModelPart.h:29</div></div>
-<div class="ttc" id="aclassVRRenderThread_html"><div class="ttname"><a href="classVRRenderThread.html">VRRenderThread</a></div><div class="ttdoc">Dedicated thread that runs the OpenVR render loop and processes GUI commands.</div><div class="ttdef"><b>Definition</b> VRRenderThread.h:50</div></div>
-<div class="ttc" id="anamespaceUi_html"><div class="ttname"><a href="namespaceUi.html">Ui</a></div><div class="ttdoc">Auto-generated UI namespace — holds the form classes created by Qt Designer.</div><div class="ttdef"><b>Definition</b> mainwindow.h:23</div></div>
+<div class="ttc" id="aclassMainWindow_html_a8ae3a2bab6826c885e2d13f399e0b7c1"><div class="ttname"><a href="classMainWindow.html#a8ae3a2bab6826c885e2d13f399e0b7c1">MainWindow::on_actionImport_Folder_triggered</a></div><div class="ttdeci">void on_actionImport_Folder_triggered()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00566">mainwindow.cpp:566</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_a8ed3d629355053c18e1fcac52125466a"><div class="ttname"><a href="classMainWindow.html#a8ed3d629355053c18e1fcac52125466a">MainWindow::m_explodeAmount</a></div><div class="ttdeci">double m_explodeAmount</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00105">mainwindow.h:105</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_aa2a5945f9c4bf90022f0a7ad3db34c49"><div class="ttname"><a href="classMainWindow.html#aa2a5945f9c4bf90022f0a7ad3db34c49">MainWindow::updateRender</a></div><div class="ttdeci">void updateRender()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00477">mainwindow.cpp:477</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_aa898f33303bb3b0cd4b4dee5fde9fed0"><div class="ttname"><a href="classMainWindow.html#aa898f33303bb3b0cd4b4dee5fde9fed0">MainWindow::on_toggleShrink_toggled</a></div><div class="ttdeci">void on_toggleShrink_toggled(bool checked)</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00763">mainwindow.cpp:763</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_abf8d0dc36dea7c9edc57a19e3c2b1b2f"><div class="ttname"><a href="classMainWindow.html#abf8d0dc36dea7c9edc57a19e3c2b1b2f">MainWindow::on_sliderBrightness_valueChanged</a></div><div class="ttdeci">void on_sliderBrightness_valueChanged(int value)</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00797">mainwindow.cpp:797</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_ac0f0034dd8ee8a9cb96cf81366fca941"><div class="ttname"><a href="classMainWindow.html#ac0f0034dd8ee8a9cb96cf81366fca941">MainWindow::on_actionEdit_Part_triggered</a></div><div class="ttdeci">void on_actionEdit_Part_triggered()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00645">mainwindow.cpp:645</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_ac8d2ec00c54dd53fc814c23cb396d526"><div class="ttname"><a href="classMainWindow.html#ac8d2ec00c54dd53fc814c23cb396d526">MainWindow::on_actionDelete_Part_triggered</a></div><div class="ttdeci">void on_actionDelete_Part_triggered()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00677">mainwindow.cpp:677</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_ad0f3f72f92f2fe5aa922ad43c13fe3b9"><div class="ttname"><a href="classMainWindow.html#ad0f3f72f92f2fe5aa922ad43c13fe3b9">MainWindow::refreshExplodeDirections</a></div><div class="ttdeci">void refreshExplodeDirections()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00817">mainwindow.cpp:817</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_ad9f3c0909e0ed237071de951969cbf09"><div class="ttname"><a href="classMainWindow.html#ad9f3c0909e0ed237071de951969cbf09">MainWindow::m_passthroughEnabled</a></div><div class="ttdeci">bool m_passthroughEnabled</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00084">mainwindow.h:84</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_adfd4eeb03c59e57fec68571a2ea4ce72"><div class="ttname"><a href="classMainWindow.html#adfd4eeb03c59e57fec68571a2ea4ce72">MainWindow::on_buttonDiffuseColour_clicked</a></div><div class="ttdeci">void on_buttonDiffuseColour_clicked()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00728">mainwindow.cpp:728</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_ae2556ac3163fd33424f2c34c8ff757b0"><div class="ttname"><a href="classMainWindow.html#ae2556ac3163fd33424f2c34c8ff757b0">MainWindow::m_vrThread</a></div><div class="ttdeci">VRRenderThread * m_vrThread</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00102">mainwindow.h:102</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_ae46392d9d834f059b571975c9973d605"><div class="ttname"><a href="classMainWindow.html#ae46392d9d834f059b571975c9973d605">MainWindow::m_theme</a></div><div class="ttdeci">Theme m_theme</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00104">mainwindow.h:104</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_ae98d00a93bc118200eeef9f9bba1dba7"><div class="ttname"><a href="classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7">MainWindow::~MainWindow</a></div><div class="ttdeci">~MainWindow()</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00423">mainwindow.cpp:423</a></div></div>
+<div class="ttc" id="aclassMainWindow_html_af66d427fde435ca9aa38c3382525c9ec"><div class="ttname"><a href="classMainWindow.html#af66d427fde435ca9aa38c3382525c9ec">MainWindow::applyTheme</a></div><div class="ttdeci">void applyTheme(Theme theme)</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00462">mainwindow.cpp:462</a></div></div>
+<div class="ttc" id="aclassModelPartList_html"><div class="ttname"><a href="classModelPartList.html">ModelPartList</a></div><div class="ttdoc">Qt tree model backed by a hierarchy of ModelPart objects.</div><div class="ttdef"><b>Definition</b> <a href="ModelPartList_8h_source.html#l00019">ModelPartList.h:19</a></div></div>
+<div class="ttc" id="aclassModelPart_html"><div class="ttname"><a href="classModelPart.html">ModelPart</a></div><div class="ttdoc">Single node in the parts tree — owns VTK pipeline (STL reader, filters, mapper, actor).</div><div class="ttdef"><b>Definition</b> <a href="ModelPart_8h_source.html#l00027">ModelPart.h:27</a></div></div>
+<div class="ttc" id="aclassVRRenderThread_html"><div class="ttname"><a href="classVRRenderThread.html">VRRenderThread</a></div><div class="ttdoc">Dedicated thread that runs the OpenVR render loop and processes GUI commands.</div><div class="ttdef"><b>Definition</b> <a href="VRRenderThread_8h_source.html#l00050">VRRenderThread.h:50</a></div></div>
+<div class="ttc" id="anamespaceUi_html"><div class="ttname"><a href="namespaceUi.html">Ui</a></div><div class="ttdoc">Auto-generated UI namespace — holds the form classes created by Qt Designer.</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00023">mainwindow.h:23</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="mainwindow_8h.html">mainwindow.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

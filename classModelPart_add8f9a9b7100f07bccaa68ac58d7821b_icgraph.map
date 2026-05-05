@@ -1,0 +1,14 @@
+<map id="ModelPart::applyExplode" name="ModelPart::applyExplode">
+<area shape="rect" id="Node000001" title=" " alt="" coords="776,77,959,102"/>
+<area shape="rect" id="Node000002" href="$classMainWindow.html#a46cb35b1c663ea1240545f3e626f3854" title=" " alt="" coords="527,69,728,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="762,92,728,92,728,87,762,87"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="668,58,654,51,627,48,604,50,590,55,585,61,588,68,583,70,580,60,587,50,603,45,627,43,655,46,670,53"/>
+<area shape="rect" id="Node000003" href="$classMainWindow.html#a6db062f407bd66add549a10a7dc24a0f" title=" " alt="" coords="277,69,479,109"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="513,92,479,92,479,87,513,87"/>
+<area shape="rect" id="Node000004" href="$classMainWindow.html#ac8d2ec00c54dd53fc814c23cb396d526" title=" " alt="" coords="8,5,227,45"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="282,69,199,48,200,43,283,63"/>
+<area shape="rect" id="Node000005" href="$classMainWindow.html#a73b0020c4cde6b548e415d29234eeda6" title=" " alt="" coords="8,69,227,109"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="264,92,227,92,227,87,264,87"/>
+<area shape="rect" id="Node000006" href="$classMainWindow.html#a2d56d0e63146cbcc6337b4379e83651a" title=" " alt="" coords="5,133,229,173"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="283,115,200,136,199,131,282,110"/>
+</map>

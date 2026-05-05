@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_5f_5fdeclspec_0',['__declspec',['../main_8cpp.html#af8d34883a7ae07a60b518663b0c65f90',1,'main.cpp']]]
+  ['1_20when_20the_20user_20changes_20a_20colour_0',['1. When the User Changes a Colour',['../how_it_works.html#colour-change',1,'']]]
 ];

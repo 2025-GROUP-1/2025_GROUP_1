@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['left_0',['left',['../classVRRayCallback.html#ad60fee66a20a76518a74a46266d48b88',1,'VRRayCallback']]],
-  ['light_1',['light',['../classMainWindow.html#a2c9c9b9196ffc44d9f32205b1bef5f1da9914a0ce04a7b7b6a8e39bec55064b82',1,'MainWindow::Light'],['../classMainWindow.html#a3f46f38f8603c05a64be2afb4c98e575',1,'MainWindow::light']]],
-  ['light_5fqss_2',['LIGHT_QSS',['../mainwindow_8cpp.html#a5e1b46fa3690c4370ed848111fb7e4c7',1,'mainwindow.cpp']]],
-  ['loadfrommodelpart_3',['loadFromModelPart',['../classOptionDialog.html#a5f2578ef11d7940ca5821f2fcbf79e4d',1,'OptionDialog']]],
-  ['loadstl_4',['loadSTL',['../classModelPart.html#a420f4a3bfbfefada12f711ace277e68e',1,'ModelPart']]]
+  ['handletreeclicked_0',['handleTreeClicked',['../classMainWindow.html#a143bb60757a3e3f88e208eedb2af7539',1,'MainWindow']]],
+  ['headerdata_1',['headerData',['../classModelPartList.html#a433d50449a83c42eb8c0384c7b7c0fea',1,'ModelPartList']]],
+  ['hide_2',['hide',['../structVRMenu.html#ab8a20b41f69036dd7823bd4b63679f31',1,'VRMenu']]],
+  ['hoveredactor_3',['hoveredActor',['../structControllerRay.html#adedd071b947c51d40a5c12123fd390e2',1,'ControllerRay']]],
+  ['how_20it_20works_4',['How It Works',['../how_it_works.html',1,'']]],
+  ['how_2dit_2dworks_2emd_5',['how-it-works.md',['../how-it-works_8md.html',1,'']]]
 ];

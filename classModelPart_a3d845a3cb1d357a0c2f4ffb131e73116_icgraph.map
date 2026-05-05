@@ -1,0 +1,11 @@
+<map id="ModelPart::getActor" name="ModelPart::getActor">
+<area shape="rect" id="Node000001" title=" " alt="" coords="531,57,681,82"/>
+<area shape="rect" id="Node000002" href="$classMainWindow.html#ac8d2ec00c54dd53fc814c23cb396d526" title=" " alt="" coords="5,5,224,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="551,55,482,40,348,28,224,25,224,20,349,22,483,35,552,50"/>
+<area shape="rect" id="Node000003" href="$classMainWindow.html#a73b0020c4cde6b548e415d29234eeda6" title=" " alt="" coords="5,81,224,121"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="554,89,483,104,416,110,349,113,224,111,224,106,349,108,416,105,482,99,553,83"/>
+<area shape="rect" id="Node000004" href="$classMainWindow.html#ad0f3f72f92f2fe5aa922ad43c13fe3b9" title=" " alt="" coords="272,49,483,89"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="517,72,483,72,483,67,517,67"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="258,52,224,46,225,41,259,47"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="259,86,224,91,224,85,258,81"/>
+</map>

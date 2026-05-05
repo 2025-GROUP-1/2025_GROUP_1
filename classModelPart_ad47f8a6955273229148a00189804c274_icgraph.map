@@ -1,0 +1,11 @@
+<map id="ModelPart::getVRActor" name="ModelPart::getVRActor">
+<area shape="rect" id="Node000001" title=" " alt="" coords="791,35,959,60"/>
+<area shape="rect" id="Node000002" href="$classVRMenuCallback.html#a91325ef37554ee478bf1afddd008681b" title=" " alt="" coords="524,5,743,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="777,38,738,33,738,28,778,33"/>
+<area shape="rect" id="Node000005" href="$classMainWindow.html#a597961838262c9f16a02e6b37d184d5e" title=" " alt="" coords="528,55,739,95"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="777,61,739,66,738,60,777,56"/>
+<area shape="rect" id="Node000003" href="$classVRMenuCallback.html#a912b2d3f14fb4b2a9e4f9b23ae6fbcb9" title=" " alt="" coords="244,5,476,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="510,21,476,21,476,15,510,15"/>
+<area shape="rect" id="Node000004" href="$classVRMenuCallback.html#aa8d4b0b3d16a598f35da79fd6d156332" title=" " alt="" coords="5,5,196,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="230,21,196,21,196,15,230,15"/>
+</map>
