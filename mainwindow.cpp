@@ -950,6 +950,23 @@ void MainWindow::on_actionEnter_VR_triggered()
             queue.append(part->child(i));
     }
 
+    // connect VR menu signals so in-headset changes update the GUI
+    connect(m_vrThread, &VRRenderThread::partColourChanged, this, [this](int partID, QColor c) {
+        ModelPart* part = partList->findByID(partID);
+        if (part && part->getActor()) {
+            part->getActor()->GetProperty()->SetColor(c.redF(), c.greenF(), c.blueF());
+            renderWindow->Render();
+        }
+    });
+    connect(m_vrThread, &VRRenderThread::partShrinkChanged, this, [this](int partID, bool enabled) {
+        ModelPart* part = partList->findByID(partID);
+        if (part) { part->setShrinkFilter(enabled); renderWindow->Render(); }
+    });
+    connect(m_vrThread, &VRRenderThread::partClipChanged, this, [this](int partID, bool enabled) {
+        ModelPart* part = partList->findByID(partID);
+        if (part) { part->setClipFilter(enabled); renderWindow->Render(); }
+    });
+
     m_vrThread->start();
     emit statusUpdateMessage(tr("VR started"), 0);
 }

@@ -21,7 +21,10 @@
 #include <vtkTransformFilter.h>
 #include <vtkTransform.h>
 
+class VRMenuCallback;
+
 class ModelPart {
+    friend class VRMenuCallback;
 public:
     ModelPart(const QList<QVariant>& data, ModelPart* parent = nullptr);
     ~ModelPart();
