@@ -61,12 +61,6 @@ public:
 
     void setPartList(ModelPartList* list);
 
-signals:
-    // emitted from VR thread when in-headset menu changes a part (GUI connects to update itself)
-    void partColourChanged(int partID, QColor colour);
-    void partShrinkChanged(int partID, bool enabled);
-    void partClipChanged(int partID, bool enabled);
-
 protected:
     // the actual VR render loop
     void run() override;
@@ -92,6 +86,11 @@ private:
 
     void processCommands();
     void applyCommand(const CommandPacket& cmd);
+
+signals:
+    void partColourChanged(int partID, QColor colour);
+    void partShrinkChanged(int partID, bool enabled);
+    void partClipChanged(int partID, bool enabled);
 };
 
 #endif
