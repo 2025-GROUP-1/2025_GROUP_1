@@ -106,12 +106,18 @@ public:
     // Dual-stick locomotion - polls OpenVR joysticks directly so it works
     // even when the VTK action manifest fails to load (legacy input mode).
     //
-    // Left stick:  walk (forward/back + strafe left/right) relative to head
-    // Right stick: smooth turn (yaw rotation)
+    // Left stick:  walk (forward/back + strafe left/right) on flat ground
+    // Right stick X: snap turn (45-degree increments)
+    // Right stick Y: dolly (push/pull scene)
     //
+    // Movement is FLAT (horizontal only) and clamped to floor level.
     // Works on Quest Touch controllers AND Vive Pro wands (trackpad).
-    // Call every frame from the render loop.
     // -----------------------------------------------------------------------
+    double m_floorY = 0.0;
+    bool m_snapTurnReady = true;   // prevents repeated snap turns while held
+
+    void setFloorY(double y) { m_floorY = y; }
+
     void pollJoystickDolly(vtkOpenVRRenderWindow* renWin)
     {
         if (!this->CurrentRenderer || !renWin)
@@ -127,11 +133,19 @@ public:
         if (!cam) return;
 
         double physicalScale = rwi->GetPhysicalScale();
-        static constexpr float DEADZONE = 0.15f;
-        double moveSpeed = physicalScale * 0.025;   // comfortable walk speed
-        double turnSpeed = 1.5;                     // degrees per frame
+        static constexpr float DEADZONE = 0.2f;
+        double moveSpeed = physicalScale * 0.015;
 
-        // --- LEFT STICK: walk (forward/back + strafe) ---
+        // use the play-space forward direction (not head tilt) for horizontal movement
+        double* physDir = renWin->GetPhysicalViewDirection();
+        // project physical view direction onto horizontal plane (Y=0)
+        double fwd[3] = { physDir[0], 0.0, physDir[2] };
+        double fLen = sqrt(fwd[0]*fwd[0] + fwd[2]*fwd[2]);
+        if (fLen > 1e-6) { fwd[0] /= fLen; fwd[2] /= fLen; }
+        // right vector perpendicular to forward on the ground
+        double right[3] = { fwd[2], 0.0, -fwd[0] };
+
+        // --- LEFT STICK: walk (flat ground only) ---
         vr::TrackedDeviceIndex_t leftIdx =
             hmd->GetTrackedDeviceIndexForControllerRole(vr::TrackedControllerRole_LeftHand);
 
@@ -141,31 +155,24 @@ public:
                 float lx = lState.rAxis[0].x;
                 float ly = lState.rAxis[0].y;
 
-                bool hasInput = (std::abs(lx) > DEADZONE || std::abs(ly) > DEADZONE);
-                if (hasInput) {
-                    if (std::abs(lx) <= DEADZONE) lx = 0.0f;
-                    if (std::abs(ly) <= DEADZONE) ly = 0.0f;
+                if (std::abs(lx) <= DEADZONE) lx = 0.0f;
+                if (std::abs(ly) <= DEADZONE) ly = 0.0f;
 
-                    // head forward projected onto XZ plane
-                    double* dop = cam->GetDirectionOfProjection();
-                    double fwd[3] = { dop[0], 0.0, dop[2] };
-                    double fLen = sqrt(fwd[0]*fwd[0] + fwd[2]*fwd[2]);
-                    if (fLen > 1e-6) { fwd[0] /= fLen; fwd[2] /= fLen; }
-
-                    // right vector (cross up x forward)
-                    double right[3] = { -fwd[2], 0.0, fwd[0] };
-
+                if (lx != 0.0f || ly != 0.0f) {
                     double dx = (fwd[0] * ly + right[0] * lx) * moveSpeed;
                     double dz = (fwd[2] * ly + right[2] * lx) * moveSpeed;
 
-                    double* trans = rwi->GetPhysicalTranslation(cam);
-                    rwi->SetPhysicalTranslation(cam,
-                        trans[0] + dx, trans[1], trans[2] + dz);
+                    double* trans = renWin->GetPhysicalTranslation();
+                    double newX = trans[0] + dx;
+                    double newZ = trans[2] + dz;
+
+                    // clamp to floor - don't allow going below floor level
+                    renWin->SetPhysicalTranslation(newX, m_floorY, newZ);
                 }
             }
         }
 
-        // --- RIGHT STICK: smooth turn (yaw) ---
+        // --- RIGHT STICK: snap turn (X) + dolly (Y) ---
         vr::TrackedDeviceIndex_t rightIdx =
             hmd->GetTrackedDeviceIndexForControllerRole(vr::TrackedControllerRole_RightHand);
 
@@ -175,38 +182,50 @@ public:
                 float rx = rState.rAxis[0].x;
                 float ry = rState.rAxis[0].y;
 
-                // right stick X = turn, Y = forward/back (as extra move option)
-                if (std::abs(rx) > DEADZONE) {
-                    // smooth turn around the user's current position
-                    double angle = -static_cast<double>(rx) * turnSpeed;
-                    double* viewUp = renWin->GetPhysicalViewUp();
+                // snap turn: 45 degrees per flick
+                // rotates the physical view direction AND the translation
+                // so the user stays in place but the world rotates around them
+                if (std::abs(rx) > 0.7f) {
+                    if (m_snapTurnReady) {
+                        double angle = (rx > 0) ? -45.0 : 45.0;
+                        double rad = angle * vtkMath::Pi() / 180.0;
+                        double cosA = cos(rad);
+                        double sinA = sin(rad);
 
-                    // rotate physical view direction around view-up
-                    double* viewDir = renWin->GetPhysicalViewDirection();
-                    vtkNew<vtkTransform> rot;
-                    rot->RotateWXYZ(angle, viewUp[0], viewUp[1], viewUp[2]);
-                    double newDir[3];
-                    rot->TransformVector(viewDir, newDir);
-                    renWin->SetPhysicalViewDirection(newDir[0], newDir[1], newDir[2]);
+                        // rotate physical view direction around Y
+                        double newDir[3] = {
+                            physDir[0] * cosA - physDir[2] * sinA,
+                            physDir[1],
+                            physDir[0] * sinA + physDir[2] * cosA
+                        };
+                        renWin->SetPhysicalViewDirection(newDir[0], newDir[1], newDir[2]);
+
+                        // also rotate the physical view up if it's not pure Y-up
+                        double* viewUp = renWin->GetPhysicalViewUp();
+                        double newUp[3] = {
+                            viewUp[0] * cosA - viewUp[2] * sinA,
+                            viewUp[1],
+                            viewUp[0] * sinA + viewUp[2] * cosA
+                        };
+                        renWin->SetPhysicalViewUp(newUp[0], newUp[1], newUp[2]);
+
+                        m_snapTurnReady = false;
+                    }
+                } else {
+                    m_snapTurnReady = true;
                 }
 
-                // right stick Y = additional push/pull (dolly) for convenience
+                // right stick Y = dolly (push/pull scene along ground)
                 if (std::abs(ry) > DEADZONE) {
-                    double* dop = cam->GetDirectionOfProjection();
-                    double fwd[3] = { dop[0], 0.0, dop[2] };
-                    double fLen = sqrt(fwd[0]*fwd[0] + fwd[2]*fwd[2]);
-                    if (fLen > 1e-6) { fwd[0] /= fLen; fwd[2] /= fLen; }
-
                     double speed = static_cast<double>(ry) * moveSpeed;
-                    double* trans = rwi->GetPhysicalTranslation(cam);
-                    rwi->SetPhysicalTranslation(cam,
-                        trans[0] + fwd[0] * speed, trans[1], trans[2] + fwd[2] * speed);
+                    double* trans = renWin->GetPhysicalTranslation();
+                    renWin->SetPhysicalTranslation(
+                        trans[0] + fwd[0] * speed,
+                        m_floorY,
+                        trans[2] + fwd[2] * speed);
                 }
             }
         }
-
-        if (this->AutoAdjustCameraClippingRange)
-            this->CurrentRenderer->ResetCameraClippingRange();
     }
 };
 vtkStandardNewMacro(VRCustomStyle);
@@ -842,6 +861,7 @@ void VRRenderThread::run() {
         double* trans = m_renderWindow->GetPhysicalTranslation();
         double floorY = bounds[2];   // Y-min of all geometry
         m_renderWindow->SetPhysicalTranslation(trans[0], floorY, trans[2]);
+        customStyle->setFloorY(floorY);
     }
 
     // render loop - process one VR frame, handle commands, repeat

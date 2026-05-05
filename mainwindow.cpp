@@ -14,6 +14,10 @@
 #include <QFutureWatcher>
 #include <QEventLoop>
 #include <QtConcurrent>
+#include <QDragEnterEvent>
+#include <QDropEvent>
+#include <QMimeData>
+#include <QCheckBox>
 
 #include <vtkSTLReader.h>
 
@@ -134,8 +138,8 @@ QCheckBox::indicator:checked{
     background-color: #1aa179; border-color: #1aa179;
 }
 
-/* iOS-style toggle switches for show/shrink/clip/theme */
-QCheckBox#checkShowPart, QCheckBox#toggleShrink, QCheckBox#toggleClip, QCheckBox#themeToggle {
+/* iOS-style toggle switch for theme */
+QCheckBox#themeToggle {
     min-width: 44px; max-width: 44px;
     min-height: 22px; max-height: 22px;
     border-radius: 11px;
@@ -143,27 +147,38 @@ QCheckBox#checkShowPart, QCheckBox#toggleShrink, QCheckBox#toggleClip, QCheckBox
     background-color: #34373f;
     padding: 0px;
 }
-QCheckBox#checkShowPart:hover, QCheckBox#toggleShrink:hover, QCheckBox#toggleClip:hover, QCheckBox#themeToggle:hover {
+QCheckBox#themeToggle:hover {
     border-color: #5b606b;
 }
-QCheckBox#checkShowPart:checked, QCheckBox#toggleShrink:checked, QCheckBox#toggleClip:checked, QCheckBox#themeToggle:checked {
+QCheckBox#themeToggle:checked {
     background-color: #1aa179;
     border-color: #1aa179;
 }
-/* sliding white thumb */
-QCheckBox#checkShowPart::indicator, QCheckBox#toggleShrink::indicator, QCheckBox#toggleClip::indicator, QCheckBox#themeToggle::indicator {
+QCheckBox#themeToggle::indicator {
     width: 18px; height: 18px;
     border-radius: 9px;
     background-color: #e6e8eb;
     border: none;
 }
-/* thumb left (unchecked) */
-QCheckBox#checkShowPart::indicator:unchecked, QCheckBox#toggleShrink::indicator:unchecked, QCheckBox#toggleClip::indicator:unchecked, QCheckBox#themeToggle::indicator:unchecked {
+QCheckBox#themeToggle::indicator:unchecked {
     margin-left: 2px;
 }
-/* thumb right (checked) */
-QCheckBox#checkShowPart::indicator:checked, QCheckBox#toggleShrink::indicator:checked, QCheckBox#toggleClip::indicator:checked, QCheckBox#themeToggle::indicator:checked {
+QCheckBox#themeToggle::indicator:checked {
     margin-left: 24px;
+}
+/* Toggle push buttons for visible/shrink/clip */
+QPushButton#buttonToggleVisible, QPushButton#buttonToggleShrink, QPushButton#buttonToggleClip {
+    border-radius: 4px;
+    padding: 4px 12px;
+    background-color: #34373f;
+    border: 1px solid #4a4e58;
+}
+QPushButton#buttonToggleVisible:checked, QPushButton#buttonToggleShrink:checked, QPushButton#buttonToggleClip:checked {
+    background-color: #1aa179;
+    border-color: #1aa179;
+}
+QPushButton#buttonToggleVisible:hover, QPushButton#buttonToggleShrink:hover, QPushButton#buttonToggleClip:hover {
+    border-color: #5b606b;
 }
 QSplitter {
     background: transparent;
@@ -288,8 +303,8 @@ QCheckBox::indicator:checked{
     background-color: #1aa179; border-color: #1aa179;
 }
 
-/* iOS-style toggle switches */
-QCheckBox#checkShowPart, QCheckBox#toggleShrink, QCheckBox#toggleClip, QCheckBox#themeToggle {
+/* iOS-style toggle switch for theme */
+QCheckBox#themeToggle {
     min-width: 44px; max-width: 44px;
     min-height: 22px; max-height: 22px;
     border-radius: 11px;
@@ -297,27 +312,39 @@ QCheckBox#checkShowPart, QCheckBox#toggleShrink, QCheckBox#toggleClip, QCheckBox
     background-color: #e0e3e7;
     padding: 0px;
 }
-QCheckBox#checkShowPart:hover, QCheckBox#toggleShrink:hover, QCheckBox#toggleClip:hover, QCheckBox#themeToggle:hover {
+QCheckBox#themeToggle:hover {
     border-color: #b8bcc6;
 }
-QCheckBox#checkShowPart:checked, QCheckBox#toggleShrink:checked, QCheckBox#toggleClip:checked, QCheckBox#themeToggle:checked {
+QCheckBox#themeToggle:checked {
     background-color: #1aa179;
     border-color: #1aa179;
 }
-/* sliding white thumb */
-QCheckBox#checkShowPart::indicator, QCheckBox#toggleShrink::indicator, QCheckBox#toggleClip::indicator, QCheckBox#themeToggle::indicator {
+QCheckBox#themeToggle::indicator {
     width: 18px; height: 18px;
     border-radius: 9px;
     background-color: #ffffff;
     border: none;
 }
-/* thumb left (unchecked) */
-QCheckBox#checkShowPart::indicator:unchecked, QCheckBox#toggleShrink::indicator:unchecked, QCheckBox#toggleClip::indicator:unchecked, QCheckBox#themeToggle::indicator:unchecked {
+QCheckBox#themeToggle::indicator:unchecked {
     margin-left: 2px;
 }
-/* thumb right (checked) */
-QCheckBox#checkShowPart::indicator:checked, QCheckBox#toggleShrink::indicator:checked, QCheckBox#toggleClip::indicator:checked, QCheckBox#themeToggle::indicator:checked {
+QCheckBox#themeToggle::indicator:checked {
     margin-left: 24px;
+}
+/* Toggle push buttons for visible/shrink/clip */
+QPushButton#buttonToggleVisible, QPushButton#buttonToggleShrink, QPushButton#buttonToggleClip {
+    border-radius: 4px;
+    padding: 4px 12px;
+    background-color: #e0e3e7;
+    border: 1px solid #c8ccd2;
+}
+QPushButton#buttonToggleVisible:checked, QPushButton#buttonToggleShrink:checked, QPushButton#buttonToggleClip:checked {
+    background-color: #1aa179;
+    border-color: #1aa179;
+    color: white;
+}
+QPushButton#buttonToggleVisible:hover, QPushButton#buttonToggleShrink:hover, QPushButton#buttonToggleClip:hover {
+    border-color: #b8bcc6;
 }
 QSplitter {
     background: transparent;
@@ -341,6 +368,7 @@ MainWindow::MainWindow(QWidget* parent)
     , m_explodeAmount(0.0)
 {
     ui->setupUi(this);
+    setAcceptDrops(true);
 
     // set up VTK renderer and render window inside the Qt widget
     renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
@@ -374,9 +402,9 @@ MainWindow::MainWindow(QWidget* parent)
 
     // disable property controls until something is selected
     ui->buttonDiffuseColour->setEnabled(false);
-    ui->checkShowPart->setEnabled(false);
-    ui->toggleShrink->setEnabled(false);
-    ui->toggleClip->setEnabled(false);
+    ui->buttonToggleVisible->setEnabled(false);
+    ui->buttonToggleShrink->setEnabled(false);
+    ui->buttonToggleClip->setEnabled(false);
 
     applyTheme(Theme::Dark);
 
@@ -496,9 +524,9 @@ void MainWindow::onCurrentSelectionChanged(const QModelIndex& current, const QMo
 
     bool hasSelection = current.isValid();
     ui->buttonDiffuseColour->setEnabled(hasSelection);
-    ui->checkShowPart->setEnabled(hasSelection);
-    ui->toggleShrink->setEnabled(hasSelection);
-    ui->toggleClip->setEnabled(hasSelection);
+    ui->buttonToggleVisible->setEnabled(hasSelection);
+    ui->buttonToggleShrink->setEnabled(hasSelection);
+    ui->buttonToggleClip->setEnabled(hasSelection);
 
     if (!hasSelection) return;
 
@@ -506,17 +534,17 @@ void MainWindow::onCurrentSelectionChanged(const QModelIndex& current, const QMo
     if (!part) return;
 
     // block signals so we don't accidentally trigger toggle handlers
-    ui->toggleShrink->blockSignals(true);
-    ui->toggleClip->blockSignals(true);
-    ui->checkShowPart->blockSignals(true);
+    ui->buttonToggleShrink->blockSignals(true);
+    ui->buttonToggleClip->blockSignals(true);
+    ui->buttonToggleVisible->blockSignals(true);
 
-    ui->toggleShrink->setChecked(part->getShrinkEnabled());
-    ui->toggleClip->setChecked(part->getClipEnabled());
-    ui->checkShowPart->setChecked(part->getVisible());
+    ui->buttonToggleShrink->setChecked(part->getShrinkEnabled());
+    ui->buttonToggleClip->setChecked(part->getClipEnabled());
+    ui->buttonToggleVisible->setChecked(part->getVisible());
 
-    ui->toggleShrink->blockSignals(false);
-    ui->toggleClip->blockSignals(false);
-    ui->checkShowPart->blockSignals(false);
+    ui->buttonToggleShrink->blockSignals(false);
+    ui->buttonToggleClip->blockSignals(false);
+    ui->buttonToggleVisible->blockSignals(false);
 }
 
 // ===========================================================================
@@ -783,19 +811,18 @@ void MainWindow::on_buttonDiffuseColour_clicked()
             : tr("Recoloured %1 parts").arg(parts.size()), 0);
 }
 
-void MainWindow::on_checkShowPart_stateChanged(int state)
+void MainWindow::on_buttonToggleVisible_clicked(bool checked)
 {
     QList<ModelPart*> parts = selectedParts();
-    bool visible = (state == Qt::Checked);
     for (ModelPart* part : parts) {
-        part->setVisible(visible);
+        part->setVisible(checked);
         if (m_vrThread && m_vrThread->isRunning())
-            m_vrThread->issueCommand(Command::SetVisible, part->getID(), visible);
+            m_vrThread->issueCommand(Command::SetVisible, part->getID(), checked);
     }
     updateRender();
 }
 
-void MainWindow::on_toggleShrink_toggled(bool checked)
+void MainWindow::on_buttonToggleShrink_clicked(bool checked)
 {
     QList<ModelPart*> parts = selectedParts();
     for (ModelPart* part : parts) {
@@ -810,7 +837,7 @@ void MainWindow::on_toggleShrink_toggled(bool checked)
             : tr("Shrink filter %1 on %2 parts").arg(checked ? tr("on") : tr("off")).arg(parts.size()), 0);
 }
 
-void MainWindow::on_toggleClip_toggled(bool checked)
+void MainWindow::on_buttonToggleClip_clicked(bool checked)
 {
     QList<ModelPart*> parts = selectedParts();
     for (ModelPart* part : parts) {
@@ -1063,4 +1090,66 @@ void MainWindow::on_actionAbout_triggered()
             "<p>EEEE2076 - Software Development Group Project.</p>"
             "<p>Loads STL CAD files of a Formula Student car and displays "
             "them in a 3D viewport with VR support.</p>"));
+}
+
+// ===========================================================================
+// drag and drop STL files
+// ===========================================================================
+
+void MainWindow::dragEnterEvent(QDragEnterEvent* event)
+{
+    if (event->mimeData()->hasUrls()) {
+        for (const QUrl& url : event->mimeData()->urls()) {
+            if (url.toLocalFile().toLower().endsWith(".stl")) {
+                event->acceptProposedAction();
+                return;
+            }
+        }
+    }
+}
+
+void MainWindow::dropEvent(QDropEvent* event)
+{
+    QList<QUrl> urls = event->mimeData()->urls();
+    int imported = 0;
+
+    for (const QUrl& url : urls) {
+        QString filePath = url.toLocalFile();
+        if (!filePath.toLower().endsWith(".stl"))
+            continue;
+
+        QFileInfo info(filePath);
+        QModelIndex parent = ui->treeView->currentIndex();
+
+        QModelIndex newIndex = partList->appendChild(parent, { info.fileName(), QString("true") });
+        ModelPart* newPart = static_cast<ModelPart*>(newIndex.internalPointer());
+        if (!newPart) continue;
+
+        if (!newPart->loadSTL(filePath)) {
+            partList->removeItem(newIndex);
+            continue;
+        }
+
+        renderer->AddActor(newPart->getActor());
+        ui->treeView->expand(parent);
+
+        // push to VR if running
+        if (m_vrThread && m_vrThread->isRunning()) {
+            newPart->rebuildVRPipeline();
+            if (newPart->getVRActor())
+                m_vrThread->issueCommand(Command::AddActor, newPart->getID(), newPart->getVRActor());
+        }
+
+        imported++;
+    }
+
+    if (imported > 0) {
+        refreshExplodeDirections();
+        applyExplodeToAll();
+        renderer->ResetCamera();
+        renderWindow->Render();
+        emit statusUpdateMessage(tr("Dropped %1 STL file(s)").arg(imported), 0);
+    }
+
+    event->acceptProposedAction();
 }

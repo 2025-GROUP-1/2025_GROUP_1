@@ -51,9 +51,9 @@ public slots:
 
     // part properties
     void on_buttonDiffuseColour_clicked();
-    void on_checkShowPart_stateChanged(int state);
-    void on_toggleShrink_toggled(bool checked);
-    void on_toggleClip_toggled(bool checked);
+    void on_buttonToggleVisible_clicked(bool checked);
+    void on_buttonToggleShrink_clicked(bool checked);
+    void on_buttonToggleClip_clicked(bool checked);
 
     // scene properties
     void on_sliderBrightness_valueChanged(int value);
@@ -75,6 +75,10 @@ public slots:
 
 signals:
     void statusUpdateMessage(const QString& message, int timeout);
+
+protected:
+    void dragEnterEvent(QDragEnterEvent* event) override;
+    void dropEvent(QDropEvent* event) override;
 
 private:
     bool m_passthroughEnabled = false;

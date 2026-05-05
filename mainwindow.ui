@@ -220,15 +220,12 @@
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QCheckBox" name="checkShowPart">
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QCheckBox::indicator { width: 44px; height: 22px; border-radius: 11px; }</string>
-             </property>
+            <widget class="QPushButton" name="buttonToggleVisible">
              <property name="text">
-              <string/>
+              <string>Toggle</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -240,15 +237,12 @@
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QCheckBox" name="toggleShrink">
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QCheckBox::indicator { width: 44px; height: 22px; border-radius: 11px; }</string>
-             </property>
+            <widget class="QPushButton" name="buttonToggleShrink">
              <property name="text">
-              <string/>
+              <string>Toggle</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -260,15 +254,12 @@
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QCheckBox" name="toggleClip">
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QCheckBox::indicator { width: 44px; height: 22px; border-radius: 11px; }</string>
-             </property>
+            <widget class="QPushButton" name="buttonToggleClip">
              <property name="text">
-              <string/>
+              <string>Toggle</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
