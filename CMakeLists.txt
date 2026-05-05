@@ -32,6 +32,8 @@ qt_add_executable(VRBaseStation
     ${PROJECT_SOURCES}
 )
 
+target_include_directories(VRBaseStation PRIVATE "C:/OpenVr/headers")
+
 target_link_libraries(VRBaseStation
     PRIVATE
         Qt6::Core
@@ -52,15 +54,35 @@ add_custom_command(TARGET VRBindings PRE_BUILD
     COMMAND ${CMAKE_COMMAND} -E
     copy_directory ${CMAKE_SOURCE_DIR}/vrbindings ${CMAKE_BINARY_DIR}/vrbindings)
 
-# Copy room.jpg next to the exe after every build so the skybox loads at runtime
+# Copy VR bindings next to the exe after every build
 add_custom_command(TARGET VRBaseStation POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        ${CMAKE_SOURCE_DIR}/VRBaseStation/room.jpg
-        $<TARGET_FILE_DIR:VRBaseStation>/room.jpg
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${CMAKE_SOURCE_DIR}/vrbindings
         $<TARGET_FILE_DIR:VRBaseStation>/vrbindings
 )
+
+# Copy optional assets (skybox, garage) - won't fail if files are missing
+if(EXISTS "${CMAKE_SOURCE_DIR}/room2.png")
+    add_custom_command(TARGET VRBaseStation POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/room2.png
+            $<TARGET_FILE_DIR:VRBaseStation>/room2.png)
+endif()
+if(EXISTS "${CMAKE_SOURCE_DIR}/VRBaseStation/room.jpg")
+    add_custom_command(TARGET VRBaseStation POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/VRBaseStation/room.jpg
+            $<TARGET_FILE_DIR:VRBaseStation>/room.jpg)
+endif()
+if(EXISTS "${CMAKE_SOURCE_DIR}/garage__warehouse.glb")
+    add_custom_command(TARGET VRBaseStation POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/garage__warehouse.glb
+            $<TARGET_FILE_DIR:VRBaseStation>/garage__warehouse.glb
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/garage__warehouse.glb
+            $<TARGET_FILE_DIR:VRBaseStation>/garage.glb)
+endif()
 
 include(GNUInstallDirs)
 
@@ -86,7 +108,13 @@ install(DIRECTORY ${CMAKE_SOURCE_DIR}/icons
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/vrbindings
     DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+install(FILES ${CMAKE_SOURCE_DIR}/room2.png
+    DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
 install(FILES ${CMAKE_SOURCE_DIR}/VRBaseStation/room.jpg
+    DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+install(FILES ${CMAKE_SOURCE_DIR}/garage__warehouse.glb
     DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 

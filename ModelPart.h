@@ -1,6 +1,4 @@
-/** @file ModelPart.h
- *  @brief Declares ModelPart — one STL part with its VTK pipeline, filters, and display state.
- */
+// represents a single STL part in the tree - holds the VTK pipeline, filters, and display state
 
 #ifndef MODELPART_H
 #define MODELPART_H
@@ -23,8 +21,10 @@
 #include <vtkTransformFilter.h>
 #include <vtkTransform.h>
 
-/** @brief Single node in the parts tree — owns VTK pipeline (STL reader, filters, mapper, actor). */
+class VRMenuCallback;
+
 class ModelPart {
+    friend class VRMenuCallback;
 public:
     ModelPart(const QList<QVariant>& data, ModelPart* parent = nullptr);
     ~ModelPart();

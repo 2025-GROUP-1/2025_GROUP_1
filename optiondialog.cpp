@@ -1,6 +1,4 @@
-/** @file optiondialog.cpp
- *  @brief OptionDialog implementation — colour picker, visibility, shrink/clip toggles.
- */
+// handles the per-part options popup (colour picker, visibility, shrink/clip toggles)
 
 #include "optiondialog.h"
 #include "ui_optiondialog.h"

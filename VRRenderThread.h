@@ -1,6 +1,4 @@
-/** @file VRRenderThread.h
- *  @brief Declares VRRenderThread — runs the OpenVR render loop on a dedicated thread.
- */
+// VR render thread - runs the OpenVR loop on a separate thread, receives commands from the GUI
 
 #ifndef VR_RENDER_THREAD_H
 #define VR_RENDER_THREAD_H
@@ -24,7 +22,7 @@ class vtkOpenVRRenderWindow;
 class vtkOpenVRRenderWindowInteractor;
 class ModelPartList;
 
-/** @brief Commands the GUI thread can send to the VR render loop. */
+// commands that the GUI thread can send to the VR thread
 enum class Command {
     EndRender,
     AddActor,
@@ -38,7 +36,7 @@ enum class Command {
     ToggleSkybox
     };
 
-/** @brief Bundles a command type with its target part ID and payload data. */
+// bundles a command with its target part and payload
 struct CommandPacket {
     Command type;
     int partID;
@@ -46,7 +44,6 @@ struct CommandPacket {
     vtkSmartPointer<vtkActor> actor;
 };
 
-/** @brief Dedicated thread that runs the OpenVR render loop and processes GUI commands. */
 class VRRenderThread : public QThread {
     Q_OBJECT
 public:
@@ -59,7 +56,16 @@ public:
     // thread-safe: queue a command for the VR loop to pick up
     void issueCommand(Command c, int partID, const QVariant& data);
 
+    // overload that also carries an actor (used by AddActor / RemoveActor)
+    void issueCommand(Command c, int partID, vtkActor* actor);
+
     void setPartList(ModelPartList* list);
+
+signals:
+    // emitted from VR thread when in-headset menu changes a part (GUI connects to update itself)
+    void partColourChanged(int partID, QColor colour);
+    void partShrinkChanged(int partID, bool enabled);
+    void partClipChanged(int partID, bool enabled);
 
 protected:
     // the actual VR render loop

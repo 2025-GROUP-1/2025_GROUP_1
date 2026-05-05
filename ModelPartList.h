@@ -1,6 +1,4 @@
-/** @file ModelPartList.h
- *  @brief Declares ModelPartList — the QAbstractItemModel that backs the QTreeView.
- */
+// tree model that backs the QTreeView - each node is a ModelPart
 
 #ifndef MODELPARTLIST_H
 #define MODELPARTLIST_H
@@ -15,7 +13,6 @@
 
 class ModelPart;
 
-/** @brief Qt tree model backed by a hierarchy of ModelPart objects. */
 class ModelPartList : public QAbstractItemModel {
     Q_OBJECT
 
