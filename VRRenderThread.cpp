@@ -625,8 +625,6 @@ void VRRenderThread::run() {
     }
 
     bool garageLoaded = false;
-    bool haveStartupPose = false;
-    double startupPose[3] = { 0.0, 0.0, 0.0 };
     if (!glbPath.isEmpty()) {
         vtkNew<vtkGLTFImporter> gltfImporter;
         gltfImporter->SetFileName(glbPath.toStdString().c_str());
@@ -636,8 +634,6 @@ void VRRenderThread::run() {
         gltfImporter->Update();
 
         // mark all imported actors as non-pickable (environment only)
-        // and collect them so we can position the environment correctly
-        std::vector<vtkActor*> envActors;
         vtkActorCollection* actors = m_renderer->GetActors();
         actors->InitTraversal();
         vtkActor* a;
@@ -648,86 +644,6 @@ void VRRenderThread::run() {
             }
             if (!isPartActor) {
                 a->PickableOff();
-                envActors.push_back(a);
-            }
-        }
-
-        // position the garage so the user's STL parts sit inside it at a reasonable height
-        // GLTF uses metres, VTK OpenVR also uses metres, so typically no scale is needed.
-        // If the garage is too large or small relative to the STL, adjust it.
-        if (!envActors.empty()) {
-            // compute bounds of all environment geometry
-            double envBounds[6] = { 1e30, -1e30, 1e30, -1e30, 1e30, -1e30 };
-            for (auto* ea : envActors) {
-                double b[6];
-                ea->GetBounds(b);
-                if (b[0] < envBounds[0]) envBounds[0] = b[0];
-                if (b[1] > envBounds[1]) envBounds[1] = b[1];
-                if (b[2] < envBounds[2]) envBounds[2] = b[2];
-                if (b[3] > envBounds[3]) envBounds[3] = b[3];
-                if (b[4] < envBounds[4]) envBounds[4] = b[4];
-                if (b[5] > envBounds[5]) envBounds[5] = b[5];
-            }
-
-            // compute bounds of loaded STL parts
-            double partBounds[6] = { 1e30, -1e30, 1e30, -1e30, 1e30, -1e30 };
-            bool hasParts = false;
-            for (auto& [id, partAct] : m_activeActors) {
-                double b[6];
-                partAct->GetBounds(b);
-                if (b[0] < partBounds[0]) partBounds[0] = b[0];
-                if (b[1] > partBounds[1]) partBounds[1] = b[1];
-                if (b[2] < partBounds[2]) partBounds[2] = b[2];
-                if (b[3] > partBounds[3]) partBounds[3] = b[3];
-                if (b[4] < partBounds[4]) partBounds[4] = b[4];
-                if (b[5] > partBounds[5]) partBounds[5] = b[5];
-                hasParts = true;
-            }
-
-            // if the garage is significantly different scale from parts, rescale it
-            // so the garage wraps around the parts comfortably
-            if (hasParts) {
-                double envSize = std::max({ envBounds[1]-envBounds[0],
-                                            envBounds[3]-envBounds[2],
-                                            envBounds[5]-envBounds[4] });
-                double partSize = std::max({ partBounds[1]-partBounds[0],
-                                             partBounds[3]-partBounds[2],
-                                             partBounds[5]-partBounds[4] });
-
-                // target: garage should be ~5x bigger than the parts
-                if (envSize > 1e-6 && partSize > 1e-6) {
-                    double targetEnvSize = partSize * 5.0;
-                    double scaleFactor = targetEnvSize / envSize;
-
-                    // only rescale if the difference is significant (>2x off)
-                    if (scaleFactor < 0.5 || scaleFactor > 2.0) {
-                        for (auto* ea : envActors)
-                            ea->SetScale(scaleFactor, scaleFactor, scaleFactor);
-                    }
-                }
-
-                // centre the garage around the parts
-                double partCx = (partBounds[0] + partBounds[1]) * 0.5;
-                double partCy = partBounds[2];  // floor = bottom of parts
-                double partCz = (partBounds[4] + partBounds[5]) * 0.5;
-
-                double envCx = (envBounds[0] + envBounds[1]) * 0.5;
-                double envCy = envBounds[2];   // floor of garage
-                double envCz = (envBounds[4] + envBounds[5]) * 0.5;
-
-                double offsetX = partCx - envCx;
-                double offsetY = partCy - envCy;
-                double offsetZ = partCz - envCz;
-
-                for (auto* ea : envActors) {
-                    double* pos = ea->GetPosition();
-                    ea->SetPosition(pos[0] + offsetX, pos[1] + offsetY, pos[2] + offsetZ);
-                }
-
-                startupPose[0] = partCx;
-                startupPose[1] = partCy;
-                startupPose[2] = partCz;
-                haveStartupPose = true;
             }
         }
 
@@ -776,22 +692,6 @@ void VRRenderThread::run() {
 
     if (m_renderer->GetActiveCamera())
         m_renderer->ResetCameraClippingRange();
-
-    // Place the VR origin inside the loaded scene when the session starts.
-    {
-        double bounds[6];
-        m_renderer->ComputeVisiblePropBounds(bounds);
-        if (bounds[0] <= bounds[1] && bounds[2] <= bounds[3] && bounds[4] <= bounds[5]) {
-            if (!haveStartupPose) {
-                startupPose[0] = (bounds[0] + bounds[1]) * 0.5;
-                startupPose[1] = bounds[2];
-                startupPose[2] = (bounds[4] + bounds[5]) * 0.5;
-            }
-
-            m_renderWindow->SetPhysicalTranslation(
-                startupPose[0], startupPose[1], startupPose[2]);
-        }
-    }
 
     // render loop - process one VR frame, handle commands, repeat
     // NOTE: DoOneEvent already submits frames to both eyes.
