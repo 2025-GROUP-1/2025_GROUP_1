@@ -54,24 +54,35 @@ add_custom_command(TARGET VRBindings PRE_BUILD
     COMMAND ${CMAKE_COMMAND} -E
     copy_directory ${CMAKE_SOURCE_DIR}/vrbindings ${CMAKE_BINARY_DIR}/vrbindings)
 
-# Copy skybox images, 3D garage, and VR bindings next to the exe after every build
+# Copy VR bindings next to the exe after every build
 add_custom_command(TARGET VRBaseStation POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        ${CMAKE_SOURCE_DIR}/room2.png
-        $<TARGET_FILE_DIR:VRBaseStation>/room2.png
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        ${CMAKE_SOURCE_DIR}/VRBaseStation/room.jpg
-        $<TARGET_FILE_DIR:VRBaseStation>/room.jpg
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        ${CMAKE_SOURCE_DIR}/garage__warehouse.glb
-        $<TARGET_FILE_DIR:VRBaseStation>/garage__warehouse.glb
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        ${CMAKE_SOURCE_DIR}/garage__warehouse.glb
-        $<TARGET_FILE_DIR:VRBaseStation>/garage.glb
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${CMAKE_SOURCE_DIR}/vrbindings
         $<TARGET_FILE_DIR:VRBaseStation>/vrbindings
 )
+
+# Copy optional assets (skybox, garage) - won't fail if files are missing
+if(EXISTS "${CMAKE_SOURCE_DIR}/room2.png")
+    add_custom_command(TARGET VRBaseStation POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/room2.png
+            $<TARGET_FILE_DIR:VRBaseStation>/room2.png)
+endif()
+if(EXISTS "${CMAKE_SOURCE_DIR}/VRBaseStation/room.jpg")
+    add_custom_command(TARGET VRBaseStation POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/VRBaseStation/room.jpg
+            $<TARGET_FILE_DIR:VRBaseStation>/room.jpg)
+endif()
+if(EXISTS "${CMAKE_SOURCE_DIR}/garage__warehouse.glb")
+    add_custom_command(TARGET VRBaseStation POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/garage__warehouse.glb
+            $<TARGET_FILE_DIR:VRBaseStation>/garage__warehouse.glb
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/garage__warehouse.glb
+            $<TARGET_FILE_DIR:VRBaseStation>/garage.glb)
+endif()
 
 include(GNUInstallDirs)
 
