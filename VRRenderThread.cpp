@@ -245,6 +245,7 @@ struct ControllerRay {
     vtkNew<vtkPolyDataMapper>  outlineMapper;
     vtkNew<vtkActor>           outlineActor;
     vtkActor*                  hoveredActor = nullptr;
+    std::vector<vtkActor*>     pickActors;
 
     // creates the ray line and outline actors, adds them to the renderer
     void init(vtkRenderer* ren, double r, double g, double b)
@@ -271,6 +272,11 @@ struct ControllerRay {
         ren->AddActor(outlineActor);
     }
 
+    void setPickActors(const std::vector<vtkActor*>& actors)
+    {
+        pickActors = actors;
+    }
+
     // fires a pick ray from the controller, updates the ray line endpoint and outline
     void update(const double* pos, const double* ori, vtkRenderer* ren, double maxRay)
     {
@@ -289,6 +295,12 @@ struct ControllerRay {
         vtkActor* hit = nullptr;
         double hitPt[3] = { 0.0, 0.0, 0.0 };
         try {
+            picker->InitializePickList();
+            for (vtkActor* actor : pickActors) {
+                if (actor)
+                    picker->AddPickList(actor);
+            }
+            picker->PickFromListOn();
             picker->Pick3DRay(p, o, ren);
             hit = vtkActor::SafeDownCast(picker->GetProp3D());
             double* pt = picker->GetPickPosition();
@@ -339,6 +351,8 @@ public:
     static VRRayCallback* New() { return new VRRayCallback; }
 
     vtkRenderer* renderer = nullptr;
+    std::map<int, vtkSmartPointer<vtkActor>>* activeActors = nullptr;
+    std::vector<vtkActor*> menuActors;
     ControllerRay right;
     ControllerRay left;
 
@@ -361,11 +375,13 @@ public:
         auto device = d3d->GetDevice();
         const double* pos = d3d->GetWorldPosition();
         const double* ori = d3d->GetWorldOrientation();
+        auto pickActors = currentPickActors();
 
         if (device == vtkEventDataDevice::RightController ||
             device == vtkEventDataDevice::Unknown ||
             device == vtkEventDataDevice::Any)
         {
+            right.setPickActors(pickActors);
             right.update(pos, ori, renderer, MAX_RAY);
         }
 
@@ -373,12 +389,26 @@ public:
             device == vtkEventDataDevice::Unknown ||
             device == vtkEventDataDevice::Any)
         {
+            left.setPickActors(pickActors);
             left.update(pos, ori, renderer, MAX_RAY);
         }
     }
 
 private:
     static constexpr double MAX_RAY = 10000.0;   // ray length in mm
+
+    std::vector<vtkActor*> currentPickActors() const
+    {
+        std::vector<vtkActor*> actors;
+        if (activeActors) {
+            for (const auto& [id, actor] : *activeActors) {
+                if (actor)
+                    actors.push_back(actor);
+            }
+        }
+        actors.insert(actors.end(), menuActors.begin(), menuActors.end());
+        return actors;
+    }
 };
 
 // ---------------------------------------------------------------------------
@@ -494,6 +524,14 @@ struct VRMenu {
     }
 
     bool isMenuActor(vtkActor* a) const { return findButton(a) >= 0; }
+
+    std::vector<vtkActor*> actors() const
+    {
+        std::vector<vtkActor*> result;
+        for (const auto& button : buttons)
+            result.push_back(button.actor);
+        return result;
+    }
 };
 
 // handles menu button presses - fires when the user hits the menu button on the controller
@@ -679,6 +717,7 @@ void VRRenderThread::run() {
     // set up dual-controller ray casting + outline highlight
     vtkNew<VRRayCallback> rayCallback;
     rayCallback->init(m_renderer);
+    rayCallback->activeActors = &m_activeActors;
     m_interactor->AddObserver(vtkCommand::Move3DEvent, rayCallback, 1.0);
 
     // in-VR editing menu (clip / shrink / colour buttons)
@@ -689,6 +728,7 @@ void VRRenderThread::run() {
     menuCallback->vrThread = this;
     menuCallback->renWindow = m_renderWindow;
     menuCallback->menu.create(m_renderer);
+    rayCallback->menuActors = menuCallback->menu.actors();
     m_interactor->AddObserver(vtkCommand::UserEvent, menuCallback, 2.0);
 
     m_renderWindow->Initialize();
