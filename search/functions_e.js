@@ -1,15 +1,12 @@
 var searchData=
 [
-  ['savetomodelpart_0',['saveToModelPart',['../classOptionDialog.html#a8cbe60aecbb7344f560f424ed537b47a',1,'OptionDialog']]],
-  ['selectedparts_1',['selectedParts',['../classMainWindow.html#a15a4966f9e4285ab2895a35f94878175',1,'MainWindow']]],
-  ['setclipfilter_2',['setClipFilter',['../classModelPart.html#a2baa7057c98d5dc4c9b5303ca54d083d',1,'ModelPart']]],
-  ['setclipplanex_3',['setClipPlaneX',['../classModelPart.html#a922236b215b30689af7f6acc92c905fc',1,'ModelPart']]],
-  ['setcolour_4',['setColour',['../classModelPart.html#abb0819f303fea07fdc053ba750d4684d',1,'ModelPart']]],
-  ['setdata_5',['setData',['../classModelPart.html#a1b0dd7d3e3953b1aa8a4a44a7aa1349b',1,'ModelPart']]],
-  ['setpartlist_6',['setPartList',['../classVRRenderThread.html#a1950ee06c357da44400458b3672f0380',1,'VRRenderThread']]],
-  ['setshrinkfactor_7',['setShrinkFactor',['../classModelPart.html#a74f7db7b01d496dff596d8a3f1ec722b',1,'ModelPart']]],
-  ['setshrinkfilter_8',['setShrinkFilter',['../classModelPart.html#a0d01c433eb1019cb9d41f75ee389687c',1,'ModelPart']]],
-  ['setvisible_9',['setVisible',['../classModelPart.html#a4cfdee348fd6870756ce836f67b1ce75',1,'ModelPart']]],
-  ['show_10',['show',['../structVRMenu.html#a8a9754bc105c5edc90d9df747721eff8',1,'VRMenu']]],
-  ['statusupdatemessage_11',['statusUpdateMessage',['../classMainWindow.html#a86443ea744fda3e9bad328c2fd1c3d6b',1,'MainWindow']]]
+  ['rebuildpipeline_0',['rebuildPipeline',['../classModelPart.html#ad1a6f921de90d0e8d3fb710d445c9593',1,'ModelPart']]],
+  ['rebuildvrpipeline_1',['rebuildVRPipeline',['../classModelPart.html#a25d5e07dd22949e235847d8725ca80d2',1,'ModelPart']]],
+  ['refreshexplodedirections_2',['refreshExplodeDirections',['../classMainWindow.html#ad0f3f72f92f2fe5aa922ad43c13fe3b9',1,'MainWindow']]],
+  ['refreshexplodedirectionsfromtree_3',['refreshExplodeDirectionsFromTree',['../classMainWindow.html#a0246192046d6d7c2844424ca1ff7e134',1,'MainWindow']]],
+  ['removechild_4',['removeChild',['../classModelPart.html#ac7c34fdc872e698650322446d2366dde',1,'ModelPart']]],
+  ['removeitem_5',['removeItem',['../classModelPartList.html#a331e367f122a0d84daa1e0298aa037e4',1,'ModelPartList']]],
+  ['row_6',['row',['../classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910',1,'ModelPart']]],
+  ['rowcount_7',['rowCount',['../classModelPartList.html#a9e220715b6f1ba9d238a997454323634',1,'ModelPartList']]],
+  ['run_8',['run',['../classVRRenderThread.html#af5bbbaf8625fc42278476a43bf018661',1,'VRRenderThread']]]
 ];

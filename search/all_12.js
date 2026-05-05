@@ -1,25 +1,9 @@
 var searchData=
 [
-  ['rayactor_0',['rayActor',['../structControllerRay.html#a3265e22e12783bb0680bb8db09607ab0',1,'ControllerRay']]],
-  ['rayline_1',['rayLine',['../structControllerRay.html#a67fd744296ed1c77b9b27af0dcdabc49',1,'ControllerRay']]],
-  ['rays_2',['rays',['../classVRMenuCallback.html#a044da06da7ded2faaca3ca3f6ffbe8e0',1,'VRMenuCallback']]],
-  ['rebuildpipeline_3',['rebuildPipeline',['../classModelPart.html#ad1a6f921de90d0e8d3fb710d445c9593',1,'ModelPart']]],
-  ['rebuildvrpipeline_4',['rebuildVRPipeline',['../classModelPart.html#a25d5e07dd22949e235847d8725ca80d2',1,'ModelPart']]],
-  ['refreshexplodedirections_5',['refreshExplodeDirections',['../classMainWindow.html#ad0f3f72f92f2fe5aa922ad43c13fe3b9',1,'MainWindow']]],
-  ['refreshexplodedirectionsfromtree_6',['refreshExplodeDirectionsFromTree',['../classMainWindow.html#a0246192046d6d7c2844424ca1ff7e134',1,'MainWindow']]],
-  ['removeactor_7',['RemoveActor',['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153aead5460ef7fc28a592facd2122faad09',1,'VRRenderThread.h']]],
-  ['removechild_8',['removeChild',['../classModelPart.html#ac7c34fdc872e698650322446d2366dde',1,'ModelPart']]],
-  ['removeitem_9',['removeItem',['../classModelPartList.html#a331e367f122a0d84daa1e0298aa037e4',1,'ModelPartList']]],
-  ['ren_10',['ren',['../structVRMenu.html#a2134ea71f0f5d6eb74c008ad3cf69e51',1,'VRMenu']]],
-  ['renderer_11',['renderer',['../classMainWindow.html#a0886430bf0d0de4d3e3d892d535ea052',1,'MainWindow::renderer'],['../classVRRayCallback.html#a1cf2f802f453a8a534372e230b916e37',1,'VRRayCallback::renderer']]],
-  ['rendering_12',['VTK &amp; VR Rendering',['../group__rendering.html',1,'']]],
-  ['rendering_2eh_13',['rendering.h',['../rendering_8h.html',1,'']]],
-  ['renderwindow_14',['renderWindow',['../classMainWindow.html#a74028a929c64ac0436e962017971dee6',1,'MainWindow']]],
-  ['responsibilities_15',['Class Responsibilities',['../index.html#autotoc_md1',1,'']]],
-  ['right_16',['right',['../classVRRayCallback.html#a18633ab5535aebf053bcf2e200191a25',1,'VRRayCallback']]],
-  ['rootitem_17',['rootItem',['../classModelPartList.html#a464a7abc3799ad9498c0ace03f38f87e',1,'ModelPartList']]],
-  ['rotatey_18',['RotateY',['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153aea0928ab345567847020e1544892fba0',1,'VRRenderThread.h']]],
-  ['row_19',['row',['../classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910',1,'ModelPart']]],
-  ['rowcount_20',['rowCount',['../classModelPartList.html#a9e220715b6f1ba9d238a997454323634',1,'ModelPartList']]],
-  ['run_21',['run',['../classVRRenderThread.html#af5bbbaf8625fc42278476a43bf018661',1,'VRRenderThread']]]
+  ['targetpartid_0',['targetPartID',['../structVRMenu.html#a210df57b2ae0de81acc33a9511664ed2',1,'VRMenu']]],
+  ['theme_1',['Theme',['../classMainWindow.html#a2c9c9b9196ffc44d9f32205b1bef5f1d',1,'MainWindow']]],
+  ['toggleclip_2',['ToggleClip',['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153ae00324ef7d010e77e6442de67d57b594',1,'VRRenderThread.h']]],
+  ['toggleshrink_3',['ToggleShrink',['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153abc2d1f09ad6ae0d664b373635571060b',1,'VRRenderThread.h']]],
+  ['toggleskybox_4',['ToggleSkybox',['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153a7b6dcb09897ecf893574c2b70f61c7ff',1,'VRRenderThread.h']]],
+  ['type_5',['type',['../structCommandPacket.html#ae731eeaf73432df90f975ae47d479246',1,'CommandPacket']]]
 ];

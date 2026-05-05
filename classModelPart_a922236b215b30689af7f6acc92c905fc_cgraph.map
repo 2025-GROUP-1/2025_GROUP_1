@@ -1,8 +1,0 @@
-<map id="ModelPart::setClipPlaneX" name="ModelPart::setClipPlaneX">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,191,56"/>
-<area shape="rect" id="Node000002" href="$classModelPart.html#ad1a6f921de90d0e8d3fb710d445c9593" title=" " alt="" coords="239,5,431,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,31,225,27,225,32,191,36"/>
-<area shape="rect" id="Node000003" href="$classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910" title=" " alt="" coords="479,31,597,56"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="191,41,465,41,465,46,191,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="431,27,466,32,465,37,431,33"/>
-</map>

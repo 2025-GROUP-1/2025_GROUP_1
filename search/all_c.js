@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['left_0',['left',['../classVRRayCallback.html#ad60fee66a20a76518a74a46266d48b88',1,'VRRayCallback']]],
-  ['licence_1',['Licence',['../index.html#autotoc_md2',1,'']]],
-  ['light_2',['light',['../classMainWindow.html#a2c9c9b9196ffc44d9f32205b1bef5f1da9914a0ce04a7b7b6a8e39bec55064b82',1,'MainWindow::Light'],['../classMainWindow.html#a3f46f38f8603c05a64be2afb4c98e575',1,'MainWindow::light']]],
-  ['light_5fqss_3',['LIGHT_QSS',['../mainwindow_8cpp.html#a5e1b46fa3690c4370ed848111fb7e4c7',1,'mainwindow.cpp']]],
-  ['loadfrommodelpart_4',['loadFromModelPart',['../classOptionDialog.html#a5f2578ef11d7940ca5821f2fcbf79e4d',1,'OptionDialog']]],
-  ['loadstl_5',['loadSTL',['../classModelPart.html#a420f4a3bfbfefada12f711ace277e68e',1,'ModelPart']]]
+  ['new_0',['new',['../classVRCustomStyle.html#af4698ca0832d66a47a46fa5334c4701f',1,'VRCustomStyle::New()'],['../classVRRayCallback.html#a93c359ed22aa72e4b96c981d74bdbc44',1,'VRRayCallback::New()'],['../classVRMenuCallback.html#a7018e9ec974b7a5926f3e2c6f33c8ec6',1,'VRMenuCallback::New()']]],
+  ['num_5factions_1',['NUM_ACTIONS',['../structVRMenu.html#a008bbe773a1645b633ba1beafb7c955da7d6a0e5a8f99b14662021e992d8f4a5d',1,'VRMenu']]]
 ];

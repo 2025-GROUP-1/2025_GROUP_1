@@ -1,8 +1,0 @@
-<map id="ModelPart::setShrinkFilter" name="ModelPart::setShrinkFilter">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,195,56"/>
-<area shape="rect" id="Node000002" href="$classModelPart.html#ad1a6f921de90d0e8d3fb710d445c9593" title=" " alt="" coords="243,5,435,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,31,229,27,229,32,195,36"/>
-<area shape="rect" id="Node000003" href="$classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910" title=" " alt="" coords="483,31,601,56"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="195,41,469,41,469,46,195,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="435,27,470,32,469,37,435,33"/>
-</map>

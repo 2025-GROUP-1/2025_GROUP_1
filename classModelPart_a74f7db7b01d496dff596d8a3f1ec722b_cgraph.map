@@ -1,8 +1,0 @@
-<map id="ModelPart::setShrinkFactor" name="ModelPart::setShrinkFactor">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,200,56"/>
-<area shape="rect" id="Node000002" href="$classModelPart.html#ad1a6f921de90d0e8d3fb710d445c9593" title=" " alt="" coords="248,5,440,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,30,234,27,235,32,200,36"/>
-<area shape="rect" id="Node000003" href="$classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910" title=" " alt="" coords="488,31,607,56"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="200,41,474,41,474,46,200,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="441,27,475,32,474,37,440,33"/>
-</map>

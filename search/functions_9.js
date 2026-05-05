@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['mainwindow_1',['MainWindow',['../classMainWindow.html#a996c5a2b6f77944776856f08ec30858d',1,'MainWindow']]],
-  ['modelpart_2',['ModelPart',['../classModelPart.html#a4f22ba9a54525edde005cb4eb7366648',1,'ModelPart']]],
-  ['modelpartlist_3',['ModelPartList',['../classModelPartList.html#ab78590b83bc1a7a05636efd7f29a7862',1,'ModelPartList']]]
+  ['loadfrommodelpart_0',['loadFromModelPart',['../classOptionDialog.html#a5f2578ef11d7940ca5821f2fcbf79e4d',1,'OptionDialog']]],
+  ['loadstl_1',['loadSTL',['../classModelPart.html#a420f4a3bfbfefada12f711ace277e68e',1,'ModelPart']]]
 ];
