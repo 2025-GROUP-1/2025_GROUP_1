@@ -1,7 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"index.html":[],
-"index.html#architecture":[3],
 "index.html#autotoc_md1":[3,0],
 "index.html#autotoc_md2":[7],
 "index.html#features":[2],

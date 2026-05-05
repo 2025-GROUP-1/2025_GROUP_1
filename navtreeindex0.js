@@ -153,12 +153,10 @@ var NAVTREEINDEX0 =
 "classOptionDialog.html#a8cbe60aecbb7344f560f424ed537b47a":[11,0,5,4],
 "classVRCustomStyle.html":[11,0,6],
 "classVRCustomStyle.html#a2ccd3d641487870d2fc0a97e1fb36789":[11,0,6,2],
-"classVRCustomStyle.html#a39934b8a5665e03b0e77510b8b4bccf9":[11,0,6,6],
 "classVRCustomStyle.html#a82af7eed1836b7c557e10d87a46feefb":[11,0,6,0],
-"classVRCustomStyle.html#a91426c2c0c1a397f263cc93ff2321ed7":[11,0,6,5],
-"classVRCustomStyle.html#aca25be3be9670f5c28cd47a45eb086fc":[11,0,6,4],
+"classVRCustomStyle.html#a91426c2c0c1a397f263cc93ff2321ed7":[11,0,6,4],
+"classVRCustomStyle.html#aca25be3be9670f5c28cd47a45eb086fc":[11,0,6,3],
 "classVRCustomStyle.html#af4698ca0832d66a47a46fa5334c4701f":[11,0,6,1],
-"classVRCustomStyle.html#aff37d3a174769f51fdc266d0e3ad15ef":[11,0,6,3],
 "classVRMenuCallback.html":[11,0,8],
 "classVRMenuCallback.html#a044da06da7ded2faaca3ca3f6ffbe8e0":[11,0,8,8],
 "classVRMenuCallback.html#a05e3114c9b890e55f35f331777ce88db":[11,0,8,9],
@@ -210,8 +208,8 @@ var NAVTREEINDEX0 =
 "data__model_8h_source.html":[12,0,1],
 "dir_208d2690607c4e3d3fabfa1d18673d36.html":[12,0,0],
 "files.html":[12,0],
-"functions.html":[11,3,0],
 "functions.html":[11,3,0,0],
+"functions.html":[11,3,0],
 "functions_b.html":[11,3,0,1],
 "functions_c.html":[11,3,0,2],
 "functions_d.html":[11,3,0,3],
@@ -249,5 +247,7 @@ var NAVTREEINDEX0 =
 "how_it_works.html":[8],
 "how_it_works.html#colour-change":[8,0],
 "how_it_works.html#explode-animation":[8,2],
-"how_it_works.html#two-actors":[8,1]
+"how_it_works.html#two-actors":[8,1],
+"index.html":[],
+"index.html#architecture":[3]
 };

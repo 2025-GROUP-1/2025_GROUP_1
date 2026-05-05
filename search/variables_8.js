@@ -23,11 +23,10 @@ var searchData=
   ['m_5fshrinkenabled_20',['m_shrinkEnabled',['../classModelPart.html#a8b7034b176b29bd8d919f94c0192f6af',1,'ModelPart']]],
   ['m_5fshrinkfactor_21',['m_shrinkFactor',['../classModelPart.html#abfc4b7ed79dea2ccc67156d0f78375aa',1,'ModelPart']]],
   ['m_5fskybox_22',['m_skybox',['../classVRRenderThread.html#a50dab3f78c5e539ef727c468fdf70be2',1,'VRRenderThread']]],
-  ['m_5fsnapturnready_23',['m_snapTurnReady',['../classVRCustomStyle.html#a39934b8a5665e03b0e77510b8b4bccf9',1,'VRCustomStyle']]],
-  ['m_5ftheme_24',['m_theme',['../classMainWindow.html#ae46392d9d834f059b571975c9973d605',1,'MainWindow']]],
-  ['m_5fvrthread_25',['m_vrThread',['../classMainWindow.html#ae2556ac3163fd33424f2c34c8ff757b0',1,'MainWindow']]],
-  ['mapper_26',['mapper',['../classModelPart.html#a4cad5fc0027842e101c064719898499a',1,'ModelPart']]],
-  ['max_5fray_27',['MAX_RAY',['../classVRRayCallback.html#a19676bcd7df280670fd9a41b36a06523',1,'VRRayCallback']]],
-  ['menu_28',['menu',['../classVRMenuCallback.html#a2b828885c84189cfa00b31e171e5be38',1,'VRMenuCallback']]],
-  ['menuactors_29',['menuActors',['../classVRRayCallback.html#ad4cd598bc2095197437feca8369f8666',1,'VRRayCallback']]]
+  ['m_5ftheme_23',['m_theme',['../classMainWindow.html#ae46392d9d834f059b571975c9973d605',1,'MainWindow']]],
+  ['m_5fvrthread_24',['m_vrThread',['../classMainWindow.html#ae2556ac3163fd33424f2c34c8ff757b0',1,'MainWindow']]],
+  ['mapper_25',['mapper',['../classModelPart.html#a4cad5fc0027842e101c064719898499a',1,'ModelPart']]],
+  ['max_5fray_26',['MAX_RAY',['../classVRRayCallback.html#a19676bcd7df280670fd9a41b36a06523',1,'VRRayCallback']]],
+  ['menu_27',['menu',['../classVRMenuCallback.html#a2b828885c84189cfa00b31e171e5be38',1,'VRMenuCallback']]],
+  ['menuactors_28',['menuActors',['../classVRRayCallback.html#ad4cd598bc2095197437feca8369f8666',1,'VRRayCallback']]]
 ];
