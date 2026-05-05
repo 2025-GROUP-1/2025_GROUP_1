@@ -29,5 +29,6 @@ var searchData=
   ['m_5fvrthread_26',['m_vrThread',['../classMainWindow.html#ae2556ac3163fd33424f2c34c8ff757b0',1,'MainWindow']]],
   ['mapper_27',['mapper',['../classModelPart.html#a4cad5fc0027842e101c064719898499a',1,'ModelPart']]],
   ['max_5fray_28',['MAX_RAY',['../classVRRayCallback.html#a19676bcd7df280670fd9a41b36a06523',1,'VRRayCallback']]],
-  ['menu_29',['menu',['../classVRMenuCallback.html#a2b828885c84189cfa00b31e171e5be38',1,'VRMenuCallback']]]
+  ['menu_29',['menu',['../classVRMenuCallback.html#a2b828885c84189cfa00b31e171e5be38',1,'VRMenuCallback']]],
+  ['menuactors_30',['menuActors',['../classVRRayCallback.html#ad4cd598bc2095197437feca8369f8666',1,'VRRayCallback']]]
 ];

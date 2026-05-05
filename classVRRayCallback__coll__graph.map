@@ -1,7 +1,7 @@
 <map id="VRRayCallback" name="VRRayCallback">
-<area shape="rect" id="Node000001" title=" " alt="" coords="68,288,181,413"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,75,108,141"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="72,153,110,287,105,289,67,155"/>
-<area shape="rect" id="Node000003" href="$structControllerRay.html" title=" " alt="" coords="133,5,255,211"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="167,212,150,273,144,271,162,210"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="49,328,203,513"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,95,108,161"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,173,107,327,102,329,65,175"/>
+<area shape="rect" id="Node000003" href="$structControllerRay.html" title=" " alt="" coords="132,5,259,251"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="169,252,154,313,149,312,164,250"/>
 </map>

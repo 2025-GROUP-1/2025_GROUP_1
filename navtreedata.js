@@ -72,7 +72,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ModelPartList_8cpp.html",
-"index.html#architecture"
+"how_it_works.html#explode-animation"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

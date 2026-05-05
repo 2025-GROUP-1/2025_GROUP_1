@@ -11,6 +11,7 @@ var structVRMenu =
       [ "ColWhite", "structVRMenu.html#a008bbe773a1645b633ba1beafb7c955da8ca68150fb55d567b72ab400f7c51565", null ],
       [ "NUM_ACTIONS", "structVRMenu.html#a008bbe773a1645b633ba1beafb7c955da7d6a0e5a8f99b14662021e992d8f4a5d", null ]
     ] ],
+    [ "actors", "structVRMenu.html#a1b0b5363c0c5521c0e203f388c89fb8f", null ],
     [ "addButton", "structVRMenu.html#a18ea0006b2f3093a3f11ed92a8a71e9b", null ],
     [ "create", "structVRMenu.html#a5710d5b26f1ef39ef4ab1853ecf0d7a0", null ],
     [ "findButton", "structVRMenu.html#ae0c831a7469ccffa6fa5b20d7537d7c0", null ],
