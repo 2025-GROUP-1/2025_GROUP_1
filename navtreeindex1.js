@@ -1,7 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"how_it_works.html#explode-animation":[8,2],
-"how_it_works.html#two-actors":[8,1],
 "index.html":[],
 "index.html#architecture":[3],
 "index.html#autotoc_md1":[3,0],

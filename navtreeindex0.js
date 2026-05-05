@@ -153,12 +153,10 @@ var NAVTREEINDEX0 =
 "classOptionDialog.html#a8cbe60aecbb7344f560f424ed537b47a":[11,0,5,4],
 "classVRCustomStyle.html":[11,0,6],
 "classVRCustomStyle.html#a2ccd3d641487870d2fc0a97e1fb36789":[11,0,6,2],
-"classVRCustomStyle.html#a39934b8a5665e03b0e77510b8b4bccf9":[11,0,6,8],
+"classVRCustomStyle.html#a39934b8a5665e03b0e77510b8b4bccf9":[11,0,6,6],
 "classVRCustomStyle.html#a82af7eed1836b7c557e10d87a46feefb":[11,0,6,0],
-"classVRCustomStyle.html#a894c696a1f14779bf918615ac84351b6":[11,0,6,7],
-"classVRCustomStyle.html#a8ec13c3570ad6cea93329c68cd901729":[11,0,6,4],
-"classVRCustomStyle.html#a91426c2c0c1a397f263cc93ff2321ed7":[11,0,6,6],
-"classVRCustomStyle.html#aca25be3be9670f5c28cd47a45eb086fc":[11,0,6,5],
+"classVRCustomStyle.html#a91426c2c0c1a397f263cc93ff2321ed7":[11,0,6,5],
+"classVRCustomStyle.html#aca25be3be9670f5c28cd47a45eb086fc":[11,0,6,4],
 "classVRCustomStyle.html#af4698ca0832d66a47a46fa5334c4701f":[11,0,6,1],
 "classVRCustomStyle.html#aff37d3a174769f51fdc266d0e3ad15ef":[11,0,6,3],
 "classVRMenuCallback.html":[11,0,8],
@@ -249,5 +247,7 @@ var NAVTREEINDEX0 =
 "gui_8h_source.html":[12,0,2],
 "hierarchy.html":[11,2],
 "how_it_works.html":[8],
-"how_it_works.html#colour-change":[8,0]
+"how_it_works.html#colour-change":[8,0],
+"how_it_works.html#explode-animation":[8,2],
+"how_it_works.html#two-actors":[8,1]
 };
