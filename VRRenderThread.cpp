@@ -625,6 +625,8 @@ void VRRenderThread::run() {
     }
 
     bool garageLoaded = false;
+    bool haveStartupPose = false;
+    double startupPose[3] = { 0.0, 0.0, 0.0 };
     if (!glbPath.isEmpty()) {
         vtkNew<vtkGLTFImporter> gltfImporter;
         gltfImporter->SetFileName(glbPath.toStdString().c_str());
@@ -721,6 +723,11 @@ void VRRenderThread::run() {
                     double* pos = ea->GetPosition();
                     ea->SetPosition(pos[0] + offsetX, pos[1] + offsetY, pos[2] + offsetZ);
                 }
+
+                startupPose[0] = partCx;
+                startupPose[1] = partCy;
+                startupPose[2] = partCz;
+                haveStartupPose = true;
             }
         }
 
@@ -770,13 +777,19 @@ void VRRenderThread::run() {
     if (m_renderer->GetActiveCamera())
         m_renderer->ResetCameraClippingRange();
 
-    // Place the VR origin back on the scene floor when the session starts.
+    // Place the VR origin inside the loaded scene when the session starts.
     {
         double bounds[6];
         m_renderer->ComputeVisiblePropBounds(bounds);
         if (bounds[0] <= bounds[1] && bounds[2] <= bounds[3] && bounds[4] <= bounds[5]) {
-            double* trans = m_renderWindow->GetPhysicalTranslation();
-            m_renderWindow->SetPhysicalTranslation(trans[0], bounds[2], trans[2]);
+            if (!haveStartupPose) {
+                startupPose[0] = (bounds[0] + bounds[1]) * 0.5;
+                startupPose[1] = bounds[2];
+                startupPose[2] = (bounds[4] + bounds[5]) * 0.5;
+            }
+
+            m_renderWindow->SetPhysicalTranslation(
+                startupPose[0], startupPose[1], startupPose[2]);
         }
     }
 
