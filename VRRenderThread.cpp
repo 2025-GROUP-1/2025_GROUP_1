@@ -42,7 +42,6 @@
 #include <QFileInfo>
 #include <QFile>
 #include <QStringList>
-#include <openvr.h>
 
 // ---------------------------------------------------------------------------
 // custom VR interactor style
@@ -105,128 +104,6 @@ public:
             this->CurrentRenderer->ResetCameraClippingRange();
     }
 
-    // -----------------------------------------------------------------------
-    // Dual-stick locomotion - polls OpenVR joysticks directly so it works
-    // even when the VTK action manifest fails to load (legacy input mode).
-    //
-    // Left stick:  walk (forward/back + strafe left/right) on flat ground
-    // Right stick X: snap turn (45-degree increments)
-    // Right stick Y: dolly (push/pull scene)
-    //
-    // Movement is FLAT (horizontal only). The Y translation is preserved so
-    // the garage placement is not overridden by a floor clamp.
-    // Works on Quest Touch controllers AND Vive Pro wands (trackpad).
-    // -----------------------------------------------------------------------
-    bool m_snapTurnReady = true;   // prevents repeated snap turns while held
-
-    void pollJoystickDolly(vtkOpenVRRenderWindow* renWin)
-    {
-        if (!this->CurrentRenderer || !renWin)
-            return;
-
-        vr::IVRSystem* hmd = renWin->GetHMD();
-        if (!hmd) return;
-
-        auto* rwi = static_cast<vtkRenderWindowInteractor3D*>(this->Interactor);
-        if (!rwi) return;
-
-        vtkCamera* cam = this->CurrentRenderer->GetActiveCamera();
-        if (!cam) return;
-
-        double physicalScale = rwi->GetPhysicalScale();
-        static constexpr float DEADZONE = 0.2f;
-        double moveSpeed = physicalScale * 0.015;
-
-        // use the play-space forward direction (not head tilt) for horizontal movement
-        double* physDir = renWin->GetPhysicalViewDirection();
-        // project physical view direction onto horizontal plane (Y=0)
-        double fwd[3] = { physDir[0], 0.0, physDir[2] };
-        double fLen = sqrt(fwd[0]*fwd[0] + fwd[2]*fwd[2]);
-        if (fLen > 1e-6) { fwd[0] /= fLen; fwd[2] /= fLen; }
-        // right vector perpendicular to forward on the ground
-        double right[3] = { fwd[2], 0.0, -fwd[0] };
-
-        // --- LEFT STICK: walk (flat ground only) ---
-        vr::TrackedDeviceIndex_t leftIdx =
-            hmd->GetTrackedDeviceIndexForControllerRole(vr::TrackedControllerRole_LeftHand);
-
-        if (leftIdx != vr::k_unTrackedDeviceIndexInvalid) {
-            vr::VRControllerState_t lState;
-            if (hmd->GetControllerState(leftIdx, &lState, sizeof(lState))) {
-                float lx = lState.rAxis[0].x;
-                float ly = lState.rAxis[0].y;
-
-                if (std::abs(lx) <= DEADZONE) lx = 0.0f;
-                if (std::abs(ly) <= DEADZONE) ly = 0.0f;
-
-                if (lx != 0.0f || ly != 0.0f) {
-                    double dx = (fwd[0] * ly + right[0] * lx) * moveSpeed;
-                    double dz = (fwd[2] * ly + right[2] * lx) * moveSpeed;
-
-                    double* trans = renWin->GetPhysicalTranslation();
-                    renWin->SetPhysicalTranslation(
-                        trans[0] + dx,
-                        trans[1],
-                        trans[2] + dz);
-                }
-            }
-        }
-
-        // --- RIGHT STICK: snap turn (X) + dolly (Y) ---
-        vr::TrackedDeviceIndex_t rightIdx =
-            hmd->GetTrackedDeviceIndexForControllerRole(vr::TrackedControllerRole_RightHand);
-
-        if (rightIdx != vr::k_unTrackedDeviceIndexInvalid) {
-            vr::VRControllerState_t rState;
-            if (hmd->GetControllerState(rightIdx, &rState, sizeof(rState))) {
-                float rx = rState.rAxis[0].x;
-                float ry = rState.rAxis[0].y;
-
-                // snap turn: 45 degrees per flick
-                // rotates the physical view direction AND the translation
-                // so the user stays in place but the world rotates around them
-                if (std::abs(rx) > 0.7f) {
-                    if (m_snapTurnReady) {
-                        double angle = (rx > 0) ? -45.0 : 45.0;
-                        double rad = angle * vtkMath::Pi() / 180.0;
-                        double cosA = cos(rad);
-                        double sinA = sin(rad);
-
-                        // rotate physical view direction around Y
-                        double newDir[3] = {
-                            physDir[0] * cosA - physDir[2] * sinA,
-                            physDir[1],
-                            physDir[0] * sinA + physDir[2] * cosA
-                        };
-                        renWin->SetPhysicalViewDirection(newDir[0], newDir[1], newDir[2]);
-
-                        // also rotate the physical view up if it's not pure Y-up
-                        double* viewUp = renWin->GetPhysicalViewUp();
-                        double newUp[3] = {
-                            viewUp[0] * cosA - viewUp[2] * sinA,
-                            viewUp[1],
-                            viewUp[0] * sinA + viewUp[2] * cosA
-                        };
-                        renWin->SetPhysicalViewUp(newUp[0], newUp[1], newUp[2]);
-
-                        m_snapTurnReady = false;
-                    }
-                } else {
-                    m_snapTurnReady = true;
-                }
-
-                // right stick Y = dolly (push/pull scene along ground)
-                if (std::abs(ry) > DEADZONE) {
-                    double speed = static_cast<double>(ry) * moveSpeed;
-                    double* trans = renWin->GetPhysicalTranslation();
-                    renWin->SetPhysicalTranslation(
-                        trans[0] + fwd[0] * speed,
-                        trans[1],
-                        trans[2] + fwd[2] * speed);
-                }
-            }
-        }
-    }
 };
 vtkStandardNewMacro(VRCustomStyle);
 
@@ -901,9 +778,6 @@ void VRRenderThread::run() {
         m_interactor->DoOneEvent(m_renderWindow, m_renderer);
         processCommands();
 
-        // fallback joystick locomotion - polls OpenVR directly so it works
-        // even when the action manifest fails to load (legacy input mode on Quest)
-        customStyle->pollJoystickDolly(m_renderWindow);
     }
 
     m_renderWindow->Finalize();
