@@ -770,6 +770,16 @@ void VRRenderThread::run() {
     if (m_renderer->GetActiveCamera())
         m_renderer->ResetCameraClippingRange();
 
+    // Place the VR origin back on the scene floor when the session starts.
+    {
+        double bounds[6];
+        m_renderer->ComputeVisiblePropBounds(bounds);
+        if (bounds[0] <= bounds[1] && bounds[2] <= bounds[3] && bounds[4] <= bounds[5]) {
+            double* trans = m_renderWindow->GetPhysicalTranslation();
+            m_renderWindow->SetPhysicalTranslation(trans[0], bounds[2], trans[2]);
+        }
+    }
+
     // render loop - process one VR frame, handle commands, repeat
     // NOTE: DoOneEvent already submits frames to both eyes.
     // An extra Render() causes double-submit which results in single-eye flickering.
