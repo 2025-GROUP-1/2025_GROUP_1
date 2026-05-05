@@ -1,9 +1,10 @@
 <map id="ModelPart::getColour" name="ModelPart::getColour">
-<area shape="rect" id="Node000001" title=" " alt="" coords="544,42,703,67"/>
-<area shape="rect" id="Node000002" href="$classOptionDialog.html#a5f2578ef11d7940ca5821f2fcbf79e4d" title=" " alt="" coords="255,13,496,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="530,46,483,41,483,35,531,41"/>
-<area shape="rect" id="Node000004" href="$classMainWindow.html#a0441e8dc0d171ff074c1b0d6e27433f0" title=" " alt="" coords="271,63,480,103"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="531,68,481,73,480,68,530,62"/>
-<area shape="rect" id="Node000003" href="$classMainWindow.html#ac0f0034dd8ee8a9cb96cf81366fca941" title=" " alt="" coords="5,5,207,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="241,28,207,28,207,23,241,23"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="544,56,703,81"/>
+<area shape="rect" id="Node000002" href="$classOptionDialog.html#a5f2578ef11d7940ca5821f2fcbf79e4d" title=" " alt="" coords="255,5,496,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="546,56,438,33,439,28,547,50"/>
+<area shape="rect" id="Node000003" href="$classMainWindow.html#ac0f0034dd8ee8a9cb96cf81366fca941" title=" " alt="" coords="5,23,207,63"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="530,67,207,51,207,46,530,61"/>
+<area shape="rect" id="Node000004" href="$classMainWindow.html#a0441e8dc0d171ff074c1b0d6e27433f0" title=" " alt="" coords="271,106,480,146"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="555,87,463,109,462,103,554,82"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="241,33,207,37,206,31,241,28"/>
 </map>

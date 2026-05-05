@@ -1,4 +1,4 @@
 <map id="ModelPart" name="ModelPart">
-<area shape="rect" id="Node000001" title="Single node in the parts tree — owns VTK pipeline (STL reader, filters, mapper, actor)." alt="" coords="5,5,212,471"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,212,471"/>
 <area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="214,159,224,171,232,189,239,238,235,277,225,304,220,302,230,275,233,238,227,190,220,174,210,162"/>
 </map>

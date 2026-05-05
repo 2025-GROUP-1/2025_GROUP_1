@@ -139,14 +139,10 @@ $(document).ready(function(){initNavTree('structVRMenu.html',''); initResizable(
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="structVRMenu-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">VRMenu Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>In-VR editing menu — shows coloured buttons above a hovered part for clip/shrink/colour.  
- <a href="structVRMenu.html#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for VRMenu:</div>
 <div class="dyncontent">
@@ -186,33 +182,29 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab8a20b41f69036dd7823bd4b63679f31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd244fd16f110e7b941137db4e28734c" id="r_afd244fd16f110e7b941137db4e28734c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu.html#afd244fd16f110e7b941137db4e28734c">isMenuActor</a> (vtkActor *a) const</td></tr>
 <tr class="separator:afd244fd16f110e7b941137db4e28734c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a9754bc105c5edc90d9df747721eff8" id="r_a8a9754bc105c5edc90d9df747721eff8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu.html#a8a9754bc105c5edc90d9df747721eff8">show</a> (double x, double y, double z, int partID)</td></tr>
-<tr class="separator:a8a9754bc105c5edc90d9df747721eff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a295afb1bf97a57f3011c916738a14105" id="r_a295afb1bf97a57f3011c916738a14105"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu.html#a295afb1bf97a57f3011c916738a14105">show</a> (double x, double y, double z, int partID, double physScale=1.0)</td></tr>
+<tr class="separator:a295afb1bf97a57f3011c916738a14105"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:ab97cb4737b8efdcf64cd3aaeae5fca3b" id="r_ab97cb4737b8efdcf64cd3aaeae5fca3b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu.html#ab97cb4737b8efdcf64cd3aaeae5fca3b">BTN_H</a> = 30.0</td></tr>
+<tr class="separator:ab97cb4737b8efdcf64cd3aaeae5fca3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac898f902f5ffbdb6707d470f7b6ca32" id="r_aac898f902f5ffbdb6707d470f7b6ca32"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu.html#aac898f902f5ffbdb6707d470f7b6ca32">BTN_W</a> = 60.0</td></tr>
+<tr class="separator:aac898f902f5ffbdb6707d470f7b6ca32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fff6b2b76c8942d54ac38944b8ef346" id="r_a4fff6b2b76c8942d54ac38944b8ef346"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structVRMenu_1_1Button.html">Button</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu.html#a4fff6b2b76c8942d54ac38944b8ef346">buttons</a></td></tr>
 <tr class="separator:a4fff6b2b76c8942d54ac38944b8ef346"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b115f995a25db1137c5c245b57c30c6" id="r_a1b115f995a25db1137c5c245b57c30c6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu.html#a1b115f995a25db1137c5c245b57c30c6">GAP</a> = 8.0</td></tr>
+<tr class="separator:a1b115f995a25db1137c5c245b57c30c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2134ea71f0f5d6eb74c008ad3cf69e51" id="r_a2134ea71f0f5d6eb74c008ad3cf69e51"><td class="memItemLeft" align="right" valign="top">vtkRenderer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu.html#a2134ea71f0f5d6eb74c008ad3cf69e51">ren</a> = nullptr</td></tr>
 <tr class="separator:a2134ea71f0f5d6eb74c008ad3cf69e51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a210df57b2ae0de81acc33a9511664ed2" id="r_a210df57b2ae0de81acc33a9511664ed2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu.html#a210df57b2ae0de81acc33a9511664ed2">targetPartID</a> = -1</td></tr>
 <tr class="separator:a210df57b2ae0de81acc33a9511664ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a450628e878e167c8d78fc39b7162c0ee" id="r_a450628e878e167c8d78fc39b7162c0ee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu.html#a450628e878e167c8d78fc39b7162c0ee">visible</a> = false</td></tr>
 <tr class="separator:a450628e878e167c8d78fc39b7162c0ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr class="memitem:ab11d64e4872a612d384506c915da8fe8" id="r_ab11d64e4872a612d384506c915da8fe8"><td class="memItemLeft" align="right" valign="top">static constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu.html#ab11d64e4872a612d384506c915da8fe8">BTN_H</a> = 30.0</td></tr>
-<tr class="separator:ab11d64e4872a612d384506c915da8fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98120665fa5cb63e9aca0863df5482cf" id="r_a98120665fa5cb63e9aca0863df5482cf"><td class="memItemLeft" align="right" valign="top">static constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu.html#a98120665fa5cb63e9aca0863df5482cf">BTN_W</a> = 60.0</td></tr>
-<tr class="separator:a98120665fa5cb63e9aca0863df5482cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a409829409f4edf6b28245e6cd8802f11" id="r_a409829409f4edf6b28245e6cd8802f11"><td class="memItemLeft" align="right" valign="top">static constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu.html#a409829409f4edf6b28245e6cd8802f11">GAP</a> = 8.0</td></tr>
-<tr class="separator:a409829409f4edf6b28245e6cd8802f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>In-VR editing menu — shows coloured buttons above a hovered part for clip/shrink/colour. </p>
-
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00243">243</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00388">388</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a008bbe773a1645b633ba1beafb7c955d" name="a008bbe773a1645b633ba1beafb7c955d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a008bbe773a1645b633ba1beafb7c955d">&#9670;&#160;</a></span>Action</h2>
@@ -236,7 +228,7 @@ Static Public Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="a008bbe773a1645b633ba1beafb7c955da7d6a0e5a8f99b14662021e992d8f4a5d" name="a008bbe773a1645b633ba1beafb7c955da7d6a0e5a8f99b14662021e992d8f4a5d"></a>NUM_ACTIONS&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00244">244</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00389">389</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
 </div>
 </div>
@@ -287,11 +279,11 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00274">274</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00419">419</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00258">BTN_H</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00257">BTN_W</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00251">buttons</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00254">ren</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00403">BTN_H</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00402">BTN_W</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00396">buttons</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00399">ren</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00262">create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00407">create()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -324,9 +316,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00262">262</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00407">407</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00274">addButton()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00244">Clip</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00244">ColBlue</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00244">ColGreen</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00244">ColRed</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00244">ColWhite</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00244">ColYellow</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00254">ren</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00244">Shrink</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00419">addButton()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00389">Clip</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00389">ColBlue</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00389">ColGreen</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00389">ColRed</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00389">ColWhite</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00389">ColYellow</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00399">ren</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00389">Shrink</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -359,11 +351,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00332">332</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00488">488</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00251">buttons</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00396">buttons</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00353">VRMenuCallback::Execute()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00340">isMenuActor()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00512">VRMenuCallback::Execute()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00496">isMenuActor()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -395,11 +387,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00324">324</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00480">480</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00251">buttons</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00253">targetPartID</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00252">visible</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00396">buttons</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00398">targetPartID</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00397">visible</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00353">VRMenuCallback::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00512">VRMenuCallback::Execute()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -432,9 +424,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00340">340</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00496">496</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00332">findButton()</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00488">findButton()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -443,8 +435,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a8a9754bc105c5edc90d9df747721eff8" name="a8a9754bc105c5edc90d9df747721eff8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a9754bc105c5edc90d9df747721eff8">&#9670;&#160;</a></span>show()</h2>
+<a id="a295afb1bf97a57f3011c916738a14105" name="a295afb1bf97a57f3011c916738a14105"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a295afb1bf97a57f3011c916738a14105">&#9670;&#160;</a></span>show()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -474,7 +466,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>partID</em>&#160;</td>
+          <td class="paramname"><em>partID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>physScale</em> = <code>1.0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -489,69 +487,53 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00298">298</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00443">443</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00258">BTN_H</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00257">BTN_W</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00251">buttons</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00259">GAP</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00253">targetPartID</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00252">visible</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00403">BTN_H</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00402">BTN_W</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00396">buttons</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00404">GAP</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00398">targetPartID</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00397">visible</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00353">VRMenuCallback::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00512">VRMenuCallback::Execute()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structVRMenu_a8a9754bc105c5edc90d9df747721eff8_icgraph.svg" width="368" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structVRMenu_a295afb1bf97a57f3011c916738a14105_icgraph.svg" width="368" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="ab11d64e4872a612d384506c915da8fe8" name="ab11d64e4872a612d384506c915da8fe8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab11d64e4872a612d384506c915da8fe8">&#9670;&#160;</a></span>BTN_H</h2>
+<a id="ab97cb4737b8efdcf64cd3aaeae5fca3b" name="ab97cb4737b8efdcf64cd3aaeae5fca3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab97cb4737b8efdcf64cd3aaeae5fca3b">&#9670;&#160;</a></span>BTN_H</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr double VRMenu::BTN_H = 30.0</td>
+          <td class="memname">double VRMenu::BTN_H = 30.0</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00258">258</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00403">403</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00274">addButton()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00298">show()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00419">addButton()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00443">show()</a>.</p>
 
 </div>
 </div>
-<a id="a98120665fa5cb63e9aca0863df5482cf" name="a98120665fa5cb63e9aca0863df5482cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98120665fa5cb63e9aca0863df5482cf">&#9670;&#160;</a></span>BTN_W</h2>
+<a id="aac898f902f5ffbdb6707d470f7b6ca32" name="aac898f902f5ffbdb6707d470f7b6ca32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac898f902f5ffbdb6707d470f7b6ca32">&#9670;&#160;</a></span>BTN_W</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr double VRMenu::BTN_W = 60.0</td>
+          <td class="memname">double VRMenu::BTN_W = 60.0</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00257">257</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00402">402</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00274">addButton()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00298">show()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00419">addButton()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00443">show()</a>.</p>
 
 </div>
 </div>
@@ -567,35 +549,27 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00251">251</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00396">396</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00274">addButton()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00353">VRMenuCallback::Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00332">findButton()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00324">hide()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00298">show()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00419">addButton()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00512">VRMenuCallback::Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00488">findButton()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00480">hide()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00443">show()</a>.</p>
 
 </div>
 </div>
-<a id="a409829409f4edf6b28245e6cd8802f11" name="a409829409f4edf6b28245e6cd8802f11"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a409829409f4edf6b28245e6cd8802f11">&#9670;&#160;</a></span>GAP</h2>
+<a id="a1b115f995a25db1137c5c245b57c30c6" name="a1b115f995a25db1137c5c245b57c30c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b115f995a25db1137c5c245b57c30c6">&#9670;&#160;</a></span>GAP</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr double VRMenu::GAP = 8.0</td>
+          <td class="memname">double VRMenu::GAP = 8.0</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00259">259</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00404">404</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00298">show()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00443">show()</a>.</p>
 
 </div>
 </div>
@@ -611,9 +585,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00254">254</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00399">399</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00274">addButton()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00262">create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00419">addButton()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00407">create()</a>.</p>
 
 </div>
 </div>
@@ -629,9 +603,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00253">253</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00398">398</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00353">VRMenuCallback::Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00399">VRMenuCallback::executeAction()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00324">hide()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00298">show()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00603">VRMenuCallback::applyColourVR()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00512">VRMenuCallback::Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00561">VRMenuCallback::executeAction()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00480">hide()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00443">show()</a>.</p>
 
 </div>
 </div>
@@ -647,9 +621,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00252">252</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00397">397</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00353">VRMenuCallback::Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00324">hide()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00298">show()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00512">VRMenuCallback::Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00480">hide()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00443">show()</a>.</p>
 
 </div>
 </div>

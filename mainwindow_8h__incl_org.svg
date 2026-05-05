@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Main application window — parts browser, 3D viewport, properties panel, VR controls.">
+<g id="a_Node000001"><a xlink:title=" ">
 <polygon fill="#999999" stroke="#666666" points="703,-184 616,-184 616,-165 703,-165 703,-184"/>
 <text text-anchor="middle" x="659.5" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">mainwindow.h</text>
 </a>
@@ -128,7 +128,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="ModelPart_8h.html" target="_top" xlink:title="Declares ModelPart — one STL part with its VTK pipeline, filters, and display state.">
+<g id="a_Node000008"><a xlink:href="ModelPart_8h.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1175.5,-74 1101.5,-74 1101.5,-55 1175.5,-55 1175.5,-74"/>
 <text text-anchor="middle" x="1138.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPart.h</text>
 </a>
@@ -146,7 +146,7 @@
 <!-- Node24 -->
 <g id="Node000024" class="node">
 <title>Node24</title>
-<g id="a_Node000024"><a xlink:href="ModelPartList_8h.html" target="_top" xlink:title="Declares ModelPartList — the QAbstractItemModel that backs the QTreeView.">
+<g id="a_Node000024"><a xlink:href="ModelPartList_8h.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="742.5,-129 650.5,-129 650.5,-110 742.5,-110 742.5,-129"/>
 <text text-anchor="middle" x="696.5" y="-117" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPartList.h</text>
 </a>
@@ -164,7 +164,7 @@
 <!-- Node26 -->
 <g id="Node000026" class="node">
 <title>Node26</title>
-<g id="a_Node000026"><a xlink:href="VRRenderThread_8h.html" target="_top" xlink:title="Declares VRRenderThread — runs the OpenVR render loop on a dedicated thread.">
+<g id="a_Node000026"><a xlink:href="VRRenderThread_8h.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="490,-74 383,-74 383,-55 490,-55 490,-74"/>
 <text text-anchor="middle" x="436.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">VRRenderThread.h</text>
 </a>

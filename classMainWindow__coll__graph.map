@@ -1,17 +1,17 @@
 <map id="MainWindow" name="MainWindow">
-<area shape="rect" id="Node000001" title="Top&#45;level window — owns the renderer, tree view, properties panel, and VR thread." alt="" coords="106,1329,333,2017"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,1051,113,1117"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,1129,128,1329,123,1330,69,1131"/>
-<area shape="rect" id="Node000003" href="$classModelPartList.html" title="Qt tree model backed by a hierarchy of ModelPart objects." alt="" coords="272,533,409,839"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="345,839,339,1060,330,1184,315,1306,314,1313,309,1313,310,1305,324,1183,333,1060,340,839"/>
-<area shape="rect" id="Node000006" href="$classVRRenderThread.html" title="Dedicated thread that runs the OpenVR render loop and processes GUI commands." alt="" coords="138,901,301,1267"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="106,1349,333,2077"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,1061,113,1127"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,1140,128,1348,123,1350,68,1141"/>
+<area shape="rect" id="Node000003" href="$classModelPartList.html" title=" " alt="" coords="272,533,409,839"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="345,839,339,1069,330,1198,315,1326,314,1333,309,1333,310,1325,324,1198,333,1069,340,839"/>
+<area shape="rect" id="Node000006" href="$classVRRenderThread.html" title=" " alt="" coords="138,901,301,1287"/>
 <area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="274,811,254,864,247,886,242,884,249,862,269,809"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="205,205,353,271"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="288,284,322,532,317,533,283,285"/>
-<area shape="rect" id="Node000005" href="$classModelPart.html" title="Single node in the parts tree — owns VTK pipeline (STL reader, filters, mapper, actor)." alt="" coords="377,5,584,471"/>
+<area shape="rect" id="Node000005" href="$classModelPart.html" title=" " alt="" coords="377,5,584,471"/>
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="410,472,396,518,391,516,405,470"/>
 <area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="586,192,604,209,611,238,608,258,599,273,595,271,603,257,605,238,599,212,582,196"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="222,1267,222,1313,217,1313,217,1267"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="222,1287,222,1333,217,1333,217,1287"/>
 <area shape="rect" id="Node000007" title=" " alt="" coords="171,653,241,719"/>
-<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="210,732,216,901,211,901,205,733"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="210,732,216,901,210,901,205,733"/>
 </map>

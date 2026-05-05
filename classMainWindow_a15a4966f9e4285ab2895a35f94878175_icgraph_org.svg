@@ -39,10 +39,10 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classMainWindow.html#a45e03fc6b470814598896604201d820f" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="162.5,-126 5.5,-126 5.5,-96 162.5,-96 162.5,-126"/>
-<text text-anchor="start" x="13.5" y="-114" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_checkShow</text>
-<text text-anchor="middle" x="84" y="-103" font-family="Helvetica,sans-Serif" font-size="10.00">Part_stateChanged</text>
+<g id="a_Node000003"><a xlink:href="classMainWindow.html#a187a9f6018036ed6ed69d43d5c99b4be" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="166.5,-126 1.5,-126 1.5,-96 166.5,-96 166.5,-126"/>
+<text text-anchor="start" x="9.5" y="-114" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_buttonToggle</text>
+<text text-anchor="middle" x="84" y="-103" font-family="Helvetica,sans-Serif" font-size="10.00">Clip_clicked</text>
 </a>
 </g>
 </g>
@@ -50,7 +50,7 @@
 <g id="edge2_Node000001_Node000003" class="edge">
 <title>Node1&#45;&gt;Node3</title>
 <g id="a_edge2_Node000001_Node000003"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M193.71,-97.48C183.4,-98.76 172.91,-100.07 162.71,-101.34"/>
+<path fill="none" stroke="#63b8ff" d="M193.81,-97.47C184.77,-98.59 175.59,-99.74 166.58,-100.86"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="194.44,-100.92 203.93,-96.21 193.58,-93.97 194.44,-100.92"/>
 </a>
 </g>
@@ -58,10 +58,10 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classMainWindow.html#a1ae45557a1bfce3f448fd1bf0ca8d18a" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="160,-78 8,-78 8,-48 160,-48 160,-78"/>
-<text text-anchor="start" x="16" y="-66" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_toggleClip</text>
-<text text-anchor="middle" x="84" y="-55" font-family="Helvetica,sans-Serif" font-size="10.00">_toggled</text>
+<g id="a_Node000004"><a xlink:href="classMainWindow.html#a6ed75addd0974730e3405a55022e5c82" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="166.5,-78 1.5,-78 1.5,-48 166.5,-48 166.5,-78"/>
+<text text-anchor="start" x="9.5" y="-66" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_buttonToggle</text>
+<text text-anchor="middle" x="84" y="-55" font-family="Helvetica,sans-Serif" font-size="10.00">Shrink_clicked</text>
 </a>
 </g>
 </g>
@@ -69,7 +69,7 @@
 <g id="edge3_Node000001_Node000004" class="edge">
 <title>Node1&#45;&gt;Node4</title>
 <g id="a_edge3_Node000001_Node000004"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M193.74,-76.52C182.56,-75.13 171.16,-73.71 160.15,-72.34"/>
+<path fill="none" stroke="#63b8ff" d="M193.81,-76.53C184.77,-75.41 175.59,-74.26 166.58,-73.14"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="193.58,-80.03 203.93,-77.79 194.44,-73.08 193.58,-80.03"/>
 </a>
 </g>
@@ -77,10 +77,10 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classMainWindow.html#aa898f33303bb3b0cd4b4dee5fde9fed0" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="166,-30 2,-30 2,0 166,0 166,-30"/>
-<text text-anchor="start" x="10" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_toggleShrink</text>
-<text text-anchor="middle" x="84" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">_toggled</text>
+<g id="a_Node000005"><a xlink:href="classMainWindow.html#ae2cd85ce3391e898b49dbaea0b5fe43c" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="166.5,-30 1.5,-30 1.5,0 166.5,0 166.5,-30"/>
+<text text-anchor="start" x="9.5" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_buttonToggle</text>
+<text text-anchor="middle" x="84" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">Visible_clicked</text>
 </a>
 </g>
 </g>

@@ -140,9 +140,6 @@ $(document).ready(function(){initNavTree('VRRenderThread_8cpp.html',''); initRes
   <div class="headertitle"><div class="title">VRRenderThread.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p><a class="el" href="classVRRenderThread.html" title="Dedicated thread that runs the OpenVR render loop and processes GUI commands.">VRRenderThread</a> implementation — OpenVR setup, custom interactor, ray casting, in-VR menu.  
-<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="VRRenderThread_8h_source.html">VRRenderThread.h</a>&quot;</code><br />
 <code>#include &lt;QMutexLocker&gt;</code><br />
 <code>#include &lt;QCoreApplication&gt;</code><br />
@@ -157,7 +154,9 @@ $(document).ready(function(){initNavTree('VRRenderThread_8cpp.html',''); initRes
 <code>#include &quot;<a class="el" href="ModelPartList_8h_source.html">ModelPartList.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ModelPart_8h_source.html">ModelPart.h</a>&quot;</code><br />
 <code>#include &lt;vtkCamera.h&gt;</code><br />
+<code>#include &lt;vtkImageReader2.h&gt;</code><br />
 <code>#include &lt;vtkJPEGReader.h&gt;</code><br />
+<code>#include &lt;vtkPNGReader.h&gt;</code><br />
 <code>#include &lt;vtkImageData.h&gt;</code><br />
 <code>#include &lt;vtkTexture.h&gt;</code><br />
 <code>#include &lt;vtkSkybox.h&gt;</code><br />
@@ -177,6 +176,13 @@ $(document).ready(function(){initNavTree('VRRenderThread_8cpp.html',''); initRes
 <code>#include &lt;vtkQuaternion.h&gt;</code><br />
 <code>#include &lt;vtkMatrix3x3.h&gt;</code><br />
 <code>#include &lt;vtkMath.h&gt;</code><br />
+<code>#include &lt;vtkGLTFImporter.h&gt;</code><br />
+<code>#include &lt;vtkActorCollection.h&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;QFileInfo&gt;</code><br />
+<code>#include &lt;QFile&gt;</code><br />
+<code>#include &lt;QStringList&gt;</code><br />
+<code>#include &lt;openvr.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for VRRenderThread.cpp:</div>
 <div class="dyncontent">
@@ -190,19 +196,14 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu_1_1Button.html">VRMenu::Button</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structControllerRay.html">ControllerRay</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Per-controller state — coloured ray line and outline box around hovered actors.  <a href="structControllerRay.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVRCustomStyle.html">VRCustomStyle</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom VR interactor — blocks VTK's built-in menu, kills default rays, inverts dolly.  <a href="classVRCustomStyle.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu.html">VRMenu</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">In-VR editing menu — shows coloured buttons above a hovered part for clip/shrink/colour.  <a href="structVRMenu.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVRMenuCallback.html">VRMenuCallback</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">VTK callback for menu button presses — opens/closes the in-VR menu and runs actions.  <a href="classVRMenuCallback.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVRRayCallback.html">VRRayCallback</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">VTK callback that updates both controller rays on each Move3D event.  <a href="classVRRayCallback.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -210,11 +211,7 @@ Functions</h2></td></tr>
 <tr class="memitem:aa1ef3963bef777925d74ca58789e3eeb" id="r_aa1ef3963bef777925d74ca58789e3eeb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="VRRenderThread_8cpp.html#aa1ef3963bef777925d74ca58789e3eeb">vtkStandardNewMacro</a> (<a class="el" href="classVRCustomStyle.html">VRCustomStyle</a>)</td></tr>
 <tr class="separator:aa1ef3963bef777925d74ca58789e3eeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classVRRenderThread.html" title="Dedicated thread that runs the OpenVR render loop and processes GUI commands.">VRRenderThread</a> implementation — OpenVR setup, custom interactor, ray casting, in-VR menu. </p>
-
-<p class="definition">Definition in file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="aa1ef3963bef777925d74ca58789e3eeb" name="aa1ef3963bef777925d74ca58789e3eeb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa1ef3963bef777925d74ca58789e3eeb">&#9670;&#160;</a></span>vtkStandardNewMacro()</h2>
 

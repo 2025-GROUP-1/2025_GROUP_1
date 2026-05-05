@@ -1,0 +1,9 @@
+<map id="MainWindow::on_buttonToggleVisible_clicked" name="MainWindow::on_buttonToggleVisible_clicked">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,47,225,87"/>
+<area shape="rect" id="Node000002" href="$classVRRenderThread.html#a0e5e7126b3e42c9d98fc14d1cd983fdf" title=" " alt="" coords="273,5,513,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,45,307,30,308,36,226,50"/>
+<area shape="rect" id="Node000003" href="$classMainWindow.html#a15a4966f9e4285ab2895a35f94878175" title=" " alt="" coords="293,55,493,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="225,65,279,65,279,70,225,70"/>
+<area shape="rect" id="Node000004" href="$classMainWindow.html#aa2a5945f9c4bf90022f0a7ad3db34c49" title=" " alt="" coords="291,104,495,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="226,84,308,99,307,104,225,89"/>
+</map>

@@ -57,7 +57,7 @@ var sectionId = 'dynsection-0';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="OptionDialog implementation — colour picker, visibility, shrink/clip toggles.">
+<g id="a_Node000001"><a xlink:title=" ">
 <polygon fill="#999999" stroke="#666666" points="467,-184 369,-184 369,-165 467,-165 467,-184"/>
 <text text-anchor="middle" x="418" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">optiondialog.cpp</text>
 </a>
@@ -66,7 +66,7 @@ var sectionId = 'dynsection-0';
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="optiondialog_8h.html" target="_top" xlink:title="Declares OptionDialog — modal editor for part name, colour, visibility, and filters.">
+<g id="a_Node000002"><a xlink:href="optiondialog_8h.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="349,-129 263,-129 263,-110 349,-110 349,-129"/>
 <text text-anchor="middle" x="306" y="-117" font-family="Helvetica,sans-Serif" font-size="10.00">optiondialog.h</text>
 </a>
@@ -156,7 +156,7 @@ var sectionId = 'dynsection-0';
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="ModelPart_8h.html" target="_top" xlink:title="Declares ModelPart — one STL part with its VTK pipeline, filters, and display state.">
+<g id="a_Node000005"><a xlink:href="ModelPart_8h.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="689,-74 615,-74 615,-55 689,-55 689,-74"/>
 <text text-anchor="middle" x="652" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPart.h</text>
 </a>

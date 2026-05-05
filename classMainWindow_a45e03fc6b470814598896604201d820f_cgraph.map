@@ -1,9 +1,0 @@
-<map id="MainWindow::on_checkShowPart_stateChanged" name="MainWindow::on_checkShowPart_stateChanged">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,47,215,87"/>
-<area shape="rect" id="Node000002" href="$classVRRenderThread.html#a0e5e7126b3e42c9d98fc14d1cd983fdf" title=" " alt="" coords="263,5,503,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,46,298,31,299,36,215,51"/>
-<area shape="rect" id="Node000003" href="$classMainWindow.html#a15a4966f9e4285ab2895a35f94878175" title=" " alt="" coords="283,55,483,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,65,269,65,269,70,215,70"/>
-<area shape="rect" id="Node000004" href="$classMainWindow.html#aa2a5945f9c4bf90022f0a7ad3db34c49" title=" " alt="" coords="281,104,485,129"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="215,84,299,99,298,104,214,89"/>
-</map>

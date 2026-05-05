@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Main application window — parts browser, 3D viewport, properties panel, VR controls.">
+<g id="a_Node000001"><a xlink:title=" ">
 <polygon fill="#999999" stroke="#666666" points="123.5,-74 36.5,-74 36.5,-55 123.5,-55 123.5,-74"/>
 <text text-anchor="middle" x="80" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">mainwindow.h</text>
 </a>
@@ -30,7 +30,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="main_8cpp.html" target="_top" xlink:title="Application entry point — sets up OpenGL and launches the main window.">
+<g id="a_Node000002"><a xlink:href="main_8cpp.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="62,-19 0,-19 0,0 62,0 62,-19"/>
 <text text-anchor="middle" x="31" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">main.cpp</text>
 </a>
@@ -48,7 +48,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="mainwindow_8cpp.html" target="_top" xlink:title="MainWindow implementation — UI setup, theming, toolbar actions, VR lifecycle.">
+<g id="a_Node000003"><a xlink:href="mainwindow_8cpp.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="178,-19 80,-19 80,0 178,0 178,-19"/>
 <text text-anchor="middle" x="129" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">mainwindow.cpp</text>
 </a>

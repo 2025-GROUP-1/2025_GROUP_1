@@ -1,10 +1,12 @@
 <map id="MainWindow::refreshExplodeDirectionsFromTree" name="MainWindow::refreshExplodeDirectionsFromTree">
-<area shape="rect" id="Node000001" title=" " alt="" coords="531,37,741,77"/>
-<area shape="poly" id="edge4_Node000001_Node000001" title=" " alt="" coords="680,26,665,19,636,16,611,18,596,23,590,29,593,36,588,38,585,28,593,18,610,13,636,11,666,14,682,21"/>
-<area shape="rect" id="Node000002" href="$classMainWindow.html#ad0f3f72f92f2fe5aa922ad43c13fe3b9" title=" " alt="" coords="272,37,483,77"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="517,60,483,60,483,55,517,55"/>
-<area shape="rect" id="Node000003" href="$classMainWindow.html#ac8d2ec00c54dd53fc814c23cb396d526" title=" " alt="" coords="5,5,224,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="258,46,224,41,224,36,259,40"/>
-<area shape="rect" id="Node000004" href="$classMainWindow.html#a73b0020c4cde6b548e415d29234eeda6" title=" " alt="" coords="5,69,224,109"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="259,74,224,79,224,73,258,69"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="531,55,741,95"/>
+<area shape="poly" id="edge5_Node000001_Node000001" title=" " alt="" coords="680,44,665,37,636,34,611,36,596,41,590,47,593,54,588,56,585,46,593,36,610,31,636,29,666,32,682,39"/>
+<area shape="rect" id="Node000002" href="$classMainWindow.html#ad0f3f72f92f2fe5aa922ad43c13fe3b9" title=" " alt="" coords="272,55,483,95"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="517,78,483,78,483,73,517,73"/>
+<area shape="rect" id="Node000003" href="$classMainWindow.html#af809c2679376142b241371e36aedc279" title=" " alt="" coords="25,5,204,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="271,55,173,33,174,28,272,50"/>
+<area shape="rect" id="Node000004" href="$classMainWindow.html#ac8d2ec00c54dd53fc814c23cb396d526" title=" " alt="" coords="5,55,224,95"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="258,78,224,78,224,73,258,73"/>
+<area shape="rect" id="Node000005" href="$classMainWindow.html#a73b0020c4cde6b548e415d29234eeda6" title=" " alt="" coords="5,119,224,159"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="282,101,198,122,197,117,281,96"/>
 </map>

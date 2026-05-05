@@ -32,6 +32,7 @@ var classModelPart =
     [ "setShrinkFactor", "classModelPart.html#a74f7db7b01d496dff596d8a3f1ec722b", null ],
     [ "setShrinkFilter", "classModelPart.html#a0d01c433eb1019cb9d41f75ee389687c", null ],
     [ "setVisible", "classModelPart.html#a4cfdee348fd6870756ce836f67b1ce75", null ],
+    [ "VRMenuCallback", "classModelPart.html#a99cbf660d6ddb16672b9985a2eb48fa7", null ],
     [ "actor", "classModelPart.html#aa0bc06d06f0976fef26bcbd721e71784", null ],
     [ "clipFilter", "classModelPart.html#a1dbcd342953666a43f81f3835145045e", null ],
     [ "file", "classModelPart.html#a852283506443761fb7b7f96588878e45", null ],

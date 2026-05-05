@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Declares ModelPartList — the QAbstractItemModel that backs the QTreeView.">
+<g id="a_Node000001"><a xlink:title=" ">
 <polygon fill="#999999" stroke="#666666" points="226.5,-129 134.5,-129 134.5,-110 226.5,-110 226.5,-129"/>
 <text text-anchor="middle" x="180.5" y="-117" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPartList.h</text>
 </a>
@@ -30,7 +30,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="ModelPartList_8cpp.html" target="_top" xlink:title="ModelPartList implementation — insert, remove, lookup, and Qt model interface.">
+<g id="a_Node000002"><a xlink:href="ModelPartList_8cpp.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="103,-74 0,-74 0,-55 103,-55 103,-74"/>
 <text text-anchor="middle" x="51.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPartList.cpp</text>
 </a>
@@ -48,7 +48,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="VRRenderThread_8cpp.html" target="_top" xlink:title="VRRenderThread implementation — OpenVR setup, custom interactor, ray casting, in&#45;VR menu.">
+<g id="a_Node000003"><a xlink:href="VRRenderThread_8cpp.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="240,-74 121,-74 121,-55 240,-55 240,-74"/>
 <text text-anchor="middle" x="180.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">VRRenderThread.cpp</text>
 </a>
@@ -66,7 +66,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="mainwindow_8h.html" target="_top" xlink:title="Main application window — parts browser, 3D viewport, properties panel, VR controls.">
+<g id="a_Node000004"><a xlink:href="mainwindow_8h.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="345,-74 258,-74 258,-55 345,-55 345,-74"/>
 <text text-anchor="middle" x="301.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">mainwindow.h</text>
 </a>
@@ -84,7 +84,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="main_8cpp.html" target="_top" xlink:title="Application entry point — sets up OpenGL and launches the main window.">
+<g id="a_Node000005"><a xlink:href="main_8cpp.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="283.5,-19 221.5,-19 221.5,0 283.5,0 283.5,-19"/>
 <text text-anchor="middle" x="252.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">main.cpp</text>
 </a>
@@ -102,7 +102,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="mainwindow_8cpp.html" target="_top" xlink:title="MainWindow implementation — UI setup, theming, toolbar actions, VR lifecycle.">
+<g id="a_Node000006"><a xlink:href="mainwindow_8cpp.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="399.5,-19 301.5,-19 301.5,0 399.5,0 399.5,-19"/>
 <text text-anchor="middle" x="350.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">mainwindow.cpp</text>
 </a>

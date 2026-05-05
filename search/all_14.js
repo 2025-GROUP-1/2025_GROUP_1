@@ -1,15 +1,21 @@
 var searchData=
 [
-  ['targetpartid_0',['targetPartID',['../structVRMenu.html#a210df57b2ae0de81acc33a9511664ed2',1,'VRMenu']]],
-  ['team_1',['Team',['../index.html#team',1,'']]],
-  ['the_20explode_20animation_20does_20internally_2',['3. What the Explode Animation Does Internally',['../how_it_works.html#explode-animation',1,'']]],
-  ['the_20user_20changes_20a_20colour_3',['1. When the User Changes a Colour',['../how_it_works.html#colour-change',1,'']]],
-  ['theme_4',['Theme',['../classMainWindow.html#a2c9c9b9196ffc44d9f32205b1bef5f1d',1,'MainWindow']]],
-  ['toggleclip_5',['ToggleClip',['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153ae00324ef7d010e77e6442de67d57b594',1,'VRRenderThread.h']]],
-  ['toggleshrink_6',['ToggleShrink',['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153abc2d1f09ad6ae0d664b373635571060b',1,'VRRenderThread.h']]],
-  ['toggleskybox_7',['ToggleSkybox',['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153a7b6dcb09897ecf893574c2b70f61c7ff',1,'VRRenderThread.h']]],
-  ['topics_8',['Topics',['../index.html#modules',1,'']]],
-  ['two_20actors_20per_20part_9',['2. Why Two Actors per Part',['../how_it_works.html#two-actors',1,'']]],
-  ['type_10',['type',['../structCommandPacket.html#ae731eeaf73432df90f975ae47d479246',1,'CommandPacket']]],
-  ['typical_20workflow_11',['Typical Workflow',['../index.html#workflow',1,'']]]
+  ['savetomodelpart_0',['saveToModelPart',['../classOptionDialog.html#a8cbe60aecbb7344f560f424ed537b47a',1,'OptionDialog']]],
+  ['selectedparts_1',['selectedParts',['../classMainWindow.html#a15a4966f9e4285ab2895a35f94878175',1,'MainWindow']]],
+  ['setclipfilter_2',['setClipFilter',['../classModelPart.html#a2baa7057c98d5dc4c9b5303ca54d083d',1,'ModelPart']]],
+  ['setclipplanex_3',['setClipPlaneX',['../classModelPart.html#a922236b215b30689af7f6acc92c905fc',1,'ModelPart']]],
+  ['setcolour_4',['setcolour',['../classModelPart.html#abb0819f303fea07fdc053ba750d4684d',1,'ModelPart::setColour()'],['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153a1626176510021924859b31c80f5d1e82',1,'SetColour:&#160;VRRenderThread.h']]],
+  ['setdata_5',['setData',['../classModelPart.html#a1b0dd7d3e3953b1aa8a4a44a7aa1349b',1,'ModelPart']]],
+  ['setfloory_6',['setFloorY',['../classVRCustomStyle.html#a8ec13c3570ad6cea93329c68cd901729',1,'VRCustomStyle']]],
+  ['setpartlist_7',['setPartList',['../classVRRenderThread.html#a1950ee06c357da44400458b3672f0380',1,'VRRenderThread']]],
+  ['setshrinkfactor_8',['setShrinkFactor',['../classModelPart.html#a74f7db7b01d496dff596d8a3f1ec722b',1,'ModelPart']]],
+  ['setshrinkfilter_9',['setShrinkFilter',['../classModelPart.html#a0d01c433eb1019cb9d41f75ee389687c',1,'ModelPart']]],
+  ['settransform_10',['SetTransform',['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153ae2158c31c438aa742ee7fb9c25f5aa37',1,'VRRenderThread.h']]],
+  ['setvisible_11',['setvisible',['../classModelPart.html#a4cfdee348fd6870756ce836f67b1ce75',1,'ModelPart::setVisible()'],['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153a0507d87d55de84133951afd6b33ebc62',1,'SetVisible:&#160;VRRenderThread.h']]],
+  ['show_12',['show',['../structVRMenu.html#a295afb1bf97a57f3011c916738a14105',1,'VRMenu']]],
+  ['shrink_13',['Shrink',['../structVRMenu.html#a008bbe773a1645b633ba1beafb7c955da4253b3f876b11b0f560420bd64269b28',1,'VRMenu']]],
+  ['shrinkfilter_14',['shrinkFilter',['../classModelPart.html#a8f2cc5db4e5cf99509a48d61320801e9',1,'ModelPart']]],
+  ['start_15',['Quick Start',['../index.html#quickstart',1,'']]],
+  ['station_16',['VR Base Station',['../index.html',1,'']]],
+  ['statusupdatemessage_17',['statusUpdateMessage',['../classMainWindow.html#a86443ea744fda3e9bad328c2fd1c3d6b',1,'MainWindow']]]
 ];

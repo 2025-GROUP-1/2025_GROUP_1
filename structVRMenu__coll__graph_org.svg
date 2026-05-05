@@ -11,23 +11,23 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="In&#45;VR editing menu — shows coloured buttons above a hovered part for clip/shrink/colour.">
+<g id="a_Node000001"><a xlink:title=" ">
 <polygon fill="#999999" stroke="transparent" points="90,-214 0,-214 0,0 90,0 90,-214"/>
 <text text-anchor="start" x="24.5" y="-202" font-family="Helvetica,sans-Serif" font-size="10.00">VRMenu</text>
 <text text-anchor="start" x="4" y="-187" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17" y="-187" font-family="Helvetica,sans-Serif" font-size="10.00">buttons</text>
+<text text-anchor="start" x="17" y="-187" font-family="Helvetica,sans-Serif" font-size="10.00">BTN_H</text>
 <text text-anchor="start" x="4" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">ren</text>
+<text text-anchor="start" x="17" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">BTN_W</text>
 <text text-anchor="start" x="4" y="-157" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17" y="-157" font-family="Helvetica,sans-Serif" font-size="10.00">targetPartID</text>
+<text text-anchor="start" x="17" y="-157" font-family="Helvetica,sans-Serif" font-size="10.00">buttons</text>
 <text text-anchor="start" x="4" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00">visible</text>
+<text text-anchor="start" x="17" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00">GAP</text>
 <text text-anchor="start" x="4" y="-127" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17" y="-127" font-family="Helvetica,sans-Serif" font-size="10.00">BTN_H</text>
+<text text-anchor="start" x="17" y="-127" font-family="Helvetica,sans-Serif" font-size="10.00">ren</text>
 <text text-anchor="start" x="4" y="-112" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17" y="-112" font-family="Helvetica,sans-Serif" font-size="10.00">BTN_W</text>
+<text text-anchor="start" x="17" y="-112" font-family="Helvetica,sans-Serif" font-size="10.00">targetPartID</text>
 <text text-anchor="start" x="4" y="-97" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17" y="-97" font-family="Helvetica,sans-Serif" font-size="10.00">GAP</text>
+<text text-anchor="start" x="17" y="-97" font-family="Helvetica,sans-Serif" font-size="10.00">visible</text>
 <text text-anchor="start" x="4" y="-82" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="17" y="-82" font-family="Helvetica,sans-Serif" font-size="10.00">addButton()</text>
 <text text-anchor="start" x="4" y="-67" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>

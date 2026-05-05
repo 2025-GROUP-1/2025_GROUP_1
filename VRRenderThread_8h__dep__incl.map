@@ -1,11 +1,11 @@
 <map id="VRRenderThread.h" name="VRRenderThread.h">
-<area shape="rect" id="Node000001" title="Declares VRRenderThread — runs the OpenVR render loop on a dedicated thread." alt="" coords="93,5,236,31"/>
-<area shape="rect" id="Node000002" href="$VRRenderThread_8cpp.html" title="VRRenderThread implementation — OpenVR setup, custom interactor, ray casting, in&#45;VR menu." alt="" coords="5,79,164,104"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="93,5,236,31"/>
+<area shape="rect" id="Node000002" href="$VRRenderThread_8cpp.html" title=" " alt="" coords="5,79,164,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,42,100,80,96,76,140,38"/>
-<area shape="rect" id="Node000003" href="$mainwindow_8h.html" title="Main application window — parts browser, 3D viewport, properties panel, VR controls." alt="" coords="188,79,304,104"/>
+<area shape="rect" id="Node000003" href="$mainwindow_8h.html" title=" " alt="" coords="188,79,304,104"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="190,38,234,76,231,80,186,42"/>
-<area shape="rect" id="Node000004" href="$main_8cpp.html" title="Application entry point — sets up OpenGL and launches the main window." alt="" coords="139,152,222,177"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html" title=" " alt="" coords="139,152,222,177"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="228,116,193,154,189,150,224,113"/>
-<area shape="rect" id="Node000005" href="$mainwindow_8cpp.html" title="MainWindow implementation — UI setup, theming, toolbar actions, VR lifecycle." alt="" coords="246,152,377,177"/>
+<area shape="rect" id="Node000005" href="$mainwindow_8cpp.html" title=" " alt="" coords="246,152,377,177"/>
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="268,113,303,150,299,154,264,116"/>
 </map>

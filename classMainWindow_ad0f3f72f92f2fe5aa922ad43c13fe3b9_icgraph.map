@@ -1,7 +1,9 @@
 <map id="MainWindow::refreshExplodeDirections" name="MainWindow::refreshExplodeDirections">
-<area shape="rect" id="Node000001" title=" " alt="" coords="272,37,483,77"/>
-<area shape="rect" id="Node000002" href="$classMainWindow.html#ac8d2ec00c54dd53fc814c23cb396d526" title=" " alt="" coords="5,5,224,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,46,224,41,224,36,259,40"/>
-<area shape="rect" id="Node000003" href="$classMainWindow.html#a73b0020c4cde6b548e415d29234eeda6" title=" " alt="" coords="5,69,224,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="259,74,224,79,224,73,258,69"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="272,55,483,95"/>
+<area shape="rect" id="Node000002" href="$classMainWindow.html#af809c2679376142b241371e36aedc279" title=" " alt="" coords="25,5,204,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="271,55,173,33,174,28,272,50"/>
+<area shape="rect" id="Node000003" href="$classMainWindow.html#ac8d2ec00c54dd53fc814c23cb396d526" title=" " alt="" coords="5,55,224,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="258,78,224,78,224,73,258,73"/>
+<area shape="rect" id="Node000004" href="$classMainWindow.html#a73b0020c4cde6b548e415d29234eeda6" title=" " alt="" coords="5,119,224,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="282,101,198,122,197,117,281,96"/>
 </map>

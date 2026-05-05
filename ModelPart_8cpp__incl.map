@@ -1,6 +1,6 @@
 <map id="ModelPart.cpp" name="ModelPart.cpp">
-<area shape="rect" id="Node000001" title="ModelPart implementation — STL loading, filter chain, colour/visibility, explode view." alt="" coords="959,5,1074,31"/>
-<area shape="rect" id="Node000002" href="$ModelPart_8h.html" title="Declares ModelPart — one STL part with its VTK pipeline, filters, and display state." alt="" coords="915,79,1014,104"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="959,5,1074,31"/>
+<area shape="rect" id="Node000002" href="$ModelPart_8h.html" title=" " alt="" coords="915,79,1014,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1010,33,983,69,979,66,1006,29"/>
 <area shape="rect" id="Node000019" title=" " alt="" coords="1039,79,1101,104"/>
 <area shape="poly" id="edge18_Node000001_Node000019" title=" " alt="" coords="1028,29,1055,66,1051,69,1023,33"/>

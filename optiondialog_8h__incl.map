@@ -1,10 +1,10 @@
 <map id="optiondialog.h" name="optiondialog.h">
-<area shape="rect" id="Node000001" title="Declares OptionDialog — modal editor for part name, colour, visibility, and filters." alt="" coords="356,5,471,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="356,5,471,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="301,79,376,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="403,33,363,71,359,67,400,29"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="5,152,72,177"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="416,32,411,68,403,89,390,106,366,120,333,130,251,142,162,148,86,155,85,150,161,143,250,137,331,125,363,115,386,102,399,86,406,67,411,31"/>
-<area shape="rect" id="Node000004" href="$ModelPart_8h.html" title="Declares ModelPart — one STL part with its VTK pipeline, filters, and display state." alt="" coords="825,79,924,104"/>
+<area shape="rect" id="Node000004" href="$ModelPart_8h.html" title=" " alt="" coords="825,79,924,104"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="471,26,812,78,812,83,470,31"/>
 <area shape="poly" id="edge7_Node000004_Node000003" title=" " alt="" coords="825,96,698,100,517,109,305,127,86,155,85,150,304,122,517,104,698,95,825,91"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="97,152,151,177"/>
