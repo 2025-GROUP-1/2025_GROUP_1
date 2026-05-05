@@ -113,13 +113,11 @@ public:
     // Right stick X: snap turn (45-degree increments)
     // Right stick Y: dolly (push/pull scene)
     //
-    // Movement is FLAT (horizontal only) and clamped to floor level.
+    // Movement is FLAT (horizontal only). The Y translation is preserved so
+    // the garage placement is not overridden by a floor clamp.
     // Works on Quest Touch controllers AND Vive Pro wands (trackpad).
     // -----------------------------------------------------------------------
-    double m_floorY = 0.0;
     bool m_snapTurnReady = true;   // prevents repeated snap turns while held
-
-    void setFloorY(double y) { m_floorY = y; }
 
     void pollJoystickDolly(vtkOpenVRRenderWindow* renWin)
     {
@@ -166,11 +164,10 @@ public:
                     double dz = (fwd[2] * ly + right[2] * lx) * moveSpeed;
 
                     double* trans = renWin->GetPhysicalTranslation();
-                    double newX = trans[0] + dx;
-                    double newZ = trans[2] + dz;
-
-                    // clamp to floor - don't allow going below floor level
-                    renWin->SetPhysicalTranslation(newX, m_floorY, newZ);
+                    renWin->SetPhysicalTranslation(
+                        trans[0] + dx,
+                        trans[1],
+                        trans[2] + dz);
                 }
             }
         }
@@ -224,7 +221,7 @@ public:
                     double* trans = renWin->GetPhysicalTranslation();
                     renWin->SetPhysicalTranslation(
                         trans[0] + fwd[0] * speed,
-                        m_floorY,
+                        trans[1],
                         trans[2] + fwd[2] * speed);
                 }
             }
@@ -895,17 +892,6 @@ void VRRenderThread::run() {
 
     if (m_renderer->GetActiveCamera())
         m_renderer->ResetCameraClippingRange();
-
-    // position user standing on the floor, not inside it
-    // shifts VR origin so real-world floor = bottom of scene geometry
-    {
-        double bounds[6];
-        m_renderer->ComputeVisiblePropBounds(bounds);
-        double* trans = m_renderWindow->GetPhysicalTranslation();
-        double floorY = bounds[2];   // Y-min of all geometry
-        m_renderWindow->SetPhysicalTranslation(trans[0], floorY, trans[2]);
-        customStyle->setFloorY(floorY);
-    }
 
     // render loop - process one VR frame, handle commands, repeat
     // NOTE: DoOneEvent already submits frames to both eyes.
