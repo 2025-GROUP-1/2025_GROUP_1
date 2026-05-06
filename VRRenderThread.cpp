@@ -1,4 +1,4 @@
-// VR render thread implementation - OpenVR setup, custom interactor, ray casting, in-VR menu
+// VR render thread implementation - OpenVR setup, custom interactor, ray casting, per-actor scale
 
 #include "VRRenderThread.h"
 #include <QMutexLocker>
@@ -14,9 +14,9 @@
 #include "ModelPartList.h"
 #include "ModelPart.h"
 #include <vtkCamera.h>
-#include <vtkImageReader2.h>
 #include <vtkJPEGReader.h>
 #include <vtkPNGReader.h>
+#include <vtkImageReader2.h>
 #include <vtkImageData.h>
 #include <vtkTexture.h>
 #include <vtkSkybox.h>
@@ -28,7 +28,6 @@
 #include <vtkEventData.h>
 #include <vtkTransform.h>
 #include <vtkOpenVRInteractorStyle.h>
-#include <vtkPlaneSource.h>
 #include <vtkObjectFactory.h>
 #include <vtkInteractorStyle3D.h>
 #include <vtkTimerLog.h>
@@ -38,34 +37,35 @@
 #include <vtkMath.h>
 #include <vtkGLTFImporter.h>
 #include <vtkActorCollection.h>
-#include <algorithm>
-#include <QFileInfo>
 #include <QFile>
-#include <QStringList>
+#include <openvr.h>
+#include <cmath>
 
 // ---------------------------------------------------------------------------
-// custom VR interactor style
-// - blocks VTK's built-in probe/clip/exit menu
-// - fires a UserEvent instead so our menu callback gets it
+// custom VR interactor style (based on e2776a5 — the version that worked)
+// - blocks VTK's built-in menu (fires UserEvent instead)
 // - kills VTK's default red rays (we draw our own)
 // - inverts dolly direction so trackpad-up = push away
+// - blocks world-scale pinch (we do per-actor scale instead)
+// VTK's built-in grip grab (pan/rotate via complex gesture) is left working
 // ---------------------------------------------------------------------------
 class VRCustomStyle : public vtkOpenVRInteractorStyle {
 public:
     static VRCustomStyle* New();
     vtkTypeMacro(VRCustomStyle, vtkOpenVRInteractorStyle);
 
-    // replaces VTK's built-in menu with our custom event
     void OnMenu3D(vtkEventData* edata) override
     {
         if (this->Interactor)
             this->Interactor->InvokeEvent(vtkCommand::UserEvent, edata);
     }
 
-    // no-op so VTK never draws its red rays
     void UpdateRay(vtkEventDataDevice) override {}
 
-    // overrides dolly to negate Y direction (trackpad-up = away, down = towards)
+    // prevent world scaling — per-actor scale is handled separately
+    void OnPinch() override {}
+
+    // inverted dolly: trackpad/joystick up = push away, down = pull closer
     void Dolly3D(vtkEventData* ed) override
     {
         if (!this->CurrentRenderer)
@@ -74,7 +74,6 @@ public:
         auto* edd = static_cast<vtkEventDataDevice3D*>(ed);
         const double* wori = edd->GetWorldOrientation();
 
-        // convert controller orientation to a forward vector
         vtkQuaternion<double> q1;
         q1.SetRotationAngleAndAxis(vtkMath::RadiansFromDegrees(wori[0]), wori[1], wori[2], wori[3]);
         double elem[3][3];
@@ -86,7 +85,6 @@ public:
         if (edd->GetType() == vtkCommand::ViewerMovement3DEvent)
             edd->GetTrackPadPosition(this->LastTrackPadPosition);
 
-        // negate so up = push away, down = pull closer
         double speedScale = -this->LastTrackPadPosition[1];
         double physicalScale = rwi->GetPhysicalScale();
 
@@ -103,7 +101,6 @@ public:
         if (this->AutoAdjustCameraClippingRange)
             this->CurrentRenderer->ResetCameraClippingRange();
     }
-
 };
 vtkStandardNewMacro(VRCustomStyle);
 
@@ -119,12 +116,10 @@ struct ControllerRay {
     vtkNew<vtkPolyDataMapper>  outlineMapper;
     vtkNew<vtkActor>           outlineActor;
     vtkActor*                  hoveredActor = nullptr;
-    std::vector<vtkActor*>     pickActors;
 
-    // creates the ray line and outline actors, adds them to the renderer
     void init(vtkRenderer* ren, double r, double g, double b)
     {
-        picker->SetTolerance(0.005);
+        picker->SetTolerance(5.0);
 
         rayLine->SetPoint1(0, 0, 0);
         rayLine->SetPoint2(0, 0, -1);
@@ -146,17 +141,10 @@ struct ControllerRay {
         ren->AddActor(outlineActor);
     }
 
-    void setPickActors(const std::vector<vtkActor*>& actors)
-    {
-        pickActors = actors;
-    }
-
-    // fires a pick ray from the controller, updates the ray line endpoint and outline
     void update(const double* pos, const double* ori, vtkRenderer* ren, double maxRay)
     {
         if (!ren) return;
 
-        // work out which direction the controller is pointing
         vtkNew<vtkTransform> xform;
         xform->RotateWXYZ(ori[0], ori[1], ori[2], ori[3]);
         double fwd[3] = { 0.0, 0.0, -1.0 };
@@ -165,16 +153,9 @@ struct ControllerRay {
         double p[3] = { pos[0], pos[1], pos[2] };
         double o[4] = { ori[0], ori[1], ori[2], ori[3] };
 
-        // try to pick an actor along the ray
         vtkActor* hit = nullptr;
         double hitPt[3] = { 0.0, 0.0, 0.0 };
         try {
-            picker->InitializePickList();
-            for (vtkActor* actor : pickActors) {
-                if (actor)
-                    picker->AddPickList(actor);
-            }
-            picker->PickFromListOn();
             picker->Pick3DRay(p, o, ren);
             hit = vtkActor::SafeDownCast(picker->GetProp3D());
             double* pt = picker->GetPickPosition();
@@ -183,7 +164,6 @@ struct ControllerRay {
             hit = nullptr;
         }
 
-        // ray goes from controller to hit point (or extends to max length)
         rayLine->SetPoint1(pos[0], pos[1], pos[2]);
         if (hit && picker->GetCellId() >= 0) {
             rayLine->SetPoint2(hitPt[0], hitPt[1], hitPt[2]);
@@ -195,7 +175,6 @@ struct ControllerRay {
         }
         rayLine->Modified();
 
-        // show an outline box around whatever the ray is pointing at
         if (hit != hoveredActor) {
             if (hit && hit->GetMapper() && hit->GetMapper()->GetInput()) {
                 outlineFilter->SetInputData(hit->GetMapper()->GetInput());
@@ -210,7 +189,6 @@ struct ControllerRay {
             hoveredActor = hit;
         }
 
-        // keep the outline tracking the actor if it moves
         if (hoveredActor && outlineActor->GetVisibility()) {
             outlineActor->SetPosition(hoveredActor->GetPosition());
             outlineActor->SetScale(hoveredActor->GetScale());
@@ -225,16 +203,14 @@ public:
     static VRRayCallback* New() { return new VRRayCallback; }
 
     vtkRenderer* renderer = nullptr;
-    std::map<int, vtkSmartPointer<vtkActor>>* activeActors = nullptr;
-    std::vector<vtkActor*> menuActors;
     ControllerRay right;
     ControllerRay left;
 
     void init(vtkRenderer* ren)
     {
         renderer = ren;
-        right.init(ren, 0.2, 0.85, 1.0);   // cyan for right
-        left.init(ren,  1.0, 0.6,  0.2);    // orange for left
+        right.init(ren, 0.2, 0.85, 1.0);
+        left.init(ren,  1.0, 0.6,  0.2);
     }
 
     void Execute(vtkObject*, unsigned long eventId, void* callData) override
@@ -249,13 +225,11 @@ public:
         auto device = d3d->GetDevice();
         const double* pos = d3d->GetWorldPosition();
         const double* ori = d3d->GetWorldOrientation();
-        auto pickActors = currentPickActors();
 
         if (device == vtkEventDataDevice::RightController ||
             device == vtkEventDataDevice::Unknown ||
             device == vtkEventDataDevice::Any)
         {
-            right.setPickActors(pickActors);
             right.update(pos, ori, renderer, MAX_RAY);
         }
 
@@ -263,262 +237,121 @@ public:
             device == vtkEventDataDevice::Unknown ||
             device == vtkEventDataDevice::Any)
         {
-            left.setPickActors(pickActors);
             left.update(pos, ori, renderer, MAX_RAY);
         }
     }
 
 private:
-    static constexpr double MAX_RAY = 10000.0;   // ray length in mm
-
-    std::vector<vtkActor*> currentPickActors() const
-    {
-        std::vector<vtkActor*> actors;
-        if (activeActors) {
-            for (const auto& [id, actor] : *activeActors) {
-                if (actor)
-                    actors.push_back(actor);
-            }
-        }
-        actors.insert(actors.end(), menuActors.begin(), menuActors.end());
-        return actors;
-    }
+    static constexpr double MAX_RAY = 10000.0;
 };
 
 // ---------------------------------------------------------------------------
-// in-VR editing menu
-// shows coloured buttons above a hovered part for clip/shrink/colour changes
+// per-actor scale via two-grip pinch
+// polls OpenVR for grip state; when both controllers grip while pointing
+// at the same part actor, changes that actor's scale based on hand distance
 // ---------------------------------------------------------------------------
-struct VRMenu {
-    enum Action { Clip, Shrink, ColRed, ColGreen, ColBlue, ColYellow, ColWhite, NUM_ACTIONS };
+struct PerActorScaler {
+    bool active = false;
+    vtkActor* targetActor = nullptr;
+    double startDist = 0.0;
+    double startScale[3] = {1, 1, 1};
 
-    struct Button {
-        vtkSmartPointer<vtkActor> actor;
-        Action action;
-    };
-
-    std::vector<Button> buttons;
-    bool visible = false;
-    int targetPartID = -1;
-    vtkRenderer* ren = nullptr;
-
-    // button sizes (scaled by physical scale at show time)
-    double BTN_W = 60.0;
-    double BTN_H = 30.0;
-    double GAP   = 8.0;
-
-    // builds all the menu button actors
-    void create(vtkRenderer* r)
+    bool isPartActor(vtkActor* a, std::map<int, vtkSmartPointer<vtkActor>>* actors)
     {
-        ren = r;
-        addButton(Clip,       1.0, 0.5, 0.0);    // orange
-        addButton(Shrink,     0.6, 0.2, 0.8);    // purple
-        addButton(ColRed,     1.0, 0.15, 0.15);
-        addButton(ColGreen,   0.15, 0.8, 0.15);
-        addButton(ColBlue,    0.15, 0.4, 1.0);
-        addButton(ColYellow,  1.0, 1.0, 0.2);
-        addButton(ColWhite,   0.9, 0.9, 0.9);
+        if (!a || !actors) return false;
+        for (auto& [id, act] : *actors)
+            if (act.Get() == a) return true;
+        return false;
     }
 
-    void addButton(Action a, double cr, double cg, double cb)
+    void update(vtkOpenVRRenderWindow* renWin, VRRayCallback* rays,
+                std::map<int, vtkSmartPointer<vtkActor>>* activeActors)
     {
-        vtkNew<vtkPlaneSource> plane;
-        plane->SetOrigin(0, 0, 0);
-        plane->SetPoint1(BTN_W, 0, 0);
-        plane->SetPoint2(0, BTN_H, 0);
-        plane->Update();
+        vr::IVRSystem* hmd = renWin->GetHMD();
+        if (!hmd) return;
 
-        vtkNew<vtkPolyDataMapper> m;
-        m->SetInputConnection(plane->GetOutputPort());
+        vr::TrackedDeviceIndex_t leftIdx =
+            hmd->GetTrackedDeviceIndexForControllerRole(vr::TrackedControllerRole_LeftHand);
+        vr::TrackedDeviceIndex_t rightIdx =
+            hmd->GetTrackedDeviceIndexForControllerRole(vr::TrackedControllerRole_RightHand);
 
-        vtkSmartPointer<vtkActor> act = vtkSmartPointer<vtkActor>::New();
-        act->SetMapper(m);
-        act->GetProperty()->SetColor(cr, cg, cb);
-        act->GetProperty()->SetAmbient(1.0);
-        act->GetProperty()->SetDiffuse(0.0);
-        act->SetVisibility(0);
-        act->PickableOn();
-        ren->AddActor(act);
+        vr::VRControllerState_t lState{}, rState{};
+        bool hasLeft = (leftIdx != vr::k_unTrackedDeviceIndexInvalid) &&
+                       hmd->GetControllerState(leftIdx, &lState, sizeof(lState));
+        bool hasRight = (rightIdx != vr::k_unTrackedDeviceIndexInvalid) &&
+                        hmd->GetControllerState(rightIdx, &rState, sizeof(rState));
 
-        buttons.push_back({act, a});
-    }
+        // detect grip on both Vive (digital) and Oculus Touch (analog axis 2)
+        bool leftGrip = hasLeft && (
+            (lState.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_Grip)) ||
+            lState.rAxis[2].x > 0.5f);
+        bool rightGrip = hasRight && (
+            (rState.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_Grip)) ||
+            rState.rAxis[2].x > 0.5f);
 
-    // positions the menu above the given world position, scaled for VR
-    void show(double x, double y, double z, int partID, double physScale = 1.0)
-    {
-        visible = true;
-        targetPartID = partID;
+        bool bothGrip = leftGrip && rightGrip;
 
-        // scale button sizes based on physical scale so they're always comfortable
-        double scale = physScale * 0.05;  // 5% of physical scale gives good button size
-        double bw = BTN_W * scale;
-        double bh = BTN_H * scale;
-        double gap = GAP * scale;
-
-        // resize all button planes
-        for (auto& b : buttons) {
-            b.actor->SetScale(scale, scale, 1.0);
-        }
-
-        // top row: clip + shrink
-        double startX = x - (2 * bw + gap) * 0.5;
-        double startY = y + 40.0 * scale;
-
-        for (int i = 0; i < 2; i++) {
-            buttons[i].actor->SetPosition(
-                startX + i * (bw + gap), startY, z);
-            buttons[i].actor->SetVisibility(1);
-        }
-
-        // bottom row: colour swatches
-        double row2Y = startY - bh - gap;
-        int nCol = static_cast<int>(buttons.size()) - 2;
-        double row2StartX = x - (nCol * bw + (nCol - 1) * gap) * 0.5;
-        for (int i = 2; i < static_cast<int>(buttons.size()); i++) {
-            buttons[i].actor->SetPosition(
-                row2StartX + (i - 2) * (bw + gap), row2Y, z);
-            buttons[i].actor->SetVisibility(1);
-        }
-    }
-
-    void hide()
-    {
-        visible = false;
-        targetPartID = -1;
-        for (auto& b : buttons)
-            b.actor->SetVisibility(0);
-    }
-
-    int findButton(vtkActor* a) const
-    {
-        for (int i = 0; i < static_cast<int>(buttons.size()); i++)
-            if (buttons[i].actor.Get() == a)
-                return i;
-        return -1;
-    }
-
-    bool isMenuActor(vtkActor* a) const { return findButton(a) >= 0; }
-
-    std::vector<vtkActor*> actors() const
-    {
-        std::vector<vtkActor*> result;
-        for (const auto& button : buttons)
-            result.push_back(button.actor);
-        return result;
-    }
-};
-
-// handles menu button presses - fires when the user hits the menu button on the controller
-class VRMenuCallback : public vtkCommand {
-public:
-    static VRMenuCallback* New() { return new VRMenuCallback; }
-
-    VRRayCallback* rays = nullptr;
-    VRMenu menu;
-    std::map<int, vtkSmartPointer<vtkActor>>* activeActors = nullptr;
-    ModelPartList* partList = nullptr;
-    VRRenderThread* vrThread = nullptr;
-
-    vtkOpenVRRenderWindow* renWindow = nullptr;
-
-    void Execute(vtkObject*, unsigned long, void*) override
-    {
-        // check what the controller is pointing at
-        vtkActor* hovered = nullptr;
-        if (rays->right.hoveredActor)
-            hovered = rays->right.hoveredActor;
-        else if (rays->left.hoveredActor)
-            hovered = rays->left.hoveredActor;
-
-        // if pointing at a menu button, run its action
-        int btnIdx = menu.findButton(hovered);
-        if (btnIdx >= 0) {
-            executeAction(menu.buttons[btnIdx]);
+        if (!bothGrip) {
+            active = false;
+            targetActor = nullptr;
             return;
         }
 
-        // if pointing at a part, toggle the menu for that part
-        if (hovered) {
-            int pid = findPartID(hovered);
-            if (pid >= 0) {
-                if (menu.visible && menu.targetPartID == pid) {
-                    menu.hide();
-                } else {
-                    double* center = hovered->GetCenter();
-                    double physScale = 1.0;
-                    if (renWindow)
-                        physScale = renWindow->GetPhysicalScale();
-                    menu.show(center[0], center[1], center[2], pid, physScale);
-                }
-                return;
-            }
+        // both grips are held — find if both rays point at the same part actor
+        vtkActor* leftHit = rays->left.hoveredActor;
+        vtkActor* rightHit = rays->right.hoveredActor;
+
+        // accept if at least one ray hits a part actor
+        vtkActor* target = nullptr;
+        if (leftHit && isPartActor(leftHit, activeActors))
+            target = leftHit;
+        else if (rightHit && isPartActor(rightHit, activeActors))
+            target = rightHit;
+
+        if (!target) {
+            active = false;
+            targetActor = nullptr;
+            return;
         }
 
-        // pointing at nothing - close menu
-        if (menu.visible)
-            menu.hide();
-    }
+        // get controller world positions from OpenVR tracking
+        vr::TrackedDevicePose_t poses[vr::k_unMaxTrackedDeviceCount];
+        vr::VRSystem()->GetDeviceToAbsoluteTrackingPose(
+            vr::TrackingUniverseStanding, 0.0f, poses, vr::k_unMaxTrackedDeviceCount);
 
-private:
-    // looks up which part ID an actor belongs to
-    int findPartID(vtkActor* a) const
-    {
-        if (!activeActors) return -1;
-        for (auto& [id, act] : *activeActors)
-            if (act.Get() == a) return id;
-        return -1;
-    }
+        auto getPos = [&](vr::TrackedDeviceIndex_t idx, double out[3]) -> bool {
+            if (idx >= vr::k_unMaxTrackedDeviceCount || !poses[idx].bPoseIsValid)
+                return false;
+            auto& m = poses[idx].mDeviceToAbsoluteTracking;
+            out[0] = m.m[0][3]; out[1] = m.m[1][3]; out[2] = m.m[2][3];
+            return true;
+        };
 
-    // runs the selected menu action on the target part (VR thread - signals GUI to sync)
-    void executeAction(const VRMenu::Button& btn)
-    {
-        if (!partList || menu.targetPartID < 0) return;
-        ModelPart* part = partList->findByID(menu.targetPartID);
-        if (!part) return;
+        double lp[3], rp[3];
+        if (!getPos(leftIdx, lp) || !getPos(rightIdx, rp))
+            return;
 
-        switch (btn.action) {
-        case VRMenu::Clip: {
-            bool newState = !part->getClipEnabled();
-            part->m_clipEnabled = newState;
-            part->rebuildVRPipeline();
-            if (vrThread) emit vrThread->partClipChanged(menu.targetPartID, newState);
-            break;
+        double dx = lp[0]-rp[0], dy = lp[1]-rp[1], dz = lp[2]-rp[2];
+        double curDist = std::sqrt(dx*dx + dy*dy + dz*dz);
+
+        if (!active || targetActor != target) {
+            // starting a new scale gesture
+            active = true;
+            targetActor = target;
+            startDist = curDist;
+            double* s = target->GetScale();
+            startScale[0] = s[0]; startScale[1] = s[1]; startScale[2] = s[2];
+            return;
         }
-        case VRMenu::Shrink: {
-            bool newState = !part->getShrinkEnabled();
-            part->m_shrinkEnabled = newState;
-            part->rebuildVRPipeline();
-            if (vrThread) emit vrThread->partShrinkChanged(menu.targetPartID, newState);
-            break;
-        }
-        case VRMenu::ColRed:
-            applyColourVR(part, QColor(255, 50, 50));
-            break;
-        case VRMenu::ColGreen:
-            applyColourVR(part, QColor(50, 200, 50));
-            break;
-        case VRMenu::ColBlue:
-            applyColourVR(part, QColor(50, 100, 255));
-            break;
-        case VRMenu::ColYellow:
-            applyColourVR(part, QColor(255, 255, 50));
-            break;
-        case VRMenu::ColWhite:
-            applyColourVR(part, QColor(240, 240, 240));
-            break;
-        default:
-            break;
-        }
-    }
 
-    // updates VR actor and signals GUI to apply the same colour on its side
-    void applyColourVR(ModelPart* part, const QColor& c)
-    {
-        part->m_colour = c;
-        vtkActor* vr = part->getVRActor();
-        if (vr)
-            vr->GetProperty()->SetColor(c.redF(), c.greenF(), c.blueF());
-        if (vrThread) emit vrThread->partColourChanged(menu.targetPartID, c);
+        // ongoing scale — apply ratio
+        if (startDist > 1e-4) {
+            double ratio = curDist / startDist;
+            targetActor->SetScale(
+                startScale[0] * ratio,
+                startScale[1] * ratio,
+                startScale[2] * ratio);
+        }
     }
 };
 
@@ -541,44 +374,37 @@ void VRRenderThread::setPartList(ModelPartList* list) {
     m_partList = list;
 }
 
-// registers an actor before the thread starts (called from the GUI thread)
 void VRRenderThread::addActorOffline(vtkActor* actor, int partID) {
     if (!actor) return;
     m_pendingActors.emplace_back(partID, vtkSmartPointer<vtkActor>(actor));
 }
 
-// thread-safe command queue - GUI pushes, VR loop pops
 void VRRenderThread::issueCommand(Command c, int partID, const QVariant& data) {
     QMutexLocker locker(&m_mutex);
     m_commandQueue.enqueue({ c, partID, data, nullptr });
 }
 
-// overload for commands that need an actor (AddActor, RemoveActor)
 void VRRenderThread::issueCommand(Command c, int partID, vtkActor* actor) {
     QMutexLocker locker(&m_mutex);
     m_commandQueue.enqueue({ c, partID, QVariant(), vtkSmartPointer<vtkActor>(actor) });
 }
 
-// the main VR loop - sets up OpenVR, adds actors, runs render loop
 void VRRenderThread::run() {
     m_renderer      = vtkSmartPointer<vtkOpenVRRenderer>::New();
     m_renderWindow  = vtkSmartPointer<vtkOpenVRRenderWindow>::New();
     m_interactor    = vtkSmartPointer<vtkOpenVRRenderWindowInteractor>::New();
 
-    // point the interactor at our SteamVR action bindings
     const std::string manifestPath =
         (QCoreApplication::applicationDirPath() + "/vrbindings/vtk_openvr_actions.json").toStdString();
     m_interactor->SetActionManifestFileName(manifestPath.c_str());
     m_interactor->SetActionSetName("/actions/vtk");
 
-    // custom style: blocks VTK's built-in menu, inverts dolly, hides default rays
     vtkNew<VRCustomStyle> customStyle;
     m_interactor->SetInteractorStyle(customStyle);
 
     m_renderWindow->AddRenderer(m_renderer);
     m_interactor->SetRenderWindow(m_renderWindow);
 
-    // add all the parts that were queued before the thread started
     for (auto& [id, actor] : m_pendingActors) {
         m_renderer->AddActor(actor);
         m_activeActors[id] = actor;
@@ -588,33 +414,25 @@ void VRRenderThread::run() {
     m_renderer->ResetCamera();
     m_renderer->ResetCameraClippingRange();
 
-    // set up dual-controller ray casting + outline highlight
+    // dual-controller ray casting + outline highlight
     vtkNew<VRRayCallback> rayCallback;
     rayCallback->init(m_renderer);
-    rayCallback->activeActors = &m_activeActors;
     m_interactor->AddObserver(vtkCommand::Move3DEvent, rayCallback, 1.0);
-
-    // in-VR editing menu (clip / shrink / colour buttons)
-    vtkNew<VRMenuCallback> menuCallback;
-    menuCallback->rays = rayCallback;
-    menuCallback->activeActors = &m_activeActors;
-    menuCallback->partList = m_partList;
-    menuCallback->vrThread = this;
-    menuCallback->renWindow = m_renderWindow;
-    menuCallback->menu.create(m_renderer);
-    rayCallback->menuActors = menuCallback->menu.actors();
-    m_interactor->AddObserver(vtkCommand::UserEvent, menuCallback, 2.0);
 
     m_renderWindow->Initialize();
 
-    // load 3D garage environment (garage__warehouse.glb or garage.glb) as actual geometry
+    try {
+        m_interactor->Initialize();
+    } catch (...) {
+    }
+
+    // load 3D garage environment if available, otherwise fall back to skybox
+    // must be after Initialize() so textures have an OpenGL context
     QString glbPath;
     QStringList glbNames = { "garage__warehouse.glb", "garage.glb" };
     QStringList searchDirs = {
         QCoreApplication::applicationDirPath(),
-        QCoreApplication::applicationDirPath() + "/..",
-        QCoreApplication::applicationDirPath() + "/../..",
-        QCoreApplication::applicationDirPath() + "/../../.."
+        QCoreApplication::applicationDirPath() + "/.."
     };
     for (const auto& dir : searchDirs) {
         for (const auto& name : glbNames) {
@@ -629,11 +447,10 @@ void VRRenderThread::run() {
         vtkNew<vtkGLTFImporter> gltfImporter;
         gltfImporter->SetFileName(glbPath.toStdString().c_str());
         gltfImporter->SetRenderWindow(m_renderWindow);
-
-        // import the 3D environment - adds actors, textures, materials, lighting
         gltfImporter->Update();
 
-        // mark all imported actors as non-pickable (environment only)
+        // collect environment actors and mark non-pickable
+        std::vector<vtkActor*> envActors;
         vtkActorCollection* actors = m_renderer->GetActors();
         actors->InitTraversal();
         vtkActor* a;
@@ -644,13 +461,67 @@ void VRRenderThread::run() {
             }
             if (!isPartActor) {
                 a->PickableOff();
+                envActors.push_back(a);
+            }
+        }
+
+        // auto-scale garage to wrap around parts (STLs typically in mm, GLTF in metres)
+        if (!envActors.empty() && !m_activeActors.empty()) {
+            double envBounds[6] = { 1e30, -1e30, 1e30, -1e30, 1e30, -1e30 };
+            for (auto* ea : envActors) {
+                double b[6]; ea->GetBounds(b);
+                for (int i = 0; i < 3; i++) {
+                    if (b[i*2]   < envBounds[i*2])   envBounds[i*2]   = b[i*2];
+                    if (b[i*2+1] > envBounds[i*2+1]) envBounds[i*2+1] = b[i*2+1];
+                }
+            }
+
+            double partBounds[6] = { 1e30, -1e30, 1e30, -1e30, 1e30, -1e30 };
+            for (auto& [id, partAct] : m_activeActors) {
+                double b[6]; partAct->GetBounds(b);
+                for (int i = 0; i < 3; i++) {
+                    if (b[i*2]   < partBounds[i*2])   partBounds[i*2]   = b[i*2];
+                    if (b[i*2+1] > partBounds[i*2+1]) partBounds[i*2+1] = b[i*2+1];
+                }
+            }
+
+            double envSize = std::max({ envBounds[1]-envBounds[0],
+                                        envBounds[3]-envBounds[2],
+                                        envBounds[5]-envBounds[4] });
+            double partSize = std::max({ partBounds[1]-partBounds[0],
+                                         partBounds[3]-partBounds[2],
+                                         partBounds[5]-partBounds[4] });
+
+            if (envSize > 1e-6 && partSize > 1e-6) {
+                double targetEnvSize = partSize * 5.0;
+                double scaleFactor = targetEnvSize / envSize;
+                for (auto* ea : envActors)
+                    ea->SetScale(scaleFactor, scaleFactor, scaleFactor);
+            }
+
+            // recompute env bounds after scaling, centre garage around parts
+            double envBounds2[6] = { 1e30, -1e30, 1e30, -1e30, 1e30, -1e30 };
+            for (auto* ea : envActors) {
+                double b[6]; ea->GetBounds(b);
+                for (int i = 0; i < 3; i++) {
+                    if (b[i*2]   < envBounds2[i*2])   envBounds2[i*2]   = b[i*2];
+                    if (b[i*2+1] > envBounds2[i*2+1]) envBounds2[i*2+1] = b[i*2+1];
+                }
+            }
+
+            double offX = (partBounds[0]+partBounds[1])*0.5 - (envBounds2[0]+envBounds2[1])*0.5;
+            double offY = partBounds[2] - envBounds2[2];
+            double offZ = (partBounds[4]+partBounds[5])*0.5 - (envBounds2[4]+envBounds2[5])*0.5;
+
+            for (auto* ea : envActors) {
+                double* pos = ea->GetPosition();
+                ea->SetPosition(pos[0] + offX, pos[1] + offY, pos[2] + offZ);
             }
         }
 
         garageLoaded = true;
     }
 
-    // fallback: 2D skybox if no 3D garage available
     if (!garageLoaded) {
         QString garagePath2D = QCoreApplication::applicationDirPath() + "/room2.png";
         QString roomPath     = QCoreApplication::applicationDirPath() + "/room.jpg";
@@ -679,28 +550,31 @@ void VRRenderThread::run() {
             skybox->SetProjectionToSphere();
             skybox->PickableOff();
             m_renderer->AddActor(skybox);
-
             m_skybox = skybox;
         }
-    }
-
-    try {
-        m_interactor->Initialize();
-    } catch (...) {
-        // VR input system may not be available
     }
 
     if (m_renderer->GetActiveCamera())
         m_renderer->ResetCameraClippingRange();
 
-    // render loop - process one VR frame, handle commands, repeat
-    // NOTE: DoOneEvent already submits frames to both eyes.
-    // An extra Render() causes double-submit which results in single-eye flickering.
+    // position user standing on the floor at the centre of the parts
+    {
+        double bounds[6];
+        m_renderer->ComputeVisiblePropBounds(bounds);
+        double* trans = m_renderWindow->GetPhysicalTranslation();
+        double floorY = bounds[2];
+        m_renderWindow->SetPhysicalTranslation(trans[0], floorY, trans[2]);
+    }
+
+    // per-actor scale system (two-grip pinch on a specific actor)
+    PerActorScaler scaler;
+
     m_endRender = false;
     while (!m_endRender) {
         m_interactor->DoOneEvent(m_renderWindow, m_renderer);
         processCommands();
-
+        scaler.update(m_renderWindow, rayCallback, &m_activeActors);
+        m_renderWindow->Render();
     }
 
     m_renderWindow->Finalize();
@@ -709,7 +583,6 @@ void VRRenderThread::run() {
     m_interactor    = nullptr;
 }
 
-// drains the command queue (called from the VR thread each frame)
 void VRRenderThread::processCommands() {
     QMutexLocker locker(&m_mutex);
     while (!m_commandQueue.isEmpty()) {
@@ -717,7 +590,6 @@ void VRRenderThread::processCommands() {
     }
 }
 
-// executes a single command from the GUI
 void VRRenderThread::applyCommand(const CommandPacket& cmd) {
     switch (cmd.type) {
     case Command::EndRender:
