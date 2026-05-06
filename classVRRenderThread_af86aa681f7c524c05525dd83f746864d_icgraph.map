@@ -1,5 +1,11 @@
 <map id="VRRenderThread::partColourChanged" name="VRRenderThread::partColourChanged">
-<area shape="rect" id="Node000001" title=" " alt="" coords="264,5,471,45"/>
-<area shape="rect" id="Node000002" href="$classMainWindow.html#a597961838262c9f16a02e6b37d184d5e" title=" " alt="" coords="5,5,216,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="250,28,216,28,216,23,250,23"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="808,27,1015,67"/>
+<area shape="rect" id="Node000002" href="$classVRMenuCallback.html#aa05866cf724fecdb1605bd177c86ca57" title=" " alt="" coords="524,5,760,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="794,37,758,33,759,28,795,32"/>
+<area shape="rect" id="Node000005" href="$classMainWindow.html#a597961838262c9f16a02e6b37d184d5e" title=" " alt="" coords="537,55,747,95"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="794,62,748,67,747,62,794,57"/>
+<area shape="rect" id="Node000003" href="$classVRMenuCallback.html#a912b2d3f14fb4b2a9e4f9b23ae6fbcb9" title=" " alt="" coords="244,5,476,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="510,21,476,21,476,15,510,15"/>
+<area shape="rect" id="Node000004" href="$classVRMenuCallback.html#aa8d4b0b3d16a598f35da79fd6d156332" title=" " alt="" coords="5,5,196,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="230,21,196,21,196,15,230,15"/>
 </map>

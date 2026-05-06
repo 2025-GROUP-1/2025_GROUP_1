@@ -1,17 +1,17 @@
 <map id="MainWindow" name="MainWindow">
-<area shape="rect" id="Node000001" title=" " alt="" coords="106,1349,333,2077"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,1061,113,1127"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,1140,128,1348,123,1350,68,1141"/>
-<area shape="rect" id="Node000003" href="$classModelPartList.html" title=" " alt="" coords="272,533,409,839"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="345,839,339,1069,330,1198,315,1326,314,1333,309,1333,310,1325,324,1198,333,1069,340,839"/>
-<area shape="rect" id="Node000006" href="$classVRRenderThread.html" title=" " alt="" coords="138,901,301,1287"/>
-<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="274,811,254,864,247,886,242,884,249,862,269,809"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="205,205,353,271"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="288,284,322,532,317,533,283,285"/>
-<area shape="rect" id="Node000005" href="$classModelPart.html" title=" " alt="" coords="377,5,584,471"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="410,472,396,518,391,516,405,470"/>
-<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="586,192,604,209,611,238,608,258,599,273,595,271,603,257,605,238,599,212,582,196"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="222,1287,222,1333,217,1333,217,1287"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="171,653,241,719"/>
-<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="210,732,216,901,210,901,205,733"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="106,1389,333,2117"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,1081,113,1147"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,1159,131,1389,126,1390,68,1161"/>
+<area shape="rect" id="Node000003" href="$classModelPartList.html" title=" " alt="" coords="273,533,411,839"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="346,839,340,1087,331,1227,315,1366,314,1373,309,1373,310,1365,326,1226,335,1086,341,839"/>
+<area shape="rect" id="Node000006" href="$classVRRenderThread.html" title=" " alt="" coords="137,901,301,1327"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="276,811,255,864,249,886,244,884,250,862,271,809"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="207,205,355,271"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="290,284,324,532,318,533,284,285"/>
+<area shape="rect" id="Node000005" href="$classModelPart.html" title=" " alt="" coords="379,5,585,471"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="412,472,397,518,392,516,407,470"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="587,192,605,209,612,238,609,258,601,273,596,271,604,257,607,238,600,212,584,196"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="222,1327,222,1373,217,1373,217,1327"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="173,653,242,719"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="211,732,216,901,211,901,206,733"/>
 </map>

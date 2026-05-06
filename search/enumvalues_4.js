@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['removeactor_0',['RemoveActor',['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153aead5460ef7fc28a592facd2122faad09',1,'VRRenderThread.h']]],
-  ['rotatey_1',['RotateY',['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153aea0928ab345567847020e1544892fba0',1,'VRRenderThread.h']]]
+  ['light_0',['Light',['../classMainWindow.html#a2c9c9b9196ffc44d9f32205b1bef5f1da9914a0ce04a7b7b6a8e39bec55064b82',1,'MainWindow']]]
 ];

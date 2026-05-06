@@ -138,15 +138,19 @@ $(document).ready(function(){initNavTree('structControllerRay.html',''); initRes
 <div class="dynheader">
 Collaboration diagram for ControllerRay:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structControllerRay__coll__graph.svg" width="134" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structControllerRay__coll__graph.svg" width="180" height="276"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a164774596165a8fd1df208109bb36867" id="r_a164774596165a8fd1df208109bb36867"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structControllerRay.html#a164774596165a8fd1df208109bb36867">init</a> (vtkRenderer *ren, double r, double g, double b)</td></tr>
 <tr class="separator:a164774596165a8fd1df208109bb36867"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a498a4afd7cb58f633e1974340880d66a" id="r_a498a4afd7cb58f633e1974340880d66a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structControllerRay.html#a498a4afd7cb58f633e1974340880d66a">setPickActors</a> (const std::vector&lt; vtkActor * &gt; &amp;actors)</td></tr>
+<tr class="separator:a498a4afd7cb58f633e1974340880d66a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4231fd5d11ca6a876f68f20c52aebbc" id="r_af4231fd5d11ca6a876f68f20c52aebbc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structControllerRay.html#af4231fd5d11ca6a876f68f20c52aebbc">update</a> (const double *pos, const double *ori, vtkRenderer *ren, double maxRay)</td></tr>
 <tr class="separator:af4231fd5d11ca6a876f68f20c52aebbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad93d63ddb49661249da46626678b0e35" id="r_ad93d63ddb49661249da46626678b0e35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structControllerRay.html#ad93d63ddb49661249da46626678b0e35">updateFromForward</a> (const double *pos, const double *fwdIn, vtkRenderer *ren, double maxRay)</td></tr>
+<tr class="separator:ad93d63ddb49661249da46626678b0e35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -158,6 +162,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:acce22b5c851da929bed5cc017944f95d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a087fdcadc3c64d4f6d45d0a693bceb4e" id="r_a087fdcadc3c64d4f6d45d0a693bceb4e"><td class="memItemLeft" align="right" valign="top">vtkNew&lt; vtkPolyDataMapper &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structControllerRay.html#a087fdcadc3c64d4f6d45d0a693bceb4e">outlineMapper</a></td></tr>
 <tr class="separator:a087fdcadc3c64d4f6d45d0a693bceb4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6272860126e315023c7a179eebf148a" id="r_ae6272860126e315023c7a179eebf148a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; vtkActor * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structControllerRay.html#ae6272860126e315023c7a179eebf148a">pickActors</a></td></tr>
+<tr class="separator:ae6272860126e315023c7a179eebf148a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61300d128d6b7f20361ca8aeb8b458f1" id="r_a61300d128d6b7f20361ca8aeb8b458f1"><td class="memItemLeft" align="right" valign="top">vtkNew&lt; vtkCellPicker &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structControllerRay.html#a61300d128d6b7f20361ca8aeb8b458f1">picker</a></td></tr>
 <tr class="separator:a61300d128d6b7f20361ca8aeb8b458f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3265e22e12783bb0680bb8db09607ab0" id="r_a3265e22e12783bb0680bb8db09607ab0"><td class="memItemLeft" align="right" valign="top">vtkNew&lt; vtkActor &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structControllerRay.html#a3265e22e12783bb0680bb8db09607ab0">rayActor</a></td></tr>
@@ -167,7 +173,7 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00111">111</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00117">117</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a164774596165a8fd1df208109bb36867" name="a164774596165a8fd1df208109bb36867"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a164774596165a8fd1df208109bb36867">&#9670;&#160;</a></span>init()</h2>
@@ -215,15 +221,52 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00120">120</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00128">128</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00117">outlineActor</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00115">outlineFilter</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00116">outlineMapper</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00112">picker</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00114">rayActor</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00113">rayLine</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00123">outlineActor</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00121">outlineFilter</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00122">outlineMapper</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00118">picker</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00120">rayActor</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00119">rayLine</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00209">VRRayCallback::init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00294">VRRayCallback::init()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="structControllerRay_a164774596165a8fd1df208109bb36867_icgraph.svg" width="348" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a498a4afd7cb58f633e1974340880d66a" name="a498a4afd7cb58f633e1974340880d66a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a498a4afd7cb58f633e1974340880d66a">&#9670;&#160;</a></span>setPickActors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ControllerRay::setPickActors </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; vtkActor * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>actors</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00152">152</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00125">pickActors</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00301">VRRayCallback::Execute()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00333">VRRayCallback::tickFromOpenVR()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="structControllerRay_a498a4afd7cb58f633e1974340880d66a_icgraph.svg" width="504" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -274,16 +317,68 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00144">144</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00158">158</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00118">hoveredActor</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00117">outlineActor</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00115">outlineFilter</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00112">picker</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00113">rayLine</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00124">hoveredActor</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00123">outlineActor</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00121">outlineFilter</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00125">pickActors</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00118">picker</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00119">rayLine</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00216">VRRayCallback::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00301">VRRayCallback::Execute()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="structControllerRay_af4231fd5d11ca6a876f68f20c52aebbc_icgraph.svg" width="402" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+
+</div>
+</div>
+<a id="ad93d63ddb49661249da46626678b0e35" name="ad93d63ddb49661249da46626678b0e35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad93d63ddb49661249da46626678b0e35">&#9670;&#160;</a></span>updateFromForward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ControllerRay::updateFromForward </td>
+          <td>(</td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>fwdIn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkRenderer *&#160;</td>
+          <td class="paramname"><em>ren</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>maxRay</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00225">225</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00124">hoveredActor</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00123">outlineActor</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00121">outlineFilter</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00125">pickActors</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00118">picker</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00119">rayLine</a>.</p>
 
 </div>
 </div>
@@ -300,9 +395,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00118">118</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00124">124</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00144">update()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00267">PerActorScaler::update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00515">VRMenuCallback::Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00158">update()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00652">TriggerGrabber::update()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00225">updateFromForward()</a>.</p>
 
 </div>
 </div>
@@ -318,9 +413,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00117">117</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00123">123</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00120">init()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00144">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00128">init()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00158">update()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00225">updateFromForward()</a>.</p>
 
 </div>
 </div>
@@ -336,9 +431,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00115">115</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00121">121</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00120">init()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00144">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00128">init()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00158">update()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00225">updateFromForward()</a>.</p>
 
 </div>
 </div>
@@ -354,9 +449,27 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00116">116</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00122">122</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00120">init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00128">init()</a>.</p>
+
+</div>
+</div>
+<a id="ae6272860126e315023c7a179eebf148a" name="ae6272860126e315023c7a179eebf148a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6272860126e315023c7a179eebf148a">&#9670;&#160;</a></span>pickActors</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;vtkActor*&gt; ControllerRay::pickActors</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00125">125</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00152">setPickActors()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00158">update()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00225">updateFromForward()</a>.</p>
 
 </div>
 </div>
@@ -372,9 +485,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00112">112</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00118">118</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00120">init()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00144">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00128">init()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00158">update()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00225">updateFromForward()</a>.</p>
 
 </div>
 </div>
@@ -390,9 +503,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00114">114</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00120">120</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00120">init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00128">init()</a>.</p>
 
 </div>
 </div>
@@ -408,9 +521,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00113">113</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00119">119</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00120">init()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00144">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00128">init()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00158">update()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00225">updateFromForward()</a>.</p>
 
 </div>
 </div>

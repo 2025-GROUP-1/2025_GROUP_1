@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['peractorscaler_0',['PerActorScaler',['../structPerActorScaler.html',1,'']]]
+  ['optiondialog_0',['OptionDialog',['../classOptionDialog.html',1,'']]]
 ];

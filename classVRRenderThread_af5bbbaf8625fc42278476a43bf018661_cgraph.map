@@ -1,11 +1,11 @@
 <map id="VRRenderThread::run" name="VRRenderThread::run">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,129,165,155"/>
-<area shape="rect" id="Node000002" href="$classVRRenderThread.html#a1133c0b2f773137412e417450c00c7e8" title=" " alt="" coords="213,104,476,129"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,132,201,128,202,133,166,137"/>
-<area shape="rect" id="Node000010" href="$structPerActorScaler.html#ab7c73ff6f7b5fa114e231b3496c69011" title=" " alt="" coords="259,153,430,179"/>
-<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="166,147,246,154,245,159,165,152"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,155,165,180"/>
+<area shape="rect" id="Node000002" href="$classVRRenderThread.html#a1133c0b2f773137412e417450c00c7e8" title=" " alt="" coords="213,117,476,143"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,153,243,142,243,147,166,159"/>
+<area shape="rect" id="Node000010" href="$structTriggerGrabber.html#a35575197bc4c3260135413552030db16" title=" " alt="" coords="259,179,430,204"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="166,172,246,180,245,185,165,177"/>
 <area shape="rect" id="Node000003" href="$classVRRenderThread.html#afb8797810162611a3b8cb465625c69b9" title=" " alt="" coords="524,104,767,129"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="476,114,510,114,510,119,476,119"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="476,122,510,120,510,125,476,127"/>
 <area shape="rect" id="Node000004" href="$classModelPartList.html#ab1d1158c9fcdb4b7d1854ec618ff18d4" title=" " alt="" coords="833,80,1007,105"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="767,103,819,99,820,104,767,109"/>
 <area shape="rect" id="Node000009" href="$classModelPart.html#a25d5e07dd22949e235847d8725ca80d2" title=" " alt="" coords="815,129,1025,155"/>
@@ -20,6 +20,10 @@
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1209,28,1239,40,1283,66,1320,93,1317,98,1280,70,1236,44,1207,33"/>
 <area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="1221,114,1272,114,1272,119,1221,119"/>
 <area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="1026,145,1128,145,1237,138,1283,130,1284,135,1238,143,1128,150,1026,150"/>
-<area shape="rect" id="Node000011" href="$structPerActorScaler.html#a35177626dc317d99d4b5c0eea3bd8611" title=" " alt="" coords="548,153,743,179"/>
-<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="430,163,534,163,534,169,430,169"/>
+<area shape="rect" id="Node000011" href="$structTriggerGrabber.html#a01618a7960bad326fe63c5bd1cd02efc" title=" " alt="" coords="528,153,763,179"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="430,182,514,174,515,180,430,187"/>
+<area shape="rect" id="Node000012" href="$structTriggerGrabber.html#a2765ab915af73591d4a573ac34f1b0c3" title=" " alt="" coords="547,203,743,228"/>
+<area shape="poly" id="edge13_Node000010_Node000012" title=" " alt="" coords="430,195,534,204,533,209,430,201"/>
+<area shape="rect" id="Node000013" href="$structTriggerGrabber.html#a638297507281522b39e6cdfdaf34f195" title=" " alt="" coords="555,253,736,293"/>
+<area shape="poly" id="edge14_Node000010_Node000013" title=" " alt="" coords="392,201,525,238,556,247,555,252,523,243,391,207"/>
 </map>

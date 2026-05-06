@@ -132,6 +132,7 @@ $(document).ready(function(){initNavTree('classVRRayCallback.html',''); initResi
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classVRRayCallback-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">VRRayCallback Class Reference</div></div>
@@ -140,12 +141,12 @@ $(document).ready(function(){initNavTree('classVRRayCallback.html',''); initResi
 <div class="dynheader">
 Inheritance diagram for VRRayCallback:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classVRRayCallback__inherit__graph.svg" width="124" height="290"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classVRRayCallback__inherit__graph.svg" width="164" height="370"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Collaboration diagram for VRRayCallback:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classVRRayCallback__coll__graph.svg" width="262" height="419"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classVRRayCallback__coll__graph.svg" width="307" height="559"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -154,6 +155,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab0c295fb982f391af84749330a612400"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26e1477cc5c1b5e3312b77dd682a79d1" id="r_a26e1477cc5c1b5e3312b77dd682a79d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVRRayCallback.html#a26e1477cc5c1b5e3312b77dd682a79d1">init</a> (vtkRenderer *ren)</td></tr>
 <tr class="separator:a26e1477cc5c1b5e3312b77dd682a79d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a340beb98e17c1388b66d35558aa5465a" id="r_a340beb98e17c1388b66d35558aa5465a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVRRayCallback.html#a340beb98e17c1388b66d35558aa5465a">tickFromOpenVR</a> (vtkOpenVRRenderWindow *renWin)</td></tr>
+<tr class="separator:a340beb98e17c1388b66d35558aa5465a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -162,12 +165,21 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:a6c98848d9fc2bac1a5f054e68fddee70" id="r_a6c98848d9fc2bac1a5f054e68fddee70"><td class="memItemLeft" align="right" valign="top">std::map&lt; int, vtkSmartPointer&lt; vtkActor &gt; &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVRRayCallback.html#a6c98848d9fc2bac1a5f054e68fddee70">activeActors</a> = nullptr</td></tr>
+<tr class="separator:a6c98848d9fc2bac1a5f054e68fddee70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad60fee66a20a76518a74a46266d48b88" id="r_ad60fee66a20a76518a74a46266d48b88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structControllerRay.html">ControllerRay</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVRRayCallback.html#ad60fee66a20a76518a74a46266d48b88">left</a></td></tr>
 <tr class="separator:ad60fee66a20a76518a74a46266d48b88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4cd598bc2095197437feca8369f8666" id="r_ad4cd598bc2095197437feca8369f8666"><td class="memItemLeft" align="right" valign="top">std::vector&lt; vtkActor * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVRRayCallback.html#ad4cd598bc2095197437feca8369f8666">menuActors</a></td></tr>
+<tr class="separator:ad4cd598bc2095197437feca8369f8666"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1cf2f802f453a8a534372e230b916e37" id="r_a1cf2f802f453a8a534372e230b916e37"><td class="memItemLeft" align="right" valign="top">vtkRenderer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVRRayCallback.html#a1cf2f802f453a8a534372e230b916e37">renderer</a> = nullptr</td></tr>
 <tr class="separator:a1cf2f802f453a8a534372e230b916e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18633ab5535aebf053bcf2e200191a25" id="r_a18633ab5535aebf053bcf2e200191a25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structControllerRay.html">ControllerRay</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVRRayCallback.html#a18633ab5535aebf053bcf2e200191a25">right</a></td></tr>
 <tr class="separator:a18633ab5535aebf053bcf2e200191a25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ae3bbaafeecb857357b0de09e4c1eb053" id="r_ae3bbaafeecb857357b0de09e4c1eb053"><td class="memItemLeft" align="right" valign="top">std::vector&lt; vtkActor * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVRRayCallback.html#ae3bbaafeecb857357b0de09e4c1eb053">currentPickActors</a> () const</td></tr>
+<tr class="separator:ae3bbaafeecb857357b0de09e4c1eb053"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
@@ -176,8 +188,44 @@ Static Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00201">201</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00284">284</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae3bbaafeecb857357b0de09e4c1eb053" name="ae3bbaafeecb857357b0de09e4c1eb053"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3bbaafeecb857357b0de09e4c1eb053">&#9670;&#160;</a></span>currentPickActors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; vtkActor * &gt; VRRayCallback::currentPickActors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00365">365</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00289">activeActors</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00290">menuActors</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00301">Execute()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00333">tickFromOpenVR()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classVRRayCallback_ae3bbaafeecb857357b0de09e4c1eb053_icgraph.svg" width="500" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <a id="ab0c295fb982f391af84749330a612400" name="ab0c295fb982f391af84749330a612400"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab0c295fb982f391af84749330a612400">&#9670;&#160;</a></span>Execute()</h2>
 
@@ -218,13 +266,13 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00216">216</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00301">301</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00207">left</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00245">MAX_RAY</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00205">renderer</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00206">right</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00144">ControllerRay::update()</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00365">currentPickActors()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00292">left</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00363">MAX_RAY</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00288">renderer</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00291">right</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00152">ControllerRay::setPickActors()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00158">ControllerRay::update()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classVRRayCallback_ab0c295fb982f391af84749330a612400_cgraph.svg" width="402" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classVRRayCallback_ab0c295fb982f391af84749330a612400_cgraph.svg" width="446" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -253,9 +301,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00209">209</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00294">294</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00120">ControllerRay::init()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00207">left</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00205">renderer</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00206">right</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00128">ControllerRay::init()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00292">left</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00288">renderer</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00291">right</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -287,11 +335,64 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00203">203</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00286">286</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a340beb98e17c1388b66d35558aa5465a" name="a340beb98e17c1388b66d35558aa5465a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a340beb98e17c1388b66d35558aa5465a">&#9670;&#160;</a></span>tickFromOpenVR()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VRRayCallback::tickFromOpenVR </td>
+          <td>(</td>
+          <td class="paramtype">vtkOpenVRRenderWindow *&#160;</td>
+          <td class="paramname"><em>renWin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00333">333</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00365">currentPickActors()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00292">left</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00363">MAX_RAY</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00288">renderer</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00291">right</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00152">ControllerRay::setPickActors()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classVRRayCallback_a340beb98e17c1388b66d35558aa5465a_cgraph.svg" width="504" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a6c98848d9fc2bac1a5f054e68fddee70" name="a6c98848d9fc2bac1a5f054e68fddee70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c98848d9fc2bac1a5f054e68fddee70">&#9670;&#160;</a></span>activeActors</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;int, vtkSmartPointer&lt;vtkActor&gt; &gt;* VRRayCallback::activeActors = nullptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00289">289</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00365">currentPickActors()</a>.</p>
+
+</div>
+</div>
 <a id="ad60fee66a20a76518a74a46266d48b88" name="ad60fee66a20a76518a74a46266d48b88"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad60fee66a20a76518a74a46266d48b88">&#9670;&#160;</a></span>left</h2>
 
@@ -304,9 +405,9 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00207">207</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00292">292</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00216">Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00209">init()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00267">PerActorScaler::update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00301">Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00515">VRMenuCallback::Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00294">init()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00333">tickFromOpenVR()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00652">TriggerGrabber::update()</a>.</p>
 
 </div>
 </div>
@@ -330,9 +431,27 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00245">245</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00363">363</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00216">Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00301">Execute()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00333">tickFromOpenVR()</a>.</p>
+
+</div>
+</div>
+<a id="ad4cd598bc2095197437feca8369f8666" name="ad4cd598bc2095197437feca8369f8666"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4cd598bc2095197437feca8369f8666">&#9670;&#160;</a></span>menuActors</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;vtkActor*&gt; VRRayCallback::menuActors</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00290">290</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00365">currentPickActors()</a>.</p>
 
 </div>
 </div>
@@ -348,9 +467,9 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00205">205</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00288">288</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00216">Execute()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00209">init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00301">Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00294">init()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00333">tickFromOpenVR()</a>.</p>
 
 </div>
 </div>
@@ -366,9 +485,9 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00206">206</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00291">291</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00216">Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00209">init()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00267">PerActorScaler::update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00301">Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00515">VRMenuCallback::Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00294">init()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00333">tickFromOpenVR()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00652">TriggerGrabber::update()</a>.</p>
 
 </div>
 </div>

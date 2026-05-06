@@ -148,9 +148,9 @@ $(document).ready(function(){initNavTree('VRRenderThread_8cpp.html',''); initRes
 <code>#include &quot;<a class="el" href="ModelPartList_8h_source.html">ModelPartList.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ModelPart_8h_source.html">ModelPart.h</a>&quot;</code><br />
 <code>#include &lt;vtkCamera.h&gt;</code><br />
+<code>#include &lt;vtkImageReader2.h&gt;</code><br />
 <code>#include &lt;vtkJPEGReader.h&gt;</code><br />
 <code>#include &lt;vtkPNGReader.h&gt;</code><br />
-<code>#include &lt;vtkImageReader2.h&gt;</code><br />
 <code>#include &lt;vtkImageData.h&gt;</code><br />
 <code>#include &lt;vtkTexture.h&gt;</code><br />
 <code>#include &lt;vtkSkybox.h&gt;</code><br />
@@ -162,6 +162,7 @@ $(document).ready(function(){initNavTree('VRRenderThread_8cpp.html',''); initRes
 <code>#include &lt;vtkEventData.h&gt;</code><br />
 <code>#include &lt;vtkTransform.h&gt;</code><br />
 <code>#include &lt;vtkOpenVRInteractorStyle.h&gt;</code><br />
+<code>#include &lt;vtkPlaneSource.h&gt;</code><br />
 <code>#include &lt;vtkObjectFactory.h&gt;</code><br />
 <code>#include &lt;vtkInteractorStyle3D.h&gt;</code><br />
 <code>#include &lt;vtkTimerLog.h&gt;</code><br />
@@ -171,9 +172,13 @@ $(document).ready(function(){initNavTree('VRRenderThread_8cpp.html',''); initRes
 <code>#include &lt;vtkMath.h&gt;</code><br />
 <code>#include &lt;vtkGLTFImporter.h&gt;</code><br />
 <code>#include &lt;vtkActorCollection.h&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;QFileInfo&gt;</code><br />
 <code>#include &lt;QFile&gt;</code><br />
+<code>#include &lt;QStringList&gt;</code><br />
 <code>#include &lt;openvr.h&gt;</code><br />
-<code>#include &lt;cmath&gt;</code><br />
+<code>#include &lt;unordered_set&gt;</code><br />
+<code>#include &lt;QDebug&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for VRRenderThread.cpp:</div>
 <div class="dyncontent">
@@ -184,11 +189,17 @@ Include dependency graph for VRRenderThread.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu_1_1Button.html">VRMenu::Button</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structControllerRay.html">ControllerRay</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPerActorScaler.html">PerActorScaler</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTriggerGrabber.html">TriggerGrabber</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVRCustomStyle.html">VRCustomStyle</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRMenu.html">VRMenu</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVRMenuCallback.html">VRMenuCallback</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVRRayCallback.html">VRRayCallback</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>

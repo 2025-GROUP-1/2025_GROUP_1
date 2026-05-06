@@ -15,11 +15,18 @@ var classVRRenderThread =
     [ "m_activeActors", "classVRRenderThread.html#a9262df5b1bd0372c71ee513eeb4ccab0", null ],
     [ "m_commandQueue", "classVRRenderThread.html#a409a209d46191829ba6e6d2879ba2fc6", null ],
     [ "m_endRender", "classVRRenderThread.html#a50f4427b9bf0ad25cf0bc2d50fad55e1", null ],
+    [ "m_garageCenterX", "classVRRenderThread.html#a2caf2419d98c80a39ae3fa967a844ee8", null ],
+    [ "m_garageCenterZ", "classVRRenderThread.html#a5a7e9b307fa0a5e1c3d8563bced1b047", null ],
+    [ "m_garageFloorY", "classVRRenderThread.html#a70f003bc1e36de8120e8707d03e1006b", null ],
+    [ "m_hasGarageAnchor", "classVRRenderThread.html#a730d37bd48d6ca113eabb8acac3d8ed7", null ],
     [ "m_interactor", "classVRRenderThread.html#a513f603889cb5bafcf4dc991f6fad9f7", null ],
     [ "m_mutex", "classVRRenderThread.html#a83871c039c7433e073d9c8e8aefec376", null ],
     [ "m_partList", "classVRRenderThread.html#a6a38c3fd7c4ce47455bf3406dc3f84c3", null ],
     [ "m_pendingActors", "classVRRenderThread.html#a373b2f16aaa8175c55d54ad3e112a9b0", null ],
     [ "m_renderer", "classVRRenderThread.html#acf0833de19dc6f2003f6e2f474de8a6c", null ],
     [ "m_renderWindow", "classVRRenderThread.html#ac205aec4bca79cf63428d62af3c2b10c", null ],
-    [ "m_skybox", "classVRRenderThread.html#a50dab3f78c5e539ef727c468fdf70be2", null ]
+    [ "m_skybox", "classVRRenderThread.html#a50dab3f78c5e539ef727c468fdf70be2", null ],
+    [ "m_spawnX", "classVRRenderThread.html#ae4e1aaac04c6f55d96194f84904b3164", null ],
+    [ "m_spawnY", "classVRRenderThread.html#aa55b1641f6778d75b2c3ba1cc11d74a8", null ],
+    [ "m_spawnZ", "classVRRenderThread.html#a0a2cea610d4ae57bc9f8423292e16447", null ]
 ];
