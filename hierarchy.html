@@ -40,18 +40,12 @@ DoxygenAwesomeFragmentCopyButton.init()
 </head>
 <body>
 <div id="vr-brand-bar">
-  <div class="brand-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" aria-label="VR Base Station logo">
-      <polygon points="18,2 32,9.5 32,26.5 18,34 4,26.5 4,9.5"
-               fill="none" stroke="#00B4A0" stroke-width="1.8"/>
-      <polygon points="18,5 29,11.5 29,24.5 18,31 7,24.5 7,11.5"
-               fill="rgba(0,180,160,0.12)"/>
-      <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
-            font-family="'Inter',sans-serif" font-weight="700" font-size="11"
-            fill="#00B4A0" letter-spacing="0.5">VR</text>
-    </svg>
-  </div>
-  <span class="brand-title">VR Base Station</span>
+  <a class="brand-home" href="index.html" aria-label="VR Base Station home">
+    <span class="brand-logo">
+      <img alt="VR Base Station logo" src="VRBaseStationLogo.ico"/>
+    </span>
+    <span class="brand-title">VR Base Station</span>
+  </a>
   <span class="brand-sub">EEEE2076 Group&nbsp;1</span>
   <div class="brand-actions">
     <a class="brand-link" href="index.html">Overview</a>
@@ -68,9 +62,10 @@ DoxygenAwesomeFragmentCopyButton.init()
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><a href="index.html" aria-label="VR Base Station home"><img alt="Logo" src="VRBaseStationLogo.ico"$logosize/></a></td>
   <td id="projectalign">
-   <div id="projectname">VR Base Station<span id="projectnumber">&#160;v1.1.0</span>
-   </div>
+   <a id="projecthome" href="index.html" aria-label="VR Base Station home"><div id="projectname">VR Base Station<span id="projectnumber">&#160;v1.1.0</span>
+   </div></a>
    <div id="projectbrief">Qt/VTK CAD viewer with VR support, EEEE2076 Group 1</div>
   </td>
  </tr>
@@ -141,10 +136,10 @@ $(document).ready(function(){initNavTree('hierarchy.html',''); initResizable(); 
 <p><a href="inherits.html">Go to the graphical class hierarchy</a></p>
 This inheritance list is sorted roughly, but not completely, alphabetically:</div><div class="directory">
 <div class="levels">[detail level <span onclick="javascript:toggleLevel(1);">1</span><span onclick="javascript:toggleLevel(2);">2</span>]</div><table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structVRMenu_1_1Button.html" target="_self">VRMenu::Button</a></td><td class="desc"></td></tr>
-<tr id="row_1_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structCommandPacket.html" target="_self">CommandPacket</a></td><td class="desc"></td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structControllerRay.html" target="_self">ControllerRay</a></td><td class="desc"></td></tr>
-<tr id="row_3_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classModelPart.html" target="_self">ModelPart</a></td><td class="desc"></td></tr>
+<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structCommandPacket.html" target="_self">CommandPacket</a></td><td class="desc"></td></tr>
+<tr id="row_1_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structControllerRay.html" target="_self">ControllerRay</a></td><td class="desc"></td></tr>
+<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classModelPart.html" target="_self">ModelPart</a></td><td class="desc"></td></tr>
+<tr id="row_3_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structPerActorScaler.html" target="_self">PerActorScaler</a></td><td class="desc"></td></tr>
 <tr id="row_4_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_4_" class="arrow" onclick="toggleFolder('4_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>QAbstractItemModel</b></td><td class="desc"></td></tr>
 <tr id="row_4_0_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classModelPartList.html" target="_self">ModelPartList</a></td><td class="desc"></td></tr>
 <tr id="row_5_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_5_" class="arrow" onclick="toggleFolder('5_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>QDialog</b></td><td class="desc"></td></tr>
@@ -153,12 +148,10 @@ This inheritance list is sorted roughly, but not completely, alphabetically:</di
 <tr id="row_6_0_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classMainWindow.html" target="_self">MainWindow</a></td><td class="desc"></td></tr>
 <tr id="row_7_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_7_" class="arrow" onclick="toggleFolder('7_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>QThread</b></td><td class="desc"></td></tr>
 <tr id="row_7_0_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classVRRenderThread.html" target="_self">VRRenderThread</a></td><td class="desc"></td></tr>
-<tr id="row_8_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structVRMenu.html" target="_self">VRMenu</a></td><td class="desc"></td></tr>
-<tr id="row_9_" class="odd"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_9_" class="arrow" onclick="toggleFolder('9_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>vtkCommand</b></td><td class="desc"></td></tr>
-<tr id="row_9_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classVRMenuCallback.html" target="_self">VRMenuCallback</a></td><td class="desc"></td></tr>
-<tr id="row_9_1_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classVRRayCallback.html" target="_self">VRRayCallback</a></td><td class="desc"></td></tr>
-<tr id="row_10_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_10_" class="arrow" onclick="toggleFolder('10_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>vtkOpenVRInteractorStyle</b></td><td class="desc"></td></tr>
-<tr id="row_10_0_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classVRCustomStyle.html" target="_self">VRCustomStyle</a></td><td class="desc"></td></tr>
+<tr id="row_8_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_8_" class="arrow" onclick="toggleFolder('8_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>vtkCommand</b></td><td class="desc"></td></tr>
+<tr id="row_8_0_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classVRRayCallback.html" target="_self">VRRayCallback</a></td><td class="desc"></td></tr>
+<tr id="row_9_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_9_" class="arrow" onclick="toggleFolder('9_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>vtkOpenVRInteractorStyle</b></td><td class="desc"></td></tr>
+<tr id="row_9_0_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classVRCustomStyle.html" target="_self">VRCustomStyle</a></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->

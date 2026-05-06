@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['endrender_0',['EndRender',['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153a89881b50a5d91d4a3a4d57529bb814a8',1,'VRRenderThread.h']]]
+  ['light_0',['Light',['../classMainWindow.html#a2c9c9b9196ffc44d9f32205b1bef5f1da9914a0ce04a7b7b6a8e39bec55064b82',1,'MainWindow']]]
 ];

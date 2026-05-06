@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['left_0',['left',['../classVRRayCallback.html#ad60fee66a20a76518a74a46266d48b88',1,'VRRayCallback']]],
-  ['light_1',['light',['../classMainWindow.html#a3f46f38f8603c05a64be2afb4c98e575',1,'MainWindow']]],
-  ['light_5fqss_2',['LIGHT_QSS',['../mainwindow_8cpp.html#a5e1b46fa3690c4370ed848111fb7e4c7',1,'mainwindow.cpp']]]
+  ['outlineactor_0',['outlineActor',['../structControllerRay.html#a41003e156af44a37c40e54eb288cfe36',1,'ControllerRay']]],
+  ['outlinefilter_1',['outlineFilter',['../structControllerRay.html#acce22b5c851da929bed5cc017944f95d',1,'ControllerRay']]],
+  ['outlinemapper_2',['outlineMapper',['../structControllerRay.html#a087fdcadc3c64d4f6d45d0a693bceb4e',1,'ControllerRay']]]
 ];

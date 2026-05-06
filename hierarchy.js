@@ -1,9 +1,9 @@
 var hierarchy =
 [
-    [ "VRMenu::Button", "structVRMenu_1_1Button.html", null ],
     [ "CommandPacket", "structCommandPacket.html", null ],
     [ "ControllerRay", "structControllerRay.html", null ],
     [ "ModelPart", "classModelPart.html", null ],
+    [ "PerActorScaler", "structPerActorScaler.html", null ],
     [ "QAbstractItemModel", null, [
       [ "ModelPartList", "classModelPartList.html", null ]
     ] ],
@@ -16,9 +16,7 @@ var hierarchy =
     [ "QThread", null, [
       [ "VRRenderThread", "classVRRenderThread.html", null ]
     ] ],
-    [ "VRMenu", "structVRMenu.html", null ],
     [ "vtkCommand", null, [
-      [ "VRMenuCallback", "classVRMenuCallback.html", null ],
       [ "VRRayCallback", "classVRRayCallback.html", null ]
     ] ],
     [ "vtkOpenVRInteractorStyle", null, [

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['button_0',['Button',['../structVRMenu_1_1Button.html',1,'VRMenu']]]
+  ['commandpacket_0',['CommandPacket',['../structCommandPacket.html',1,'']]],
+  ['controllerray_1',['ControllerRay',['../structControllerRay.html',1,'']]]
 ];

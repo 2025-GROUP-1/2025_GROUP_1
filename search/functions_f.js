@@ -7,10 +7,8 @@ var searchData=
   ['setcolour_4',['setColour',['../classModelPart.html#abb0819f303fea07fdc053ba750d4684d',1,'ModelPart']]],
   ['setdata_5',['setData',['../classModelPart.html#a1b0dd7d3e3953b1aa8a4a44a7aa1349b',1,'ModelPart']]],
   ['setpartlist_6',['setPartList',['../classVRRenderThread.html#a1950ee06c357da44400458b3672f0380',1,'VRRenderThread']]],
-  ['setpickactors_7',['setPickActors',['../structControllerRay.html#a498a4afd7cb58f633e1974340880d66a',1,'ControllerRay']]],
-  ['setshrinkfactor_8',['setShrinkFactor',['../classModelPart.html#a74f7db7b01d496dff596d8a3f1ec722b',1,'ModelPart']]],
-  ['setshrinkfilter_9',['setShrinkFilter',['../classModelPart.html#a0d01c433eb1019cb9d41f75ee389687c',1,'ModelPart']]],
-  ['setvisible_10',['setVisible',['../classModelPart.html#a4cfdee348fd6870756ce836f67b1ce75',1,'ModelPart']]],
-  ['show_11',['show',['../structVRMenu.html#a295afb1bf97a57f3011c916738a14105',1,'VRMenu']]],
-  ['statusupdatemessage_12',['statusUpdateMessage',['../classMainWindow.html#a86443ea744fda3e9bad328c2fd1c3d6b',1,'MainWindow']]]
+  ['setshrinkfactor_7',['setShrinkFactor',['../classModelPart.html#a74f7db7b01d496dff596d8a3f1ec722b',1,'ModelPart']]],
+  ['setshrinkfilter_8',['setShrinkFilter',['../classModelPart.html#a0d01c433eb1019cb9d41f75ee389687c',1,'ModelPart']]],
+  ['setvisible_9',['setVisible',['../classModelPart.html#a4cfdee348fd6870756ce836f67b1ce75',1,'ModelPart']]],
+  ['statusupdatemessage_10',['statusUpdateMessage',['../classMainWindow.html#a86443ea744fda3e9bad328c2fd1c3d6b',1,'MainWindow']]]
 ];

@@ -1,15 +1,11 @@
 <map id="ModelPartList::findByID" name="ModelPartList::findByID">
-<area shape="rect" id="Node000001" title=" " alt="" coords="815,55,988,80"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="815,35,988,60"/>
 <area shape="rect" id="Node000002" href="$classVRRenderThread.html#afb8797810162611a3b8cb465625c69b9" title=" " alt="" coords="524,5,767,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="821,55,712,33,713,28,822,49"/>
-<area shape="rect" id="Node000005" href="$classVRMenuCallback.html#a912b2d3f14fb4b2a9e4f9b23ae6fbcb9" title=" " alt="" coords="529,55,761,80"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="801,70,761,70,761,65,801,65"/>
-<area shape="rect" id="Node000007" href="$classMainWindow.html#a597961838262c9f16a02e6b37d184d5e" title=" " alt="" coords="540,105,751,145"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="831,86,736,107,734,102,830,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="801,39,756,33,757,28,802,33"/>
+<area shape="rect" id="Node000005" href="$classMainWindow.html#a597961838262c9f16a02e6b37d184d5e" title=" " alt="" coords="540,55,751,95"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="801,61,751,66,751,61,801,56"/>
 <area shape="rect" id="Node000003" href="$classVRRenderThread.html#a1133c0b2f773137412e417450c00c7e8" title=" " alt="" coords="213,5,476,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="510,21,476,21,476,15,510,15"/>
 <area shape="rect" id="Node000004" href="$classVRRenderThread.html#af5bbbaf8625fc42278476a43bf018661" title=" " alt="" coords="5,5,165,31"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="199,21,166,21,166,15,199,15"/>
-<area shape="rect" id="Node000006" href="$classVRMenuCallback.html#aa8d4b0b3d16a598f35da79fd6d156332" title=" " alt="" coords="249,55,440,80"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="516,70,440,70,440,65,516,65"/>
 </map>

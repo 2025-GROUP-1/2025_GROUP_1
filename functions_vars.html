@@ -40,18 +40,12 @@ DoxygenAwesomeFragmentCopyButton.init()
 </head>
 <body>
 <div id="vr-brand-bar">
-  <div class="brand-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" aria-label="VR Base Station logo">
-      <polygon points="18,2 32,9.5 32,26.5 18,34 4,26.5 4,9.5"
-               fill="none" stroke="#00B4A0" stroke-width="1.8"/>
-      <polygon points="18,5 29,11.5 29,24.5 18,31 7,24.5 7,11.5"
-               fill="rgba(0,180,160,0.12)"/>
-      <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
-            font-family="'Inter',sans-serif" font-weight="700" font-size="11"
-            fill="#00B4A0" letter-spacing="0.5">VR</text>
-    </svg>
-  </div>
-  <span class="brand-title">VR Base Station</span>
+  <a class="brand-home" href="index.html" aria-label="VR Base Station home">
+    <span class="brand-logo">
+      <img alt="VR Base Station logo" src="VRBaseStationLogo.ico"/>
+    </span>
+    <span class="brand-title">VR Base Station</span>
+  </a>
   <span class="brand-sub">EEEE2076 Group&nbsp;1</span>
   <div class="brand-actions">
     <a class="brand-link" href="index.html">Overview</a>
@@ -68,9 +62,10 @@ DoxygenAwesomeFragmentCopyButton.init()
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><a href="index.html" aria-label="VR Base Station home"><img alt="Logo" src="VRBaseStationLogo.ico"$logosize/></a></td>
   <td id="projectalign">
-   <div id="projectname">VR Base Station<span id="projectnumber">&#160;v1.1.0</span>
-   </div>
+   <a id="projecthome" href="index.html" aria-label="VR Base Station home"><div id="projectname">VR Base Station<span id="projectnumber">&#160;v1.1.0</span>
+   </div></a>
    <div id="projectbrief">Qt/VTK CAD viewer with VR support, EEEE2076 Group 1</div>
   </td>
  </tr>
@@ -137,16 +132,8 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 <div class="textblock">Here is a list of all variables with links to the classes they belong to:</div>
 
 <h3><a id="index_a" name="index_a"></a>- a -</h3><ul>
-<li>action&#160;:&#160;<a class="el" href="structVRMenu_1_1Button.html#aaa44e0c9549ddfe75488e12654f233da">VRMenu::Button</a></li>
-<li>activeActors&#160;:&#160;<a class="el" href="classVRMenuCallback.html#a25f72d11bbf69c701c78ae2aa8d9c000">VRMenuCallback</a>, <a class="el" href="classVRRayCallback.html#a6c98848d9fc2bac1a5f054e68fddee70">VRRayCallback</a></li>
-<li>actor&#160;:&#160;<a class="el" href="structCommandPacket.html#af88ddaa6fe5f223689a39f6d043014b9">CommandPacket</a>, <a class="el" href="classModelPart.html#aa0bc06d06f0976fef26bcbd721e71784">ModelPart</a>, <a class="el" href="structVRMenu_1_1Button.html#a5acdb7bd2929d9361048fa85dd12f36c">VRMenu::Button</a></li>
-</ul>
-
-
-<h3><a id="index_b" name="index_b"></a>- b -</h3><ul>
-<li>BTN_H&#160;:&#160;<a class="el" href="structVRMenu.html#ab97cb4737b8efdcf64cd3aaeae5fca3b">VRMenu</a></li>
-<li>BTN_W&#160;:&#160;<a class="el" href="structVRMenu.html#aac898f902f5ffbdb6707d470f7b6ca32">VRMenu</a></li>
-<li>buttons&#160;:&#160;<a class="el" href="structVRMenu.html#a4fff6b2b76c8942d54ac38944b8ef346">VRMenu</a></li>
+<li>active&#160;:&#160;<a class="el" href="structPerActorScaler.html#af699a9abc9c97ad237828af6ba9b2af6">PerActorScaler</a></li>
+<li>actor&#160;:&#160;<a class="el" href="structCommandPacket.html#af88ddaa6fe5f223689a39f6d043014b9">CommandPacket</a>, <a class="el" href="classModelPart.html#aa0bc06d06f0976fef26bcbd721e71784">ModelPart</a></li>
 </ul>
 
 
@@ -162,11 +149,6 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 
 <h3><a id="index_f" name="index_f"></a>- f -</h3><ul>
 <li>file&#160;:&#160;<a class="el" href="classModelPart.html#a852283506443761fb7b7f96588878e45">ModelPart</a></li>
-</ul>
-
-
-<h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
-<li>GAP&#160;:&#160;<a class="el" href="structVRMenu.html#a1b115f995a25db1137c5c245b57c30c6">VRMenu</a></li>
 </ul>
 
 
@@ -209,8 +191,6 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 <li>m_vrThread&#160;:&#160;<a class="el" href="classMainWindow.html#ae2556ac3163fd33424f2c34c8ff757b0">MainWindow</a></li>
 <li>mapper&#160;:&#160;<a class="el" href="classModelPart.html#a4cad5fc0027842e101c064719898499a">ModelPart</a></li>
 <li>MAX_RAY&#160;:&#160;<a class="el" href="classVRRayCallback.html#a19676bcd7df280670fd9a41b36a06523">VRRayCallback</a></li>
-<li>menu&#160;:&#160;<a class="el" href="classVRMenuCallback.html#a2b828885c84189cfa00b31e171e5be38">VRMenuCallback</a></li>
-<li>menuActors&#160;:&#160;<a class="el" href="classVRRayCallback.html#ad4cd598bc2095197437feca8369f8666">VRRayCallback</a></li>
 </ul>
 
 
@@ -223,8 +203,7 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 
 <h3><a id="index_p" name="index_p"></a>- p -</h3><ul>
 <li>partID&#160;:&#160;<a class="el" href="structCommandPacket.html#a76888a6f02af6f331c3c7992d0d55c22">CommandPacket</a></li>
-<li>partList&#160;:&#160;<a class="el" href="classMainWindow.html#a3fddd2c840f105b232035192fadaeee8">MainWindow</a>, <a class="el" href="classVRMenuCallback.html#a6560a9556482854e8fba9b12f372249c">VRMenuCallback</a></li>
-<li>pickActors&#160;:&#160;<a class="el" href="structControllerRay.html#ae6272860126e315023c7a179eebf148a">ControllerRay</a></li>
+<li>partList&#160;:&#160;<a class="el" href="classMainWindow.html#a3fddd2c840f105b232035192fadaeee8">MainWindow</a></li>
 <li>picker&#160;:&#160;<a class="el" href="structControllerRay.html#a61300d128d6b7f20361ca8aeb8b458f1">ControllerRay</a></li>
 </ul>
 
@@ -232,11 +211,8 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 <h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
 <li>rayActor&#160;:&#160;<a class="el" href="structControllerRay.html#a3265e22e12783bb0680bb8db09607ab0">ControllerRay</a></li>
 <li>rayLine&#160;:&#160;<a class="el" href="structControllerRay.html#a67fd744296ed1c77b9b27af0dcdabc49">ControllerRay</a></li>
-<li>rays&#160;:&#160;<a class="el" href="classVRMenuCallback.html#a044da06da7ded2faaca3ca3f6ffbe8e0">VRMenuCallback</a></li>
-<li>ren&#160;:&#160;<a class="el" href="structVRMenu.html#a2134ea71f0f5d6eb74c008ad3cf69e51">VRMenu</a></li>
 <li>renderer&#160;:&#160;<a class="el" href="classMainWindow.html#a0886430bf0d0de4d3e3d892d535ea052">MainWindow</a>, <a class="el" href="classVRRayCallback.html#a1cf2f802f453a8a534372e230b916e37">VRRayCallback</a></li>
 <li>renderWindow&#160;:&#160;<a class="el" href="classMainWindow.html#a74028a929c64ac0436e962017971dee6">MainWindow</a></li>
-<li>renWindow&#160;:&#160;<a class="el" href="classVRMenuCallback.html#a05e3114c9b890e55f35f331777ce88db">VRMenuCallback</a></li>
 <li>right&#160;:&#160;<a class="el" href="classVRRayCallback.html#a18633ab5535aebf053bcf2e200191a25">VRRayCallback</a></li>
 <li>rootItem&#160;:&#160;<a class="el" href="classModelPartList.html#a464a7abc3799ad9498c0ace03f38f87e">ModelPartList</a></li>
 </ul>
@@ -244,11 +220,13 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 
 <h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
 <li>shrinkFilter&#160;:&#160;<a class="el" href="classModelPart.html#a8f2cc5db4e5cf99509a48d61320801e9">ModelPart</a></li>
+<li>startDist&#160;:&#160;<a class="el" href="structPerActorScaler.html#afcc091358ea86999dbe5ffc4c0c9daf7">PerActorScaler</a></li>
+<li>startScale&#160;:&#160;<a class="el" href="structPerActorScaler.html#a31ba8e34a55d035f5de643e531b9660e">PerActorScaler</a></li>
 </ul>
 
 
 <h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
-<li>targetPartID&#160;:&#160;<a class="el" href="structVRMenu.html#a210df57b2ae0de81acc33a9511664ed2">VRMenu</a></li>
+<li>targetActor&#160;:&#160;<a class="el" href="structPerActorScaler.html#a289fad9324414dbe39c6dee7e86d0071">PerActorScaler</a></li>
 <li>type&#160;:&#160;<a class="el" href="structCommandPacket.html#ae731eeaf73432df90f975ae47d479246">CommandPacket</a></li>
 </ul>
 
@@ -259,13 +237,11 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 
 
 <h3><a id="index_v" name="index_v"></a>- v -</h3><ul>
-<li>visible&#160;:&#160;<a class="el" href="structVRMenu.html#a450628e878e167c8d78fc39b7162c0ee">VRMenu</a></li>
 <li>vrActor&#160;:&#160;<a class="el" href="classModelPart.html#af15ddf8b0eaf84caf33ed11636aa36e9">ModelPart</a></li>
 <li>vrClipFilter&#160;:&#160;<a class="el" href="classModelPart.html#aed3c9ff4dafad417166401ad0c432a4a">ModelPart</a></li>
 <li>vrMapper&#160;:&#160;<a class="el" href="classModelPart.html#ab0c1f7ef297743499d114da7561ee786">ModelPart</a></li>
 <li>vrScaleFilter&#160;:&#160;<a class="el" href="classModelPart.html#a0e264353b9bb180ec05e8be440e43254">ModelPart</a></li>
 <li>vrShrinkFilter&#160;:&#160;<a class="el" href="classModelPart.html#ac869018007e8c94b75281e3c82e024ab">ModelPart</a></li>
-<li>vrThread&#160;:&#160;<a class="el" href="classVRMenuCallback.html#aecfd8cb02adbef522dcec3d41415d918">VRMenuCallback</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

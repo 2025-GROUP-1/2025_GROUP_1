@@ -22,11 +22,12 @@ var searchData=
   ['on_5fsliderexplode_5fvaluechanged_19',['on_sliderExplode_valueChanged',['../classMainWindow.html#a2d56d0e63146cbcc6337b4379e83651a',1,'MainWindow']]],
   ['oncurrentselectionchanged_20',['onCurrentSelectionChanged',['../classMainWindow.html#a591d52182acedb4f591a2409e28f4142',1,'MainWindow']]],
   ['onmenu3d_21',['OnMenu3D',['../classVRCustomStyle.html#a2ccd3d641487870d2fc0a97e1fb36789',1,'VRCustomStyle']]],
-  ['optiondialog_22',['optiondialog',['../classOptionDialog.html#a4540736a5c6e4468dad5165c7aefc8bc',1,'OptionDialog::OptionDialog()'],['../classOptionDialog.html',1,'OptionDialog']]],
-  ['optiondialog_2ecpp_23',['optiondialog.cpp',['../optiondialog_8cpp.html',1,'']]],
-  ['optiondialog_2eh_24',['optiondialog.h',['../optiondialog_8h.html',1,'']]],
-  ['outlineactor_25',['outlineActor',['../structControllerRay.html#a41003e156af44a37c40e54eb288cfe36',1,'ControllerRay']]],
-  ['outlinefilter_26',['outlineFilter',['../structControllerRay.html#acce22b5c851da929bed5cc017944f95d',1,'ControllerRay']]],
-  ['outlinemapper_27',['outlineMapper',['../structControllerRay.html#a087fdcadc3c64d4f6d45d0a693bceb4e',1,'ControllerRay']]],
-  ['overview_28',['Overview',['../index.html#overview',1,'']]]
+  ['onpinch_22',['OnPinch',['../classVRCustomStyle.html#a2643b9123ae188475461d3981797ef28',1,'VRCustomStyle']]],
+  ['optiondialog_23',['optiondialog',['../classOptionDialog.html#a4540736a5c6e4468dad5165c7aefc8bc',1,'OptionDialog::OptionDialog()'],['../classOptionDialog.html',1,'OptionDialog']]],
+  ['optiondialog_2ecpp_24',['optiondialog.cpp',['../optiondialog_8cpp.html',1,'']]],
+  ['optiondialog_2eh_25',['optiondialog.h',['../optiondialog_8h.html',1,'']]],
+  ['outlineactor_26',['outlineActor',['../structControllerRay.html#a41003e156af44a37c40e54eb288cfe36',1,'ControllerRay']]],
+  ['outlinefilter_27',['outlineFilter',['../structControllerRay.html#acce22b5c851da929bed5cc017944f95d',1,'ControllerRay']]],
+  ['outlinemapper_28',['outlineMapper',['../structControllerRay.html#a087fdcadc3c64d4f6d45d0a693bceb4e',1,'ControllerRay']]],
+  ['overview_29',['Overview',['../index.html#overview',1,'']]]
 ];

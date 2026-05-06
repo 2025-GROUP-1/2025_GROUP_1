@@ -6,9 +6,8 @@ var annotated_dup =
     [ "ModelPart", "classModelPart.html", "classModelPart" ],
     [ "ModelPartList", "classModelPartList.html", "classModelPartList" ],
     [ "OptionDialog", "classOptionDialog.html", "classOptionDialog" ],
+    [ "PerActorScaler", "structPerActorScaler.html", "structPerActorScaler" ],
     [ "VRCustomStyle", "classVRCustomStyle.html", "classVRCustomStyle" ],
-    [ "VRMenu", "structVRMenu.html", "structVRMenu" ],
-    [ "VRMenuCallback", "classVRMenuCallback.html", "classVRMenuCallback" ],
     [ "VRRayCallback", "classVRRayCallback.html", "classVRRayCallback" ],
     [ "VRRenderThread", "classVRRenderThread.html", "classVRRenderThread" ]
 ];

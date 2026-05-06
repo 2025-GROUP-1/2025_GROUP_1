@@ -40,18 +40,12 @@ DoxygenAwesomeFragmentCopyButton.init()
 </head>
 <body>
 <div id="vr-brand-bar">
-  <div class="brand-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" aria-label="VR Base Station logo">
-      <polygon points="18,2 32,9.5 32,26.5 18,34 4,26.5 4,9.5"
-               fill="none" stroke="#00B4A0" stroke-width="1.8"/>
-      <polygon points="18,5 29,11.5 29,24.5 18,31 7,24.5 7,11.5"
-               fill="rgba(0,180,160,0.12)"/>
-      <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
-            font-family="'Inter',sans-serif" font-weight="700" font-size="11"
-            fill="#00B4A0" letter-spacing="0.5">VR</text>
-    </svg>
-  </div>
-  <span class="brand-title">VR Base Station</span>
+  <a class="brand-home" href="index.html" aria-label="VR Base Station home">
+    <span class="brand-logo">
+      <img alt="VR Base Station logo" src="VRBaseStationLogo.ico"/>
+    </span>
+    <span class="brand-title">VR Base Station</span>
+  </a>
   <span class="brand-sub">EEEE2076 Group&nbsp;1</span>
   <div class="brand-actions">
     <a class="brand-link" href="index.html">Overview</a>
@@ -68,9 +62,10 @@ DoxygenAwesomeFragmentCopyButton.init()
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><a href="index.html" aria-label="VR Base Station home"><img alt="Logo" src="VRBaseStationLogo.ico"$logosize/></a></td>
   <td id="projectalign">
-   <div id="projectname">VR Base Station<span id="projectnumber">&#160;v1.1.0</span>
-   </div>
+   <a id="projecthome" href="index.html" aria-label="VR Base Station home"><div id="projectname">VR Base Station<span id="projectnumber">&#160;v1.1.0</span>
+   </div></a>
    <div id="projectbrief">Qt/VTK CAD viewer with VR support, EEEE2076 Group 1</div>
   </td>
  </tr>
@@ -140,16 +135,13 @@ $(document).ready(function(){initNavTree('classVRRayCallback.html',''); initResi
 
 <p>This is the complete list of members for <a class="el" href="classVRRayCallback.html">VRRayCallback</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classVRRayCallback.html#a6c98848d9fc2bac1a5f054e68fddee70">activeActors</a></td><td class="entry"><a class="el" href="classVRRayCallback.html">VRRayCallback</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classVRRayCallback.html#ae3bbaafeecb857357b0de09e4c1eb053">currentPickActors</a>() const</td><td class="entry"><a class="el" href="classVRRayCallback.html">VRRayCallback</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classVRRayCallback.html#ab0c295fb982f391af84749330a612400">Execute</a>(vtkObject *, unsigned long eventId, void *callData) override</td><td class="entry"><a class="el" href="classVRRayCallback.html">VRRayCallback</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="classVRRayCallback.html#a26e1477cc5c1b5e3312b77dd682a79d1">init</a>(vtkRenderer *ren)</td><td class="entry"><a class="el" href="classVRRayCallback.html">VRRayCallback</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classVRRayCallback.html#ad60fee66a20a76518a74a46266d48b88">left</a></td><td class="entry"><a class="el" href="classVRRayCallback.html">VRRayCallback</a></td><td class="entry"></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="classVRRayCallback.html#a19676bcd7df280670fd9a41b36a06523">MAX_RAY</a></td><td class="entry"><a class="el" href="classVRRayCallback.html">VRRayCallback</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classVRRayCallback.html#ad4cd598bc2095197437feca8369f8666">menuActors</a></td><td class="entry"><a class="el" href="classVRRayCallback.html">VRRayCallback</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classVRRayCallback.html#a93c359ed22aa72e4b96c981d74bdbc44">New</a>()</td><td class="entry"><a class="el" href="classVRRayCallback.html">VRRayCallback</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classVRRayCallback.html#a1cf2f802f453a8a534372e230b916e37">renderer</a></td><td class="entry"><a class="el" href="classVRRayCallback.html">VRRayCallback</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classVRRayCallback.html#a18633ab5535aebf053bcf2e200191a25">right</a></td><td class="entry"><a class="el" href="classVRRayCallback.html">VRRayCallback</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classVRRayCallback.html#a93c359ed22aa72e4b96c981d74bdbc44">New</a>()</td><td class="entry"><a class="el" href="classVRRayCallback.html">VRRayCallback</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classVRRayCallback.html#a1cf2f802f453a8a534372e230b916e37">renderer</a></td><td class="entry"><a class="el" href="classVRRayCallback.html">VRRayCallback</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classVRRayCallback.html#a18633ab5535aebf053bcf2e200191a25">right</a></td><td class="entry"><a class="el" href="classVRRayCallback.html">VRRayCallback</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

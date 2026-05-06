@@ -40,18 +40,12 @@ DoxygenAwesomeFragmentCopyButton.init()
 </head>
 <body>
 <div id="vr-brand-bar">
-  <div class="brand-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" aria-label="VR Base Station logo">
-      <polygon points="18,2 32,9.5 32,26.5 18,34 4,26.5 4,9.5"
-               fill="none" stroke="#00B4A0" stroke-width="1.8"/>
-      <polygon points="18,5 29,11.5 29,24.5 18,31 7,24.5 7,11.5"
-               fill="rgba(0,180,160,0.12)"/>
-      <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
-            font-family="'Inter',sans-serif" font-weight="700" font-size="11"
-            fill="#00B4A0" letter-spacing="0.5">VR</text>
-    </svg>
-  </div>
-  <span class="brand-title">VR Base Station</span>
+  <a class="brand-home" href="index.html" aria-label="VR Base Station home">
+    <span class="brand-logo">
+      <img alt="VR Base Station logo" src="VRBaseStationLogo.ico"/>
+    </span>
+    <span class="brand-title">VR Base Station</span>
+  </a>
   <span class="brand-sub">EEEE2076 Group&nbsp;1</span>
   <div class="brand-actions">
     <a class="brand-link" href="index.html">Overview</a>
@@ -68,9 +62,10 @@ DoxygenAwesomeFragmentCopyButton.init()
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><a href="index.html" aria-label="VR Base Station home"><img alt="Logo" src="VRBaseStationLogo.ico"$logosize/></a></td>
   <td id="projectalign">
-   <div id="projectname">VR Base Station<span id="projectnumber">&#160;v1.1.0</span>
-   </div>
+   <a id="projecthome" href="index.html" aria-label="VR Base Station home"><div id="projectname">VR Base Station<span id="projectnumber">&#160;v1.1.0</span>
+   </div></a>
    <div id="projectbrief">Qt/VTK CAD viewer with VR support, EEEE2076 Group 1</div>
   </td>
  </tr>
@@ -165,11 +160,11 @@ $(document).ready(function(){initNavTree('ModelPart_8h_source.html',''); initRes
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;vtkTransformFilter.h&gt;</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;vtkTransform.h&gt;</span></div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">class </span><a class="code hl_class" href="classVRMenuCallback.html">VRMenuCallback</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">class </span>VRMenuCallback;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classModelPart.html">   26</a></span><span class="keyword">class </span><a class="code hl_class" href="classModelPart.html">ModelPart</a> {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classModelPart.html#a99cbf660d6ddb16672b9985a2eb48fa7">   27</a></span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="classVRMenuCallback.html">VRMenuCallback</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classModelPart.html#a99cbf660d6ddb16672b9985a2eb48fa7">   27</a></span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_friend" href="classModelPart.html#a99cbf660d6ddb16672b9985a2eb48fa7">VRMenuCallback</a>;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_class" href="classModelPart.html">ModelPart</a>(<span class="keyword">const</span> <a class="code hl_function" href="classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910">QList&lt;QVariant&gt;</a>&amp; <a class="code hl_function" href="classModelPart.html#a178655da543bd0dae2d0ed1e2ea38a56">data</a>, <a class="code hl_class" href="classModelPart.html">ModelPart</a>* parent = <span class="keyword">nullptr</span>);</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_function" href="classModelPart.html#a0b3b00630e9866e3e8fd648d28b7f016">~ModelPart</a>();</div>
@@ -201,7 +196,7 @@ $(document).ready(function(){initNavTree('ModelPart_8h_source.html',''); initRes
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// display properties</span></div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classModelPart.html#abb0819f303fea07fdc053ba750d4684d">setColour</a>(<span class="keyword">const</span> <a class="code hl_function" href="classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910">QColor</a>&amp; <a class="code hl_function" href="classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910">colour</a>);</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_function" href="classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910">QColor</a> <a class="code hl_function" href="classModelPart.html#ac78f4dc9ce97458b7eb22bc474bf54eb">getColour</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classModelPart.html#a4cfdee348fd6870756ce836f67b1ce75">setVisible</a>(<span class="keywordtype">bool</span> visible);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classModelPart.html#a4cfdee348fd6870756ce836f67b1ce75">setVisible</a>(<span class="keywordtype">bool</span> <a class="code hl_function" href="classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910">visible</a>);</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classModelPart.html#a54fd5c6a6ff47dacfa30980eb3a5c647">getVisible</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// shrink filter</span></div>
@@ -289,6 +284,7 @@ $(document).ready(function(){initNavTree('ModelPart_8h_source.html',''); initRes
 <div class="ttc" id="aclassModelPart_html_a8f2cc5db4e5cf99509a48d61320801e9"><div class="ttname"><a href="classModelPart.html#a8f2cc5db4e5cf99509a48d61320801e9">ModelPart::shrinkFilter</a></div><div class="ttdeci">vtkSmartPointer&lt; vtkShrinkFilter &gt; shrinkFilter</div><div class="ttdef"><b>Definition</b> <a href="ModelPart_8h_source.html#l00088">ModelPart.h:88</a></div></div>
 <div class="ttc" id="aclassModelPart_html_a922236b215b30689af7f6acc92c905fc"><div class="ttname"><a href="classModelPart.html#a922236b215b30689af7f6acc92c905fc">ModelPart::setClipPlaneX</a></div><div class="ttdeci">void setClipPlaneX(double x)</div><div class="ttdef"><b>Definition</b> <a href="ModelPart_8cpp_source.html#l00278">ModelPart.cpp:278</a></div></div>
 <div class="ttc" id="aclassModelPart_html_a94623f4e95be3c462297c1abc7b6f3c7"><div class="ttname"><a href="classModelPart.html#a94623f4e95be3c462297c1abc7b6f3c7">ModelPart::columnCount</a></div><div class="ttdeci">int columnCount() const</div><div class="ttdef"><b>Definition</b> <a href="ModelPart_8cpp_source.html#l00044">ModelPart.cpp:44</a></div></div>
+<div class="ttc" id="aclassModelPart_html_a99cbf660d6ddb16672b9985a2eb48fa7"><div class="ttname"><a href="classModelPart.html#a99cbf660d6ddb16672b9985a2eb48fa7">ModelPart::VRMenuCallback</a></div><div class="ttdeci">friend class VRMenuCallback</div><div class="ttdef"><b>Definition</b> <a href="ModelPart_8h_source.html#l00027">ModelPart.h:27</a></div></div>
 <div class="ttc" id="aclassModelPart_html_a9be3859d2a298e88d850a2480b7639f7"><div class="ttname"><a href="classModelPart.html#a9be3859d2a298e88d850a2480b7639f7">ModelPart::parentItem</a></div><div class="ttdeci">ModelPart * parentItem()</div><div class="ttdef"><b>Definition</b> <a href="ModelPart_8cpp_source.html#l00060">ModelPart.cpp:60</a></div></div>
 <div class="ttc" id="aclassModelPart_html_aa0bc06d06f0976fef26bcbd721e71784"><div class="ttname"><a href="classModelPart.html#aa0bc06d06f0976fef26bcbd721e71784">ModelPart::actor</a></div><div class="ttdeci">vtkSmartPointer&lt; vtkActor &gt; actor</div><div class="ttdef"><b>Definition</b> <a href="ModelPart_8h_source.html#l00087">ModelPart.h:87</a></div></div>
 <div class="ttc" id="aclassModelPart_html_ab0c1f7ef297743499d114da7561ee786"><div class="ttname"><a href="classModelPart.html#ab0c1f7ef297743499d114da7561ee786">ModelPart::vrMapper</a></div><div class="ttdeci">vtkSmartPointer&lt; vtkDataSetMapper &gt; vrMapper</div><div class="ttdef"><b>Definition</b> <a href="ModelPart_8h_source.html#l00092">ModelPart.h:92</a></div></div>
@@ -308,7 +304,6 @@ $(document).ready(function(){initNavTree('ModelPart_8h_source.html',''); initRes
 <div class="ttc" id="aclassModelPart_html_aed3c9ff4dafad417166401ad0c432a4a"><div class="ttname"><a href="classModelPart.html#aed3c9ff4dafad417166401ad0c432a4a">ModelPart::vrClipFilter</a></div><div class="ttdeci">vtkSmartPointer&lt; vtkClipDataSet &gt; vrClipFilter</div><div class="ttdef"><b>Definition</b> <a href="ModelPart_8h_source.html#l00095">ModelPart.h:95</a></div></div>
 <div class="ttc" id="aclassModelPart_html_af15ddf8b0eaf84caf33ed11636aa36e9"><div class="ttname"><a href="classModelPart.html#af15ddf8b0eaf84caf33ed11636aa36e9">ModelPart::vrActor</a></div><div class="ttdeci">vtkSmartPointer&lt; vtkActor &gt; vrActor</div><div class="ttdef"><b>Definition</b> <a href="ModelPart_8h_source.html#l00093">ModelPart.h:93</a></div></div>
 <div class="ttc" id="aclassModelPart_html_af32381b69415f0aa6bdfd84435f842cc"><div class="ttname"><a href="classModelPart.html#af32381b69415f0aa6bdfd84435f842cc">ModelPart::child</a></div><div class="ttdeci">ModelPart * child(int row)</div><div class="ttdef"><b>Definition</b> <a href="ModelPart_8cpp_source.html#l00037">ModelPart.cpp:37</a></div></div>
-<div class="ttc" id="aclassVRMenuCallback_html"><div class="ttname"><a href="classVRMenuCallback.html">VRMenuCallback</a></div><div class="ttdef"><b>Definition</b> <a href="VRRenderThread_8cpp_source.html#l00412">VRRenderThread.cpp:412</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

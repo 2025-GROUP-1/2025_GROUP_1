@@ -40,18 +40,12 @@ DoxygenAwesomeFragmentCopyButton.init()
 </head>
 <body>
 <div id="vr-brand-bar">
-  <div class="brand-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" aria-label="VR Base Station logo">
-      <polygon points="18,2 32,9.5 32,26.5 18,34 4,26.5 4,9.5"
-               fill="none" stroke="#00B4A0" stroke-width="1.8"/>
-      <polygon points="18,5 29,11.5 29,24.5 18,31 7,24.5 7,11.5"
-               fill="rgba(0,180,160,0.12)"/>
-      <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
-            font-family="'Inter',sans-serif" font-weight="700" font-size="11"
-            fill="#00B4A0" letter-spacing="0.5">VR</text>
-    </svg>
-  </div>
-  <span class="brand-title">VR Base Station</span>
+  <a class="brand-home" href="index.html" aria-label="VR Base Station home">
+    <span class="brand-logo">
+      <img alt="VR Base Station logo" src="VRBaseStationLogo.ico"/>
+    </span>
+    <span class="brand-title">VR Base Station</span>
+  </a>
   <span class="brand-sub">EEEE2076 Group&nbsp;1</span>
   <div class="brand-actions">
     <a class="brand-link" href="index.html">Overview</a>
@@ -68,9 +62,10 @@ DoxygenAwesomeFragmentCopyButton.init()
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><a href="index.html" aria-label="VR Base Station home"><img alt="Logo" src="VRBaseStationLogo.ico"$logosize/></a></td>
   <td id="projectalign">
-   <div id="projectname">VR Base Station<span id="projectnumber">&#160;v1.1.0</span>
-   </div>
+   <a id="projecthome" href="index.html" aria-label="VR Base Station home"><div id="projectname">VR Base Station<span id="projectnumber">&#160;v1.1.0</span>
+   </div></a>
    <div id="projectbrief">Qt/VTK CAD viewer with VR support, EEEE2076 Group 1</div>
   </td>
  </tr>
@@ -143,8 +138,9 @@ $(document).ready(function(){initNavTree('classVRCustomStyle.html',''); initResi
   <tr class="even"><td class="entry"><a class="el" href="classVRCustomStyle.html#a82af7eed1836b7c557e10d87a46feefb">Dolly3D</a>(vtkEventData *ed) override</td><td class="entry"><a class="el" href="classVRCustomStyle.html">VRCustomStyle</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="classVRCustomStyle.html#af4698ca0832d66a47a46fa5334c4701f">New</a>()</td><td class="entry"><a class="el" href="classVRCustomStyle.html">VRCustomStyle</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classVRCustomStyle.html#a2ccd3d641487870d2fc0a97e1fb36789">OnMenu3D</a>(vtkEventData *edata) override</td><td class="entry"><a class="el" href="classVRCustomStyle.html">VRCustomStyle</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classVRCustomStyle.html#aca25be3be9670f5c28cd47a45eb086fc">UpdateRay</a>(vtkEventDataDevice) override</td><td class="entry"><a class="el" href="classVRCustomStyle.html">VRCustomStyle</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classVRCustomStyle.html#a91426c2c0c1a397f263cc93ff2321ed7">vtkTypeMacro</a>(VRCustomStyle, vtkOpenVRInteractorStyle)</td><td class="entry"><a class="el" href="classVRCustomStyle.html">VRCustomStyle</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classVRCustomStyle.html#a2643b9123ae188475461d3981797ef28">OnPinch</a>() override</td><td class="entry"><a class="el" href="classVRCustomStyle.html">VRCustomStyle</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classVRCustomStyle.html#aca25be3be9670f5c28cd47a45eb086fc">UpdateRay</a>(vtkEventDataDevice) override</td><td class="entry"><a class="el" href="classVRCustomStyle.html">VRCustomStyle</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classVRCustomStyle.html#a91426c2c0c1a397f263cc93ff2321ed7">vtkTypeMacro</a>(VRCustomStyle, vtkOpenVRInteractorStyle)</td><td class="entry"><a class="el" href="classVRCustomStyle.html">VRCustomStyle</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

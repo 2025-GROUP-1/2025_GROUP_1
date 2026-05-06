@@ -1,7 +1,0 @@
-<map id="VRMenuCallback::applyColourVR" name="VRMenuCallback::applyColourVR">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,35,241,60"/>
-<area shape="rect" id="Node000002" href="$classModelPart.html#ad47f8a6955273229148a00189804c274" title=" " alt="" coords="309,5,477,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,32,295,26,295,31,240,37"/>
-<area shape="rect" id="Node000003" href="$classVRRenderThread.html#af86aa681f7c524c05525dd83f746864d" title=" " alt="" coords="289,55,496,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="242,57,276,61,275,66,241,62"/>
-</map>

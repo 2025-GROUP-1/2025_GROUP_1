@@ -1,4 +1,30 @@
 var searchData=
 [
-  ['hoveredactor_0',['hoveredActor',['../structControllerRay.html#adedd071b947c51d40a5c12123fd390e2',1,'ControllerRay']]]
+  ['m_5factiveactors_0',['m_activeActors',['../classVRRenderThread.html#a9262df5b1bd0372c71ee513eeb4ccab0',1,'VRRenderThread']]],
+  ['m_5fchilditems_1',['m_childItems',['../classModelPart.html#a45a256a6dbd005e5ba1ff96e89a168a0',1,'ModelPart']]],
+  ['m_5fclipenabled_2',['m_clipEnabled',['../classModelPart.html#a604b64d124df7bb1a8a8abe33c24cc7a',1,'ModelPart']]],
+  ['m_5fclipplanex_3',['m_clipPlaneX',['../classModelPart.html#a331505a31c57ac46f9c6bdf0e61fd126',1,'ModelPart']]],
+  ['m_5fcolour_4',['m_colour',['../classModelPart.html#ad5b4c0f09b55e6545dcf4484cce8607a',1,'ModelPart::m_colour'],['../classOptionDialog.html#a1edc2abebc8e08698ee5c81cde246f34',1,'OptionDialog::m_colour']]],
+  ['m_5fcommandqueue_5',['m_commandQueue',['../classVRRenderThread.html#a409a209d46191829ba6e6d2879ba2fc6',1,'VRRenderThread']]],
+  ['m_5fendrender_6',['m_endRender',['../classVRRenderThread.html#a50f4427b9bf0ad25cf0bc2d50fad55e1',1,'VRRenderThread']]],
+  ['m_5fexplodeamount_7',['m_explodeAmount',['../classMainWindow.html#a8ed3d629355053c18e1fcac52125466a',1,'MainWindow']]],
+  ['m_5fexplodedir_8',['m_explodeDir',['../classModelPart.html#a2e5b5da836dc331a5188346e8c140e23',1,'ModelPart']]],
+  ['m_5finteractor_9',['m_interactor',['../classVRRenderThread.html#a513f603889cb5bafcf4dc991f6fad9f7',1,'VRRenderThread']]],
+  ['m_5fisvisible_10',['m_isVisible',['../classModelPart.html#aeae3273b41c78f87aee717c8397162f0',1,'ModelPart']]],
+  ['m_5fitemdata_11',['m_itemData',['../classModelPart.html#ab1f3daa692aad1048c23b4bbe6cefc35',1,'ModelPart']]],
+  ['m_5fmutex_12',['m_mutex',['../classVRRenderThread.html#a83871c039c7433e073d9c8e8aefec376',1,'VRRenderThread']]],
+  ['m_5foriginalcentre_13',['m_originalCentre',['../classModelPart.html#ae74a3fb3c7b0442cf5fe07c9d0032deb',1,'ModelPart']]],
+  ['m_5fparentitem_14',['m_parentItem',['../classModelPart.html#a4292a669f50f89ab70c51189ddad86ce',1,'ModelPart']]],
+  ['m_5fpartlist_15',['m_partList',['../classVRRenderThread.html#a6a38c3fd7c4ce47455bf3406dc3f84c3',1,'VRRenderThread']]],
+  ['m_5fpassthroughenabled_16',['m_passthroughEnabled',['../classMainWindow.html#ad9f3c0909e0ed237071de951969cbf09',1,'MainWindow']]],
+  ['m_5fpendingactors_17',['m_pendingActors',['../classVRRenderThread.html#a373b2f16aaa8175c55d54ad3e112a9b0',1,'VRRenderThread']]],
+  ['m_5frenderer_18',['m_renderer',['../classVRRenderThread.html#acf0833de19dc6f2003f6e2f474de8a6c',1,'VRRenderThread']]],
+  ['m_5frenderwindow_19',['m_renderWindow',['../classVRRenderThread.html#ac205aec4bca79cf63428d62af3c2b10c',1,'VRRenderThread']]],
+  ['m_5fshrinkenabled_20',['m_shrinkEnabled',['../classModelPart.html#a8b7034b176b29bd8d919f94c0192f6af',1,'ModelPart']]],
+  ['m_5fshrinkfactor_21',['m_shrinkFactor',['../classModelPart.html#abfc4b7ed79dea2ccc67156d0f78375aa',1,'ModelPart']]],
+  ['m_5fskybox_22',['m_skybox',['../classVRRenderThread.html#a50dab3f78c5e539ef727c468fdf70be2',1,'VRRenderThread']]],
+  ['m_5ftheme_23',['m_theme',['../classMainWindow.html#ae46392d9d834f059b571975c9973d605',1,'MainWindow']]],
+  ['m_5fvrthread_24',['m_vrThread',['../classMainWindow.html#ae2556ac3163fd33424f2c34c8ff757b0',1,'MainWindow']]],
+  ['mapper_25',['mapper',['../classModelPart.html#a4cad5fc0027842e101c064719898499a',1,'ModelPart']]],
+  ['max_5fray_26',['MAX_RAY',['../classVRRayCallback.html#a19676bcd7df280670fd9a41b36a06523',1,'VRRayCallback']]]
 ];

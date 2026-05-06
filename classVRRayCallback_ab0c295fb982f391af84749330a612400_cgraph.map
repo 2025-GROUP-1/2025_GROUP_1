@@ -1,9 +1,5 @@
 <map id="VRRayCallback::Execute" name="VRRayCallback::Execute">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,70,185,95"/>
-<area shape="rect" id="Node000002" href="$classVRRayCallback.html#ae3bbaafeecb857357b0de09e4c1eb053" title=" " alt="" coords="235,5,438,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,67,238,46,239,51,150,73"/>
-<area shape="rect" id="Node000003" href="$structControllerRay.html#a498a4afd7cb58f633e1974340880d66a" title=" " alt="" coords="233,70,440,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="186,80,220,80,220,85,186,85"/>
-<area shape="rect" id="Node000004" href="$structControllerRay.html#af4231fd5d11ca6a876f68f20c52aebbc" title=" " alt="" coords="255,119,418,145"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="159,93,261,114,260,119,158,98"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,185,31"/>
+<area shape="rect" id="Node000002" href="$structControllerRay.html#af4231fd5d11ca6a876f68f20c52aebbc" title=" " alt="" coords="233,5,396,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,15,219,15,219,21,185,21"/>
 </map>
