@@ -89,6 +89,13 @@ private:
     vtkSmartPointer<vtkOpenVRRenderer> m_renderer;
     vtkSmartPointer<vtkOpenVRRenderWindow> m_renderWindow;
     vtkSmartPointer<vtkOpenVRRenderWindowInteractor> m_interactor;
+    bool m_hasGarageAnchor = false;
+    double m_garageCenterX = 0.0;
+    double m_garageFloorY = 0.0;
+    double m_garageCenterZ = 0.0;
+    double m_spawnX = 0.0;
+    double m_spawnY = 0.0;
+    double m_spawnZ = 0.0;
 
     void processCommands();
     void applyCommand(const CommandPacket& cmd);
