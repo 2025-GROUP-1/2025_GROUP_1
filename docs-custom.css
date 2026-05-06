@@ -230,6 +230,20 @@ body {
   text-decoration: none;
 }
 
+#projectlogo {
+  width: 44px;
+  padding-right: 10px;
+}
+
+#projectlogo img {
+  display: block;
+  width: 36px !important;
+  height: 36px !important;
+  max-width: 36px !important;
+  max-height: 36px !important;
+  object-fit: contain;
+}
+
 #doc-content > div > .header {
   display: none;
 }
@@ -631,6 +645,11 @@ table.markdownTable {
     width: 32px;
     height: 32px;
     flex-basis: 32px;
+  }
+
+  #vr-brand-bar .brand-logo img {
+    width: 32px;
+    height: 32px;
   }
 
   #vr-brand-bar .brand-title {
