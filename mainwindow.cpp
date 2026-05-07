@@ -18,6 +18,8 @@
 #include <QDropEvent>
 #include <QMimeData>
 #include <QCheckBox>
+#include <QEvent>
+#include <QMouseEvent>
 
 #include <vtkSTLReader.h>
 
@@ -405,6 +407,7 @@ MainWindow::MainWindow(QWidget* parent)
     ui->buttonToggleVisible->setEnabled(false);
     ui->buttonToggleShrink->setEnabled(false);
     ui->buttonToggleClip->setEnabled(false);
+    refreshPropertyToggleText();
 
     applyTheme(Theme::Dark);
 
@@ -438,6 +441,12 @@ MainWindow::MainWindow(QWidget* parent)
     themeLayout->addWidget(themeToggle);
     themeLayout->addWidget(themeLabel);
     ui->toolBar->addWidget(themeContainer);
+
+    m_themeToggleContainer = themeContainer;
+    m_themeToggleLabel = themeLabel;
+    m_themeToggle = themeToggle;
+    themeContainer->installEventFilter(this);
+    themeLabel->installEventFilter(this);
 
     connect(themeToggle, &QCheckBox::toggled, this, [this, themeLabel](bool checked) {
         applyTheme(checked ? Theme::Light : Theme::Dark);
@@ -479,6 +488,16 @@ QList<ModelPart*> MainWindow::selectedParts()
         if (part) parts.append(part);
     }
     return parts;
+}
+
+void MainWindow::refreshPropertyToggleText()
+{
+    ui->buttonToggleVisible->setText(
+        ui->buttonToggleVisible->isChecked() ? tr("Visible: On") : tr("Visible: Off"));
+    ui->buttonToggleShrink->setText(
+        ui->buttonToggleShrink->isChecked() ? tr("Shrink: On") : tr("Shrink: Off"));
+    ui->buttonToggleClip->setText(
+        ui->buttonToggleClip->isChecked() ? tr("Clip: On") : tr("Clip: Off"));
 }
 
 // ===========================================================================
@@ -528,7 +547,10 @@ void MainWindow::onCurrentSelectionChanged(const QModelIndex& current, const QMo
     ui->buttonToggleShrink->setEnabled(hasSelection);
     ui->buttonToggleClip->setEnabled(hasSelection);
 
-    if (!hasSelection) return;
+    if (!hasSelection) {
+        refreshPropertyToggleText();
+        return;
+    }
 
     ModelPart* part = static_cast<ModelPart*>(current.internalPointer());
     if (!part) return;
@@ -545,6 +567,7 @@ void MainWindow::onCurrentSelectionChanged(const QModelIndex& current, const QMo
     ui->buttonToggleShrink->blockSignals(false);
     ui->buttonToggleClip->blockSignals(false);
     ui->buttonToggleVisible->blockSignals(false);
+    refreshPropertyToggleText();
 }
 
 // ===========================================================================
@@ -580,6 +603,7 @@ void MainWindow::on_actionImport_Mesh_triggered()
 
     renderer->AddActor(newPart->getActor());
     ui->treeView->expand(parent);
+    ui->treeView->setCurrentIndex(newIndex);
     refreshExplodeDirections();
     applyExplodeToAll();
     renderer->ResetCamera();
@@ -648,6 +672,7 @@ void MainWindow::on_actionImport_Folder_triggered()
     QModelIndex parent = ui->treeView->currentIndex();
     ui->treeView->setUpdatesEnabled(false);
     int loaded = 0;
+    QModelIndex firstLoadedIndex;
 
     for (const LoadTask& t : tasks) {
         QModelIndex newIndex = partList->appendChild(parent, { t.fileName, QString("true") });
@@ -656,6 +681,8 @@ void MainWindow::on_actionImport_Folder_triggered()
 
         if (newPart->attachReader(t.reader)) {
             renderer->AddActor(newPart->getActor());
+            if (!firstLoadedIndex.isValid())
+                firstLoadedIndex = newIndex;
             loaded++;
         }
         else {
@@ -665,6 +692,8 @@ void MainWindow::on_actionImport_Folder_triggered()
 
     ui->treeView->setUpdatesEnabled(true);
     ui->treeView->expand(parent);
+    if (firstLoadedIndex.isValid())
+        ui->treeView->setCurrentIndex(firstLoadedIndex);
     refreshExplodeDirections();
     applyExplodeToAll();
     renderer->ResetCamera();
@@ -819,6 +848,8 @@ void MainWindow::on_buttonToggleVisible_clicked(bool checked)
         if (m_vrThread && m_vrThread->isRunning())
             m_vrThread->issueCommand(Command::SetVisible, part->getID(), checked);
     }
+    ui->buttonToggleVisible->setChecked(checked);
+    refreshPropertyToggleText();
     updateRender();
 }
 
@@ -830,6 +861,8 @@ void MainWindow::on_buttonToggleShrink_clicked(bool checked)
         if (m_vrThread && m_vrThread->isRunning())
             m_vrThread->issueCommand(Command::ToggleShrink, part->getID(), checked);
     }
+    ui->buttonToggleShrink->setChecked(checked);
+    refreshPropertyToggleText();
     updateRender();
     emit statusUpdateMessage(
         parts.size() == 1
@@ -845,6 +878,8 @@ void MainWindow::on_buttonToggleClip_clicked(bool checked)
         if (m_vrThread && m_vrThread->isRunning())
             m_vrThread->issueCommand(Command::ToggleClip, part->getID(), checked);
     }
+    ui->buttonToggleClip->setChecked(checked);
+    refreshPropertyToggleText();
     updateRender();
     emit statusUpdateMessage(
         parts.size() == 1
@@ -1112,6 +1147,7 @@ void MainWindow::dropEvent(QDropEvent* event)
 {
     QList<QUrl> urls = event->mimeData()->urls();
     int imported = 0;
+    QModelIndex firstImportedIndex;
 
     for (const QUrl& url : urls) {
         QString filePath = url.toLocalFile();
@@ -1132,6 +1168,8 @@ void MainWindow::dropEvent(QDropEvent* event)
 
         renderer->AddActor(newPart->getActor());
         ui->treeView->expand(parent);
+        if (!firstImportedIndex.isValid())
+            firstImportedIndex = newIndex;
 
         // push to VR if running
         if (m_vrThread && m_vrThread->isRunning()) {
@@ -1144,6 +1182,8 @@ void MainWindow::dropEvent(QDropEvent* event)
     }
 
     if (imported > 0) {
+        if (firstImportedIndex.isValid())
+            ui->treeView->setCurrentIndex(firstImportedIndex);
         refreshExplodeDirections();
         applyExplodeToAll();
         renderer->ResetCamera();
@@ -1152,4 +1192,18 @@ void MainWindow::dropEvent(QDropEvent* event)
     }
 
     event->acceptProposedAction();
+}
+
+bool MainWindow::eventFilter(QObject* watched, QEvent* event)
+{
+    if ((watched == m_themeToggleContainer || watched == m_themeToggleLabel) &&
+        event->type() == QEvent::MouseButtonRelease) {
+        auto* mouseEvent = static_cast<QMouseEvent*>(event);
+        if (mouseEvent->button() == Qt::LeftButton) {
+            if (auto* toggle = qobject_cast<QCheckBox*>(m_themeToggle))
+                toggle->setChecked(!toggle->isChecked());
+            return true;
+        }
+    }
+    return QMainWindow::eventFilter(watched, event);
 }

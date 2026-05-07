@@ -39,6 +39,7 @@
 #include <vtkGLTFImporter.h>
 #include <vtkActorCollection.h>
 #include <algorithm>
+#include <cmath>
 #include <QFileInfo>
 #include <QFile>
 #include <QStringList>
@@ -68,40 +69,79 @@ public:
     // no-op so VTK never draws its red rays
     void UpdateRay(vtkEventDataDevice) override {}
 
-    // overrides dolly to negate Y direction (trackpad-up = away, down = towards)
+    // Bypass VTK's start-click state so axis movement reaches Dolly3D directly.
+    void OnViewerMovement3D(vtkEventData* edata) override
+    {
+        this->Dolly3D(edata);
+    }
+
+    // HMD-facing movement for any VTK movement events that still reach Dolly3D.
     void Dolly3D(vtkEventData* ed) override
     {
         if (!this->CurrentRenderer)
             return;
         auto* rwi = static_cast<vtkRenderWindowInteractor3D*>(this->Interactor);
         auto* edd = static_cast<vtkEventDataDevice3D*>(ed);
-        const double* wori = edd->GetWorldOrientation();
+        vtkCamera* cam = this->CurrentRenderer->GetActiveCamera();
+        if (!cam)
+            return;
 
-        // convert controller orientation to a forward vector
-        vtkQuaternion<double> q1;
-        q1.SetRotationAngleAndAxis(vtkMath::RadiansFromDegrees(wori[0]), wori[1], wori[2], wori[3]);
-        double elem[3][3];
-        q1.ToMatrix3x3(elem);
-        double vdir[3] = { 0.0, 0.0, -1.0 };
-        vtkMatrix3x3::MultiplyPoint(elem[0], vdir, vdir);
-
-        double* trans = rwi->GetPhysicalTranslation(this->CurrentRenderer->GetActiveCamera());
+        double* trans = rwi->GetPhysicalTranslation(cam);
+        if (!trans)
+            return;
         if (edd->GetType() == vtkCommand::ViewerMovement3DEvent)
             edd->GetTrackPadPosition(this->LastTrackPadPosition);
 
-        // negate so up = push away, down = pull closer
         double speedScale = -this->LastTrackPadPosition[1];
+        double turnAxis = this->LastTrackPadPosition[0];
+        const double turnDeadzone = 0.25;
+        const double moveDeadzone = 0.20;
+        if (std::abs(turnAxis) < turnDeadzone)
+            turnAxis = 0.0;
+        if (std::abs(speedScale) < moveDeadzone)
+            speedScale = 0.0;
+        if (turnAxis == 0.0 && speedScale == 0.0)
+            return;
+
         double physicalScale = rwi->GetPhysicalScale();
 
         this->LastDolly3DEventTime->StopTimer();
-        double dist = speedScale * this->DollyPhysicalSpeed * physicalScale
-            * this->LastDolly3DEventTime->GetElapsedTime();
+        double dt = this->LastDolly3DEventTime->GetElapsedTime();
         this->LastDolly3DEventTime->StartTimer();
 
-        rwi->SetPhysicalTranslation(this->CurrentRenderer->GetActiveCamera(),
-            trans[0] - vdir[0] * dist,
-            trans[1] - vdir[1] * dist,
-            trans[2] - vdir[2] * dist);
+        double* vd = rwi->GetPhysicalViewDirection();
+        if (vd && turnAxis != 0.0) {
+            const double yaw = turnAxis * 75.0 * dt;
+            const double rad = vtkMath::RadiansFromDegrees(yaw);
+            const double c = std::cos(rad);
+            const double s = std::sin(rad);
+            double nx = c * vd[0] - s * vd[2];
+            double nz = s * vd[0] + c * vd[2];
+            const double len = std::sqrt(nx * nx + vd[1] * vd[1] + nz * nz);
+            if (len > 1e-9)
+                rwi->SetPhysicalViewDirection(nx / len, vd[1] / len, nz / len);
+        }
+
+        double fwd[3];
+        cam->GetDirectionOfProjection(fwd);
+        fwd[1] = 0.0;
+        if (vtkMath::Norm(fwd) <= 1e-9 && vd) {
+            fwd[0] = vd[0];
+            fwd[1] = 0.0;
+            fwd[2] = vd[2];
+        }
+        if (vtkMath::Norm(fwd) <= 1e-9) {
+            fwd[0] = 0.0;
+            fwd[1] = 0.0;
+            fwd[2] = -1.0;
+        }
+        vtkMath::Normalize(fwd);
+
+        double dist = speedScale * this->DollyPhysicalSpeed * physicalScale * dt;
+        rwi->SetPhysicalTranslation(cam,
+            trans[0] + fwd[0] * dist,
+            trans[1],
+            trans[2] + fwd[2] * dist);
 
         if (this->AutoAdjustCameraClippingRange)
             this->CurrentRenderer->ResetCameraClippingRange();
@@ -730,6 +770,117 @@ struct TriggerGrabber {
 };
 
 // ---------------------------------------------------------------------------
+// click-free locomotion
+// Polls controller axes directly; this avoids VTK's StartMovement action
+// getting stuck until some other button/trigger event wakes it up.
+// ---------------------------------------------------------------------------
+struct PolledLocomotion {
+    vtkNew<vtkTimerLog> timer;
+    bool timerStarted = false;
+
+    static bool movementAxis(vr::IVRSystem* hmd, vr::ETrackedControllerRole role, double axis[2])
+    {
+        axis[0] = 0.0;
+        axis[1] = 0.0;
+        if (!hmd) return false;
+
+        vr::TrackedDeviceIndex_t idx = hmd->GetTrackedDeviceIndexForControllerRole(role);
+        if (idx == vr::k_unTrackedDeviceIndexInvalid) return false;
+
+        vr::VRControllerState_t state{};
+        if (!hmd->GetControllerState(idx, &state, sizeof(state))) return false;
+
+        axis[0] = state.rAxis[0].x;
+        axis[1] = state.rAxis[0].y;
+        return true;
+    }
+
+    void update(vtkOpenVRRenderWindow* renWin, vtkOpenVRRenderWindowInteractor* interactor,
+        vtkRenderer* renderer)
+    {
+        if (!renWin || !interactor || !renderer) return;
+        vtkCamera* cam = renderer->GetActiveCamera();
+        if (!cam) return;
+
+        if (!timerStarted) {
+            timer->StartTimer();
+            timerStarted = true;
+            return;
+        }
+
+        timer->StopTimer();
+        const double dt = std::min(timer->GetElapsedTime(), 0.1);
+        timer->StartTimer();
+
+        vr::IVRSystem* hmd = renWin->GetHMD();
+        if (!hmd) return;
+
+        double left[2], right[2];
+        const bool hasLeft = movementAxis(hmd, vr::TrackedControllerRole_LeftHand, left);
+        const bool hasRight = movementAxis(hmd, vr::TrackedControllerRole_RightHand, right);
+
+        double axis[2] = { 0.0, 0.0 };
+        if (hasLeft) {
+            axis[0] += left[0];
+            axis[1] += left[1];
+        }
+        if (hasRight) {
+            axis[0] += right[0];
+            axis[1] += right[1];
+        }
+
+        axis[0] = std::clamp(axis[0], -1.0, 1.0);
+        axis[1] = std::clamp(axis[1], -1.0, 1.0);
+
+        const double deadzone = 0.18;
+        if (std::abs(axis[0]) < deadzone) axis[0] = 0.0;
+        if (std::abs(axis[1]) < deadzone) axis[1] = 0.0;
+        if (axis[0] == 0.0 && axis[1] == 0.0) return;
+
+        double* viewDir = interactor->GetPhysicalViewDirection();
+        if (viewDir && axis[0] != 0.0) {
+            const double yaw = axis[0] * 75.0 * dt;
+            const double rad = vtkMath::RadiansFromDegrees(yaw);
+            const double c = std::cos(rad);
+            const double s = std::sin(rad);
+            double nx = c * viewDir[0] - s * viewDir[2];
+            double nz = s * viewDir[0] + c * viewDir[2];
+            const double len = std::sqrt(nx * nx + viewDir[1] * viewDir[1] + nz * nz);
+            if (len > 1e-9) {
+                interactor->SetPhysicalViewDirection(nx / len, viewDir[1] / len, nz / len);
+            }
+        }
+
+        if (axis[1] != 0.0) {
+            double fwd[3];
+            cam->GetDirectionOfProjection(fwd);
+            fwd[1] = 0.0;
+            if (vtkMath::Norm(fwd) <= 1e-9 && viewDir) {
+                fwd[0] = viewDir[0];
+                fwd[1] = 0.0;
+                fwd[2] = viewDir[2];
+            }
+            if (vtkMath::Norm(fwd) <= 1e-9) {
+                fwd[0] = 0.0;
+                fwd[1] = 0.0;
+                fwd[2] = -1.0;
+            }
+            vtkMath::Normalize(fwd);
+
+            double* trans = interactor->GetPhysicalTranslation(cam);
+            if (!trans) return;
+
+            const double dist = -axis[1] * 2.0 * interactor->GetPhysicalScale() * dt;
+            interactor->SetPhysicalTranslation(cam,
+                trans[0] + fwd[0] * dist,
+                trans[1],
+                trans[2] + fwd[2] * dist);
+            renderer->ResetCameraClippingRange();
+        }
+    }
+};
+
+// ---------------------------------------------------------------------------
 // VRRenderThread
 // ---------------------------------------------------------------------------
 
@@ -799,9 +950,6 @@ void VRRenderThread::run() {
     }
     m_pendingActors.clear();
 
-    m_renderer->ResetCamera();
-    m_renderer->ResetCameraClippingRange();
-
     // set up dual-controller ray casting + outline highlight
     vtkNew<VRRayCallback> rayCallback;
     rayCallback->init(m_renderer);
@@ -841,6 +989,7 @@ void VRRenderThread::run() {
     bool garageLoaded = false;
     bool garageHasBounds = false;
     double garageBounds[6] = { 0, 0, 0, 0, 0, 0 };
+    double worldUnitsPerMeter = 1.0;
     if (!glbPath.isEmpty()) {
         vtkNew<vtkGLTFImporter> gltfImporter;
         gltfImporter->SetFileName(glbPath.toStdString().c_str());
@@ -901,6 +1050,12 @@ void VRRenderThread::run() {
                 }
             }
             garageHasBounds = true;
+            const double garageHeight = garageBounds[3] - garageBounds[2];
+            // Estimate world-units-per-meter from the garage shell height.
+            // Typical interior garage height is around 2.6m.
+            if (garageHeight > 1e-6) {
+                worldUnitsPerMeter = std::clamp(garageHeight / 2.6, 0.5, 2500.0);
+            }
         }
 
         garageLoaded = true;
@@ -946,11 +1101,14 @@ void VRRenderThread::run() {
         // VR input system may not be available
     }
 
+    // Calibrate user scale so real-world height feels correct relative to scene geometry.
+    m_interactor->SetPhysicalScale(worldUnitsPerMeter);
+
     if (m_renderer->GetActiveCamera())
         m_renderer->ResetCameraClippingRange();
 
-    // Align STL actors into the garage volume when both exist.
-    if (garageLoaded && garageHasBounds && !m_activeActors.empty()) {
+    // Set user spawn position from garage bounds (works with or without STL)
+    if (garageLoaded && garageHasBounds) {
         const double garageCx = (garageBounds[0] + garageBounds[1]) * 0.5;
         const double garageRawFloorY = garageBounds[2];
         const double garageCz = (garageBounds[4] + garageBounds[5]) * 0.5;
@@ -962,15 +1120,33 @@ void VRRenderThread::run() {
         m_garageCenterX = garageCx;
         m_garageFloorY = garageFloorY;
         m_garageCenterZ = garageCz;
-        // Put user spawn at garage floor center, slightly lifted for comfort.
         m_spawnX = garageCx;
-        m_spawnY = garageFloorY + 0.20;
+        // Keep origin close to floor to avoid spawning under ceiling.
+        m_spawnY = garageFloorY + 0.05;
         m_spawnZ = garageCz;
-        m_renderWindow->SetPhysicalTranslation(m_spawnX, m_spawnY, m_spawnZ);
+    } else {
+        m_spawnX = 0.0;
+        m_spawnY = 0.0;
+        m_spawnZ = 0.0;
+    }
 
-        // Place STL in front of the current headset pose so it is immediately visible.
+    {
+        auto* rwi3d = static_cast<vtkRenderWindowInteractor3D*>(m_interactor.Get());
+        rwi3d->SetPhysicalTranslation(m_renderer->GetActiveCamera(),
+            m_spawnX, m_spawnY, m_spawnZ);
+    }
+    m_renderer->ResetCameraClippingRange();
+
+    // Place STL actors in front of user if any are loaded
+    if (garageLoaded && garageHasBounds && !m_activeActors.empty()) {
+        const double garageWidth = std::max(garageBounds[1] - garageBounds[0], 1e-6);
+        const double garageDepth = std::max(garageBounds[5] - garageBounds[4], 1e-6);
+        const double garageMinSpan = std::min(garageWidth, garageDepth);
+        const double desiredPartSpanMeters = std::clamp((garageMinSpan / m_interactor->GetPhysicalScale()) * 0.16, 0.30, 1.20);
+        const double desiredPartSpan = desiredPartSpanMeters * m_interactor->GetPhysicalScale();
+
         double targetX = m_spawnX;
-        double targetY = m_spawnY + 1.4;
+        double targetY = m_spawnY + 0.55;
         double targetZ = m_spawnZ;
         if (m_renderWindow && m_renderWindow->GetHMD()) {
             vr::TrackedDevicePose_t poses[vr::k_unMaxTrackedDeviceCount];
@@ -982,10 +1158,8 @@ void VRRenderThread::run() {
                 double fwd[3] = { -m.m[0][2], -m.m[1][2], -m.m[2][2] };
                 vtkMath::Normalize(fwd);
                 targetX = m.m[0][3] + fwd[0] * 1.0;
-                targetY = std::clamp(static_cast<double>(m.m[1][3]), m_spawnY + 0.8, m_spawnY + 1.8);
+                targetY = std::clamp(static_cast<double>(m.m[1][3]), m_spawnY + 0.35, m_spawnY + 1.10);
                 targetZ = m.m[2][3] + fwd[2] * 1.0;
-                qDebug() << "[VR STL init] HMD pos:" << m.m[0][3] << m.m[1][3] << m.m[2][3]
-                         << "fwd:" << fwd[0] << fwd[1] << fwd[2];
             }
         }
         for (auto& [id, partAct] : m_activeActors) {
@@ -994,10 +1168,8 @@ void VRRenderThread::run() {
             const double partCx = (b[0] + b[1]) * 0.5;
             const double partCy = (b[2] + b[3]) * 0.5;
             const double partCz = (b[4] + b[5]) * 0.5;
-            const double stlScale = 0.333;
-            qDebug() << "[VR STL init] part" << id
-                     << "bounds:" << b[0] << b[1] << b[2] << b[3] << b[4] << b[5]
-                     << "scale:" << stlScale;
+            const double partMaxSpan = std::max({ b[1] - b[0], b[3] - b[2], b[5] - b[4], 1e-6 });
+            const double stlScale = std::clamp(desiredPartSpan / partMaxSpan, 0.03, 5.0);
             partAct->SetScale(stlScale, stlScale, stlScale);
             partAct->SetPosition(
                 targetX - partCx * stlScale,
@@ -1005,15 +1177,14 @@ void VRRenderThread::run() {
                 targetZ - partCz * stlScale);
             partAct->SetVisibility(1);
             partAct->PickableOn();
-            double finalB[6];
-            partAct->GetBounds(finalB);
-            qDebug() << "[VR STL init] final bounds:" << finalB[0] << finalB[1]
-                     << finalB[2] << finalB[3] << finalB[4] << finalB[5];
         }
         m_renderer->ResetCameraClippingRange();
     }
 
+    m_renderer->ResetCameraClippingRange();
+
     TriggerGrabber grabber;
+    PolledLocomotion locomotion;
 
     // render loop - process one VR frame, handle commands, repeat
     // NOTE: DoOneEvent already submits frames to both eyes.
@@ -1021,6 +1192,7 @@ void VRRenderThread::run() {
     m_endRender = false;
     while (!m_endRender) {
         m_interactor->DoOneEvent(m_renderWindow, m_renderer);
+        locomotion.update(m_renderWindow, m_interactor, m_renderer);
         processCommands();
         rayCallback->tickFromOpenVR(m_renderWindow);
         grabber.update(m_renderWindow, rayCallback, &m_activeActors);
@@ -1114,10 +1286,21 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
             const double partCx = (actorBounds[0] + actorBounds[1]) * 0.5;
             const double partCy = (actorBounds[2] + actorBounds[3]) * 0.5;
             const double partCz = (actorBounds[4] + actorBounds[5]) * 0.5;
-            const double stlScale = 0.333;
+            const double partMaxSpan = std::max({
+                actorBounds[1] - actorBounds[0],
+                actorBounds[3] - actorBounds[2],
+                actorBounds[5] - actorBounds[4],
+                1e-6
+            });
+            double stlScale = 0.10;
+            if (m_hasGarageAnchor) {
+                // Couple part size to player/world scale.
+                const double desiredPartSpan = 0.75 * m_interactor->GetPhysicalScale();
+                stlScale = std::clamp(desiredPartSpan / partMaxSpan, 0.03, 5.0);
+            }
 
             double targetX = m_spawnX;
-            double targetY = m_spawnY + 1.4;
+            double targetY = m_spawnY + 0.55;
             double targetZ = m_spawnZ;
 
             if (m_renderWindow && m_renderWindow->GetHMD()) {
@@ -1130,7 +1313,7 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
                     double fwd[3] = { -mat.m[0][2], -mat.m[1][2], -mat.m[2][2] };
                     vtkMath::Normalize(fwd);
                     targetX = mat.m[0][3] + fwd[0] * 1.0;
-                    targetY = std::clamp(static_cast<double>(mat.m[1][3]), m_spawnY + 0.8, m_spawnY + 1.8);
+                    targetY = std::clamp(static_cast<double>(mat.m[1][3]), m_spawnY + 0.35, m_spawnY + 1.10);
                     targetZ = mat.m[2][3] + fwd[2] * 1.0;
                 }
             }
@@ -1142,6 +1325,9 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
                      << "scale:" << stlScale
                      << "target:" << targetX << targetY << targetZ;
 
+            cmd.actor->SetUserMatrix(nullptr);
+            cmd.actor->SetUserTransform(nullptr);
+            cmd.actor->SetOrientation(0.0, 0.0, 0.0);
             cmd.actor->SetScale(stlScale, stlScale, stlScale);
             cmd.actor->SetPosition(
                 targetX - partCx * stlScale,

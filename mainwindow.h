@@ -5,6 +5,7 @@
 
 #include <QMainWindow>
 #include <QModelIndex>
+#include <QObject>
 
 #include <vtkSmartPointer.h>
 #include <vtkRenderer.h>
@@ -19,6 +20,7 @@
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+class QEvent;
 
 class MainWindow : public QMainWindow
 {
@@ -79,6 +81,7 @@ signals:
 protected:
     void dragEnterEvent(QDragEnterEvent* event) override;
     void dropEvent(QDropEvent* event) override;
+    bool eventFilter(QObject* watched, QEvent* event) override;
 
 private:
     bool m_passthroughEnabled = false;
@@ -86,6 +89,7 @@ private:
     // helpers
     ModelPart* currentPart();
     QList<ModelPart*> selectedParts();
+    void refreshPropertyToggleText();
 
     // explode view internals
     void refreshExplodeDirections();
@@ -103,6 +107,9 @@ private:
 
     Theme  m_theme;
     double m_explodeAmount;
+    QObject* m_themeToggleContainer = nullptr;
+    QObject* m_themeToggleLabel = nullptr;
+    QObject* m_themeToggle = nullptr;
 };
 
 #endif
