@@ -39,6 +39,7 @@
 #include <vtkGLTFImporter.h>
 #include <vtkActorCollection.h>
 #include <algorithm>
+#include <chrono>
 #include <cmath>
 #include <QFileInfo>
 #include <QFile>
@@ -46,6 +47,21 @@
 #include <openvr.h>
 #include <unordered_set>
 #include <QDebug>
+
+namespace {
+using MovementClock = std::chrono::steady_clock;
+MovementClock::time_point g_lastDollyMovementTime = MovementClock::time_point::min();
+
+void markDollyMovementHandled()
+{
+    g_lastDollyMovementTime = MovementClock::now();
+}
+
+bool dollyHandledMovementRecently()
+{
+    return MovementClock::now() - g_lastDollyMovementTime < std::chrono::milliseconds(80);
+}
+}
 
 // ---------------------------------------------------------------------------
 // custom VR interactor style
@@ -106,7 +122,7 @@ public:
         double physicalScale = rwi->GetPhysicalScale();
 
         this->LastDolly3DEventTime->StopTimer();
-        double dt = this->LastDolly3DEventTime->GetElapsedTime();
+        double dt = std::min(this->LastDolly3DEventTime->GetElapsedTime(), 0.1);
         this->LastDolly3DEventTime->StartTimer();
 
         double* vd = rwi->GetPhysicalViewDirection();
@@ -142,6 +158,7 @@ public:
             trans[0] + fwd[0] * dist,
             trans[1],
             trans[2] + fwd[2] * dist);
+        markDollyMovementHandled();
 
         if (this->AutoAdjustCameraClippingRange)
             this->CurrentRenderer->ResetCameraClippingRange();
@@ -811,6 +828,10 @@ struct PolledLocomotion {
         timer->StopTimer();
         const double dt = std::min(timer->GetElapsedTime(), 0.1);
         timer->StartTimer();
+
+        // If VTK delivered a movement event this frame, Dolly3D already handled it.
+        if (dollyHandledMovementRecently())
+            return;
 
         vr::IVRSystem* hmd = renWin->GetHMD();
         if (!hmd) return;
