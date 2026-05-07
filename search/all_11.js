@@ -11,5 +11,6 @@ var searchData=
   ['per_20part_8',['2. Why Two Actors per Part',['../how_it_works.html#two-actors',1,'']]],
   ['pickactors_9',['pickActors',['../structControllerRay.html#ae6272860126e315023c7a179eebf148a',1,'ControllerRay']]],
   ['picker_10',['picker',['../structControllerRay.html#a61300d128d6b7f20361ca8aeb8b458f1',1,'ControllerRay']]],
-  ['processcommands_11',['processCommands',['../classVRRenderThread.html#a1133c0b2f773137412e417450c00c7e8',1,'VRRenderThread']]]
+  ['polledlocomotion_11',['PolledLocomotion',['../structPolledLocomotion.html',1,'']]],
+  ['processcommands_12',['processCommands',['../classVRRenderThread.html#a1133c0b2f773137412e417450c00c7e8',1,'VRRenderThread']]]
 ];

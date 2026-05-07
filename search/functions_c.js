@@ -22,5 +22,6 @@ var searchData=
   ['on_5fsliderexplode_5fvaluechanged_19',['on_sliderExplode_valueChanged',['../classMainWindow.html#a2d56d0e63146cbcc6337b4379e83651a',1,'MainWindow']]],
   ['oncurrentselectionchanged_20',['onCurrentSelectionChanged',['../classMainWindow.html#a591d52182acedb4f591a2409e28f4142',1,'MainWindow']]],
   ['onmenu3d_21',['OnMenu3D',['../classVRCustomStyle.html#a2ccd3d641487870d2fc0a97e1fb36789',1,'VRCustomStyle']]],
-  ['optiondialog_22',['OptionDialog',['../classOptionDialog.html#a4540736a5c6e4468dad5165c7aefc8bc',1,'OptionDialog']]]
+  ['onviewermovement3d_22',['OnViewerMovement3D',['../classVRCustomStyle.html#a6420219b9110b983f1fcd170adaaa0c9',1,'VRCustomStyle']]],
+  ['optiondialog_23',['OptionDialog',['../classOptionDialog.html#a4540736a5c6e4468dad5165c7aefc8bc',1,'OptionDialog']]]
 ];

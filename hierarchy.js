@@ -4,6 +4,7 @@ var hierarchy =
     [ "CommandPacket", "structCommandPacket.html", null ],
     [ "ControllerRay", "structControllerRay.html", null ],
     [ "ModelPart", "classModelPart.html", null ],
+    [ "PolledLocomotion", "structPolledLocomotion.html", null ],
     [ "QAbstractItemModel", null, [
       [ "ModelPartList", "classModelPartList.html", null ]
     ] ],

@@ -6,6 +6,7 @@ var annotated_dup =
     [ "ModelPart", "classModelPart.html", "classModelPart" ],
     [ "ModelPartList", "classModelPartList.html", "classModelPartList" ],
     [ "OptionDialog", "classOptionDialog.html", "classOptionDialog" ],
+    [ "PolledLocomotion", "structPolledLocomotion.html", "structPolledLocomotion" ],
     [ "TriggerGrabber", "structTriggerGrabber.html", "structTriggerGrabber" ],
     [ "VRCustomStyle", "classVRCustomStyle.html", "classVRCustomStyle" ],
     [ "VRMenu", "structVRMenu.html", "structVRMenu" ],

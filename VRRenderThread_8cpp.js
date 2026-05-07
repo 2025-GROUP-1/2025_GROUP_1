@@ -2,6 +2,7 @@ var VRRenderThread_8cpp =
 [
     [ "VRMenu::Button", "structVRMenu_1_1Button.html", "structVRMenu_1_1Button" ],
     [ "ControllerRay", "structControllerRay.html", "structControllerRay" ],
+    [ "PolledLocomotion", "structPolledLocomotion.html", "structPolledLocomotion" ],
     [ "TriggerGrabber", "structTriggerGrabber.html", "structTriggerGrabber" ],
     [ "VRCustomStyle", "classVRCustomStyle.html", "classVRCustomStyle" ],
     [ "VRMenu", "structVRMenu.html", "structVRMenu" ],
