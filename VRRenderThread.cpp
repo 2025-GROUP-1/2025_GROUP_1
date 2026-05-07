@@ -1124,6 +1124,8 @@ void VRRenderThread::run() {
 
     // Calibrate user scale so real-world height feels correct relative to scene geometry.
     m_interactor->SetPhysicalScale(worldUnitsPerMeter);
+    constexpr double viewerHeightBoostMeters = 0.25;
+    const double viewerHeightBoost = viewerHeightBoostMeters * m_interactor->GetPhysicalScale();
 
     if (m_renderer->GetActiveCamera())
         m_renderer->ResetCameraClippingRange();
@@ -1142,12 +1144,12 @@ void VRRenderThread::run() {
         m_garageFloorY = garageFloorY;
         m_garageCenterZ = garageCz;
         m_spawnX = garageCx;
-        // Keep origin close to floor to avoid spawning under ceiling.
-        m_spawnY = garageFloorY + 0.05;
+        // In this OpenVR transform, lowering physical origin raises the perceived viewpoint.
+        m_spawnY = garageFloorY + 0.05 - viewerHeightBoost;
         m_spawnZ = garageCz;
     } else {
         m_spawnX = 0.0;
-        m_spawnY = 0.0;
+        m_spawnY = -viewerHeightBoost;
         m_spawnZ = 0.0;
     }
 
