@@ -41,16 +41,19 @@
 #include <algorithm>
 #include <chrono>
 #include <cmath>
+#include <cstdarg>
 #include <QFileInfo>
 #include <QFile>
 #include <QStringList>
 #include <openvr.h>
 #include <unordered_set>
 #include <QDebug>
+#include <cstdio>
 
 namespace {
 using MovementClock = std::chrono::steady_clock;
 MovementClock::time_point g_lastDollyMovementTime = MovementClock::time_point::min();
+double g_locomotionScaleCompensation = 1.0;
 
 void markDollyMovementHandled()
 {
@@ -60,6 +63,23 @@ void markDollyMovementHandled()
 bool dollyHandledMovementRecently()
 {
     return MovementClock::now() - g_lastDollyMovementTime < std::chrono::milliseconds(80);
+}
+
+const char* vrDebugPath()
+{
+    return "C:/work/2025_GROUP_1/vr_debug.txt";
+}
+
+void writeVrDebug(const char* mode, const char* fmt, ...)
+{
+    FILE* f = std::fopen(vrDebugPath(), mode);
+    if (!f)
+        return;
+    va_list args;
+    va_start(args, fmt);
+    std::vfprintf(f, fmt, args);
+    va_end(args);
+    std::fclose(f);
 }
 }
 
@@ -153,7 +173,8 @@ public:
         }
         vtkMath::Normalize(fwd);
 
-        double dist = speedScale * this->DollyPhysicalSpeed * physicalScale * dt;
+        double dist = speedScale * this->DollyPhysicalSpeed * physicalScale
+            * g_locomotionScaleCompensation * dt;
         rwi->SetPhysicalTranslation(cam,
             trans[0] + fwd[0] * dist,
             trans[1],
@@ -891,7 +912,8 @@ struct PolledLocomotion {
             double* trans = interactor->GetPhysicalTranslation(cam);
             if (!trans) return;
 
-            const double dist = -axis[1] * 2.0 * interactor->GetPhysicalScale() * dt;
+            const double dist = -axis[1] * 2.0 * interactor->GetPhysicalScale()
+                * g_locomotionScaleCompensation * dt;
             interactor->SetPhysicalTranslation(cam,
                 trans[0] + fwd[0] * dist,
                 trans[1],
@@ -1122,10 +1144,23 @@ void VRRenderThread::run() {
         // VR input system may not be available
     }
 
-    // Calibrate user scale so real-world height feels correct relative to scene geometry.
-    m_interactor->SetPhysicalScale(worldUnitsPerMeter);
-    constexpr double viewerHeightBoostMeters = 0.25;
-    const double viewerHeightBoost = viewerHeightBoostMeters * m_interactor->GetPhysicalScale();
+    // Calibrate user/world scale. Higher values make the garage feel smaller.
+    constexpr double visualScaleBoost = 1.35;
+    m_interactor->SetPhysicalScale(worldUnitsPerMeter * visualScaleBoost);
+    g_locomotionScaleCompensation = worldUnitsPerMeter / m_interactor->GetPhysicalScale();
+    constexpr double viewerHeightOffset = -9.80;
+
+    writeVrDebug("w",
+        "[VR init]\n"
+        "garageLoaded=%d garageHasBounds=%d actors=%d glb=%s\n"
+        "garageBounds=[%f %f] [%f %f] [%f %f]\n"
+        "worldUnitsPerMeter=%f physicalScale=%f visualScaleBoost=%f locomotionComp=%f viewerHeightOffset=%f\n",
+        (int)garageLoaded, (int)garageHasBounds, (int)m_activeActors.size(),
+        glbPath.toStdString().c_str(),
+        garageBounds[0], garageBounds[1], garageBounds[2], garageBounds[3],
+        garageBounds[4], garageBounds[5],
+        worldUnitsPerMeter, m_interactor->GetPhysicalScale(), visualScaleBoost,
+        g_locomotionScaleCompensation, viewerHeightOffset);
 
     if (m_renderer->GetActiveCamera())
         m_renderer->ResetCameraClippingRange();
@@ -1144,19 +1179,34 @@ void VRRenderThread::run() {
         m_garageFloorY = garageFloorY;
         m_garageCenterZ = garageCz;
         m_spawnX = garageCx;
-        // In this OpenVR transform, lowering physical origin raises the perceived viewpoint.
-        m_spawnY = garageFloorY + 0.05 - viewerHeightBoost;
+        // Small world-space offset around the garage floor anchor; keep this decoupled from scale.
+        m_spawnY = garageFloorY + viewerHeightOffset;
         m_spawnZ = garageCz;
     } else {
         m_spawnX = 0.0;
-        m_spawnY = -viewerHeightBoost;
+        m_spawnY = viewerHeightOffset;
         m_spawnZ = 0.0;
     }
 
     {
         auto* rwi3d = static_cast<vtkRenderWindowInteractor3D*>(m_interactor.Get());
+        double* beforeTrans = rwi3d->GetPhysicalTranslation(m_renderer->GetActiveCamera());
+        writeVrDebug("a",
+            "[VR spawn before]\n"
+            "garageAnchor=%d garageFloorY=%f spawn=(%f,%f,%f) beforeTrans=(%f,%f,%f)\n",
+            (int)m_hasGarageAnchor, m_garageFloorY, m_spawnX, m_spawnY, m_spawnZ,
+            beforeTrans ? beforeTrans[0] : 0.0,
+            beforeTrans ? beforeTrans[1] : 0.0,
+            beforeTrans ? beforeTrans[2] : 0.0);
         rwi3d->SetPhysicalTranslation(m_renderer->GetActiveCamera(),
             m_spawnX, m_spawnY, m_spawnZ);
+        double* afterTrans = rwi3d->GetPhysicalTranslation(m_renderer->GetActiveCamera());
+        writeVrDebug("a",
+            "[VR spawn after]\n"
+            "afterTrans=(%f,%f,%f)\n",
+            afterTrans ? afterTrans[0] : 0.0,
+            afterTrans ? afterTrans[1] : 0.0,
+            afterTrans ? afterTrans[2] : 0.0);
     }
     m_renderer->ResetCameraClippingRange();
 
@@ -1168,8 +1218,9 @@ void VRRenderThread::run() {
         const double desiredPartSpanMeters = std::clamp((garageMinSpan / m_interactor->GetPhysicalScale()) * 0.16, 0.30, 1.20);
         const double desiredPartSpan = desiredPartSpanMeters * m_interactor->GetPhysicalScale();
 
+        const double partBaseY = m_hasGarageAnchor ? m_garageFloorY : 0.0;
         double targetX = m_spawnX;
-        double targetY = m_spawnY + 0.55;
+        double targetY = partBaseY + 0.55;
         double targetZ = m_spawnZ;
         if (m_renderWindow && m_renderWindow->GetHMD()) {
             vr::TrackedDevicePose_t poses[vr::k_unMaxTrackedDeviceCount];
@@ -1181,7 +1232,7 @@ void VRRenderThread::run() {
                 double fwd[3] = { -m.m[0][2], -m.m[1][2], -m.m[2][2] };
                 vtkMath::Normalize(fwd);
                 targetX = m.m[0][3] + fwd[0] * 1.0;
-                targetY = std::clamp(static_cast<double>(m.m[1][3]), m_spawnY + 0.35, m_spawnY + 1.10);
+                targetY = std::clamp(static_cast<double>(m.m[1][3]), partBaseY + 0.35, partBaseY + 1.10);
                 targetZ = m.m[2][3] + fwd[2] * 1.0;
             }
         }
@@ -1193,6 +1244,11 @@ void VRRenderThread::run() {
             const double partCz = (b[4] + b[5]) * 0.5;
             const double partMaxSpan = std::max({ b[1] - b[0], b[3] - b[2], b[5] - b[4], 1e-6 });
             const double stlScale = std::clamp(desiredPartSpan / partMaxSpan, 0.03, 5.0);
+            writeVrDebug("a",
+                "[VR initial STL]\n"
+                "id=%d target=(%f,%f,%f) partBaseY=%f scale=%f bounds=[%f %f] [%f %f] [%f %f]\n",
+                id, targetX, targetY, targetZ, partBaseY, stlScale,
+                b[0], b[1], b[2], b[3], b[4], b[5]);
             partAct->SetScale(stlScale, stlScale, stlScale);
             partAct->SetPosition(
                 targetX - partCx * stlScale,
@@ -1213,8 +1269,49 @@ void VRRenderThread::run() {
     // NOTE: DoOneEvent already submits frames to both eyes.
     // An extra Render() causes double-submit which results in single-eye flickering.
     m_endRender = false;
+    int debugFrameCount = 0;
     while (!m_endRender) {
         m_interactor->DoOneEvent(m_renderWindow, m_renderer);
+        if (debugFrameCount < 12) {
+            auto* rwi3d = static_cast<vtkRenderWindowInteractor3D*>(m_interactor.Get());
+            double* trans = rwi3d->GetPhysicalTranslation(m_renderer->GetActiveCamera());
+            vtkCamera* cam = m_renderer->GetActiveCamera();
+            double camPos[3] = { 0.0, 0.0, 0.0 };
+            double camFocal[3] = { 0.0, 0.0, 0.0 };
+            double camUp[3] = { 0.0, 0.0, 0.0 };
+            double clipping[2] = { 0.0, 0.0 };
+            if (cam) {
+                cam->GetPosition(camPos);
+                cam->GetFocalPoint(camFocal);
+                cam->GetViewUp(camUp);
+                cam->GetClippingRange(clipping);
+            }
+            double hmdY = 0.0;
+            int hmdValid = 0;
+            if (m_renderWindow && m_renderWindow->GetHMD()) {
+                vr::TrackedDevicePose_t poses[vr::k_unMaxTrackedDeviceCount];
+                vr::VRSystem()->GetDeviceToAbsoluteTrackingPose(
+                    vr::TrackingUniverseStanding, 0.0f, poses, vr::k_unMaxTrackedDeviceCount);
+                const auto hmdIdx = vr::k_unTrackedDeviceIndex_Hmd;
+                hmdValid = poses[hmdIdx].bPoseIsValid ? 1 : 0;
+                if (hmdValid)
+                    hmdY = poses[hmdIdx].mDeviceToAbsoluteTracking.m[1][3];
+            }
+            writeVrDebug("a",
+                "[VR frame %d]\n"
+                "physicalScale=%f trans=(%f,%f,%f) hmdValid=%d hmdY=%f\n"
+                "cameraPos=(%f,%f,%f) focal=(%f,%f,%f) viewUp=(%f,%f,%f) clip=(%f,%f)\n",
+                debugFrameCount, m_interactor->GetPhysicalScale(),
+                trans ? trans[0] : 0.0,
+                trans ? trans[1] : 0.0,
+                trans ? trans[2] : 0.0,
+                hmdValid, hmdY,
+                camPos[0], camPos[1], camPos[2],
+                camFocal[0], camFocal[1], camFocal[2],
+                camUp[0], camUp[1], camUp[2],
+                clipping[0], clipping[1]);
+            ++debugFrameCount;
+        }
         locomotion.update(m_renderWindow, m_interactor, m_renderer);
         processCommands();
         rayCallback->tickFromOpenVR(m_renderWindow);
@@ -1322,8 +1419,9 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
                 stlScale = std::clamp(desiredPartSpan / partMaxSpan, 0.03, 5.0);
             }
 
+            const double partBaseY = m_hasGarageAnchor ? m_garageFloorY : 0.0;
             double targetX = m_spawnX;
-            double targetY = m_spawnY + 0.55;
+            double targetY = partBaseY + 0.55;
             double targetZ = m_spawnZ;
 
             if (m_renderWindow && m_renderWindow->GetHMD()) {
@@ -1336,7 +1434,7 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
                     double fwd[3] = { -mat.m[0][2], -mat.m[1][2], -mat.m[2][2] };
                     vtkMath::Normalize(fwd);
                     targetX = mat.m[0][3] + fwd[0] * 1.0;
-                    targetY = std::clamp(static_cast<double>(mat.m[1][3]), m_spawnY + 0.35, m_spawnY + 1.10);
+                    targetY = std::clamp(static_cast<double>(mat.m[1][3]), partBaseY + 0.35, partBaseY + 1.10);
                     targetZ = mat.m[2][3] + fwd[2] * 1.0;
                 }
             }
@@ -1347,6 +1445,12 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
                      << actorBounds[4] << actorBounds[5]
                      << "scale:" << stlScale
                      << "target:" << targetX << targetY << targetZ;
+            writeVrDebug("a",
+                "[VR AddActor]\n"
+                "id=%d target=(%f,%f,%f) partBaseY=%f scale=%f bounds=[%f %f] [%f %f] [%f %f]\n",
+                cmd.partID, targetX, targetY, targetZ, partBaseY, stlScale,
+                actorBounds[0], actorBounds[1], actorBounds[2], actorBounds[3],
+                actorBounds[4], actorBounds[5]);
 
             cmd.actor->SetUserMatrix(nullptr);
             cmd.actor->SetUserTransform(nullptr);
