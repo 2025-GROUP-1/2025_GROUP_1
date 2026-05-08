@@ -1366,10 +1366,10 @@ $(document).ready(function(){initNavTree('VRRenderThread_8cpp_source.html',''); 
 <div class="line"><a id="l01145" name="l01145"></a><span class="lineno"> 1145</span>    }</div>
 <div class="line"><a id="l01146" name="l01146"></a><span class="lineno"> 1146</span> </div>
 <div class="line"><a id="l01147" name="l01147"></a><span class="lineno"> 1147</span>    <span class="comment">// Calibrate user/world scale. Higher values make the garage feel smaller.</span></div>
-<div class="line"><a id="l01148" name="l01148"></a><span class="lineno"> 1148</span>    <span class="keyword">constexpr</span> <span class="keywordtype">double</span> visualScaleBoost = 1.35;</div>
+<div class="line"><a id="l01148" name="l01148"></a><span class="lineno"> 1148</span>    <span class="keyword">constexpr</span> <span class="keywordtype">double</span> visualScaleBoost = 1.45;</div>
 <div class="line"><a id="l01149" name="l01149"></a><span class="lineno"> 1149</span>    <a class="code hl_variable" href="classVRRenderThread.html#a513f603889cb5bafcf4dc991f6fad9f7">m_interactor</a>-&gt;SetPhysicalScale(worldUnitsPerMeter * visualScaleBoost);</div>
 <div class="line"><a id="l01150" name="l01150"></a><span class="lineno"> 1150</span>    g_locomotionScaleCompensation = worldUnitsPerMeter / <a class="code hl_variable" href="classVRRenderThread.html#a513f603889cb5bafcf4dc991f6fad9f7">m_interactor</a>-&gt;GetPhysicalScale();</div>
-<div class="line"><a id="l01151" name="l01151"></a><span class="lineno"> 1151</span>    <span class="keyword">constexpr</span> <span class="keywordtype">double</span> viewerHeightOffset = -9.80;</div>
+<div class="line"><a id="l01151" name="l01151"></a><span class="lineno"> 1151</span>    <span class="keyword">constexpr</span> <span class="keywordtype">double</span> viewerHeightOffset = -11.00;</div>
 <div class="line"><a id="l01152" name="l01152"></a><span class="lineno"> 1152</span> </div>
 <div class="line"><a id="l01153" name="l01153"></a><span class="lineno"> 1153</span>    writeVrDebug(<span class="stringliteral">&quot;w&quot;</span>,</div>
 <div class="line"><a id="l01154" name="l01154"></a><span class="lineno"> 1154</span>        <span class="stringliteral">&quot;[VR init]\n&quot;</span></div>
