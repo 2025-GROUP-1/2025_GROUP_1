@@ -9,6 +9,7 @@ var annotated_dup =
     [ "PolledLocomotion", "structPolledLocomotion.html", "structPolledLocomotion" ],
     [ "TriggerGrabber", "structTriggerGrabber.html", "structTriggerGrabber" ],
     [ "VRCustomStyle", "classVRCustomStyle.html", "classVRCustomStyle" ],
+    [ "VRGlobalMenu", "structVRGlobalMenu.html", "structVRGlobalMenu" ],
     [ "VRMenu", "structVRMenu.html", "structVRMenu" ],
     [ "VRMenuCallback", "classVRMenuCallback.html", "classVRMenuCallback" ],
     [ "VRRayCallback", "classVRRayCallback.html", "classVRRayCallback" ],

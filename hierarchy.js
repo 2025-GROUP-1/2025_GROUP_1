@@ -18,6 +18,7 @@ var hierarchy =
       [ "VRRenderThread", "classVRRenderThread.html", null ]
     ] ],
     [ "TriggerGrabber", "structTriggerGrabber.html", null ],
+    [ "VRGlobalMenu", "structVRGlobalMenu.html", null ],
     [ "VRMenu", "structVRMenu.html", null ],
     [ "vtkCommand", null, [
       [ "VRMenuCallback", "classVRMenuCallback.html", null ],

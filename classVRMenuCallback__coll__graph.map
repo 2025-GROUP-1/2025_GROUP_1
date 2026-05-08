@@ -1,24 +1,26 @@
 <map id="VRMenuCallback" name="VRMenuCallback">
-<area shape="rect" id="Node000001" title=" " alt="" coords="265,1404,400,1569"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,653,108,719"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="47,733,25,847,15,922,11,1004,13,1091,24,1177,47,1262,64,1302,84,1340,101,1363,121,1384,168,1419,218,1446,266,1464,264,1469,216,1451,165,1424,117,1388,97,1367,80,1343,59,1304,42,1264,19,1179,8,1091,5,1004,10,921,19,846,42,731"/>
-<area shape="rect" id="Node000003" href="$classVRRayCallback.html" title=" " alt="" coords="95,1026,248,1231"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="71,732,147,1025,142,1026,66,733"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,1231,263,1340,286,1388,281,1391,258,1342,210,1233"/>
-<area shape="rect" id="Node000004" href="$structControllerRay.html" title=" " alt="" coords="132,553,301,819"/>
-<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="206,819,186,1010,181,1009,200,818"/>
-<area shape="rect" id="Node000005" href="$structVRMenu.html" title=" " alt="" coords="273,976,393,1281"/>
-<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="335,1282,335,1388,330,1388,330,1282"/>
-<area shape="rect" id="Node000006" href="$classModelPartList.html" title=" " alt="" coords="555,533,692,839"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="658,839,671,955,673,1020,670,1087,662,1154,648,1220,626,1283,595,1343,559,1386,513,1420,464,1447,416,1466,414,1461,462,1442,510,1416,555,1382,590,1340,621,1281,643,1218,657,1153,665,1086,667,1020,665,956,653,839"/>
-<area shape="rect" id="Node000009" href="$classVRRenderThread.html" title=" " alt="" coords="417,916,581,1341"/>
-<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="557,808,535,864,525,901,520,899,530,862,552,806"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="488,205,636,271"/>
-<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="571,284,605,532,600,533,566,285"/>
-<area shape="rect" id="Node000008" href="$classModelPart.html" title=" " alt="" coords="660,5,867,471"/>
-<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="693,472,679,518,673,516,688,470"/>
-<area shape="poly" id="edge9_Node000008_Node000008" title=" " alt="" coords="869,192,886,209,893,238,890,258,882,273,877,271,885,257,888,238,882,212,865,196"/>
-<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="420,1326,394,1381,389,1390,384,1388,389,1379,415,1324"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="453,653,522,719"/>
-<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="491,733,496,916,491,916,486,733"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="338,1404,473,1569"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="9,653,111,719"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="50,733,25,848,14,924,9,1007,11,1093,23,1180,47,1263,65,1303,87,1340,111,1369,140,1394,172,1415,206,1433,275,1458,338,1473,337,1479,274,1463,203,1437,169,1420,137,1398,107,1373,83,1343,61,1305,42,1265,18,1181,5,1094,3,1007,9,923,19,847,44,731"/>
+<area shape="rect" id="Node000003" href="$classVRRayCallback.html" title=" " alt="" coords="98,1026,251,1231"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="74,732,151,1025,146,1026,69,733"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="211,1231,236,1286,266,1340,295,1378,328,1414,324,1417,291,1382,262,1343,231,1289,206,1233"/>
+<area shape="rect" id="Node000004" href="$structControllerRay.html" title=" " alt="" coords="135,553,305,819"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="209,819,189,1010,184,1009,204,818"/>
+<area shape="rect" id="Node000005" href="$structVRMenu.html" title=" " alt="" coords="276,976,396,1281"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="368,1281,389,1387,384,1388,363,1282"/>
+<area shape="rect" id="Node000006" href="$structVRGlobalMenu.html" title=" " alt="" coords="421,1086,531,1171"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="476,1172,465,1268,445,1381,443,1389,438,1387,440,1379,460,1267,470,1171"/>
+<area shape="rect" id="Node000007" href="$classModelPartList.html" title=" " alt="" coords="693,533,830,839"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="799,838,813,956,815,1021,813,1088,805,1156,789,1221,766,1284,733,1343,709,1371,682,1396,652,1416,619,1434,552,1460,489,1476,488,1471,550,1455,617,1429,649,1412,679,1391,706,1368,728,1340,761,1282,784,1220,799,1155,808,1088,810,1021,808,957,794,839"/>
+<area shape="rect" id="Node000010" href="$classVRRenderThread.html" title=" " alt="" coords="555,916,719,1341"/>
+<area shape="poly" id="edge13_Node000010_Node000007" title=" " alt="" coords="695,808,673,864,663,901,658,899,668,862,690,806"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="626,205,774,271"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="709,284,743,532,738,533,703,285"/>
+<area shape="rect" id="Node000009" href="$classModelPart.html" title=" " alt="" coords="798,5,1005,471"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="831,472,816,518,811,516,826,470"/>
+<area shape="poly" id="edge10_Node000009_Node000009" title=" " alt="" coords="1007,192,1024,209,1031,238,1028,258,1020,273,1015,271,1023,257,1026,238,1020,212,1003,196"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="570,1343,546,1382,519,1412,487,1438,484,1434,515,1408,542,1378,566,1340"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="591,653,660,719"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="629,733,634,916,629,916,624,733"/>
 </map>
