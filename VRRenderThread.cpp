@@ -54,6 +54,8 @@ namespace {
 using MovementClock = std::chrono::steady_clock;
 MovementClock::time_point g_lastDollyMovementTime = MovementClock::time_point::min();
 double g_locomotionScaleCompensation = 1.0;
+double g_stlReferencePhysicalScale = 1.0;
+constexpr double g_stlSizeBoost = 6.666667; // 0.03 baseline clamp -> about 0.20 final STL scale
 
 void markDollyMovementHandled()
 {
@@ -577,6 +579,38 @@ struct VRMenu {
     }
 };
 
+// Passive replacement-menu shell. This deliberately creates one non-pickable,
+// hidden actor only; no interaction and no pick-list participation yet.
+struct VRGlobalMenu {
+    vtkSmartPointer<vtkPlaneSource> panelPlane;
+    vtkSmartPointer<vtkActor> panelActor;
+
+    void create(vtkRenderer* ren)
+    {
+        if (!ren)
+            return;
+
+        panelPlane = vtkSmartPointer<vtkPlaneSource>::New();
+        panelPlane->SetOrigin(-0.5, -0.3, 0.0);
+        panelPlane->SetPoint1(0.5, -0.3, 0.0);
+        panelPlane->SetPoint2(-0.5, 0.3, 0.0);
+        panelPlane->Update();
+
+        vtkNew<vtkPolyDataMapper> mapper;
+        mapper->SetInputConnection(panelPlane->GetOutputPort());
+
+        panelActor = vtkSmartPointer<vtkActor>::New();
+        panelActor->SetMapper(mapper);
+        panelActor->GetProperty()->SetColor(0.03, 0.035, 0.04);
+        panelActor->GetProperty()->SetAmbient(1.0);
+        panelActor->GetProperty()->SetDiffuse(0.0);
+        panelActor->PickableOff();
+        panelActor->DragableOff();
+        panelActor->SetVisibility(0);
+        ren->AddActor(panelActor);
+    }
+};
+
 // handles menu button presses - fires when the user hits the menu button on the controller
 class VRMenuCallback : public vtkCommand {
 public:
@@ -584,6 +618,7 @@ public:
 
     VRRayCallback* rays = nullptr;
     VRMenu menu;
+    VRGlobalMenu globalMenu;
     std::map<int, vtkSmartPointer<vtkActor>>* activeActors = nullptr;
     ModelPartList* partList = nullptr;
     VRRenderThread* vrThread = nullptr;
@@ -592,6 +627,10 @@ public:
 
     void Execute(vtkObject*, unsigned long, void*) override
     {
+        // Compatibility shim: keep the menu-button UserEvent path alive while
+        // removing the old per-part popup behavior.
+        return;
+
         // check what the controller is pointing at
         vtkActor* hovered = nullptr;
         if (rays->right.hoveredActor)
@@ -1007,6 +1046,7 @@ void VRRenderThread::run() {
     menuCallback->vrThread = this;
     menuCallback->renWindow = m_renderWindow;
     menuCallback->menu.create(m_renderer);
+    menuCallback->globalMenu.create(m_renderer);
     rayCallback->menuActors = menuCallback->menu.actors();
     m_interactor->AddObserver(vtkCommand::UserEvent, menuCallback, 2.0);
 
@@ -1093,6 +1133,18 @@ void VRRenderThread::run() {
                 }
             }
             garageHasBounds = true;
+            const double importedGarageWidth = garageBounds[1] - garageBounds[0];
+            const double importedGarageHeight = garageBounds[3] - garageBounds[2];
+            const double importedGarageDepth = garageBounds[5] - garageBounds[4];
+            if (importedGarageWidth < 0.1 || importedGarageHeight < 0.1 || importedGarageDepth < 0.1
+                || importedGarageWidth > 5.0 || importedGarageHeight > 5.0 || importedGarageDepth > 5.0) {
+                garageBounds[0] = -0.9;
+                garageBounds[1] = 0.9;
+                garageBounds[2] = -0.5;
+                garageBounds[3] = 0.5;
+                garageBounds[4] = -1.0;
+                garageBounds[5] = 0.025;
+            }
             const double garageHeight = garageBounds[3] - garageBounds[2];
             // Estimate world-units-per-meter from the garage shell height.
             // Typical interior garage height is around 2.6m.
@@ -1144,11 +1196,15 @@ void VRRenderThread::run() {
         // VR input system may not be available
     }
 
-    // Calibrate user/world scale. Higher values make the garage feel smaller.
-    constexpr double visualScaleBoost = 1.45;
-    m_interactor->SetPhysicalScale(worldUnitsPerMeter * visualScaleBoost);
-    g_locomotionScaleCompensation = worldUnitsPerMeter / m_interactor->GetPhysicalScale();
-    constexpr double viewerHeightOffset = -11.00;
+    // Calibrate user/world scale. This is seeded from the in-headset scale the user tuned by hand.
+    constexpr double baselineVisualScaleBoost = 1.45;
+    const double stlReferencePhysicalScale = worldUnitsPerMeter * baselineVisualScaleBoost;
+    g_stlReferencePhysicalScale = stlReferencePhysicalScale;
+    constexpr double desiredPhysicalScale = 49.015429;
+    const double visualScaleBoost = desiredPhysicalScale / std::max(worldUnitsPerMeter, 1e-6);
+    m_interactor->SetPhysicalScale(desiredPhysicalScale);
+    g_locomotionScaleCompensation = 1.0 / baselineVisualScaleBoost;
+    constexpr double viewerHeightOffset = -22.00;
 
     writeVrDebug("w",
         "[VR init]\n"
@@ -1215,12 +1271,11 @@ void VRRenderThread::run() {
         const double garageWidth = std::max(garageBounds[1] - garageBounds[0], 1e-6);
         const double garageDepth = std::max(garageBounds[5] - garageBounds[4], 1e-6);
         const double garageMinSpan = std::min(garageWidth, garageDepth);
-        const double desiredPartSpanMeters = std::clamp((garageMinSpan / m_interactor->GetPhysicalScale()) * 0.16, 0.30, 1.20);
-        const double desiredPartSpan = desiredPartSpanMeters * m_interactor->GetPhysicalScale();
+        const double desiredPartSpanMeters = std::clamp((garageMinSpan / stlReferencePhysicalScale) * 0.16, 0.30, 1.20);
+        const double desiredPartSpan = desiredPartSpanMeters * stlReferencePhysicalScale;
 
         const double partBaseY = m_hasGarageAnchor ? m_garageFloorY : 0.0;
         double targetX = m_spawnX;
-        double targetY = partBaseY + 0.55;
         double targetZ = m_spawnZ;
         if (m_renderWindow && m_renderWindow->GetHMD()) {
             vr::TrackedDevicePose_t poses[vr::k_unMaxTrackedDeviceCount];
@@ -1232,7 +1287,6 @@ void VRRenderThread::run() {
                 double fwd[3] = { -m.m[0][2], -m.m[1][2], -m.m[2][2] };
                 vtkMath::Normalize(fwd);
                 targetX = m.m[0][3] + fwd[0] * 1.0;
-                targetY = std::clamp(static_cast<double>(m.m[1][3]), partBaseY + 0.35, partBaseY + 1.10);
                 targetZ = m.m[2][3] + fwd[2] * 1.0;
             }
         }
@@ -1243,16 +1297,18 @@ void VRRenderThread::run() {
             const double partCy = (b[2] + b[3]) * 0.5;
             const double partCz = (b[4] + b[5]) * 0.5;
             const double partMaxSpan = std::max({ b[1] - b[0], b[3] - b[2], b[5] - b[4], 1e-6 });
-            const double stlScale = std::clamp(desiredPartSpan / partMaxSpan, 0.03, 5.0);
+            const double stlScale = std::clamp(
+                std::clamp(desiredPartSpan / partMaxSpan, 0.03, 5.0) * g_stlSizeBoost,
+                0.03, 5.0);
             writeVrDebug("a",
                 "[VR initial STL]\n"
                 "id=%d target=(%f,%f,%f) partBaseY=%f scale=%f bounds=[%f %f] [%f %f] [%f %f]\n",
-                id, targetX, targetY, targetZ, partBaseY, stlScale,
+                id, targetX, partBaseY, targetZ, partBaseY, stlScale,
                 b[0], b[1], b[2], b[3], b[4], b[5]);
             partAct->SetScale(stlScale, stlScale, stlScale);
             partAct->SetPosition(
                 targetX - partCx * stlScale,
-                targetY - partCy * stlScale,
+                partBaseY - b[2] * stlScale,
                 targetZ - partCz * stlScale);
             partAct->SetVisibility(1);
             partAct->PickableOn();
@@ -1270,6 +1326,8 @@ void VRRenderThread::run() {
     // An extra Render() causes double-submit which results in single-eye flickering.
     m_endRender = false;
     int debugFrameCount = 0;
+    int scaleDebugFrame = 0;
+    double lastLoggedPhysicalScale = m_interactor->GetPhysicalScale();
     while (!m_endRender) {
         m_interactor->DoOneEvent(m_renderWindow, m_renderer);
         if (debugFrameCount < 12) {
@@ -1311,6 +1369,20 @@ void VRRenderThread::run() {
                 camUp[0], camUp[1], camUp[2],
                 clipping[0], clipping[1]);
             ++debugFrameCount;
+        }
+        const double currentPhysicalScale = m_interactor->GetPhysicalScale();
+        if (++scaleDebugFrame >= 120 || std::abs(currentPhysicalScale - lastLoggedPhysicalScale) > 0.01) {
+            auto* rwi3d = static_cast<vtkRenderWindowInteractor3D*>(m_interactor.Get());
+            double* trans = rwi3d->GetPhysicalTranslation(m_renderer->GetActiveCamera());
+            writeVrDebug("a",
+                "[VR scale sample]\n"
+                "physicalScale=%f trans=(%f,%f,%f)\n",
+                currentPhysicalScale,
+                trans ? trans[0] : 0.0,
+                trans ? trans[1] : 0.0,
+                trans ? trans[2] : 0.0);
+            lastLoggedPhysicalScale = currentPhysicalScale;
+            scaleDebugFrame = 0;
         }
         locomotion.update(m_renderWindow, m_interactor, m_renderer);
         processCommands();
@@ -1414,14 +1486,15 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
             });
             double stlScale = 0.10;
             if (m_hasGarageAnchor) {
-                // Couple part size to player/world scale.
-                const double desiredPartSpan = 0.75 * m_interactor->GetPhysicalScale();
-                stlScale = std::clamp(desiredPartSpan / partMaxSpan, 0.03, 5.0);
+                // Keep STL size stable even when user/world scale changes.
+                const double desiredPartSpan = 0.75 * g_stlReferencePhysicalScale;
+                stlScale = std::clamp(
+                    std::clamp(desiredPartSpan / partMaxSpan, 0.03, 5.0) * g_stlSizeBoost,
+                    0.03, 5.0);
             }
 
             const double partBaseY = m_hasGarageAnchor ? m_garageFloorY : 0.0;
             double targetX = m_spawnX;
-            double targetY = partBaseY + 0.55;
             double targetZ = m_spawnZ;
 
             if (m_renderWindow && m_renderWindow->GetHMD()) {
@@ -1434,7 +1507,6 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
                     double fwd[3] = { -mat.m[0][2], -mat.m[1][2], -mat.m[2][2] };
                     vtkMath::Normalize(fwd);
                     targetX = mat.m[0][3] + fwd[0] * 1.0;
-                    targetY = std::clamp(static_cast<double>(mat.m[1][3]), partBaseY + 0.35, partBaseY + 1.10);
                     targetZ = mat.m[2][3] + fwd[2] * 1.0;
                 }
             }
@@ -1444,11 +1516,11 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
                      << actorBounds[2] << actorBounds[3]
                      << actorBounds[4] << actorBounds[5]
                      << "scale:" << stlScale
-                     << "target:" << targetX << targetY << targetZ;
+                     << "target:" << targetX << partBaseY << targetZ;
             writeVrDebug("a",
                 "[VR AddActor]\n"
                 "id=%d target=(%f,%f,%f) partBaseY=%f scale=%f bounds=[%f %f] [%f %f] [%f %f]\n",
-                cmd.partID, targetX, targetY, targetZ, partBaseY, stlScale,
+                cmd.partID, targetX, partBaseY, targetZ, partBaseY, stlScale,
                 actorBounds[0], actorBounds[1], actorBounds[2], actorBounds[3],
                 actorBounds[4], actorBounds[5]);
 
@@ -1458,7 +1530,7 @@ void VRRenderThread::applyCommand(const CommandPacket& cmd) {
             cmd.actor->SetScale(stlScale, stlScale, stlScale);
             cmd.actor->SetPosition(
                 targetX - partCx * stlScale,
-                targetY - partCy * stlScale,
+                partBaseY - actorBounds[2] * stlScale,
                 targetZ - partCz * stlScale);
             cmd.actor->SetVisibility(1);
 
