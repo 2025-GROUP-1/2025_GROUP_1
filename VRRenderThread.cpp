@@ -1145,10 +1145,10 @@ void VRRenderThread::run() {
     }
 
     // Calibrate user/world scale. Higher values make the garage feel smaller.
-    constexpr double visualScaleBoost = 1.35;
+    constexpr double visualScaleBoost = 1.45;
     m_interactor->SetPhysicalScale(worldUnitsPerMeter * visualScaleBoost);
     g_locomotionScaleCompensation = worldUnitsPerMeter / m_interactor->GetPhysicalScale();
-    constexpr double viewerHeightOffset = -9.80;
+    constexpr double viewerHeightOffset = -11.00;
 
     writeVrDebug("w",
         "[VR init]\n"
