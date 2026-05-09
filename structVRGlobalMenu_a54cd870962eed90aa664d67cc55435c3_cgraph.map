@@ -1,0 +1,18 @@
+<map id="VRGlobalMenu::selectedPartShrinkEnabled" name="VRGlobalMenu::selectedPartShrinkEnabled">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,73,212,113"/>
+<area shape="rect" id="Node000002" href="$structVRGlobalMenu.html#a87a36bddda395b9f09ba2416b958117a" title=" " alt="" coords="260,80,467,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,90,246,90,246,95,212,95"/>
+<area shape="rect" id="Node000003" href="$classModelPartList.html#ab1d1158c9fcdb4b7d1854ec618ff18d4" title=" " alt="" coords="538,55,711,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="467,80,524,74,524,80,467,85"/>
+<area shape="rect" id="Node000008" href="$structVRGlobalMenu.html#a50d7498a6a32df721c55375d99ae3a25" title=" " alt="" coords="515,104,735,129"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="467,99,501,103,501,108,467,105"/>
+<area shape="rect" id="Node000004" href="$classModelPart.html#af32381b69415f0aa6bdfd84435f842cc" title=" " alt="" coords="801,5,928,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="687,52,788,31,789,36,688,57"/>
+<area shape="rect" id="Node000006" href="$classModelPart.html#aea4bb035b2b3827c0abf677fb9dc68ce" title=" " alt="" coords="783,55,947,80"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="711,65,769,65,769,70,711,70"/>
+<area shape="rect" id="Node000007" href="$classModelPart.html#a508412880d7025d525ae018d9e1bbffc" title=" " alt="" coords="799,104,930,129"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="688,77,789,99,788,104,687,83"/>
+<area shape="rect" id="Node000005" href="$classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910" title=" " alt="" coords="995,55,1113,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="915,28,992,48,990,54,913,33"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="913,101,990,81,992,86,915,107"/>
+</map>

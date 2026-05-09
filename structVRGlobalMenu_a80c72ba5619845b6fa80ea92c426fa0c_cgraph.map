@@ -1,0 +1,9 @@
+<map id="VRGlobalMenu::hitFromRays" name="VRGlobalMenu::hitFromRays">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,213,31"/>
+<area shape="rect" id="Node000002" href="$structVRGlobalMenu.html#ac8d213f1d139fadbe4d912e2942ed137" title=" " alt="" coords="261,5,489,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,15,248,15,248,21,214,21"/>
+<area shape="rect" id="Node000003" href="$structVRGlobalMenu.html#a7c4f85cb99bc0e87bda222ffb5727cfd" title=" " alt="" coords="537,5,707,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="489,15,524,15,524,21,489,21"/>
+<area shape="rect" id="Node000004" href="$structVRGlobalMenu.html#a50d7498a6a32df721c55375d99ae3a25" title=" " alt="" coords="755,5,975,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="707,15,741,15,741,21,707,21"/>
+</map>

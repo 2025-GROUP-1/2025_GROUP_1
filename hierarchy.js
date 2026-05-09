@@ -3,6 +3,7 @@ var hierarchy =
     [ "VRMenu::Button", "structVRMenu_1_1Button.html", null ],
     [ "CommandPacket", "structCommandPacket.html", null ],
     [ "ControllerRay", "structControllerRay.html", null ],
+    [ "VRGlobalMenu::HitResult", "structVRGlobalMenu_1_1HitResult.html", null ],
     [ "ModelPart", "classModelPart.html", null ],
     [ "PolledLocomotion", "structPolledLocomotion.html", null ],
     [ "QAbstractItemModel", null, [

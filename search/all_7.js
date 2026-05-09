@@ -8,5 +8,7 @@ var searchData=
   ['does_20internally_5',['3. What the Explode Animation Does Internally',['../how_it_works.html#explode-animation',1,'']]],
   ['dolly3d_6',['Dolly3D',['../classVRCustomStyle.html#a82af7eed1836b7c557e10d87a46feefb',1,'VRCustomStyle']]],
   ['dragenterevent_7',['dragEnterEvent',['../classMainWindow.html#a505572442d73419f3cab4afc8158621c',1,'MainWindow']]],
-  ['dropevent_8',['dropEvent',['../classMainWindow.html#af809c2679376142b241371e36aedc279',1,'MainWindow']]]
+  ['drawswatch_8',['drawSwatch',['../structVRGlobalMenu.html#a195b79c8918b59b95cdc2b7372875902',1,'VRGlobalMenu']]],
+  ['drawtoggle_9',['drawToggle',['../structVRGlobalMenu.html#a725ad657da9ca015c853216666aa199e',1,'VRGlobalMenu']]],
+  ['dropevent_10',['dropEvent',['../classMainWindow.html#af809c2679376142b241371e36aedc279',1,'MainWindow']]]
 ];

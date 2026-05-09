@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ui_0',['ui',['../classMainWindow.html#a35466a70ed47252a0191168126a352a5',1,'MainWindow::ui'],['../classOptionDialog.html#a6933e851c61c5257ff195f177006ce4b',1,'OptionDialog::ui']]]
+  ['selectedindex_0',['selectedIndex',['../structVRGlobalMenu.html#a18eda9ebee48037c234027e1352dbe27',1,'VRGlobalMenu']]],
+  ['shrinkfilter_1',['shrinkFilter',['../classModelPart.html#a8f2cc5db4e5cf99509a48d61320801e9',1,'ModelPart']]]
 ];

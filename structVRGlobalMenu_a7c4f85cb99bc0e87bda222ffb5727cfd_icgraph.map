@@ -1,0 +1,9 @@
+<map id="VRGlobalMenu::hitTest" name="VRGlobalMenu::hitTest">
+<area shape="rect" id="Node000001" title=" " alt="" coords="776,5,945,31"/>
+<area shape="rect" id="Node000002" href="$structVRGlobalMenu.html#ac8d213f1d139fadbe4d912e2942ed137" title=" " alt="" coords="500,5,728,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="762,21,728,21,728,15,762,15"/>
+<area shape="rect" id="Node000003" href="$structVRGlobalMenu.html#a80c72ba5619845b6fa80ea92c426fa0c" title=" " alt="" coords="244,5,452,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="486,21,452,21,452,15,486,15"/>
+<area shape="rect" id="Node000004" href="$classVRMenuCallback.html#aa8d4b0b3d16a598f35da79fd6d156332" title=" " alt="" coords="5,5,196,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="231,21,196,21,196,15,231,15"/>
+</map>

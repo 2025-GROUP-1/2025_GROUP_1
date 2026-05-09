@@ -1,23 +1,10 @@
 var searchData=
 [
-  ['visible_0',['visible',['../structVRMenu.html#a450628e878e167c8d78fc39b7162c0ee',1,'VRMenu']]],
-  ['vr_20base_20station_1',['VR Base Station',['../index.html',1,'']]],
-  ['vr_20rendering_2',['VTK &amp; VR Rendering',['../group__rendering.html',1,'']]],
-  ['vractor_3',['vrActor',['../classModelPart.html#af15ddf8b0eaf84caf33ed11636aa36e9',1,'ModelPart']]],
-  ['vrclipfilter_4',['vrClipFilter',['../classModelPart.html#aed3c9ff4dafad417166401ad0c432a4a',1,'ModelPart']]],
-  ['vrcustomstyle_5',['VRCustomStyle',['../classVRCustomStyle.html',1,'']]],
-  ['vrglobalmenu_6',['VRGlobalMenu',['../structVRGlobalMenu.html',1,'']]],
-  ['vrmapper_7',['vrMapper',['../classModelPart.html#ab0c1f7ef297743499d114da7561ee786',1,'ModelPart']]],
-  ['vrmenu_8',['VRMenu',['../structVRMenu.html',1,'']]],
-  ['vrmenucallback_9',['vrmenucallback',['../classModelPart.html#a99cbf660d6ddb16672b9985a2eb48fa7',1,'ModelPart::VRMenuCallback'],['../classVRMenuCallback.html',1,'VRMenuCallback']]],
-  ['vrraycallback_10',['VRRayCallback',['../classVRRayCallback.html',1,'']]],
-  ['vrrenderthread_11',['vrrenderthread',['../classVRRenderThread.html',1,'VRRenderThread'],['../classVRRenderThread.html#a35976e55f6655840aa217aa8a066f196',1,'VRRenderThread::VRRenderThread()']]],
-  ['vrrenderthread_2ecpp_12',['VRRenderThread.cpp',['../VRRenderThread_8cpp.html',1,'']]],
-  ['vrrenderthread_2eh_13',['VRRenderThread.h',['../VRRenderThread_8h.html',1,'']]],
-  ['vrscalefilter_14',['vrScaleFilter',['../classModelPart.html#a0e264353b9bb180ec05e8be440e43254',1,'ModelPart']]],
-  ['vrshrinkfilter_15',['vrShrinkFilter',['../classModelPart.html#ac869018007e8c94b75281e3c82e024ab',1,'ModelPart']]],
-  ['vrthread_16',['vrThread',['../classVRMenuCallback.html#aecfd8cb02adbef522dcec3d41415d918',1,'VRMenuCallback']]],
-  ['vtk_20vr_20rendering_17',['VTK &amp; VR Rendering',['../group__rendering.html',1,'']]],
-  ['vtkstandardnewmacro_18',['vtkStandardNewMacro',['../VRRenderThread_8cpp.html#aa1ef3963bef777925d74ca58789e3eeb',1,'VRRenderThread.cpp']]],
-  ['vtktypemacro_19',['vtkTypeMacro',['../classVRCustomStyle.html#a91426c2c0c1a397f263cc93ff2321ed7',1,'VRCustomStyle']]]
+  ['ui_0',['ui',['../namespaceUi.html',1,'Ui'],['../classMainWindow.html#a35466a70ed47252a0191168126a352a5',1,'MainWindow::ui'],['../classOptionDialog.html#a6933e851c61c5257ff195f177006ce4b',1,'OptionDialog::ui']]],
+  ['update_1',['update',['../structControllerRay.html#af4231fd5d11ca6a876f68f20c52aebbc',1,'ControllerRay::update()'],['../structTriggerGrabber.html#a35575197bc4c3260135413552030db16',1,'TriggerGrabber::update()'],['../structPolledLocomotion.html#a75eb06cd6ff1ae3bae98f98b64b2bd39',1,'PolledLocomotion::update()']]],
+  ['updatefromforward_2',['updateFromForward',['../structControllerRay.html#ad93d63ddb49661249da46626678b0e35',1,'ControllerRay']]],
+  ['updateray_3',['UpdateRay',['../classVRCustomStyle.html#aca25be3be9670f5c28cd47a45eb086fc',1,'VRCustomStyle']]],
+  ['updaterender_4',['updateRender',['../classMainWindow.html#aa2a5945f9c4bf90022f0a7ad3db34c49',1,'MainWindow']]],
+  ['updateswatch_5',['updateSwatch',['../classOptionDialog.html#a6cacec6df5a0f100fdb66c7e3e860288',1,'OptionDialog']]],
+  ['user_20changes_20a_20colour_6',['1. When the User Changes a Colour',['../how_it_works.html#colour-change',1,'']]]
 ];

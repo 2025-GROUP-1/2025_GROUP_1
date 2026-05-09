@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['polledlocomotion_0',['PolledLocomotion',['../structPolledLocomotion.html',1,'']]]
+  ['optiondialog_0',['OptionDialog',['../classOptionDialog.html',1,'']]]
 ];

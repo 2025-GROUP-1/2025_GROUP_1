@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['_7emainwindow_0',['~MainWindow',['../classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]],
-  ['_7emodelpart_1',['~ModelPart',['../classModelPart.html#a0b3b00630e9866e3e8fd648d28b7f016',1,'ModelPart']]],
-  ['_7emodelpartlist_2',['~ModelPartList',['../classModelPartList.html#a9c45a4e506f201c312f65a4c94ab4650',1,'ModelPartList']]],
-  ['_7eoptiondialog_3',['~OptionDialog',['../classOptionDialog.html#a640a1faddda44f2567cf386de0085ec7',1,'OptionDialog']]],
-  ['_7evrrenderthread_4',['~VRRenderThread',['../classVRRenderThread.html#a2fa57b06d1deb3cacb9bf2c142618b49',1,'VRRenderThread']]]
+  ['what_20the_20explode_20animation_20does_20internally_0',['3. What the Explode Animation Does Internally',['../how_it_works.html#explode-animation',1,'']]],
+  ['when_20the_20user_20changes_20a_20colour_1',['1. When the User Changes a Colour',['../how_it_works.html#colour-change',1,'']]],
+  ['why_20two_20actors_20per_20part_2',['2. Why Two Actors per Part',['../how_it_works.html#two-actors',1,'']]],
+  ['workflow_3',['Typical Workflow',['../index.html#workflow',1,'']]],
+  ['works_4',['How It Works',['../how_it_works.html',1,'']]]
 ];

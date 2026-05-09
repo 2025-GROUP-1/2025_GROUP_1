@@ -1,0 +1,12 @@
+<map id="VRMenuCallback::applyColourVRForPart" name="VRMenuCallback::applyColourVRForPart">
+<area shape="rect" id="Node000001" title=" " alt="" coords="809,27,1028,67"/>
+<area shape="rect" id="Node000002" href="$classVRMenuCallback.html#aa05866cf724fecdb1605bd177c86ca57" title=" " alt="" coords="525,8,761,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="796,38,761,35,762,29,796,33"/>
+<area shape="rect" id="Node000005" href="$classVRMenuCallback.html#a099efec49d88c7d83447af3b8cb6c916" title=" " alt="" coords="244,55,477,95"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="795,56,478,72,478,67,795,51"/>
+<area shape="rect" id="Node000003" href="$classVRMenuCallback.html#a912b2d3f14fb4b2a9e4f9b23ae6fbcb9" title=" " alt="" coords="245,5,477,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="512,22,477,22,477,16,512,17"/>
+<area shape="rect" id="Node000004" href="$classVRMenuCallback.html#aa8d4b0b3d16a598f35da79fd6d156332" title=" " alt="" coords="5,35,196,60"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="235,35,197,39,196,34,234,30"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="230,64,196,60,197,55,231,59"/>
+</map>

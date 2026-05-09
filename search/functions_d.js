@@ -5,5 +5,6 @@ var searchData=
   ['partclipchanged_2',['partClipChanged',['../classVRRenderThread.html#aeac9bb0cd5403c28db00b6db4212baac',1,'VRRenderThread']]],
   ['partcolourchanged_3',['partColourChanged',['../classVRRenderThread.html#af86aa681f7c524c05525dd83f746864d',1,'VRRenderThread']]],
   ['partshrinkchanged_4',['partShrinkChanged',['../classVRRenderThread.html#a82c457a1edbb5543c8ea02c1901df5a4',1,'VRRenderThread']]],
-  ['processcommands_5',['processCommands',['../classVRRenderThread.html#a1133c0b2f773137412e417450c00c7e8',1,'VRRenderThread']]]
+  ['partvisibilitychanged_5',['partVisibilityChanged',['../classVRRenderThread.html#a9f05bfb9de076e5262281e88ee90b129',1,'VRRenderThread']]],
+  ['processcommands_6',['processCommands',['../classVRRenderThread.html#a1133c0b2f773137412e417450c00c7e8',1,'VRRenderThread']]]
 ];
