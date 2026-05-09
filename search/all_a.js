@@ -13,6 +13,7 @@ var searchData=
   ['getvisible_10',['getVisible',['../classModelPart.html#a54fd5c6a6ff47dacfa30980eb3a5c647',1,'ModelPart']]],
   ['getvractor_11',['getVRActor',['../classModelPart.html#ad47f8a6955273229148a00189804c274',1,'ModelPart']]],
   ['globalmenu_12',['globalMenu',['../classVRMenuCallback.html#a379b9b0375809ab059cd6ba2f4f7a5c8',1,'VRMenuCallback']]],
-  ['gui_13',['Qt GUI',['../group__gui.html',1,'']]],
-  ['gui_2eh_14',['gui.h',['../gui_8h.html',1,'']]]
+  ['glyphrows_13',['glyphRows',['../structVRGlobalMenu.html#a1f343deded4bdd038ea13386514db33a',1,'VRGlobalMenu']]],
+  ['gui_14',['Qt GUI',['../group__gui.html',1,'']]],
+  ['gui_2eh_15',['gui.h',['../gui_8h.html',1,'']]]
 ];

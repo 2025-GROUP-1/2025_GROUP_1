@@ -1,0 +1,20 @@
+<map id="VRGlobalMenu::selectedColourMatches" name="VRGlobalMenu::selectedColourMatches">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,49,228,89"/>
+<area shape="rect" id="Node000002" href="$classModelPart.html#ac78f4dc9ce97458b7eb22bc474bf54eb" title=" " alt="" coords="300,31,459,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,55,286,50,287,55,229,61"/>
+<area shape="rect" id="Node000003" href="$structVRGlobalMenu.html#a87a36bddda395b9f09ba2416b958117a" title=" " alt="" coords="276,80,483,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="229,76,263,79,262,85,228,82"/>
+<area shape="rect" id="Node000004" href="$classModelPartList.html#ab1d1158c9fcdb4b7d1854ec618ff18d4" title=" " alt="" coords="554,55,727,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="483,80,540,74,540,80,483,85"/>
+<area shape="rect" id="Node000009" href="$structVRGlobalMenu.html#a50d7498a6a32df721c55375d99ae3a25" title=" " alt="" coords="531,104,751,129"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="483,99,517,103,517,108,483,105"/>
+<area shape="rect" id="Node000005" href="$classModelPart.html#af32381b69415f0aa6bdfd84435f842cc" title=" " alt="" coords="817,5,944,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="703,52,804,31,805,36,704,57"/>
+<area shape="rect" id="Node000007" href="$classModelPart.html#aea4bb035b2b3827c0abf677fb9dc68ce" title=" " alt="" coords="799,55,963,80"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="727,65,785,65,785,70,727,70"/>
+<area shape="rect" id="Node000008" href="$classModelPart.html#a508412880d7025d525ae018d9e1bbffc" title=" " alt="" coords="815,104,946,129"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="704,77,805,99,804,104,703,83"/>
+<area shape="rect" id="Node000006" href="$classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910" title=" " alt="" coords="1011,55,1129,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="931,28,1008,48,1006,54,929,33"/>
+<area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="929,101,1006,81,1008,86,931,107"/>
+</map>

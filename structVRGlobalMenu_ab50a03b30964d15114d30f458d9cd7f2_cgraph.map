@@ -1,0 +1,5 @@
+<map id="VRGlobalMenu::drawActorThumbnail" name="VRGlobalMenu::drawActorThumbnail">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,13,267,38"/>
+<area shape="rect" id="Node000002" href="$structVRGlobalMenu.html#a0ee1feacfccc049cf72c99d2b077532b" title=" " alt="" coords="315,5,507,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="267,23,301,23,301,28,267,28"/>
+</map>

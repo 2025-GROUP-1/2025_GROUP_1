@@ -1,5 +1,25 @@
 var searchData=
 [
-  ['tickfromopenvr_0',['tickFromOpenVR',['../classVRRayCallback.html#a340beb98e17c1388b66d35558aa5465a',1,'VRRayCallback']]],
-  ['toggle_1',['toggle',['../structVRGlobalMenu.html#a0e780f3d9acbdbbb40ad857857c80a70',1,'VRGlobalMenu']]]
+  ['savetomodelpart_0',['saveToModelPart',['../classOptionDialog.html#a8cbe60aecbb7344f560f424ed537b47a',1,'OptionDialog']]],
+  ['selectedcolourmatches_1',['selectedColourMatches',['../structVRGlobalMenu.html#afa54f6a495ce1ab0312514589366d1ba',1,'VRGlobalMenu']]],
+  ['selectedpart_2',['selectedPart',['../structVRGlobalMenu.html#a87a36bddda395b9f09ba2416b958117a',1,'VRGlobalMenu']]],
+  ['selectedpartclipenabled_3',['selectedPartClipEnabled',['../structVRGlobalMenu.html#a4fff26d20af7444685a276448da15c4e',1,'VRGlobalMenu']]],
+  ['selectedpartid_4',['selectedPartID',['../structVRGlobalMenu.html#a50d7498a6a32df721c55375d99ae3a25',1,'VRGlobalMenu']]],
+  ['selectedparts_5',['selectedParts',['../classMainWindow.html#a15a4966f9e4285ab2895a35f94878175',1,'MainWindow']]],
+  ['selectedpartshrinkenabled_6',['selectedPartShrinkEnabled',['../structVRGlobalMenu.html#a54cd870962eed90aa664d67cc55435c3',1,'VRGlobalMenu']]],
+  ['selectedpartvisible_7',['selectedPartVisible',['../structVRGlobalMenu.html#a1fcaa1825ae4896ba0a9dca27cf35b03',1,'VRGlobalMenu']]],
+  ['setclipfilter_8',['setClipFilter',['../classModelPart.html#a2baa7057c98d5dc4c9b5303ca54d083d',1,'ModelPart']]],
+  ['setclipplanex_9',['setClipPlaneX',['../classModelPart.html#a922236b215b30689af7f6acc92c905fc',1,'ModelPart']]],
+  ['setclipstateonly_10',['setClipStateOnly',['../classModelPart.html#ae5bb5ba0b943b49e6c93427be6dfeea0',1,'ModelPart']]],
+  ['setcolour_11',['setColour',['../classModelPart.html#abb0819f303fea07fdc053ba750d4684d',1,'ModelPart']]],
+  ['setdata_12',['setData',['../classModelPart.html#a1b0dd7d3e3953b1aa8a4a44a7aa1349b',1,'ModelPart']]],
+  ['setpartlist_13',['setPartList',['../classVRRenderThread.html#a1950ee06c357da44400458b3672f0380',1,'VRRenderThread']]],
+  ['setpickactors_14',['setPickActors',['../structControllerRay.html#a498a4afd7cb58f633e1974340880d66a',1,'ControllerRay']]],
+  ['setshrinkfactor_15',['setShrinkFactor',['../classModelPart.html#a74f7db7b01d496dff596d8a3f1ec722b',1,'ModelPart']]],
+  ['setshrinkfilter_16',['setShrinkFilter',['../classModelPart.html#a0d01c433eb1019cb9d41f75ee389687c',1,'ModelPart']]],
+  ['setshrinkstateonly_17',['setShrinkStateOnly',['../classModelPart.html#ad6e98793c2d0664328b3c55dfc049218',1,'ModelPart']]],
+  ['setvisible_18',['setVisible',['../classModelPart.html#a4cfdee348fd6870756ce836f67b1ce75',1,'ModelPart']]],
+  ['show_19',['show',['../structVRMenu.html#a295afb1bf97a57f3011c916738a14105',1,'VRMenu::show()'],['../structVRGlobalMenu.html#a1f243a37508a4ed14866ae7c34c01c80',1,'VRGlobalMenu::show()']]],
+  ['statusupdatemessage_20',['statusUpdateMessage',['../classMainWindow.html#a86443ea744fda3e9bad328c2fd1c3d6b',1,'MainWindow']]],
+  ['syncliveactorpipeline_21',['syncLiveActorPipeline',['../classVRMenuCallback.html#aa131cb1a6bd668f591120850dc72fea2',1,'VRMenuCallback']]]
 ];

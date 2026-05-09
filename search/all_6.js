@@ -13,7 +13,7 @@ var searchData=
   ['clipfilter_10',['clipFilter',['../classModelPart.html#a1dbcd342953666a43f81f3835145045e',1,'ModelPart']]],
   ['colblue_11',['ColBlue',['../structVRMenu.html#a008bbe773a1645b633ba1beafb7c955da1f2337fd28706b672ebcc6dd3e5c744a',1,'VRMenu']]],
   ['colgreen_12',['ColGreen',['../structVRMenu.html#a008bbe773a1645b633ba1beafb7c955dabe609799e18e173dd534c03d772a5479',1,'VRMenu']]],
-  ['colour_13',['colour',['../how_it_works.html#colour-change',1,'1. When the User Changes a Colour'],['../structVRGlobalMenu_1_1HitResult.html#abe810b93d35366fbf9aaa29c0f057d32',1,'VRGlobalMenu::HitResult::colour'],['../structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499adfe6076e1d429c24edcbb2686bb39567',1,'VRGlobalMenu::Colour']]],
+  ['colour_13',['colour',['../how_it_works.html#colour-change',1,'1. When the User Changes a Colour'],['../structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499adfe6076e1d429c24edcbb2686bb39567',1,'VRGlobalMenu::Colour'],['../structVRGlobalMenu_1_1HitResult.html#abe810b93d35366fbf9aaa29c0f057d32',1,'VRGlobalMenu::HitResult::colour']]],
   ['colred_14',['ColRed',['../structVRMenu.html#a008bbe773a1645b633ba1beafb7c955dabfd112fd95ca0b74d56b7549d2a202d6',1,'VRMenu']]],
   ['columncount_15',['columncount',['../classModelPart.html#a94623f4e95be3c462297c1abc7b6f3c7',1,'ModelPart::columnCount()'],['../classModelPartList.html#ae0af4bc07e14140f65e1db531257c94d',1,'ModelPartList::columnCount()']]],
   ['colwhite_16',['ColWhite',['../structVRMenu.html#a008bbe773a1645b633ba1beafb7c955da8ca68150fb55d567b72ab400f7c51565',1,'VRMenu']]],
@@ -21,12 +21,9 @@ var searchData=
   ['command_18',['Command',['../VRRenderThread_8h.html#a2afce0a47a93eee73a314d53e4890153',1,'VRRenderThread.h']]],
   ['commandpacket_19',['CommandPacket',['../structCommandPacket.html',1,'']]],
   ['computeexplodedirection_20',['computeExplodeDirection',['../classModelPart.html#a738fcaa52819208a662192a51cba66d7',1,'ModelPart']]],
-  ['controlgap_21',['ControlGap',['../structVRGlobalMenu.html#a9640b2eee81e0392f35e731736380d3c',1,'VRGlobalMenu']]],
-  ['controllerray_22',['ControllerRay',['../structControllerRay.html',1,'']]],
-  ['controlsize_23',['ControlSize',['../structVRGlobalMenu.html#ae9276118c6a0918f1dee83724a66a720',1,'VRGlobalMenu']]],
-  ['controlstartx_24',['ControlStartX',['../structVRGlobalMenu.html#acbb0907894f3ef516fc1af460c66c65c',1,'VRGlobalMenu']]],
-  ['controly_25',['ControlY',['../structVRGlobalMenu.html#a1a898d7ef7c51406ac68e03b62e0b49a',1,'VRGlobalMenu']]],
-  ['create_26',['create',['../structVRMenu.html#a5710d5b26f1ef39ef4ab1853ecf0d7a0',1,'VRMenu::create()'],['../structVRGlobalMenu.html#a1b5e8beb022d1c48bf7f927d0380a8e5',1,'VRGlobalMenu::create()']]],
-  ['currentpart_27',['currentPart',['../classMainWindow.html#a3c769f260aadd2fef6ad5218df03ae74',1,'MainWindow']]],
-  ['currentpickactors_28',['currentPickActors',['../classVRRayCallback.html#ae3bbaafeecb857357b0de09e4c1eb053',1,'VRRayCallback']]]
+  ['controllerray_21',['ControllerRay',['../structControllerRay.html',1,'']]],
+  ['controly_22',['ControlY',['../structVRGlobalMenu.html#a1a898d7ef7c51406ac68e03b62e0b49a',1,'VRGlobalMenu']]],
+  ['create_23',['create',['../structVRMenu.html#a5710d5b26f1ef39ef4ab1853ecf0d7a0',1,'VRMenu::create()'],['../structVRGlobalMenu.html#a1b5e8beb022d1c48bf7f927d0380a8e5',1,'VRGlobalMenu::create()']]],
+  ['currentpart_24',['currentPart',['../classMainWindow.html#a3c769f260aadd2fef6ad5218df03ae74',1,'MainWindow']]],
+  ['currentpickactors_25',['currentPickActors',['../classVRRayCallback.html#ae3bbaafeecb857357b0de09e4c1eb053',1,'VRRayCallback']]]
 ];

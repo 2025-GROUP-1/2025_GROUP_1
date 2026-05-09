@@ -1,9 +1,11 @@
 <map id="VRMenuCallback::applyClipVR" name="VRMenuCallback::applyClipVR">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,42,224,67"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,70,224,95"/>
 <area shape="rect" id="Node000002" href="$classVRRenderThread.html#aeac9bb0cd5403c28db00b6db4212baac" title=" " alt="" coords="282,5,473,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,40,268,35,269,40,224,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,67,271,46,273,51,174,73"/>
 <area shape="rect" id="Node000003" href="$classModelPart.html#a25d5e07dd22949e235847d8725ca80d2" title=" " alt="" coords="272,70,483,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="224,64,259,67,258,73,224,69"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="224,80,258,80,258,85,224,85"/>
+<area shape="rect" id="Node000005" href="$classVRMenuCallback.html#aa131cb1a6bd668f591120850dc72fea2" title=" " alt="" coords="279,120,476,160"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="174,93,273,114,271,120,173,98"/>
 <area shape="rect" id="Node000004" href="$classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910" title=" " alt="" coords="531,70,649,95"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="483,80,517,80,517,85,483,85"/>
 </map>

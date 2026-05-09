@@ -10,6 +10,7 @@ var classVRMenuCallback =
     [ "executeGlobalMenuHit", "classVRMenuCallback.html#a099efec49d88c7d83447af3b8cb6c916", null ],
     [ "findPartID", "classVRMenuCallback.html#a5dc0ab648a7082e464b5a91be149cd22", null ],
     [ "New", "classVRMenuCallback.html#a7018e9ec974b7a5926f3e2c6f33c8ec6", null ],
+    [ "syncLiveActorPipeline", "classVRMenuCallback.html#aa131cb1a6bd668f591120850dc72fea2", null ],
     [ "activeActors", "classVRMenuCallback.html#a25f72d11bbf69c701c78ae2aa8d9c000", null ],
     [ "globalMenu", "classVRMenuCallback.html#a379b9b0375809ab059cd6ba2f4f7a5c8", null ],
     [ "lastGlobalControlTime", "classVRMenuCallback.html#aa3c5944b1cb308b5a1069bf4f88da134", null ],

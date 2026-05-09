@@ -1,21 +1,14 @@
 var searchData=
 [
-  ['savetomodelpart_0',['saveToModelPart',['../classOptionDialog.html#a8cbe60aecbb7344f560f424ed537b47a',1,'OptionDialog']]],
-  ['selectedpart_1',['selectedPart',['../structVRGlobalMenu.html#a87a36bddda395b9f09ba2416b958117a',1,'VRGlobalMenu']]],
-  ['selectedpartclipenabled_2',['selectedPartClipEnabled',['../structVRGlobalMenu.html#a4fff26d20af7444685a276448da15c4e',1,'VRGlobalMenu']]],
-  ['selectedpartid_3',['selectedPartID',['../structVRGlobalMenu.html#a50d7498a6a32df721c55375d99ae3a25',1,'VRGlobalMenu']]],
-  ['selectedparts_4',['selectedParts',['../classMainWindow.html#a15a4966f9e4285ab2895a35f94878175',1,'MainWindow']]],
-  ['selectedpartshrinkenabled_5',['selectedPartShrinkEnabled',['../structVRGlobalMenu.html#a54cd870962eed90aa664d67cc55435c3',1,'VRGlobalMenu']]],
-  ['selectedpartvisible_6',['selectedPartVisible',['../structVRGlobalMenu.html#a1fcaa1825ae4896ba0a9dca27cf35b03',1,'VRGlobalMenu']]],
-  ['setclipfilter_7',['setClipFilter',['../classModelPart.html#a2baa7057c98d5dc4c9b5303ca54d083d',1,'ModelPart']]],
-  ['setclipplanex_8',['setClipPlaneX',['../classModelPart.html#a922236b215b30689af7f6acc92c905fc',1,'ModelPart']]],
-  ['setcolour_9',['setColour',['../classModelPart.html#abb0819f303fea07fdc053ba750d4684d',1,'ModelPart']]],
-  ['setdata_10',['setData',['../classModelPart.html#a1b0dd7d3e3953b1aa8a4a44a7aa1349b',1,'ModelPart']]],
-  ['setpartlist_11',['setPartList',['../classVRRenderThread.html#a1950ee06c357da44400458b3672f0380',1,'VRRenderThread']]],
-  ['setpickactors_12',['setPickActors',['../structControllerRay.html#a498a4afd7cb58f633e1974340880d66a',1,'ControllerRay']]],
-  ['setshrinkfactor_13',['setShrinkFactor',['../classModelPart.html#a74f7db7b01d496dff596d8a3f1ec722b',1,'ModelPart']]],
-  ['setshrinkfilter_14',['setShrinkFilter',['../classModelPart.html#a0d01c433eb1019cb9d41f75ee389687c',1,'ModelPart']]],
-  ['setvisible_15',['setVisible',['../classModelPart.html#a4cfdee348fd6870756ce836f67b1ce75',1,'ModelPart']]],
-  ['show_16',['show',['../structVRMenu.html#a295afb1bf97a57f3011c916738a14105',1,'VRMenu::show()'],['../structVRGlobalMenu.html#a1f243a37508a4ed14866ae7c34c01c80',1,'VRGlobalMenu::show()']]],
-  ['statusupdatemessage_17',['statusUpdateMessage',['../classMainWindow.html#a86443ea744fda3e9bad328c2fd1c3d6b',1,'MainWindow']]]
+  ['rebuildpipeline_0',['rebuildPipeline',['../classModelPart.html#ad1a6f921de90d0e8d3fb710d445c9593',1,'ModelPart']]],
+  ['rebuildtexture_1',['rebuildTexture',['../structVRGlobalMenu.html#a6a28b32cd1505a84cf1106be64e48cb1',1,'VRGlobalMenu']]],
+  ['rebuildvrpipeline_2',['rebuildVRPipeline',['../classModelPart.html#a25d5e07dd22949e235847d8725ca80d2',1,'ModelPart']]],
+  ['refreshexplodedirections_3',['refreshExplodeDirections',['../classMainWindow.html#ad0f3f72f92f2fe5aa922ad43c13fe3b9',1,'MainWindow']]],
+  ['refreshexplodedirectionsfromtree_4',['refreshExplodeDirectionsFromTree',['../classMainWindow.html#a0246192046d6d7c2844424ca1ff7e134',1,'MainWindow']]],
+  ['refreshpropertytoggletext_5',['refreshPropertyToggleText',['../classMainWindow.html#a996bb91b97cdc9ab297bf60fe9765c61',1,'MainWindow']]],
+  ['removechild_6',['removeChild',['../classModelPart.html#ac7c34fdc872e698650322446d2366dde',1,'ModelPart']]],
+  ['removeitem_7',['removeItem',['../classModelPartList.html#a331e367f122a0d84daa1e0298aa037e4',1,'ModelPartList']]],
+  ['row_8',['row',['../classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910',1,'ModelPart']]],
+  ['rowcount_9',['rowCount',['../classModelPartList.html#a9e220715b6f1ba9d238a997454323634',1,'ModelPartList']]],
+  ['run_10',['run',['../classVRRenderThread.html#af5bbbaf8625fc42278476a43bf018661',1,'VRRenderThread']]]
 ];

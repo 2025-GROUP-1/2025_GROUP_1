@@ -103,85 +103,66 @@ var sectionId = 'dynsection-17';
 <g id="Node000010" class="node">
 <title>Node10</title>
 <g id="a_Node000010"><a xlink:href="classMainWindow.html#a597961838262c9f16a02e6b37d184d5e" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="1203,-240 1045,-240 1045,-210 1203,-210 1203,-240"/>
-<text text-anchor="start" x="1053" y="-228" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_actionEnter</text>
-<text text-anchor="middle" x="1124" y="-217" font-family="Helvetica,sans-Serif" font-size="10.00">_VR_triggered</text>
+<polygon fill="white" stroke="#666666" points="1203,-238 1045,-238 1045,-208 1203,-208 1203,-238"/>
+<text text-anchor="start" x="1053" y="-226" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_actionEnter</text>
+<text text-anchor="middle" x="1124" y="-215" font-family="Helvetica,sans-Serif" font-size="10.00">_VR_triggered</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node10 -->
-<g id="edge25_Node000001_Node000010" class="edge">
+<g id="edge27_Node000001_Node000010" class="edge">
 <title>Node1&#45;&gt;Node10</title>
-<g id="a_edge25_Node000001_Node000010"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1479.92,-198.49C1463.68,-209.98 1439.7,-224.71 1416,-231 1345.79,-249.64 1262.68,-245.46 1203.29,-238.2"/>
+<g id="a_edge27_Node000001_Node000010"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M1479.92,-198.49C1463.68,-209.98 1439.7,-224.71 1416,-231 1345.78,-249.65 1262.67,-244.83 1203.28,-237.02"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="1482.09,-201.24 1488.09,-192.51 1477.95,-195.59 1482.09,-201.24"/>
-</a>
-</g>
-</g>
-<!-- Node18 -->
-<g id="Node000018" class="node">
-<title>Node18</title>
-<g id="a_Node000018"><a xlink:href="classMainWindow.html#ac8d2ec00c54dd53fc814c23cb396d526" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="1415.5,-222 1251.5,-222 1251.5,-192 1415.5,-192 1415.5,-222"/>
-<text text-anchor="start" x="1259.5" y="-210" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_actionDelete</text>
-<text text-anchor="middle" x="1333.5" y="-199" font-family="Helvetica,sans-Serif" font-size="10.00">_Part_triggered</text>
-</a>
-</g>
-</g>
-<!-- Node1&#45;&gt;Node18 -->
-<g id="edge22_Node000001_Node000018" class="edge">
-<title>Node1&#45;&gt;Node18</title>
-<g id="a_edge22_Node000001_Node000018"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1441.6,-191.47C1433.16,-192.69 1424.35,-193.97 1415.57,-195.24"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1442.29,-194.91 1451.69,-190.01 1441.29,-187.98 1442.29,-194.91"/>
 </a>
 </g>
 </g>
 <!-- Node19 -->
 <g id="Node000019" class="node">
 <title>Node19</title>
-<g id="a_Node000019"><a xlink:href="classMainWindow.html#ac0f0034dd8ee8a9cb96cf81366fca941" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="1409,-174 1258,-174 1258,-144 1409,-144 1409,-174"/>
-<text text-anchor="start" x="1266" y="-162" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_actionEdit</text>
-<text text-anchor="middle" x="1333.5" y="-151" font-family="Helvetica,sans-Serif" font-size="10.00">_Part_triggered</text>
+<g id="a_Node000019"><a xlink:href="classMainWindow.html#ac8d2ec00c54dd53fc814c23cb396d526" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="1415.5,-222 1251.5,-222 1251.5,-192 1415.5,-192 1415.5,-222"/>
+<text text-anchor="start" x="1259.5" y="-210" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_actionDelete</text>
+<text text-anchor="middle" x="1333.5" y="-199" font-family="Helvetica,sans-Serif" font-size="10.00">_Part_triggered</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node19 -->
-<g id="edge23_Node000001_Node000019" class="edge">
+<g id="edge24_Node000001_Node000019" class="edge">
 <title>Node1&#45;&gt;Node19</title>
-<g id="a_edge23_Node000001_Node000019"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1441.75,-174.55C1431.17,-173.02 1420.01,-171.4 1409.04,-169.81"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1441.29,-178.02 1451.69,-175.99 1442.29,-171.09 1441.29,-178.02"/>
+<g id="a_edge24_Node000001_Node000019"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M1441.6,-191.47C1433.16,-192.69 1424.35,-193.97 1415.57,-195.24"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1442.29,-194.91 1451.69,-190.01 1441.29,-187.98 1442.29,-194.91"/>
 </a>
 </g>
 </g>
 <!-- Node20 -->
 <g id="Node000020" class="node">
 <title>Node20</title>
-<g id="a_Node000020"><a xlink:href="classMainWindow.html#a666ed04c2b87d813bd698a2a7199bb2b" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="1416,-126 1251,-126 1251,-96 1416,-96 1416,-126"/>
-<text text-anchor="start" x="1259" y="-114" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_actionEnable</text>
-<text text-anchor="middle" x="1333.5" y="-103" font-family="Helvetica,sans-Serif" font-size="10.00">_Passthrough_triggered</text>
+<g id="a_Node000020"><a xlink:href="classMainWindow.html#ac0f0034dd8ee8a9cb96cf81366fca941" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="1409,-174 1258,-174 1258,-144 1409,-144 1409,-174"/>
+<text text-anchor="start" x="1266" y="-162" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_actionEdit</text>
+<text text-anchor="middle" x="1333.5" y="-151" font-family="Helvetica,sans-Serif" font-size="10.00">_Part_triggered</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node20 -->
-<g id="edge24_Node000001_Node000020" class="edge">
+<g id="edge25_Node000001_Node000020" class="edge">
 <title>Node1&#45;&gt;Node20</title>
-<g id="a_edge24_Node000001_Node000020"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1476.78,-167.77C1460.32,-157.47 1437.44,-144.14 1416,-135 1408.4,-131.76 1400.23,-128.79 1392.09,-126.13"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1475.35,-171.01 1485.66,-173.43 1479.11,-165.1 1475.35,-171.01"/>
+<g id="a_edge25_Node000001_Node000020"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M1441.75,-174.55C1431.17,-173.02 1420.01,-171.4 1409.04,-169.81"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1441.29,-178.02 1451.69,-175.99 1442.29,-171.09 1441.29,-178.02"/>
 </a>
 </g>
 </g>
 <!-- Node21 -->
 <g id="Node000021" class="node">
 <title>Node21</title>
-<g id="a_Node000021"><a xlink:href="classMainWindow.html#a73b0020c4cde6b548e415d29234eeda6" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="1415.5,-78 1251.5,-78 1251.5,-48 1415.5,-48 1415.5,-78"/>
-<text text-anchor="start" x="1259.5" y="-66" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_actionImport</text>
-<text text-anchor="middle" x="1333.5" y="-55" font-family="Helvetica,sans-Serif" font-size="10.00">_Mesh_triggered</text>
+<g id="a_Node000021"><a xlink:href="classMainWindow.html#a666ed04c2b87d813bd698a2a7199bb2b" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="1416,-126 1251,-126 1251,-96 1416,-96 1416,-126"/>
+<text text-anchor="start" x="1259" y="-114" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_actionEnable</text>
+<text text-anchor="middle" x="1333.5" y="-103" font-family="Helvetica,sans-Serif" font-size="10.00">_Passthrough_triggered</text>
 </a>
 </g>
 </g>
@@ -189,25 +170,44 @@ var sectionId = 'dynsection-17';
 <g id="edge26_Node000001_Node000021" class="edge">
 <title>Node1&#45;&gt;Node21</title>
 <g id="a_edge26_Node000001_Node000021"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1488.63,-164.59C1474.31,-142.91 1447.69,-107.27 1416,-87 1410.66,-83.58 1404.81,-80.63 1398.78,-78.1"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1485.81,-166.68 1494.16,-173.21 1491.71,-162.9 1485.81,-166.68"/>
+<path fill="none" stroke="#63b8ff" d="M1476.78,-167.77C1460.32,-157.47 1437.44,-144.14 1416,-135 1408.4,-131.76 1400.23,-128.79 1392.09,-126.13"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1475.35,-171.01 1485.66,-173.43 1479.11,-165.1 1475.35,-171.01"/>
 </a>
 </g>
 </g>
 <!-- Node22 -->
 <g id="Node000022" class="node">
 <title>Node22</title>
-<g id="a_Node000022"><a xlink:href="classMainWindow.html#a0441e8dc0d171ff074c1b0d6e27433f0" target="_top" xlink:title=" ">
+<g id="a_Node000022"><a xlink:href="classMainWindow.html#a73b0020c4cde6b548e415d29234eeda6" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="1415.5,-78 1251.5,-78 1251.5,-48 1415.5,-48 1415.5,-78"/>
+<text text-anchor="start" x="1259.5" y="-66" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_actionImport</text>
+<text text-anchor="middle" x="1333.5" y="-55" font-family="Helvetica,sans-Serif" font-size="10.00">_Mesh_triggered</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node22 -->
+<g id="edge28_Node000001_Node000022" class="edge">
+<title>Node1&#45;&gt;Node22</title>
+<g id="a_edge28_Node000001_Node000022"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M1488.63,-164.59C1474.31,-142.91 1447.69,-107.27 1416,-87 1410.66,-83.58 1404.81,-80.63 1398.78,-78.1"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1485.81,-166.68 1494.16,-173.21 1491.71,-162.9 1485.81,-166.68"/>
+</a>
+</g>
+</g>
+<!-- Node23 -->
+<g id="Node000023" class="node">
+<title>Node23</title>
+<g id="a_Node000023"><a xlink:href="classMainWindow.html#a0441e8dc0d171ff074c1b0d6e27433f0" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1412,-30 1255,-30 1255,0 1412,0 1412,-30"/>
 <text text-anchor="start" x="1263" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow::on_buttonSync</text>
 <text text-anchor="middle" x="1333.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">VR_clicked</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node22 -->
-<g id="edge27_Node000001_Node000022" class="edge">
-<title>Node1&#45;&gt;Node22</title>
-<g id="a_edge27_Node000001_Node000022"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node23 -->
+<g id="edge29_Node000001_Node000023" class="edge">
+<title>Node1&#45;&gt;Node23</title>
+<g id="a_edge29_Node000001_Node000023"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M1493.96,-163.62C1483.29,-132.63 1458.19,-72.05 1416,-39 1411.59,-35.54 1406.69,-32.58 1401.55,-30.05"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="1490.68,-164.85 1497.13,-173.25 1497.32,-162.66 1490.68,-164.85"/>
 </a>
@@ -235,8 +235,8 @@ var sectionId = 'dynsection-17';
 <g id="Node000007" class="node">
 <title>Node7</title>
 <g id="a_Node000007"><a xlink:href="classVRMenuCallback.html#a912b2d3f14fb4b2a9e4f9b23ae6fbcb9" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="353,-353.5 179,-353.5 179,-334.5 353,-334.5 353,-353.5"/>
-<text text-anchor="middle" x="266" y="-341.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRMenuCallback::executeAction</text>
+<polygon fill="white" stroke="#666666" points="353,-342.5 179,-342.5 179,-323.5 353,-323.5 353,-342.5"/>
+<text text-anchor="middle" x="266" y="-330.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRMenuCallback::executeAction</text>
 </a>
 </g>
 </g>
@@ -244,7 +244,7 @@ var sectionId = 'dynsection-17';
 <g id="edge6_Node000003_Node000007" class="edge">
 <title>Node3&#45;&gt;Node7</title>
 <g id="a_edge6_Node000003_Node000007"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1280.72,-299.68C1199.82,-316.88 1038.28,-347 899.5,-347 899.5,-347 899.5,-347 681,-347 567.61,-347 436.77,-345.86 353.03,-344.99"/>
+<path fill="none" stroke="#63b8ff" d="M1280.72,-299.68C1199.82,-316.88 1038.28,-347 899.5,-347 899.5,-347 899.5,-347 681,-347 567.55,-347 436.72,-341.68 353,-337.6"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="1281.61,-303.07 1290.65,-297.54 1280.14,-296.22 1281.61,-303.07"/>
 </a>
 </g>
@@ -253,9 +253,9 @@ var sectionId = 'dynsection-17';
 <g id="Node000009" class="node">
 <title>Node9</title>
 <g id="a_Node000009"><a xlink:href="classVRMenuCallback.html#a099efec49d88c7d83447af3b8cb6c916" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="564,-319 389,-319 389,-289 564,-289 564,-319"/>
-<text text-anchor="start" x="397" y="-307" font-family="Helvetica,sans-Serif" font-size="10.00">VRMenuCallback::executeGlobal</text>
-<text text-anchor="middle" x="476.5" y="-296" font-family="Helvetica,sans-Serif" font-size="10.00">MenuHit</text>
+<polygon fill="white" stroke="#666666" points="564,-308 389,-308 389,-278 564,-278 564,-308"/>
+<text text-anchor="start" x="397" y="-296" font-family="Helvetica,sans-Serif" font-size="10.00">VRMenuCallback::executeGlobal</text>
+<text text-anchor="middle" x="476.5" y="-285" font-family="Helvetica,sans-Serif" font-size="10.00">MenuHit</text>
 </a>
 </g>
 </g>
@@ -263,8 +263,8 @@ var sectionId = 'dynsection-17';
 <g id="edge8_Node000003_Node000009" class="edge">
 <title>Node3&#45;&gt;Node9</title>
 <g id="a_edge8_Node000003_Node000009"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1258.14,-289.39C1100.22,-292.35 732.11,-299.24 564,-302.38"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1258.3,-292.89 1268.24,-289.2 1258.17,-285.89 1258.3,-292.89"/>
+<path fill="none" stroke="#63b8ff" d="M1258.31,-288.45C1190.33,-288.85 1086.89,-289.47 997,-290 844.8,-290.89 667.52,-291.91 564.36,-292.5"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1258.52,-291.95 1268.49,-288.39 1258.47,-284.95 1258.52,-291.95"/>
 </a>
 </g>
 </g>
@@ -272,8 +272,8 @@ var sectionId = 'dynsection-17';
 <g id="edge10_Node000003_Node000010" class="edge">
 <title>Node3&#45;&gt;Node10</title>
 <g id="a_edge10_Node000003_Node000010"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1287.94,-275.62C1275.89,-272.07 1262.89,-268.05 1251,-264 1234.75,-258.46 1231.29,-255.42 1215,-250 1204.54,-246.52 1193.28,-243.13 1182.39,-240.02"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1287.22,-279.05 1297.8,-278.48 1289.17,-272.33 1287.22,-279.05"/>
+<path fill="none" stroke="#63b8ff" d="M1286.81,-275.7C1275.04,-272.21 1262.46,-268.21 1251,-264 1234.57,-257.96 1231.48,-253.91 1215,-248 1205.08,-244.44 1194.39,-241.07 1183.97,-238.04"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1285.88,-279.07 1296.46,-278.49 1287.83,-272.35 1285.88,-279.07"/>
 </a>
 </g>
 </g>
@@ -281,8 +281,8 @@ var sectionId = 'dynsection-17';
 <g id="Node000011" class="node">
 <title>Node11</title>
 <g id="a_Node000011"><a xlink:href="structVRGlobalMenu.html#a87a36bddda395b9f09ba2416b958117a" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="1201.5,-277.5 1046.5,-277.5 1046.5,-258.5 1201.5,-258.5 1201.5,-277.5"/>
-<text text-anchor="middle" x="1124" y="-265.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRGlobalMenu::selectedPart</text>
+<polygon fill="white" stroke="#666666" points="1201.5,-275.5 1046.5,-275.5 1046.5,-256.5 1201.5,-256.5 1201.5,-275.5"/>
+<text text-anchor="middle" x="1124" y="-263.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRGlobalMenu::selectedPart</text>
 </a>
 </g>
 </g>
@@ -290,8 +290,8 @@ var sectionId = 'dynsection-17';
 <g id="edge11_Node000003_Node000011" class="edge">
 <title>Node3&#45;&gt;Node11</title>
 <g id="a_edge11_Node000003_Node000011"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1258.22,-280.84C1239.86,-279.07 1220.16,-277.17 1201.68,-275.39"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1257.98,-284.33 1268.27,-281.81 1258.65,-277.37 1257.98,-284.33"/>
+<path fill="none" stroke="#63b8ff" d="M1258.22,-280.12C1239.86,-278.18 1220.16,-276.09 1201.68,-274.13"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1257.95,-283.62 1268.27,-281.19 1258.69,-276.65 1257.95,-283.62"/>
 </a>
 </g>
 </g>
@@ -335,8 +335,8 @@ var sectionId = 'dynsection-17';
 <g id="Node000008" class="node">
 <title>Node8</title>
 <g id="a_Node000008"><a xlink:href="classVRMenuCallback.html#aa8d4b0b3d16a598f35da79fd6d156332" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="143,-313.5 0,-313.5 0,-294.5 143,-294.5 143,-313.5"/>
-<text text-anchor="middle" x="71.5" y="-301.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRMenuCallback::Execute</text>
+<polygon fill="white" stroke="#666666" points="143,-302.5 0,-302.5 0,-283.5 143,-283.5 143,-302.5"/>
+<text text-anchor="middle" x="71.5" y="-290.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRMenuCallback::Execute</text>
 </a>
 </g>
 </g>
@@ -344,8 +344,8 @@ var sectionId = 'dynsection-17';
 <g id="edge7_Node000007_Node000008" class="edge">
 <title>Node7&#45;&gt;Node8</title>
 <g id="a_edge7_Node000007_Node000008"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M208.96,-332.36C180.13,-326.36 145.43,-319.15 118.23,-313.5"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="208.39,-335.81 218.89,-334.42 209.81,-328.96 208.39,-335.81"/>
+<path fill="none" stroke="#63b8ff" d="M208.96,-321.36C180.13,-315.36 145.43,-308.15 118.23,-302.5"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="208.39,-324.81 218.89,-323.42 209.81,-317.96 208.39,-324.81"/>
 </a>
 </g>
 </g>
@@ -353,18 +353,18 @@ var sectionId = 'dynsection-17';
 <g id="edge9_Node000009_Node000008" class="edge">
 <title>Node9&#45;&gt;Node8</title>
 <g id="a_edge9_Node000009_Node000008"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M378.49,-304C305.96,-304 208.46,-304 143.19,-304"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="378.55,-307.5 388.55,-304 378.55,-300.5 378.55,-307.5"/>
+<path fill="none" stroke="#63b8ff" d="M378.49,-293C305.96,-293 208.46,-293 143.19,-293"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="378.55,-296.5 388.55,-293 378.55,-289.5 378.55,-296.5"/>
 </a>
 </g>
 </g>
 <!-- Node12 -->
 <g id="Node000012" class="node">
 <title>Node12</title>
-<g id="a_Node000012"><a xlink:href="structVRGlobalMenu.html#a4fff26d20af7444685a276448da15c4e" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="976,-281 821,-281 821,-251 976,-251 976,-281"/>
-<text text-anchor="start" x="829" y="-269" font-family="Helvetica,sans-Serif" font-size="10.00">VRGlobalMenu::selectedPart</text>
-<text text-anchor="middle" x="898.5" y="-258" font-family="Helvetica,sans-Serif" font-size="10.00">ClipEnabled</text>
+<g id="a_Node000012"><a xlink:href="structVRGlobalMenu.html#afa54f6a495ce1ab0312514589366d1ba" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="982,-281 815,-281 815,-251 982,-251 982,-281"/>
+<text text-anchor="start" x="823" y="-269" font-family="Helvetica,sans-Serif" font-size="10.00">VRGlobalMenu::selectedColour</text>
+<text text-anchor="middle" x="898.5" y="-258" font-family="Helvetica,sans-Serif" font-size="10.00">Matches</text>
 </a>
 </g>
 </g>
@@ -372,18 +372,18 @@ var sectionId = 'dynsection-17';
 <g id="edge12_Node000011_Node000012" class="edge">
 <title>Node11&#45;&gt;Node12</title>
 <g id="a_edge12_Node000011_Node000012"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1036.14,-267.22C1016.3,-267.05 995.37,-266.86 976,-266.68"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1036.37,-270.72 1046.4,-267.31 1036.43,-263.73 1036.37,-270.72"/>
+<path fill="none" stroke="#63b8ff" d="M1036.07,-266C1018.32,-266 999.7,-266 982.12,-266"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1036.4,-269.5 1046.4,-266 1036.4,-262.5 1036.4,-269.5"/>
 </a>
 </g>
 </g>
 <!-- Node16 -->
 <g id="Node000016" class="node">
 <title>Node16</title>
-<g id="a_Node000016"><a xlink:href="structVRGlobalMenu.html#a54cd870962eed90aa664d67cc55435c3" target="_top" xlink:title=" ">
+<g id="a_Node000016"><a xlink:href="structVRGlobalMenu.html#a4fff26d20af7444685a276448da15c4e" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="976,-233 821,-233 821,-203 976,-203 976,-233"/>
 <text text-anchor="start" x="829" y="-221" font-family="Helvetica,sans-Serif" font-size="10.00">VRGlobalMenu::selectedPart</text>
-<text text-anchor="middle" x="898.5" y="-210" font-family="Helvetica,sans-Serif" font-size="10.00">ShrinkEnabled</text>
+<text text-anchor="middle" x="898.5" y="-210" font-family="Helvetica,sans-Serif" font-size="10.00">ClipEnabled</text>
 </a>
 </g>
 </g>
@@ -391,18 +391,18 @@ var sectionId = 'dynsection-17';
 <g id="edge18_Node000011_Node000016" class="edge">
 <title>Node11&#45;&gt;Node16</title>
 <g id="a_edge18_Node000011_Node000016"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1066.63,-256.28C1055.48,-253.91 1043.86,-251.41 1033,-249 1010.12,-243.93 985.08,-238.17 962.93,-233"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1066.21,-259.77 1076.71,-258.41 1067.65,-252.92 1066.21,-259.77"/>
+<path fill="none" stroke="#63b8ff" d="M1067.74,-254.39C1056.26,-251.96 1044.23,-249.41 1033,-247 1012.01,-242.5 989.18,-237.56 968.43,-233.05"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1067.16,-257.84 1077.67,-256.48 1068.6,-250.99 1067.16,-257.84"/>
 </a>
 </g>
 </g>
 <!-- Node17 -->
 <g id="Node000017" class="node">
 <title>Node17</title>
-<g id="a_Node000017"><a xlink:href="structVRGlobalMenu.html#a1fcaa1825ae4896ba0a9dca27cf35b03" target="_top" xlink:title=" ">
+<g id="a_Node000017"><a xlink:href="structVRGlobalMenu.html#a54cd870962eed90aa664d67cc55435c3" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="976,-185 821,-185 821,-155 976,-155 976,-185"/>
 <text text-anchor="start" x="829" y="-173" font-family="Helvetica,sans-Serif" font-size="10.00">VRGlobalMenu::selectedPart</text>
-<text text-anchor="middle" x="898.5" y="-162" font-family="Helvetica,sans-Serif" font-size="10.00">Visible</text>
+<text text-anchor="middle" x="898.5" y="-162" font-family="Helvetica,sans-Serif" font-size="10.00">ShrinkEnabled</text>
 </a>
 </g>
 </g>
@@ -410,8 +410,27 @@ var sectionId = 'dynsection-17';
 <g id="edge20_Node000011_Node000017" class="edge">
 <title>Node11&#45;&gt;Node17</title>
 <g id="a_edge20_Node000011_Node000017"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1042.22,-254.4C1039.01,-252.79 1035.92,-251 1033,-249 1008.88,-232.51 1020.84,-210.89 997,-194 990.74,-189.57 983.75,-185.95 976.47,-183"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1040.97,-257.68 1051.54,-258.48 1043.78,-251.26 1040.97,-257.68"/>
+<path fill="none" stroke="#63b8ff" d="M1042.27,-252.34C1039.05,-250.75 1035.94,-248.97 1033,-247 1009.36,-231.13 1020.38,-210.26 997,-194 990.7,-189.62 983.69,-186.04 976.39,-183.11"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1041.04,-255.62 1051.61,-256.38 1043.81,-249.2 1041.04,-255.62"/>
+</a>
+</g>
+</g>
+<!-- Node18 -->
+<g id="Node000018" class="node">
+<title>Node18</title>
+<g id="a_Node000018"><a xlink:href="structVRGlobalMenu.html#a1fcaa1825ae4896ba0a9dca27cf35b03" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="976,-137 821,-137 821,-107 976,-107 976,-137"/>
+<text text-anchor="start" x="829" y="-125" font-family="Helvetica,sans-Serif" font-size="10.00">VRGlobalMenu::selectedPart</text>
+<text text-anchor="middle" x="898.5" y="-114" font-family="Helvetica,sans-Serif" font-size="10.00">Visible</text>
+</a>
+</g>
+</g>
+<!-- Node11&#45;&gt;Node18 -->
+<g id="edge22_Node000011_Node000018" class="edge">
+<title>Node11&#45;&gt;Node18</title>
+<g id="a_edge22_Node000011_Node000018"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M1038.54,-251.28C1036.61,-249.96 1034.76,-248.54 1033,-247 997.12,-215.64 1032.36,-177.95 997,-146 990.92,-140.51 983.79,-136.22 976.19,-132.89"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1037.02,-254.44 1047.43,-256.4 1040.51,-248.38 1037.02,-254.44"/>
 </a>
 </g>
 </g>
@@ -419,8 +438,8 @@ var sectionId = 'dynsection-17';
 <g id="Node000013" class="node">
 <title>Node13</title>
 <g id="a_Node000013"><a xlink:href="structVRGlobalMenu.html#a6a28b32cd1505a84cf1106be64e48cb1" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="764,-270.5 600,-270.5 600,-251.5 764,-251.5 764,-270.5"/>
-<text text-anchor="middle" x="682" y="-258.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRGlobalMenu::rebuildTexture</text>
+<polygon fill="white" stroke="#666666" points="764,-232.5 600,-232.5 600,-213.5 764,-213.5 764,-232.5"/>
+<text text-anchor="middle" x="682" y="-220.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRGlobalMenu::rebuildTexture</text>
 </a>
 </g>
 </g>
@@ -428,8 +447,8 @@ var sectionId = 'dynsection-17';
 <g id="edge13_Node000012_Node000013" class="edge">
 <title>Node12&#45;&gt;Node13</title>
 <g id="a_edge13_Node000012_Node000013"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M810.93,-263.98C795.51,-263.62 779.49,-263.25 764.22,-262.89"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="810.89,-267.48 820.97,-264.22 811.05,-260.48 810.89,-267.48"/>
+<path fill="none" stroke="#63b8ff" d="M812.33,-248.93C784.47,-243.34 754.54,-237.34 730.5,-232.52"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="811.99,-252.43 822.48,-250.96 813.36,-245.56 811.99,-252.43"/>
 </a>
 </g>
 </g>
@@ -437,8 +456,8 @@ var sectionId = 'dynsection-17';
 <g id="edge14_Node000013_Node000009" class="edge">
 <title>Node13&#45;&gt;Node9</title>
 <g id="a_edge14_Node000013_Node000009"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M625.91,-272.64C602.08,-277.68 573.89,-283.63 548.52,-288.99"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="626.78,-276.03 635.84,-270.54 625.33,-269.19 626.78,-276.03"/>
+<path fill="none" stroke="#63b8ff" d="M643.43,-235.92C608.93,-247.79 557.79,-265.38 521.41,-277.89"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="644.81,-239.15 653.13,-232.59 642.54,-232.53 644.81,-239.15"/>
 </a>
 </g>
 </g>
@@ -446,8 +465,8 @@ var sectionId = 'dynsection-17';
 <g id="Node000014" class="node">
 <title>Node14</title>
 <g id="a_Node000014"><a xlink:href="structVRGlobalMenu.html#a1f243a37508a4ed14866ae7c34c01c80" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="536.5,-270.5 416.5,-270.5 416.5,-251.5 536.5,-251.5 536.5,-270.5"/>
-<text text-anchor="middle" x="476.5" y="-258.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRGlobalMenu::show</text>
+<polygon fill="white" stroke="#666666" points="536.5,-238.5 416.5,-238.5 416.5,-219.5 536.5,-219.5 536.5,-238.5"/>
+<text text-anchor="middle" x="476.5" y="-226.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRGlobalMenu::show</text>
 </a>
 </g>
 </g>
@@ -455,8 +474,8 @@ var sectionId = 'dynsection-17';
 <g id="edge15_Node000013_Node000014" class="edge">
 <title>Node13&#45;&gt;Node14</title>
 <g id="a_edge15_Node000013_Node000014"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M589.99,-261C571.87,-261 553.3,-261 536.6,-261"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="589.99,-264.5 599.99,-261 589.99,-257.5 589.99,-264.5"/>
+<path fill="none" stroke="#63b8ff" d="M589.99,-225.68C571.87,-226.22 553.3,-226.77 536.6,-227.26"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="590.09,-229.18 599.99,-225.39 589.89,-222.18 590.09,-229.18"/>
 </a>
 </g>
 </g>
@@ -464,8 +483,8 @@ var sectionId = 'dynsection-17';
 <g id="Node000015" class="node">
 <title>Node15</title>
 <g id="a_Node000015"><a xlink:href="structVRGlobalMenu.html#a0e780f3d9acbdbbb40ad857857c80a70" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="328.5,-273.5 203.5,-273.5 203.5,-254.5 328.5,-254.5 328.5,-273.5"/>
-<text text-anchor="middle" x="266" y="-261.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRGlobalMenu::toggle</text>
+<polygon fill="white" stroke="#666666" points="328.5,-262.5 203.5,-262.5 203.5,-243.5 328.5,-243.5 328.5,-262.5"/>
+<text text-anchor="middle" x="266" y="-250.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRGlobalMenu::toggle</text>
 </a>
 </g>
 </g>
@@ -473,8 +492,8 @@ var sectionId = 'dynsection-17';
 <g id="edge16_Node000014_Node000015" class="edge">
 <title>Node14&#45;&gt;Node15</title>
 <g id="a_edge16_Node000014_Node000015"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M406.13,-262C381.03,-262.36 352.89,-262.76 328.52,-263.11"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="406.36,-265.5 416.31,-261.85 406.26,-258.5 406.36,-265.5"/>
+<path fill="none" stroke="#63b8ff" d="M406.13,-236.99C381.03,-239.87 352.89,-243.11 328.52,-245.92"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="406.78,-240.43 416.31,-235.81 405.98,-233.48 406.78,-240.43"/>
 </a>
 </g>
 </g>
@@ -482,8 +501,8 @@ var sectionId = 'dynsection-17';
 <g id="edge17_Node000015_Node000008" class="edge">
 <title>Node15&#45;&gt;Node8</title>
 <g id="a_edge17_Node000015_Node000008"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M208.96,-275.64C180.13,-281.64 145.43,-288.85 118.23,-294.5"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="209.81,-279.04 218.89,-273.58 208.39,-272.19 209.81,-279.04"/>
+<path fill="none" stroke="#63b8ff" d="M208.96,-264.64C180.13,-270.64 145.43,-277.85 118.23,-283.5"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="209.81,-268.04 218.89,-262.58 208.39,-261.19 209.81,-268.04"/>
 </a>
 </g>
 </g>
@@ -491,8 +510,8 @@ var sectionId = 'dynsection-17';
 <g id="edge19_Node000016_Node000013" class="edge">
 <title>Node16&#45;&gt;Node13</title>
 <g id="a_edge19_Node000016_Node000013"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M812.33,-235.07C784.47,-240.66 754.54,-246.66 730.5,-251.48"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="813.36,-238.44 822.48,-233.04 811.99,-231.57 813.36,-238.44"/>
+<path fill="none" stroke="#63b8ff" d="M810.93,-220.02C795.51,-220.38 779.49,-220.75 764.22,-221.11"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="811.05,-223.52 820.97,-219.78 810.89,-216.52 811.05,-223.52"/>
 </a>
 </g>
 </g>
@@ -500,8 +519,17 @@ var sectionId = 'dynsection-17';
 <g id="edge21_Node000017_Node000013" class="edge">
 <title>Node17&#45;&gt;Node13</title>
 <g id="a_edge21_Node000017_Node000013"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M816.76,-187.99C811.03,-189.84 805.39,-191.84 800,-194 760.45,-209.83 718,-237.02 696.76,-251.41"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="817.93,-191.29 826.47,-185.01 815.88,-184.6 817.93,-191.29"/>
+<path fill="none" stroke="#63b8ff" d="M826.4,-187.49C817.51,-189.68 808.55,-191.89 800,-194 773.79,-200.47 744.29,-207.79 721.46,-213.45"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="827.51,-190.82 836.38,-185.03 825.84,-184.02 827.51,-190.82"/>
+</a>
+</g>
+</g>
+<!-- Node18&#45;&gt;Node13 -->
+<g id="edge23_Node000018_Node000013" class="edge">
+<title>Node18&#45;&gt;Node13</title>
+<g id="a_edge23_Node000018_Node000013"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M814.68,-140.27C809.65,-142.03 804.72,-143.94 800,-146 758.1,-164.29 714.64,-197.25 694.51,-213.46"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="816.03,-143.52 824.44,-137.07 813.85,-136.86 816.03,-143.52"/>
 </a>
 </g>
 </g>

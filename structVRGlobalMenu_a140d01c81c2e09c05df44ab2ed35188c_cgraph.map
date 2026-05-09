@@ -1,0 +1,7 @@
+<map id="VRGlobalMenu::drawTextButton" name="VRGlobalMenu::drawTextButton">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,233,31"/>
+<area shape="rect" id="Node000002" href="$structVRGlobalMenu.html#a7174f6bdbdd5901f533f454cea5ff960" title=" " alt="" coords="281,5,467,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="233,15,268,15,268,21,233,21"/>
+<area shape="rect" id="Node000003" href="$structVRGlobalMenu.html#a1f343deded4bdd038ea13386514db33a" title=" " alt="" coords="515,5,712,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="467,15,501,15,501,21,467,21"/>
+</map>

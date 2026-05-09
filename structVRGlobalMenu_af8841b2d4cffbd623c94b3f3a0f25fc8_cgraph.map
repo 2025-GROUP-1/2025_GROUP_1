@@ -1,0 +1,9 @@
+<map id="VRGlobalMenu::drawMeshThumbnail" name="VRGlobalMenu::drawMeshThumbnail">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,268,56"/>
+<area shape="rect" id="Node000002" href="$structVRGlobalMenu.html#ad7d78a5d53a7a858397e878a9ea9141a" title=" " alt="" coords="320,5,505,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="268,29,306,25,307,30,269,34"/>
+<area shape="rect" id="Node000003" href="$structVRGlobalMenu.html#a65b648aa08555a5b78fda5bcbc07d3e0" title=" " alt="" coords="316,55,509,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="268,52,303,55,302,60,268,57"/>
+<area shape="rect" id="Node000004" href="$structVRGlobalMenu.html#a5a41972dce71e392516abcbab6efb2ac" title=" " alt="" coords="557,55,771,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="509,65,544,65,544,70,509,70"/>
+</map>

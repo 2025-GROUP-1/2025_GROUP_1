@@ -1,9 +1,15 @@
 var searchData=
 [
-  ['handletreeclicked_0',['handleTreeClicked',['../classMainWindow.html#a143bb60757a3e3f88e208eedb2af7539',1,'MainWindow']]],
-  ['headerdata_1',['headerData',['../classModelPartList.html#a433d50449a83c42eb8c0384c7b7c0fea',1,'ModelPartList']]],
-  ['hide_2',['hide',['../structVRMenu.html#ab8a20b41f69036dd7823bd4b63679f31',1,'VRMenu::hide()'],['../structVRGlobalMenu.html#a1122b559c6f158649fdce6b1ad6d29cd',1,'VRGlobalMenu::hide()']]],
-  ['hitfromrayline_3',['hitFromRayLine',['../structVRGlobalMenu.html#ac8d213f1d139fadbe4d912e2942ed137',1,'VRGlobalMenu']]],
-  ['hitfromrays_4',['hitFromRays',['../structVRGlobalMenu.html#a80c72ba5619845b6fa80ea92c426fa0c',1,'VRGlobalMenu']]],
-  ['hittest_5',['hitTest',['../structVRGlobalMenu.html#a7c4f85cb99bc0e87bda222ffb5727cfd',1,'VRGlobalMenu']]]
+  ['getactor_0',['getActor',['../classModelPart.html#a3d845a3cb1d357a0c2f4ffb131e73116',1,'ModelPart']]],
+  ['getclipenabled_1',['getClipEnabled',['../classModelPart.html#a393860ebae3b634f2e46c828f702326c',1,'ModelPart']]],
+  ['getclipplanex_2',['getClipPlaneX',['../classModelPart.html#a2f5dc393cc003453cde495d0c4a59639',1,'ModelPart']]],
+  ['getcolour_3',['getColour',['../classModelPart.html#ac78f4dc9ce97458b7eb22bc474bf54eb',1,'ModelPart']]],
+  ['getcontrollerpos_4',['getControllerPos',['../structTriggerGrabber.html#a01618a7960bad326fe63c5bd1cd02efc',1,'TriggerGrabber']]],
+  ['getid_5',['getID',['../classModelPart.html#a508412880d7025d525ae018d9e1bbffc',1,'ModelPart']]],
+  ['getrootitem_6',['getRootItem',['../classModelPartList.html#a1b6e2e108802afbc45e4bd054dccf982',1,'ModelPartList']]],
+  ['getshrinkenabled_7',['getShrinkEnabled',['../classModelPart.html#a3e83ff5e16369fecf12deaf91d9a6bfe',1,'ModelPart']]],
+  ['getshrinkfactor_8',['getShrinkFactor',['../classModelPart.html#a2a9eeceaebeab07355a27f6a4c66080b',1,'ModelPart']]],
+  ['getvisible_9',['getVisible',['../classModelPart.html#a54fd5c6a6ff47dacfa30980eb3a5c647',1,'ModelPart']]],
+  ['getvractor_10',['getVRActor',['../classModelPart.html#ad47f8a6955273229148a00189804c274',1,'ModelPart']]],
+  ['glyphrows_11',['glyphRows',['../structVRGlobalMenu.html#a1f343deded4bdd038ea13386514db33a',1,'VRGlobalMenu']]]
 ];

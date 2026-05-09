@@ -132,6 +132,7 @@ $(document).ready(function(){initNavTree('structVRGlobalMenu.html',''); initResi
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="structVRGlobalMenu-members.html">List of all members</a>  </div>
@@ -166,12 +167,28 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a0ee1feacfccc049cf72c99d2b077532b" id="r_a0ee1feacfccc049cf72c99d2b077532b"><td class="memItemLeft" align="right" valign="top">vtkSmartPointer&lt; vtkImageData &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a0ee1feacfccc049cf72c99d2b077532b">buildActorThumbnail</a> (vtkActor *actor)</td></tr>
+<tr class="separator:a0ee1feacfccc049cf72c99d2b077532b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b5e8beb022d1c48bf7f927d0380a8e5" id="r_a1b5e8beb022d1c48bf7f927d0380a8e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a1b5e8beb022d1c48bf7f927d0380a8e5">create</a> (vtkRenderer *ren)</td></tr>
 <tr class="separator:a1b5e8beb022d1c48bf7f927d0380a8e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a195b79c8918b59b95cdc2b7372875902" id="r_a195b79c8918b59b95cdc2b7372875902"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a195b79c8918b59b95cdc2b7372875902">drawSwatch</a> (vtkImageCanvasSource2D *canvas, int slot, const QColor &amp;colour)</td></tr>
-<tr class="separator:a195b79c8918b59b95cdc2b7372875902"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a725ad657da9ca015c853216666aa199e" id="r_a725ad657da9ca015c853216666aa199e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a725ad657da9ca015c853216666aa199e">drawToggle</a> (vtkImageCanvasSource2D *canvas, int slot, bool enabled)</td></tr>
-<tr class="separator:a725ad657da9ca015c853216666aa199e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab50a03b30964d15114d30f458d9cd7f2" id="r_ab50a03b30964d15114d30f458d9cd7f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#ab50a03b30964d15114d30f458d9cd7f2">drawActorThumbnail</a> (vtkImageCanvasSource2D *canvas, int partID, vtkActor *actor, int x0, int y0, int size)</td></tr>
+<tr class="separator:ab50a03b30964d15114d30f458d9cd7f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38d679700b25debf59088897d8318106" id="r_a38d679700b25debf59088897d8318106"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a38d679700b25debf59088897d8318106">drawEyeButton</a> (vtkImageCanvasSource2D *canvas, int x0, int y0, bool enabled)</td></tr>
+<tr class="separator:a38d679700b25debf59088897d8318106"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7d78a5d53a7a858397e878a9ea9141a" id="r_ad7d78a5d53a7a858397e878a9ea9141a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#ad7d78a5d53a7a858397e878a9ea9141a">drawLine</a> (vtkImageCanvasSource2D *canvas, int x0, int y0, int x1, int y1, int minX, int minY, int maxX, int maxY)</td></tr>
+<tr class="separator:ad7d78a5d53a7a858397e878a9ea9141a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8841b2d4cffbd623c94b3f3a0f25fc8" id="r_af8841b2d4cffbd623c94b3f3a0f25fc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#af8841b2d4cffbd623c94b3f3a0f25fc8">drawMeshThumbnail</a> (vtkImageCanvasSource2D *canvas, vtkActor *actor, int x0, int y0, int size, const QColor &amp;baseColour)</td></tr>
+<tr class="separator:af8841b2d4cffbd623c94b3f3a0f25fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57bd5587922acf9883d3693cf78e918b" id="r_a57bd5587922acf9883d3693cf78e918b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a57bd5587922acf9883d3693cf78e918b">drawSwatch</a> (vtkImageCanvasSource2D *canvas, int slot, const QColor &amp;colour, bool selected)</td></tr>
+<tr class="separator:a57bd5587922acf9883d3693cf78e918b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7174f6bdbdd5901f533f454cea5ff960" id="r_a7174f6bdbdd5901f533f454cea5ff960"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a7174f6bdbdd5901f533f454cea5ff960">drawText</a> (vtkImageCanvasSource2D *canvas, int x, int y, const char *text, int scale)</td></tr>
+<tr class="separator:a7174f6bdbdd5901f533f454cea5ff960"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a140d01c81c2e09c05df44ab2ed35188c" id="r_a140d01c81c2e09c05df44ab2ed35188c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a140d01c81c2e09c05df44ab2ed35188c">drawTextButton</a> (vtkImageCanvasSource2D *canvas, int x0, int y0, int width, const char *label, bool enabled)</td></tr>
+<tr class="separator:a140d01c81c2e09c05df44ab2ed35188c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65b648aa08555a5b78fda5bcbc07d3e0" id="r_a65b648aa08555a5b78fda5bcbc07d3e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a65b648aa08555a5b78fda5bcbc07d3e0">fillTriangle</a> (vtkImageCanvasSource2D *canvas, int ax, int ay, int bx, int by, int cx, int cy, int minX, int minY, int maxX, int maxY)</td></tr>
+<tr class="separator:a65b648aa08555a5b78fda5bcbc07d3e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f343deded4bdd038ea13386514db33a" id="r_a1f343deded4bdd038ea13386514db33a"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a1f343deded4bdd038ea13386514db33a">glyphRows</a> (char ch) const</td></tr>
+<tr class="separator:a1f343deded4bdd038ea13386514db33a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1122b559c6f158649fdce6b1ad6d29cd" id="r_a1122b559c6f158649fdce6b1ad6d29cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a1122b559c6f158649fdce6b1ad6d29cd">hide</a> ()</td></tr>
 <tr class="separator:a1122b559c6f158649fdce6b1ad6d29cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8d213f1d139fadbe4d912e2942ed137" id="r_ac8d213f1d139fadbe4d912e2942ed137"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVRGlobalMenu_1_1HitResult.html">HitResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#ac8d213f1d139fadbe4d912e2942ed137">hitFromRayLine</a> (vtkLineSource *line) const</td></tr>
@@ -182,6 +199,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7c4f85cb99bc0e87bda222ffb5727cfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a28b32cd1505a84cf1106be64e48cb1" id="r_a6a28b32cd1505a84cf1106be64e48cb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a6a28b32cd1505a84cf1106be64e48cb1">rebuildTexture</a> ()</td></tr>
 <tr class="separator:a6a28b32cd1505a84cf1106be64e48cb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa54f6a495ce1ab0312514589366d1ba" id="r_afa54f6a495ce1ab0312514589366d1ba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#afa54f6a495ce1ab0312514589366d1ba">selectedColourMatches</a> (const QColor &amp;colour) const</td></tr>
+<tr class="separator:afa54f6a495ce1ab0312514589366d1ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87a36bddda395b9f09ba2416b958117a" id="r_a87a36bddda395b9f09ba2416b958117a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classModelPart.html">ModelPart</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a87a36bddda395b9f09ba2416b958117a">selectedPart</a> () const</td></tr>
 <tr class="separator:a87a36bddda395b9f09ba2416b958117a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fff26d20af7444685a276448da15c4e" id="r_a4fff26d20af7444685a276448da15c4e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a4fff26d20af7444685a276448da15c4e">selectedPartClipEnabled</a> () const</td></tr>
@@ -196,6 +215,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1f243a37508a4ed14866ae7c34c01c80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e780f3d9acbdbbb40ad857857c80a70" id="r_a0e780f3d9acbdbbb40ad857857c80a70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a0e780f3d9acbdbbb40ad857857c80a70">toggle</a> (vtkRenderer *ren, vtkOpenVRRenderWindow *win)</td></tr>
 <tr class="separator:a0e780f3d9acbdbbb40ad857857c80a70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a5a41972dce71e392516abcbab6efb2ac" id="r_a5a41972dce71e392516abcbab6efb2ac"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a5a41972dce71e392516abcbab6efb2ac">edgeFunction</a> (double ax, double ay, double bx, double by, double px, double py)</td></tr>
+<tr class="separator:a5a41972dce71e392516abcbab6efb2ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -227,11 +251,15 @@ Public Attributes</h2></td></tr>
 <tr class="separator:af362bcefb4937ca149b0ccfb7e1b4cdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18eda9ebee48037c234027e1352dbe27" id="r_a18eda9ebee48037c234027e1352dbe27"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a18eda9ebee48037c234027e1352dbe27">selectedIndex</a> = -1</td></tr>
 <tr class="separator:a18eda9ebee48037c234027e1352dbe27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc1c0e35b539e1e6dd57a5892d2ae7b2" id="r_adc1c0e35b539e1e6dd57a5892d2ae7b2"><td class="memItemLeft" align="right" valign="top">std::map&lt; int, vtkSmartPointer&lt; vtkImageData &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#adc1c0e35b539e1e6dd57a5892d2ae7b2">thumbnailCache</a></td></tr>
+<tr class="separator:adc1c0e35b539e1e6dd57a5892d2ae7b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ad8a5deac1859c6d0c5cd5fa5e6f0af" id="r_a1ad8a5deac1859c6d0c5cd5fa5e6f0af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a1ad8a5deac1859c6d0c5cd5fa5e6f0af">visible</a> = false</td></tr>
 <tr class="separator:a1ad8a5deac1859c6d0c5cd5fa5e6f0af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
+<tr class="memitem:a5f58cb9c347e92e9ca233564afca094c" id="r_a5f58cb9c347e92e9ca233564afca094c"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a5f58cb9c347e92e9ca233564afca094c">ButtonH</a> = 32</td></tr>
+<tr class="separator:a5f58cb9c347e92e9ca233564afca094c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c6d4a34498e60cfbd562bda432bbaa6" id="r_a7c6d4a34498e60cfbd562bda432bbaa6"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a7c6d4a34498e60cfbd562bda432bbaa6">CardCols</a> = 4</td></tr>
 <tr class="separator:a7c6d4a34498e60cfbd562bda432bbaa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaadfbb6074f5ff0e0e428691ae00244a" id="r_aaadfbb6074f5ff0e0e428691ae00244a"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#aaadfbb6074f5ff0e0e428691ae00244a">CardGap</a> = 22</td></tr>
@@ -242,14 +270,14 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:ab7e39619aec86bb779bc10575a3d16bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad883d38625fd3a0f54c4223b87ae8fc3" id="r_ad883d38625fd3a0f54c4223b87ae8fc3"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#ad883d38625fd3a0f54c4223b87ae8fc3">CardStartY</a> = <a class="el" href="structVRGlobalMenu.html#af199b4094d7f0ad5c6a198307338f19a">TexH</a> - 28 - <a class="el" href="structVRGlobalMenu.html#ac6f86a328bc74705d2dec6d35881f5fc">CardSize</a></td></tr>
 <tr class="separator:ad883d38625fd3a0f54c4223b87ae8fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9640b2eee81e0392f35e731736380d3c" id="r_a9640b2eee81e0392f35e731736380d3c"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a9640b2eee81e0392f35e731736380d3c">ControlGap</a> = 14</td></tr>
-<tr class="separator:a9640b2eee81e0392f35e731736380d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9276118c6a0918f1dee83724a66a720" id="r_ae9276118c6a0918f1dee83724a66a720"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#ae9276118c6a0918f1dee83724a66a720">ControlSize</a> = 34</td></tr>
-<tr class="separator:ae9276118c6a0918f1dee83724a66a720"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbb0907894f3ef516fc1af460c66c65c" id="r_acbb0907894f3ef516fc1af460c66c65c"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#acbb0907894f3ef516fc1af460c66c65c">ControlStartX</a> = 58</td></tr>
-<tr class="separator:acbb0907894f3ef516fc1af460c66c65c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a898d7ef7c51406ac68e03b62e0b49a" id="r_a1a898d7ef7c51406ac68e03b62e0b49a"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a1a898d7ef7c51406ac68e03b62e0b49a">ControlY</a> = 30</td></tr>
 <tr class="separator:a1a898d7ef7c51406ac68e03b62e0b49a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefc38f932da2762a781fd17c90438b5e" id="r_aefc38f932da2762a781fd17c90438b5e"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#aefc38f932da2762a781fd17c90438b5e">SwatchGap</a> = 8</td></tr>
+<tr class="separator:aefc38f932da2762a781fd17c90438b5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21eda15bf6f34916a0a4094c5b7f6c8f" id="r_a21eda15bf6f34916a0a4094c5b7f6c8f"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a21eda15bf6f34916a0a4094c5b7f6c8f">SwatchSize</a> = 30</td></tr>
+<tr class="separator:a21eda15bf6f34916a0a4094c5b7f6c8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85a670dee58424905e5e2661dd356943" id="r_a85a670dee58424905e5e2661dd356943"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a85a670dee58424905e5e2661dd356943">SwatchStartX</a> = 292</td></tr>
+<tr class="separator:a85a670dee58424905e5e2661dd356943"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af199b4094d7f0ad5c6a198307338f19a" id="r_af199b4094d7f0ad5c6a198307338f19a"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#af199b4094d7f0ad5c6a198307338f19a">TexH</a> = 256</td></tr>
 <tr class="separator:af199b4094d7f0ad5c6a198307338f19a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78c94564c8e68ce547300b69e42857e7" id="r_a78c94564c8e68ce547300b69e42857e7"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVRGlobalMenu.html#a78c94564c8e68ce547300b69e42857e7">TexW</a> = 512</td></tr>
@@ -257,7 +285,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00585">585</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00590">590</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a97ec43aa95b8fba0345ba67440ac0499" name="a97ec43aa95b8fba0345ba67440ac0499"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a97ec43aa95b8fba0345ba67440ac0499">&#9670;&#160;</a></span>HitKind</h2>
@@ -288,11 +316,46 @@ Static Public Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="a97ec43aa95b8fba0345ba67440ac0499adfe6076e1d429c24edcbb2686bb39567" name="a97ec43aa95b8fba0345ba67440ac0499adfe6076e1d429c24edcbb2686bb39567"></a>Colour&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00601">601</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00607">607</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0ee1feacfccc049cf72c99d2b077532b" name="a0ee1feacfccc049cf72c99d2b077532b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ee1feacfccc049cf72c99d2b077532b">&#9670;&#160;</a></span>buildActorThumbnail()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vtkSmartPointer&lt; vtkImageData &gt; VRGlobalMenu::buildActorThumbnail </td>
+          <td>(</td>
+          <td class="paramtype">vtkActor *&#160;</td>
+          <td class="paramname"><em>actor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00845">845</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00892">drawActorThumbnail()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a0ee1feacfccc049cf72c99d2b077532b_icgraph.svg" width="100%" height="376"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
 <a id="a1b5e8beb022d1c48bf7f927d0380a8e5" name="a1b5e8beb022d1c48bf7f927d0380a8e5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1b5e8beb022d1c48bf7f927d0380a8e5">&#9670;&#160;</a></span>create()</h2>
 
@@ -317,14 +380,310 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00619">619</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00626">626</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00587">panelActor</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00586">panelPlane</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00592">panelActor</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00591">panelPlane</a>.</p>
 
 </div>
 </div>
-<a id="a195b79c8918b59b95cdc2b7372875902" name="a195b79c8918b59b95cdc2b7372875902"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a195b79c8918b59b95cdc2b7372875902">&#9670;&#160;</a></span>drawSwatch()</h2>
+<a id="ab50a03b30964d15114d30f458d9cd7f2" name="ab50a03b30964d15114d30f458d9cd7f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab50a03b30964d15114d30f458d9cd7f2">&#9670;&#160;</a></span>drawActorThumbnail()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VRGlobalMenu::drawActorThumbnail </td>
+          <td>(</td>
+          <td class="paramtype">vtkImageCanvasSource2D *&#160;</td>
+          <td class="paramname"><em>canvas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>partID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkActor *&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00892">892</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00845">buildActorThumbnail()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00596">thumbnailCache</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_ab50a03b30964d15114d30f458d9cd7f2_cgraph.svg" width="512" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_ab50a03b30964d15114d30f458d9cd7f2_icgraph.svg" width="100%" height="376"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a38d679700b25debf59088897d8318106" name="a38d679700b25debf59088897d8318106"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38d679700b25debf59088897d8318106">&#9670;&#160;</a></span>drawEyeButton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VRGlobalMenu::drawEyeButton </td>
+          <td>(</td>
+          <td class="paramtype">vtkImageCanvasSource2D *&#160;</td>
+          <td class="paramname"><em>canvas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enabled</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00767">767</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00621">ButtonH</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00931">drawLine()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a38d679700b25debf59088897d8318106_cgraph.svg" width="470" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a38d679700b25debf59088897d8318106_icgraph.svg" width="100%" height="376"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="ad7d78a5d53a7a858397e878a9ea9141a" name="ad7d78a5d53a7a858397e878a9ea9141a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7d78a5d53a7a858397e878a9ea9141a">&#9670;&#160;</a></span>drawLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VRGlobalMenu::drawLine </td>
+          <td>(</td>
+          <td class="paramtype">vtkImageCanvasSource2D *&#160;</td>
+          <td class="paramname"><em>canvas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00931">931</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00767">drawEyeButton()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00995">drawMeshThumbnail()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_ad7d78a5d53a7a858397e878a9ea9141a_icgraph.svg" width="100%" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="af8841b2d4cffbd623c94b3f3a0f25fc8" name="af8841b2d4cffbd623c94b3f3a0f25fc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8841b2d4cffbd623c94b3f3a0f25fc8">&#9670;&#160;</a></span>drawMeshThumbnail()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VRGlobalMenu::drawMeshThumbnail </td>
+          <td>(</td>
+          <td class="paramtype">vtkImageCanvasSource2D *&#160;</td>
+          <td class="paramname"><em>canvas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkActor *&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QColor &amp;&#160;</td>
+          <td class="paramname"><em>baseColour</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00995">995</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00931">drawLine()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00961">fillTriangle()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_af8841b2d4cffbd623c94b3f3a0f25fc8_cgraph.svg" width="100%" height="364"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a57bd5587922acf9883d3693cf78e918b" name="a57bd5587922acf9883d3693cf78e918b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57bd5587922acf9883d3693cf78e918b">&#9670;&#160;</a></span>drawSwatch()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -348,7 +707,13 @@ Static Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const QColor &amp;&#160;</td>
-          <td class="paramname"><em>colour</em>&#160;</td>
+          <td class="paramname"><em>colour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>selected</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -363,21 +728,21 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00752">752</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00793">793</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00615">ControlGap</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00614">ControlSize</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00616">ControlStartX</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00617">ControlY</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00620">ControlY</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00623">SwatchGap</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00622">SwatchSize</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00624">SwatchStartX</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a195b79c8918b59b95cdc2b7372875902_icgraph.svg" width="100%" height="376"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a57bd5587922acf9883d3693cf78e918b_icgraph.svg" width="100%" height="376"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
 </div>
-<a id="a725ad657da9ca015c853216666aa199e" name="a725ad657da9ca015c853216666aa199e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a725ad657da9ca015c853216666aa199e">&#9670;&#160;</a></span>drawToggle()</h2>
+<a id="a7174f6bdbdd5901f533f454cea5ff960" name="a7174f6bdbdd5901f533f454cea5ff960"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7174f6bdbdd5901f533f454cea5ff960">&#9670;&#160;</a></span>drawText()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -386,7 +751,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void VRGlobalMenu::drawToggle </td>
+          <td class="memname">void VRGlobalMenu::drawText </td>
           <td>(</td>
           <td class="paramtype">vtkImageCanvasSource2D *&#160;</td>
           <td class="paramname"><em>canvas</em>, </td>
@@ -395,7 +760,95 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>slot</em>, </td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>scale</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00826">826</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00806">glyphRows()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00756">drawTextButton()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a7174f6bdbdd5901f533f454cea5ff960_cgraph.svg" width="442" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a7174f6bdbdd5901f533f454cea5ff960_icgraph.svg" width="100%" height="376"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a140d01c81c2e09c05df44ab2ed35188c" name="a140d01c81c2e09c05df44ab2ed35188c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a140d01c81c2e09c05df44ab2ed35188c">&#9670;&#160;</a></span>drawTextButton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VRGlobalMenu::drawTextButton </td>
+          <td>(</td>
+          <td class="paramtype">vtkImageCanvasSource2D *&#160;</td>
+          <td class="paramname"><em>canvas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>label</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -416,15 +869,230 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00742">742</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00756">756</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00615">ControlGap</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00614">ControlSize</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00616">ControlStartX</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00617">ControlY</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00621">ButtonH</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00826">drawText()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a140d01c81c2e09c05df44ab2ed35188c_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a725ad657da9ca015c853216666aa199e_icgraph.svg" width="100%" height="376"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a140d01c81c2e09c05df44ab2ed35188c_icgraph.svg" width="100%" height="376"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a5a41972dce71e392516abcbab6efb2ac" name="a5a41972dce71e392516abcbab6efb2ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a41972dce71e392516abcbab6efb2ac">&#9670;&#160;</a></span>edgeFunction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double VRGlobalMenu::edgeFunction </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>ax</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>ay</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>bx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>by</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>px</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>py</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00956">956</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00961">fillTriangle()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a5a41972dce71e392516abcbab6efb2ac_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a65b648aa08555a5b78fda5bcbc07d3e0" name="a65b648aa08555a5b78fda5bcbc07d3e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65b648aa08555a5b78fda5bcbc07d3e0">&#9670;&#160;</a></span>fillTriangle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VRGlobalMenu::fillTriangle </td>
+          <td>(</td>
+          <td class="paramtype">vtkImageCanvasSource2D *&#160;</td>
+          <td class="paramname"><em>canvas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ax</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ay</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>by</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>cx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>cy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00961">961</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00956">edgeFunction()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00995">drawMeshThumbnail()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a65b648aa08555a5b78fda5bcbc07d3e0_cgraph.svg" width="466" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a65b648aa08555a5b78fda5bcbc07d3e0_icgraph.svg" width="515" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a1f343deded4bdd038ea13386514db33a" name="a1f343deded4bdd038ea13386514db33a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f343deded4bdd038ea13386514db33a">&#9670;&#160;</a></span>glyphRows()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * VRGlobalMenu::glyphRows </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>ch</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00806">806</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00826">drawText()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a1f343deded4bdd038ea13386514db33a_icgraph.svg" width="100%" height="376"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -452,11 +1120,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00941">941</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l01267">1267</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00587">panelActor</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00599">visible</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00592">panelActor</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00605">visible</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00762">toggle()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01088">toggle()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -489,11 +1157,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00910">910</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l01236">1236</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00931">hitFromRays()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01257">hitFromRays()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -531,11 +1199,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00931">931</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l01257">1257</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00910">hitFromRayLine()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00603">VRGlobalMenu::HitResult::kind</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00373">VRRayCallback::left</a>, <a class="el" href="structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499a6adf97f83acf6453d4a6a4b1070f3754">None</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00200">ControllerRay::rayLine</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00372">VRRayCallback::right</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l01236">hitFromRayLine()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00609">VRGlobalMenu::HitResult::kind</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00378">VRRayCallback::left</a>, <a class="el" href="structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499a6adf97f83acf6453d4a6a4b1070f3754">None</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00205">ControllerRay::rayLine</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00377">VRRayCallback::right</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00964">VRMenuCallback::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01290">VRMenuCallback::Execute()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -583,11 +1251,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00840">840</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l01166">1166</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00609">CardCols</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00611">CardGap</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00610">CardSize</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00612">CardStartX</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00613">CardStartY</a>, <a class="el" href="structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499a6adac929b615be2e0d213eb9d1ad15ba">Clip</a>, <a class="el" href="structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499adfe6076e1d429c24edcbb2686bb39567">Colour</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00615">ControlGap</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00614">ControlSize</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00616">ControlStartX</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00617">ControlY</a>, <a class="el" href="structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499ab8da6df14bf06283cbf588df6998722e">Panel</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00593">panelCenter</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00598">panelHeight</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00594">panelNormal</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00595">panelRight</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00596">panelUp</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00597">panelWidth</a>, <a class="el" href="structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499a5bfce74acb2e639b27c22fd6464a59b9">Part</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00591">partIds</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00704">selectedPartID()</a>, <a class="el" href="structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499a1bb54971ab41a5a931b23159019fd73f">Shrink</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00608">TexH</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00607">TexW</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00599">visible</a>, and <a class="el" href="structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499aec24d78ce33048dc73a2b6b1a0690192">Visible</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00621">ButtonH</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00615">CardCols</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00617">CardGap</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00616">CardSize</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00618">CardStartX</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00619">CardStartY</a>, <a class="el" href="structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499a6adac929b615be2e0d213eb9d1ad15ba">Clip</a>, <a class="el" href="structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499adfe6076e1d429c24edcbb2686bb39567">Colour</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00620">ControlY</a>, <a class="el" href="structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499ab8da6df14bf06283cbf588df6998722e">Panel</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00599">panelCenter</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00604">panelHeight</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00600">panelNormal</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00601">panelRight</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00602">panelUp</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00603">panelWidth</a>, <a class="el" href="structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499a5bfce74acb2e639b27c22fd6464a59b9">Part</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00597">partIds</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00712">selectedPartID()</a>, <a class="el" href="structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499a1bb54971ab41a5a931b23159019fd73f">Shrink</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00623">SwatchGap</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00622">SwatchSize</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00624">SwatchStartX</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00614">TexH</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00613">TexW</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00605">visible</a>, and <a class="el" href="structVRGlobalMenu.html#a97ec43aa95b8fba0345ba67440ac0499aec24d78ce33048dc73a2b6b1a0690192">Visible</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00910">hitFromRayLine()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01236">hitFromRayLine()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -624,20 +1292,62 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00644">644</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00651">651</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00589">activeActors</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00609">CardCols</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00611">CardGap</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00610">CardSize</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00612">CardStartX</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00613">CardStartY</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00752">drawSwatch()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00742">drawToggle()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00587">panelActor</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00588">panelTexture</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00591">partIds</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00592">selectedIndex</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00728">selectedPartClipEnabled()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00704">selectedPartID()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00735">selectedPartShrinkEnabled()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00717">selectedPartVisible()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00608">TexH</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00607">TexW</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00594">activeActors</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00615">CardCols</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00617">CardGap</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00616">CardSize</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00618">CardStartX</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00619">CardStartY</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00620">ControlY</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00892">drawActorThumbnail()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00767">drawEyeButton()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00793">drawSwatch()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00756">drawTextButton()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00592">panelActor</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00593">panelTexture</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00597">partIds</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00750">selectedColourMatches()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00598">selectedIndex</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00736">selectedPartClipEnabled()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00712">selectedPartID()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00743">selectedPartShrinkEnabled()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00725">selectedPartVisible()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00614">TexH</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00613">TexW</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01015">VRMenuCallback::executeGlobalMenuHit()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00778">show()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01346">VRMenuCallback::executeGlobalMenuHit()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l01104">show()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a6a28b32cd1505a84cf1106be64e48cb1_cgraph.svg" width="100%" height="543"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a6a28b32cd1505a84cf1106be64e48cb1_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a6a28b32cd1505a84cf1106be64e48cb1_icgraph.svg" width="100%" height="376"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="afa54f6a495ce1ab0312514589366d1ba" name="afa54f6a495ce1ab0312514589366d1ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa54f6a495ce1ab0312514589366d1ba">&#9670;&#160;</a></span>selectedColourMatches()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool VRGlobalMenu::selectedColourMatches </td>
+          <td>(</td>
+          <td class="paramtype">const QColor &amp;&#160;</td>
+          <td class="paramname"><em>colour</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00750">750</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="ModelPart_8cpp_source.html#l00238">ModelPart::getColour()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00719">selectedPart()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_afa54f6a495ce1ab0312514589366d1ba_cgraph.svg" width="100%" height="401"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_afa54f6a495ce1ab0312514589366d1ba_icgraph.svg" width="100%" height="376"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -665,11 +1375,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00711">711</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00719">719</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ModelPartList_8cpp_source.html#l00106">ModelPartList::findByID()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00590">partList</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00704">selectedPartID()</a>.</p>
+<p class="reference">References <a class="el" href="ModelPartList_8cpp_source.html#l00106">ModelPartList::findByID()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00595">partList</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00712">selectedPartID()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00728">selectedPartClipEnabled()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00735">selectedPartShrinkEnabled()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00717">selectedPartVisible()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00750">selectedColourMatches()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00736">selectedPartClipEnabled()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00743">selectedPartShrinkEnabled()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00725">selectedPartVisible()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -678,7 +1388,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a87a36bddda395b9f09ba2416b958117a_icgraph.svg" width="100%" height="434"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a87a36bddda395b9f09ba2416b958117a_icgraph.svg" width="100%" height="482"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -706,11 +1416,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00728">728</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00736">736</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00711">selectedPart()</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00719">selectedPart()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -747,15 +1457,15 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00704">704</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00712">712</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00591">partIds</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00592">selectedIndex</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00597">partIds</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00598">selectedIndex</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01015">VRMenuCallback::executeGlobalMenuHit()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00711">selectedPart()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00717">selectedPartVisible()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01346">VRMenuCallback::executeGlobalMenuHit()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00719">selectedPart()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00725">selectedPartVisible()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a50d7498a6a32df721c55375d99ae3a25_icgraph.svg" width="100%" height="532"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a50d7498a6a32df721c55375d99ae3a25_icgraph.svg" width="100%" height="596"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -783,11 +1493,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00735">735</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00743">743</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00711">selectedPart()</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00719">selectedPart()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -824,11 +1534,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00717">717</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00725">725</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00589">activeActors</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00711">selectedPart()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00704">selectedPartID()</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00594">activeActors</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00719">selectedPart()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00712">selectedPartID()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -876,15 +1586,15 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00778">778</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l01104">1104</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00587">panelActor</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00593">panelCenter</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00598">panelHeight</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00594">panelNormal</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00586">panelPlane</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00595">panelRight</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00596">panelUp</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00597">panelWidth</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00599">visible</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00592">panelActor</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00599">panelCenter</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00604">panelHeight</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00600">panelNormal</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00591">panelPlane</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00601">panelRight</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00602">panelUp</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00603">panelWidth</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00605">visible</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00762">toggle()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01088">toggle()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a1f243a37508a4ed14866ae7c34c01c80_cgraph.svg" width="100%" height="543"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a1f243a37508a4ed14866ae7c34c01c80_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -928,15 +1638,15 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00762">762</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l01088">1088</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l00941">hide()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00600">lastToggleTime</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00778">show()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00599">visible</a>.</p>
+<p class="reference">References <a class="el" href="VRRenderThread_8cpp_source.html#l01267">hide()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00606">lastToggleTime</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l01104">show()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00605">visible</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00964">VRMenuCallback::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01290">VRMenuCallback::Execute()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a0e780f3d9acbdbbb40ad857857c80a70_cgraph.svg" width="100%" height="543"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structVRGlobalMenu_a0e780f3d9acbdbbb40ad857857c80a70_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -959,9 +1669,35 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00589">589</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00594">594</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00717">selectedPartVisible()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00725">selectedPartVisible()</a>.</p>
+
+</div>
+</div>
+<a id="a5f58cb9c347e92e9ca233564afca094c" name="a5f58cb9c347e92e9ca233564afca094c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f58cb9c347e92e9ca233564afca094c">&#9670;&#160;</a></span>ButtonH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int VRGlobalMenu::ButtonH = 32</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00621">621</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00767">drawEyeButton()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00756">drawTextButton()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>.</p>
 
 </div>
 </div>
@@ -985,9 +1721,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00609">609</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00615">615</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
 
 </div>
 </div>
@@ -1011,9 +1747,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00611">611</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00617">617</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
 
 </div>
 </div>
@@ -1037,9 +1773,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00610">610</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00616">616</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
 
 </div>
 </div>
@@ -1063,9 +1799,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00612">612</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00618">618</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
 
 </div>
 </div>
@@ -1089,87 +1825,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00613">613</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00619">619</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>.</p>
-
-</div>
-</div>
-<a id="a9640b2eee81e0392f35e731736380d3c" name="a9640b2eee81e0392f35e731736380d3c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9640b2eee81e0392f35e731736380d3c">&#9670;&#160;</a></span>ControlGap</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr int VRGlobalMenu::ControlGap = 14</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00615">615</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00752">drawSwatch()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00742">drawToggle()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>.</p>
-
-</div>
-</div>
-<a id="ae9276118c6a0918f1dee83724a66a720" name="ae9276118c6a0918f1dee83724a66a720"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9276118c6a0918f1dee83724a66a720">&#9670;&#160;</a></span>ControlSize</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr int VRGlobalMenu::ControlSize = 34</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00614">614</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00752">drawSwatch()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00742">drawToggle()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>.</p>
-
-</div>
-</div>
-<a id="acbb0907894f3ef516fc1af460c66c65c" name="acbb0907894f3ef516fc1af460c66c65c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbb0907894f3ef516fc1af460c66c65c">&#9670;&#160;</a></span>ControlStartX</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr int VRGlobalMenu::ControlStartX = 58</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00616">616</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00752">drawSwatch()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00742">drawToggle()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
 
 </div>
 </div>
@@ -1193,9 +1851,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00617">617</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00620">620</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00752">drawSwatch()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00742">drawToggle()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00793">drawSwatch()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
 
 </div>
 </div>
@@ -1211,9 +1869,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00600">600</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00606">606</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00762">toggle()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01290">VRMenuCallback::Execute()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l01088">toggle()</a>.</p>
 
 </div>
 </div>
@@ -1229,9 +1887,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00587">587</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00592">592</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00619">create()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00941">hide()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00778">show()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00626">create()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l01267">hide()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l01104">show()</a>.</p>
 
 </div>
 </div>
@@ -1247,9 +1905,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00593">593</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00599">599</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00778">show()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l01104">show()</a>.</p>
 
 </div>
 </div>
@@ -1265,9 +1923,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00598">598</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00604">604</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00778">show()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l01104">show()</a>.</p>
 
 </div>
 </div>
@@ -1283,9 +1941,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00594">594</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00600">600</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00778">show()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l01104">show()</a>.</p>
 
 </div>
 </div>
@@ -1301,9 +1959,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00586">586</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00591">591</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00619">create()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00778">show()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00626">create()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l01104">show()</a>.</p>
 
 </div>
 </div>
@@ -1319,9 +1977,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00595">595</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00601">601</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00778">show()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l01104">show()</a>.</p>
 
 </div>
 </div>
@@ -1337,9 +1995,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00588">588</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00593">593</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
 
 </div>
 </div>
@@ -1355,9 +2013,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00596">596</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00602">602</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00778">show()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l01104">show()</a>.</p>
 
 </div>
 </div>
@@ -1373,9 +2031,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00597">597</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00603">603</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00778">show()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l01104">show()</a>.</p>
 
 </div>
 </div>
@@ -1391,9 +2049,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00591">591</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00597">597</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00704">selectedPartID()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00712">selectedPartID()</a>.</p>
 
 </div>
 </div>
@@ -1409,9 +2067,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00590">590</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00595">595</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00711">selectedPart()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00719">selectedPart()</a>.</p>
 
 </div>
 </div>
@@ -1427,9 +2085,87 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00592">592</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00598">598</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01015">VRMenuCallback::executeGlobalMenuHit()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00704">selectedPartID()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01346">VRMenuCallback::executeGlobalMenuHit()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00712">selectedPartID()</a>.</p>
+
+</div>
+</div>
+<a id="aefc38f932da2762a781fd17c90438b5e" name="aefc38f932da2762a781fd17c90438b5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefc38f932da2762a781fd17c90438b5e">&#9670;&#160;</a></span>SwatchGap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int VRGlobalMenu::SwatchGap = 8</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00623">623</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00793">drawSwatch()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>.</p>
+
+</div>
+</div>
+<a id="a21eda15bf6f34916a0a4094c5b7f6c8f" name="a21eda15bf6f34916a0a4094c5b7f6c8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21eda15bf6f34916a0a4094c5b7f6c8f">&#9670;&#160;</a></span>SwatchSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int VRGlobalMenu::SwatchSize = 30</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00622">622</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00793">drawSwatch()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>.</p>
+
+</div>
+</div>
+<a id="a85a670dee58424905e5e2661dd356943" name="a85a670dee58424905e5e2661dd356943"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85a670dee58424905e5e2661dd356943">&#9670;&#160;</a></span>SwatchStartX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int VRGlobalMenu::SwatchStartX = 292</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00624">624</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00793">drawSwatch()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>.</p>
 
 </div>
 </div>
@@ -1453,9 +2189,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00608">608</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00614">614</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
 
 </div>
 </div>
@@ -1479,9 +2215,27 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00607">607</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00613">613</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00644">rebuildTexture()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00651">rebuildTexture()</a>.</p>
+
+</div>
+</div>
+<a id="adc1c0e35b539e1e6dd57a5892d2ae7b2" name="adc1c0e35b539e1e6dd57a5892d2ae7b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc1c0e35b539e1e6dd57a5892d2ae7b2">&#9670;&#160;</a></span>thumbnailCache</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;int, vtkSmartPointer&lt;vtkImageData&gt; &gt; VRGlobalMenu::thumbnailCache</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00596">596</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01409">VRMenuCallback::applyClipVR()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l01546">VRMenuCallback::applyColourVRForPart()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l01421">VRMenuCallback::applyShrinkVR()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00892">drawActorThumbnail()</a>.</p>
 
 </div>
 </div>
@@ -1497,9 +2251,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00599">599</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VRRenderThread_8cpp_source.html#l00605">605</a> of file <a class="el" href="VRRenderThread_8cpp_source.html">VRRenderThread.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l00964">VRMenuCallback::Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00941">hide()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00840">hitTest()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l00778">show()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00762">toggle()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l01290">VRMenuCallback::Execute()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l01267">hide()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l01166">hitTest()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l01104">show()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l01088">toggle()</a>.</p>
 
 </div>
 </div>

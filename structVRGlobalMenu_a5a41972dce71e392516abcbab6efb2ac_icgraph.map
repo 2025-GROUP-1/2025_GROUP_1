@@ -1,0 +1,7 @@
+<map id="VRGlobalMenu::edgeFunction" name="VRGlobalMenu::edgeFunction">
+<area shape="rect" id="Node000001" title=" " alt="" coords="557,5,771,31"/>
+<area shape="rect" id="Node000002" href="$structVRGlobalMenu.html#a65b648aa08555a5b78fda5bcbc07d3e0" title=" " alt="" coords="316,5,509,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="544,21,509,21,509,15,544,15"/>
+<area shape="rect" id="Node000003" href="$structVRGlobalMenu.html#af8841b2d4cffbd623c94b3f3a0f25fc8" title=" " alt="" coords="5,5,268,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="302,21,268,21,268,15,302,15"/>
+</map>
