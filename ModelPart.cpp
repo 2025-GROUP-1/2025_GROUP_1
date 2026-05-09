@@ -254,6 +254,10 @@ void ModelPart::setShrinkFilter(bool enabled) {
     rebuildPipeline();
 }
 
+void ModelPart::setShrinkStateOnly(bool enabled) {
+    m_shrinkEnabled = enabled;
+}
+
 bool ModelPart::getShrinkEnabled() const { return m_shrinkEnabled; }
 
 void ModelPart::setShrinkFactor(double factor) {
@@ -271,6 +275,10 @@ double ModelPart::getShrinkFactor() const { return m_shrinkFactor; }
 void ModelPart::setClipFilter(bool enabled) {
     m_clipEnabled = enabled;
     rebuildPipeline();
+}
+
+void ModelPart::setClipStateOnly(bool enabled) {
+    m_clipEnabled = enabled;
 }
 
 bool ModelPart::getClipEnabled() const { return m_clipEnabled; }

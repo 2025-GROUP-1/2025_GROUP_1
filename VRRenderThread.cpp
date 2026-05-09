@@ -21,6 +21,7 @@
 #include <vtkTexture.h>
 #include <vtkSkybox.h>
 #include <vtkLineSource.h>
+#include <vtkDataSetMapper.h>
 #include <vtkPolyDataMapper.h>
 #include <vtkCellPicker.h>
 #include <vtkOutlineFilter.h>
@@ -39,6 +40,10 @@
 #include <vtkGLTFImporter.h>
 #include <vtkActorCollection.h>
 #include <vtkImageCanvasSource2D.h>
+#include <vtkDataSet.h>
+#include <vtkCell.h>
+#include <vtkRenderWindow.h>
+#include <vtkWindowToImageFilter.h>
 #include <algorithm>
 #include <chrono>
 #include <cmath>
@@ -588,6 +593,7 @@ struct VRGlobalMenu {
     vtkSmartPointer<vtkTexture> panelTexture;
     std::map<int, vtkSmartPointer<vtkActor>>* activeActors = nullptr;
     ModelPartList* partList = nullptr;
+    std::map<int, vtkSmartPointer<vtkImageData>> thumbnailCache;
     std::vector<int> partIds;
     int selectedIndex = -1;
     double panelCenter[3] = { 0.0, 0.0, 0.0 };
@@ -611,10 +617,11 @@ struct VRGlobalMenu {
     static constexpr int CardGap = 22;
     static constexpr int CardStartX = 28;
     static constexpr int CardStartY = TexH - 28 - CardSize;
-    static constexpr int ControlSize = 34;
-    static constexpr int ControlGap = 14;
-    static constexpr int ControlStartX = 58;
     static constexpr int ControlY = 30;
+    static constexpr int ButtonH = 32;
+    static constexpr int SwatchSize = 30;
+    static constexpr int SwatchGap = 8;
+    static constexpr int SwatchStartX = 292;
 
     void create(vtkRenderer* ren)
     {
@@ -647,7 +654,7 @@ struct VRGlobalMenu {
         canvas->SetScalarTypeToUnsignedChar();
         canvas->SetNumberOfScalarComponents(3);
         canvas->SetExtent(0, TexW - 1, 0, TexH - 1, 0, 0);
-        canvas->SetDrawColor(10, 22, 40);
+        canvas->SetDrawColor(23, 33, 47);
         canvas->FillBox(0, TexW - 1, 0, TexH - 1);
 
         partIds.clear();
@@ -663,32 +670,33 @@ struct VRGlobalMenu {
                 double* c = actor->GetProperty()->GetColor();
                 partIds.push_back(id);
                 if (i == selectedIndex)
-                    canvas->SetDrawColor(32, 184, 138);
+                    canvas->SetDrawColor(26, 161, 121);
                 else
-                    canvas->SetDrawColor(52, 55, 63);
+                    canvas->SetDrawColor(58, 65, 78);
                 canvas->FillBox(x0 - 4, x0 + CardSize + 4, y0 - 4, y0 + CardSize + 4);
-                const int r = std::clamp(70 + static_cast<int>(c[0] * 185.0), 0, 255);
-                const int g = std::clamp(76 + static_cast<int>(c[1] * 185.0), 0, 255);
-                const int b = std::clamp(88 + static_cast<int>(c[2] * 185.0), 0, 255);
+                const int r = std::clamp(92 + static_cast<int>(c[0] * 163.0), 0, 255);
+                const int g = std::clamp(104 + static_cast<int>(c[1] * 151.0), 0, 255);
+                const int b = std::clamp(116 + static_cast<int>(c[2] * 139.0), 0, 255);
                 canvas->SetDrawColor(
                     static_cast<unsigned char>(r),
                     static_cast<unsigned char>(g),
                     static_cast<unsigned char>(b));
-                canvas->FillBox(x0 + 8, x0 + CardSize - 8, y0 + 8, y0 + CardSize - 8);
+                canvas->FillBox(x0 + 7, x0 + CardSize - 7, y0 + 7, y0 + CardSize - 7);
+                drawActorThumbnail(canvas, id, actor, x0 + 10, y0 + 10, CardSize - 20);
                 ++i;
                 if (i >= 8)
                     break;
             }
         }
         if (selectedPartID() >= 0) {
-            drawToggle(canvas, 0, selectedPartVisible());
-            drawToggle(canvas, 1, selectedPartClipEnabled());
-            drawToggle(canvas, 2, selectedPartShrinkEnabled());
-            drawSwatch(canvas, 3, QColor(255, 50, 50));
-            drawSwatch(canvas, 4, QColor(50, 200, 50));
-            drawSwatch(canvas, 5, QColor(50, 110, 255));
-            drawSwatch(canvas, 6, QColor(255, 230, 50));
-            drawSwatch(canvas, 7, QColor(235, 235, 235));
+            drawEyeButton(canvas, 42, ControlY, selectedPartVisible());
+            drawTextButton(canvas, 114, ControlY, 58, "CLIP", selectedPartClipEnabled());
+            drawTextButton(canvas, 184, ControlY, 90, "SHRINK", selectedPartShrinkEnabled());
+            drawSwatch(canvas, 0, QColor(255, 50, 50), selectedColourMatches(QColor(255, 50, 50)));
+            drawSwatch(canvas, 1, QColor(50, 200, 50), selectedColourMatches(QColor(50, 200, 50)));
+            drawSwatch(canvas, 2, QColor(50, 110, 255), selectedColourMatches(QColor(50, 110, 255)));
+            drawSwatch(canvas, 3, QColor(255, 230, 50), selectedColourMatches(QColor(255, 230, 50)));
+            drawSwatch(canvas, 4, QColor(235, 235, 235), selectedColourMatches(QColor(235, 235, 235)));
         }
 
         canvas->Update();
@@ -739,24 +747,342 @@ struct VRGlobalMenu {
         return false;
     }
 
-    void drawToggle(vtkImageCanvasSource2D* canvas, int slot, bool enabled)
+    bool selectedColourMatches(const QColor& colour) const
     {
-        const int x0 = ControlStartX + slot * (ControlSize + ControlGap);
-        const int y0 = ControlY;
-        canvas->SetDrawColor(enabled ? 32 : 74, enabled ? 184 : 78, enabled ? 138 : 88);
-        canvas->FillBox(x0 - 3, x0 + ControlSize + 3, y0 - 3, y0 + ControlSize + 3);
-        canvas->SetDrawColor(enabled ? 26 : 43, enabled ? 161 : 45, enabled ? 121 : 52);
-        canvas->FillBox(x0 + 5, x0 + ControlSize - 5, y0 + 5, y0 + ControlSize - 5);
+        ModelPart* part = selectedPart();
+        return part && part->getColour() == colour;
     }
 
-    void drawSwatch(vtkImageCanvasSource2D* canvas, int slot, const QColor& colour)
+    void drawTextButton(vtkImageCanvasSource2D* canvas, int x0, int y0, int width,
+                        const char* label, bool enabled)
     {
-        const int x0 = ControlStartX + slot * (ControlSize + ControlGap);
+        canvas->SetDrawColor(enabled ? 32 : 82, enabled ? 184 : 90, enabled ? 138 : 104);
+        canvas->FillBox(x0 - 3, x0 + width + 3, y0 - 3, y0 + ButtonH + 3);
+        canvas->SetDrawColor(enabled ? 26 : 58, enabled ? 161 : 65, enabled ? 121 : 78);
+        canvas->FillBox(x0 + 4, x0 + width - 4, y0 + 4, y0 + ButtonH - 4);
+        canvas->SetDrawColor(enabled ? 232 : 190, enabled ? 255 : 205, enabled ? 249 : 216);
+        drawText(canvas, x0 + 7, y0 + 11, label, 2);
+    }
+
+    void drawEyeButton(vtkImageCanvasSource2D* canvas, int x0, int y0, bool enabled)
+    {
+        const int width = 58;
+        canvas->SetDrawColor(enabled ? 32 : 82, enabled ? 184 : 90, enabled ? 138 : 104);
+        canvas->FillBox(x0 - 3, x0 + width + 3, y0 - 3, y0 + ButtonH + 3);
+        canvas->SetDrawColor(enabled ? 26 : 58, enabled ? 161 : 65, enabled ? 121 : 78);
+        canvas->FillBox(x0 + 4, x0 + width - 4, y0 + 4, y0 + ButtonH - 4);
+        canvas->SetDrawColor(enabled ? 232 : 190, enabled ? 255 : 205, enabled ? 249 : 216);
+
+        const int cx = x0 + width / 2;
+        const int cy = y0 + ButtonH / 2;
+        for (int dx = -16; dx <= 16; ++dx) {
+            const double t = static_cast<double>(std::abs(dx)) / 16.0;
+            const int dy = static_cast<int>(std::round((1.0 - t) * 8.0));
+            canvas->FillBox(cx + dx, cx + dx, cy + dy, cy + dy);
+            canvas->FillBox(cx + dx, cx + dx, cy - dy, cy - dy);
+        }
+        canvas->FillBox(cx - 4, cx + 4, cy - 4, cy + 4);
+        canvas->SetDrawColor(enabled ? 26 : 58, enabled ? 161 : 65, enabled ? 121 : 78);
+        canvas->FillBox(cx - 2, cx + 2, cy - 2, cy + 2);
+        if (!enabled) {
+            canvas->SetDrawColor(230, 235, 242);
+            drawLine(canvas, cx - 16, cy - 10, cx + 16, cy + 10, x0, y0, x0 + width, y0 + ButtonH);
+        }
+    }
+
+    void drawSwatch(vtkImageCanvasSource2D* canvas, int slot, const QColor& colour, bool selected)
+    {
+        const int x0 = SwatchStartX + slot * (SwatchSize + SwatchGap);
         const int y0 = ControlY;
-        canvas->SetDrawColor(52, 55, 63);
-        canvas->FillBox(x0 - 3, x0 + ControlSize + 3, y0 - 3, y0 + ControlSize + 3);
+        if (selected)
+            canvas->SetDrawColor(32, 184, 138);
+        else
+            canvas->SetDrawColor(74, 82, 96);
+        canvas->FillBox(x0 - 3, x0 + SwatchSize + 3, y0 - 3, y0 + SwatchSize + 3);
         canvas->SetDrawColor(colour.red(), colour.green(), colour.blue());
-        canvas->FillBox(x0 + 3, x0 + ControlSize - 3, y0 + 3, y0 + ControlSize - 3);
+        canvas->FillBox(x0 + 3, x0 + SwatchSize - 3, y0 + 3, y0 + SwatchSize - 3);
+    }
+
+    const char* glyphRows(char ch) const
+    {
+        switch (ch) {
+        case 'A': return "01110""10001""10001""11111""10001""10001""10001";
+        case 'B': return "11110""10001""10001""11110""10001""10001""11110";
+        case 'C': return "01111""10000""10000""10000""10000""10000""01111";
+        case 'E': return "11111""10000""10000""11110""10000""10000""11111";
+        case 'H': return "10001""10001""10001""11111""10001""10001""10001";
+        case 'I': return "11111""00100""00100""00100""00100""00100""11111";
+        case 'K': return "10001""10010""10100""11000""10100""10010""10001";
+        case 'L': return "10000""10000""10000""10000""10000""10000""11111";
+        case 'N': return "10001""11001""10101""10011""10001""10001""10001";
+        case 'P': return "11110""10001""10001""11110""10000""10000""10000";
+        case 'R': return "11110""10001""10001""11110""10100""10010""10001";
+        case 'S': return "01111""10000""10000""01110""00001""00001""11110";
+        case 'V': return "10001""10001""10001""10001""10001""01010""00100";
+        default: return "00000""00000""00000""00000""00000""00000""00000";
+        }
+    }
+
+    void drawText(vtkImageCanvasSource2D* canvas, int x, int y, const char* text, int scale)
+    {
+        int cursor = x;
+        for (const char* p = text; p && *p; ++p) {
+            const char* glyph = glyphRows(*p);
+            for (int row = 0; row < 7; ++row) {
+                for (int col = 0; col < 5; ++col) {
+                    if (glyph[row * 5 + col] != '1')
+                        continue;
+                    canvas->FillBox(cursor + col * scale,
+                                    cursor + col * scale + scale - 1,
+                                    y + (6 - row) * scale,
+                                    y + (6 - row) * scale + scale - 1);
+                }
+            }
+            cursor += 6 * scale;
+        }
+    }
+
+    vtkSmartPointer<vtkImageData> buildActorThumbnail(vtkActor* actor)
+    {
+        if (!actor || !actor->GetMapper() || !actor->GetMapper()->GetInput())
+            return nullptr;
+
+        vtkNew<vtkDataSetMapper> mapper;
+        mapper->SetInputData(actor->GetMapper()->GetInput());
+        mapper->Update();
+
+        vtkNew<vtkActor> thumbActor;
+        thumbActor->SetMapper(mapper);
+        thumbActor->GetProperty()->SetColor(0.92, 0.96, 1.0);
+        thumbActor->GetProperty()->SetAmbient(0.38);
+        thumbActor->GetProperty()->SetDiffuse(0.82);
+        thumbActor->GetProperty()->SetSpecular(0.18);
+        thumbActor->SetPosition(0.0, 0.0, 0.0);
+        thumbActor->SetScale(1.0, 1.0, 1.0);
+        thumbActor->SetOrientation(0.0, 0.0, 0.0);
+
+        vtkNew<vtkRenderer> thumbRenderer;
+        thumbRenderer->SetBackground(0.08, 0.11, 0.16);
+        thumbRenderer->AddActor(thumbActor);
+        thumbRenderer->ResetCamera();
+        if (vtkCamera* cam = thumbRenderer->GetActiveCamera()) {
+            cam->Azimuth(35.0);
+            cam->Elevation(22.0);
+            cam->Dolly(1.22);
+        }
+        thumbRenderer->ResetCameraClippingRange();
+
+        vtkNew<vtkRenderWindow> thumbWindow;
+        thumbWindow->OffScreenRenderingOn();
+        thumbWindow->SetSize(128, 128);
+        thumbWindow->AddRenderer(thumbRenderer);
+        thumbWindow->Render();
+
+        vtkNew<vtkWindowToImageFilter> capture;
+        capture->SetInput(thumbWindow);
+        capture->SetInputBufferTypeToRGB();
+        capture->ReadFrontBufferOff();
+        capture->Update();
+
+        vtkSmartPointer<vtkImageData> image = vtkSmartPointer<vtkImageData>::New();
+        image->DeepCopy(capture->GetOutput());
+        return image;
+    }
+
+    void drawActorThumbnail(vtkImageCanvasSource2D* canvas, int partID, vtkActor* actor,
+                            int x0, int y0, int size)
+    {
+        if (!canvas || !actor)
+            return;
+
+        vtkSmartPointer<vtkImageData> image;
+        auto cached = thumbnailCache.find(partID);
+        if (cached != thumbnailCache.end()) {
+            image = cached->second;
+        } else {
+            image = buildActorThumbnail(actor);
+            if (image)
+                thumbnailCache[partID] = image;
+        }
+
+        canvas->SetDrawColor(30, 39, 52);
+        canvas->FillBox(x0 + 2, x0 + size - 2, y0 + 2, y0 + size - 2);
+        if (!image)
+            return;
+
+        int dims[3];
+        image->GetDimensions(dims);
+        if (dims[0] <= 0 || dims[1] <= 0)
+            return;
+
+        for (int y = 0; y < size; ++y) {
+            for (int x = 0; x < size; ++x) {
+                const int sx = std::clamp(static_cast<int>((static_cast<double>(x) / size) * dims[0]), 0, dims[0] - 1);
+                const int sy = std::clamp(static_cast<int>((static_cast<double>(y) / size) * dims[1]), 0, dims[1] - 1);
+                auto* rgb = static_cast<unsigned char*>(image->GetScalarPointer(sx, sy, 0));
+                if (!rgb)
+                    continue;
+                canvas->SetDrawColor(rgb[0], rgb[1], rgb[2]);
+                canvas->FillBox(x0 + x, x0 + x, y0 + y, y0 + y);
+            }
+        }
+    }
+
+    void drawLine(vtkImageCanvasSource2D* canvas, int x0, int y0, int x1, int y1,
+                  int minX, int minY, int maxX, int maxY)
+    {
+        const int dx = std::abs(x1 - x0);
+        const int dy = -std::abs(y1 - y0);
+        const int sx = x0 < x1 ? 1 : -1;
+        const int sy = y0 < y1 ? 1 : -1;
+        int err = dx + dy;
+        while (true) {
+            if (x0 >= minX && x0 <= maxX && y0 >= minY && y0 <= maxY)
+                canvas->FillBox(x0 - 1, x0 + 1, y0 - 1, y0 + 1);
+            if (x0 == x1 && y0 == y1)
+                break;
+            const int e2 = 2 * err;
+            if (e2 >= dy) {
+                err += dy;
+                x0 += sx;
+            }
+            if (e2 <= dx) {
+                err += dx;
+                y0 += sy;
+            }
+        }
+    }
+
+    static double edgeFunction(double ax, double ay, double bx, double by, double px, double py)
+    {
+        return (px - ax) * (by - ay) - (py - ay) * (bx - ax);
+    }
+
+    void fillTriangle(vtkImageCanvasSource2D* canvas,
+                      int ax, int ay, int bx, int by, int cx, int cy,
+                      int minX, int minY, int maxX, int maxY)
+    {
+        const int loX = std::clamp(std::min({ ax, bx, cx }) - 1, minX, maxX);
+        const int hiX = std::clamp(std::max({ ax, bx, cx }) + 1, minX, maxX);
+        const int loY = std::clamp(std::min({ ay, by, cy }) - 1, minY, maxY);
+        const int hiY = std::clamp(std::max({ ay, by, cy }) + 1, minY, maxY);
+        const double area = edgeFunction(ax, ay, bx, by, cx, cy);
+        if (std::abs(area) < 1e-6)
+            return;
+
+        for (int y = loY; y <= hiY; ++y) {
+            int runStart = -1;
+            for (int x = loX; x <= hiX; ++x) {
+                const double px = x + 0.5;
+                const double py = y + 0.5;
+                const double w0 = edgeFunction(bx, by, cx, cy, px, py);
+                const double w1 = edgeFunction(cx, cy, ax, ay, px, py);
+                const double w2 = edgeFunction(ax, ay, bx, by, px, py);
+                const bool inside = (area > 0.0)
+                    ? (w0 >= 0.0 && w1 >= 0.0 && w2 >= 0.0)
+                    : (w0 <= 0.0 && w1 <= 0.0 && w2 <= 0.0);
+                if (inside && runStart < 0)
+                    runStart = x;
+                if ((!inside || x == hiX) && runStart >= 0) {
+                    const int runEnd = inside && x == hiX ? x : x - 1;
+                    canvas->FillBox(runStart, runEnd, y, y);
+                    runStart = -1;
+                }
+            }
+        }
+    }
+
+    void drawMeshThumbnail(vtkImageCanvasSource2D* canvas, vtkActor* actor,
+                           int x0, int y0, int size, const QColor& baseColour)
+    {
+        if (!canvas || !actor || !actor->GetMapper() || !actor->GetMapper()->GetInput())
+            return;
+
+        vtkDataSet* data = actor->GetMapper()->GetInput();
+        const vtkIdType nPts = data ? data->GetNumberOfPoints() : 0;
+        if (nPts <= 0)
+            return;
+
+        double minU = 0.0, maxU = 0.0, minV = 0.0, maxV = 0.0;
+        bool haveBounds = false;
+        const vtkIdType stride = std::max<vtkIdType>(1, nPts / 1800);
+        for (vtkIdType i = 0; i < nPts; i += stride) {
+            double p[3];
+            data->GetPoint(i, p);
+            const double u = p[0] - p[2] * 0.42;
+            const double v = p[1] + p[2] * 0.30;
+            if (!haveBounds) {
+                minU = maxU = u;
+                minV = maxV = v;
+                haveBounds = true;
+            } else {
+                minU = std::min(minU, u);
+                maxU = std::max(maxU, u);
+                minV = std::min(minV, v);
+                maxV = std::max(maxV, v);
+            }
+        }
+        const double spanU = std::max(maxU - minU, 1e-9);
+        const double spanV = std::max(maxV - minV, 1e-9);
+        const double scale = (size - 10) / std::max(spanU, spanV);
+        const double drawW = spanU * scale;
+        const double drawH = spanV * scale;
+        const double ox = x0 + (size - drawW) * 0.5;
+        const double oy = y0 + (size - drawH) * 0.5;
+
+        canvas->SetDrawColor(30, 39, 52);
+        canvas->FillBox(x0 + 2, x0 + size - 2, y0 + 2, y0 + size - 2);
+        canvas->SetDrawColor(
+            std::min(baseColour.red() + 54, 255),
+            std::min(baseColour.green() + 54, 255),
+            std::min(baseColour.blue() + 54, 255));
+
+        auto projectPoint = [&](vtkIdType pointId, int& px, int& py) {
+            double p[3];
+            data->GetPoint(pointId, p);
+            const double u = p[0] - p[2] * 0.42;
+            const double v = p[1] + p[2] * 0.30;
+            px = static_cast<int>(std::round(ox + (u - minU) * scale));
+            py = static_cast<int>(std::round(oy + (v - minV) * scale));
+        };
+
+        const vtkIdType nCells = data->GetNumberOfCells();
+        const vtkIdType cellStride = std::max<vtkIdType>(1, nCells / 1600);
+        for (vtkIdType cellId = 0; cellId < nCells; cellId += cellStride) {
+            vtkCell* cell = data->GetCell(cellId);
+            if (!cell)
+                continue;
+            const vtkIdType nCellPts = cell->GetNumberOfPoints();
+            if (nCellPts < 3)
+                continue;
+            int ax, ay;
+            projectPoint(cell->GetPointId(0), ax, ay);
+            for (vtkIdType j = 1; j + 1 < nCellPts; ++j) {
+                int bx, by, cx, cy;
+                projectPoint(cell->GetPointId(j), bx, by);
+                projectPoint(cell->GetPointId(j + 1), cx, cy);
+                fillTriangle(canvas, ax, ay, bx, by, cx, cy, x0, y0, x0 + size, y0 + size);
+            }
+        }
+
+        canvas->SetDrawColor(
+            std::min(baseColour.red() + 88, 255),
+            std::min(baseColour.green() + 88, 255),
+            std::min(baseColour.blue() + 88, 255));
+        for (vtkIdType cellId = 0; cellId < nCells; cellId += std::max<vtkIdType>(1, nCells / 220)) {
+            vtkCell* cell = data->GetCell(cellId);
+            if (!cell)
+                continue;
+            const vtkIdType nCellPts = cell->GetNumberOfPoints();
+            if (nCellPts < 2)
+                continue;
+            for (vtkIdType j = 0; j < nCellPts; ++j) {
+                int ax, ay, bx, by;
+                projectPoint(cell->GetPointId(j), ax, ay);
+                projectPoint(cell->GetPointId((j + 1) % nCellPts), bx, by);
+                drawLine(canvas, ax, ay, bx, by, x0, y0, x0 + size, y0 + size);
+            }
+        }
     }
 
     void toggle(vtkRenderer* ren, vtkOpenVRRenderWindow* win)
@@ -879,27 +1205,27 @@ struct VRGlobalMenu {
         }
 
         if (selectedPartID() >= 0) {
-            for (int slot = 0; slot < 8; ++slot) {
-                const int x0 = ControlStartX + slot * (ControlSize + ControlGap);
-                const int y0 = ControlY;
-                if (px < x0 || px > x0 + ControlSize || py < y0 || py > y0 + ControlSize)
+            if (px >= 35 && px <= 107 && py >= ControlY - 5 && py <= ControlY + ButtonH + 5)
+                return { HitKind::Visible, -1, QColor() };
+            if (px >= 107 && px <= 180 && py >= ControlY - 5 && py <= ControlY + ButtonH + 5)
+                return { HitKind::Clip, -1, QColor() };
+            if (px >= 177 && px <= 281 && py >= ControlY - 5 && py <= ControlY + ButtonH + 5)
+                return { HitKind::Shrink, -1, QColor() };
+
+            for (int slot = 0; slot < 5; ++slot) {
+                const int x0 = SwatchStartX + slot * (SwatchSize + SwatchGap);
+                if (px < x0 || px > x0 + SwatchSize || py < ControlY || py > ControlY + SwatchSize)
                     continue;
                 switch (slot) {
                 case 0:
-                    return { HitKind::Visible, -1, QColor() };
-                case 1:
-                    return { HitKind::Clip, -1, QColor() };
-                case 2:
-                    return { HitKind::Shrink, -1, QColor() };
-                case 3:
                     return { HitKind::Colour, -1, QColor(255, 50, 50) };
-                case 4:
+                case 1:
                     return { HitKind::Colour, -1, QColor(50, 200, 50) };
-                case 5:
+                case 2:
                     return { HitKind::Colour, -1, QColor(50, 110, 255) };
-                case 6:
+                case 3:
                     return { HitKind::Colour, -1, QColor(255, 230, 50) };
-                case 7:
+                case 4:
                     return { HitKind::Colour, -1, QColor(235, 235, 235) };
                 }
             }
@@ -971,6 +1297,11 @@ public:
                 executeGlobalMenuHit(hit);
                 return;
             }
+            const auto now = MovementClock::now();
+            if (globalMenu.lastToggleTime != MovementClock::time_point::min()
+                && std::chrono::duration<double>(now - globalMenu.lastToggleTime).count() < 0.9) {
+                return;
+            }
         }
         globalMenu.toggle(menu.ren, renWindow);
         return;
@@ -1025,7 +1356,7 @@ private:
 
         const auto now = MovementClock::now();
         if (lastGlobalControlTime != MovementClock::time_point::min()
-            && std::chrono::duration<double>(now - lastGlobalControlTime).count() < 0.35) {
+            && std::chrono::duration<double>(now - lastGlobalControlTime).count() < 1.0) {
             return;
         }
         lastGlobalControlTime = now;
@@ -1081,6 +1412,8 @@ private:
             return;
         part->m_clipEnabled = enabled;
         part->rebuildVRPipeline();
+        syncLiveActorPipeline(partID, part);
+        globalMenu.thumbnailCache.erase(partID);
         if (vrThread)
             emit vrThread->partClipChanged(partID, enabled);
     }
@@ -1091,6 +1424,8 @@ private:
             return;
         part->m_shrinkEnabled = enabled;
         part->rebuildVRPipeline();
+        syncLiveActorPipeline(partID, part);
+        globalMenu.thumbnailCache.erase(partID);
         if (vrThread)
             emit vrThread->partShrinkChanged(partID, enabled);
     }
@@ -1152,6 +1487,62 @@ private:
         applyColourVRForPart(menu.targetPartID, part, c);
     }
 
+    void syncLiveActorPipeline(int partID, ModelPart* part)
+    {
+        if (!part || !activeActors)
+            return;
+        auto it = activeActors->find(partID);
+        vtkActor* liveActor = (it != activeActors->end()) ? it->second.Get() : nullptr;
+        if (!liveActor || !part->file)
+            return;
+
+        const int visibility = liveActor->GetVisibility();
+        vtkAlgorithmOutput* source = part->file->GetOutputPort();
+
+        if (part->m_clipEnabled) {
+            double bounds[6];
+            part->file->GetOutput()->GetBounds(bounds);
+            const double cx = (bounds[0] + bounds[1]) * 0.5;
+            const double planeX = cx + part->m_clipPlaneX * (bounds[1] - bounds[0]) * 0.5;
+
+            vtkSmartPointer<vtkPlane> plane = vtkSmartPointer<vtkPlane>::New();
+            plane->SetOrigin(planeX, 0.0, 0.0);
+            plane->SetNormal(-1.0, 0.0, 0.0);
+
+            part->vrClipFilter = vtkSmartPointer<vtkClipDataSet>::New();
+            part->vrClipFilter->SetInputConnection(source);
+            part->vrClipFilter->SetClipFunction(plane.Get());
+            part->vrClipFilter->Update();
+            source = part->vrClipFilter->GetOutputPort();
+        } else {
+            part->vrClipFilter = nullptr;
+        }
+
+        if (part->m_shrinkEnabled) {
+            part->vrShrinkFilter = vtkSmartPointer<vtkShrinkFilter>::New();
+            part->vrShrinkFilter->SetInputConnection(source);
+            part->vrShrinkFilter->SetShrinkFactor(part->m_shrinkFactor);
+            part->vrShrinkFilter->Update();
+            source = part->vrShrinkFilter->GetOutputPort();
+        } else {
+            part->vrShrinkFilter = nullptr;
+        }
+
+        part->vrMapper = vtkSmartPointer<vtkDataSetMapper>::New();
+        part->vrMapper->SetInputConnection(source);
+        part->vrMapper->Update();
+
+        liveActor->SetMapper(part->vrMapper);
+        liveActor->GetProperty()->SetColor(
+            part->m_colour.redF(), part->m_colour.greenF(), part->m_colour.blueF());
+        liveActor->SetVisibility(visibility);
+        if (liveActor->GetMapper())
+            liveActor->GetMapper()->Modified();
+        liveActor->Modified();
+        if (menu.ren)
+            menu.ren->ResetCameraClippingRange();
+    }
+
     void applyColourVRForPart(int partID, ModelPart* part, const QColor& c)
     {
         if (!part)
@@ -1165,6 +1556,7 @@ private:
             if (it != activeActors->end() && it->second)
                 it->second->GetProperty()->SetColor(c.redF(), c.greenF(), c.blueF());
         }
+        globalMenu.thumbnailCache.erase(partID);
         if (vrThread) emit vrThread->partColourChanged(partID, c);
     }
 };

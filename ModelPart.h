@@ -61,12 +61,14 @@ public:
 
     // shrink filter
     void setShrinkFilter(bool enabled);
+    void setShrinkStateOnly(bool enabled);
     bool getShrinkEnabled() const;
     void setShrinkFactor(double factor);
     double getShrinkFactor() const;
 
     // clip filter
     void setClipFilter(bool enabled);
+    void setClipStateOnly(bool enabled);
     bool getClipEnabled() const;
     void setClipPlaneX(double x);
     double getClipPlaneX() const;

@@ -1022,11 +1022,27 @@ void MainWindow::on_actionEnter_VR_triggered()
     });
     connect(m_vrThread, &VRRenderThread::partShrinkChanged, this, [this](int partID, bool enabled) {
         ModelPart* part = partList->findByID(partID);
-        if (part) { part->setShrinkFilter(enabled); renderWindow->Render(); }
+        if (part) {
+            part->setShrinkStateOnly(enabled);
+            if (currentPart() == part) {
+                ui->buttonToggleShrink->blockSignals(true);
+                ui->buttonToggleShrink->setChecked(enabled);
+                ui->buttonToggleShrink->blockSignals(false);
+                refreshPropertyToggleText();
+            }
+        }
     });
     connect(m_vrThread, &VRRenderThread::partClipChanged, this, [this](int partID, bool enabled) {
         ModelPart* part = partList->findByID(partID);
-        if (part) { part->setClipFilter(enabled); renderWindow->Render(); }
+        if (part) {
+            part->setClipStateOnly(enabled);
+            if (currentPart() == part) {
+                ui->buttonToggleClip->blockSignals(true);
+                ui->buttonToggleClip->setChecked(enabled);
+                ui->buttonToggleClip->blockSignals(false);
+                refreshPropertyToggleText();
+            }
+        }
     });
     connect(m_vrThread, &VRRenderThread::partVisibilityChanged, this, [this](int partID, bool visible) {
         ModelPart* part = partList->findByID(partID);
