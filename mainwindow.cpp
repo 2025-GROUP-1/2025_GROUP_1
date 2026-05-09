@@ -1028,6 +1028,10 @@ void MainWindow::on_actionEnter_VR_triggered()
         ModelPart* part = partList->findByID(partID);
         if (part) { part->setClipFilter(enabled); renderWindow->Render(); }
     });
+    connect(m_vrThread, &VRRenderThread::partVisibilityChanged, this, [this](int partID, bool visible) {
+        ModelPart* part = partList->findByID(partID);
+        if (part) { part->setVisible(visible); renderWindow->Render(); }
+    });
 
     m_vrThread->start();
     emit statusUpdateMessage(tr("VR started"), 0);

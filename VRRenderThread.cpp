@@ -38,6 +38,7 @@
 #include <vtkMath.h>
 #include <vtkGLTFImporter.h>
 #include <vtkActorCollection.h>
+#include <vtkImageCanvasSource2D.h>
 #include <algorithm>
 #include <chrono>
 #include <cmath>
@@ -584,6 +585,36 @@ struct VRMenu {
 struct VRGlobalMenu {
     vtkSmartPointer<vtkPlaneSource> panelPlane;
     vtkSmartPointer<vtkActor> panelActor;
+    vtkSmartPointer<vtkTexture> panelTexture;
+    std::map<int, vtkSmartPointer<vtkActor>>* activeActors = nullptr;
+    ModelPartList* partList = nullptr;
+    std::vector<int> partIds;
+    int selectedIndex = -1;
+    double panelCenter[3] = { 0.0, 0.0, 0.0 };
+    double panelNormal[3] = { 0.0, 0.0, 1.0 };
+    double panelRight[3] = { 1.0, 0.0, 0.0 };
+    double panelUp[3] = { 0.0, 1.0, 0.0 };
+    double panelWidth = 1.0;
+    double panelHeight = 1.0;
+    bool visible = false;
+    MovementClock::time_point lastToggleTime = MovementClock::time_point::min();
+    enum class HitKind { None, Panel, Part, Visible, Clip, Shrink, Colour };
+    struct HitResult {
+        HitKind kind = HitKind::None;
+        int index = -1;
+        QColor colour;
+    };
+    static constexpr int TexW = 512;
+    static constexpr int TexH = 256;
+    static constexpr int CardCols = 4;
+    static constexpr int CardSize = 94;
+    static constexpr int CardGap = 22;
+    static constexpr int CardStartX = 28;
+    static constexpr int CardStartY = TexH - 28 - CardSize;
+    static constexpr int ControlSize = 34;
+    static constexpr int ControlGap = 14;
+    static constexpr int ControlStartX = 58;
+    static constexpr int ControlY = 30;
 
     void create(vtkRenderer* ren)
     {
@@ -601,13 +632,317 @@ struct VRGlobalMenu {
 
         panelActor = vtkSmartPointer<vtkActor>::New();
         panelActor->SetMapper(mapper);
-        panelActor->GetProperty()->SetColor(0.03, 0.035, 0.04);
+        panelActor->GetProperty()->SetColor(0.10, 0.12, 0.16);
         panelActor->GetProperty()->SetAmbient(1.0);
         panelActor->GetProperty()->SetDiffuse(0.0);
         panelActor->PickableOff();
         panelActor->DragableOff();
         panelActor->SetVisibility(0);
         ren->AddActor(panelActor);
+    }
+
+    void rebuildTexture()
+    {
+        vtkNew<vtkImageCanvasSource2D> canvas;
+        canvas->SetScalarTypeToUnsignedChar();
+        canvas->SetNumberOfScalarComponents(3);
+        canvas->SetExtent(0, TexW - 1, 0, TexH - 1, 0, 0);
+        canvas->SetDrawColor(10, 22, 40);
+        canvas->FillBox(0, TexW - 1, 0, TexH - 1);
+
+        partIds.clear();
+        if (activeActors && !activeActors->empty()) {
+            int i = 0;
+            for (auto& [id, actor] : *activeActors) {
+                if (!actor)
+                    continue;
+                const int row = i / CardCols;
+                const int col = i % CardCols;
+                const int x0 = CardStartX + col * (CardSize + CardGap);
+                const int y0 = CardStartY - row * (CardSize + CardGap);
+                double* c = actor->GetProperty()->GetColor();
+                partIds.push_back(id);
+                if (i == selectedIndex)
+                    canvas->SetDrawColor(32, 184, 138);
+                else
+                    canvas->SetDrawColor(52, 55, 63);
+                canvas->FillBox(x0 - 4, x0 + CardSize + 4, y0 - 4, y0 + CardSize + 4);
+                const int r = std::clamp(70 + static_cast<int>(c[0] * 185.0), 0, 255);
+                const int g = std::clamp(76 + static_cast<int>(c[1] * 185.0), 0, 255);
+                const int b = std::clamp(88 + static_cast<int>(c[2] * 185.0), 0, 255);
+                canvas->SetDrawColor(
+                    static_cast<unsigned char>(r),
+                    static_cast<unsigned char>(g),
+                    static_cast<unsigned char>(b));
+                canvas->FillBox(x0 + 8, x0 + CardSize - 8, y0 + 8, y0 + CardSize - 8);
+                ++i;
+                if (i >= 8)
+                    break;
+            }
+        }
+        if (selectedPartID() >= 0) {
+            drawToggle(canvas, 0, selectedPartVisible());
+            drawToggle(canvas, 1, selectedPartClipEnabled());
+            drawToggle(canvas, 2, selectedPartShrinkEnabled());
+            drawSwatch(canvas, 3, QColor(255, 50, 50));
+            drawSwatch(canvas, 4, QColor(50, 200, 50));
+            drawSwatch(canvas, 5, QColor(50, 110, 255));
+            drawSwatch(canvas, 6, QColor(255, 230, 50));
+            drawSwatch(canvas, 7, QColor(235, 235, 235));
+        }
+
+        canvas->Update();
+        if (!panelTexture) {
+            panelTexture = vtkSmartPointer<vtkTexture>::New();
+            panelTexture->InterpolateOff();
+            panelActor->SetTexture(panelTexture);
+        }
+        panelTexture->SetInputConnection(canvas->GetOutputPort());
+        panelTexture->Modified();
+    }
+
+    int selectedPartID() const
+    {
+        if (selectedIndex < 0 || selectedIndex >= static_cast<int>(partIds.size()))
+            return -1;
+        return partIds[selectedIndex];
+    }
+
+    ModelPart* selectedPart() const
+    {
+        const int id = selectedPartID();
+        return (partList && id >= 0) ? partList->findByID(id) : nullptr;
+    }
+
+    bool selectedPartVisible() const
+    {
+        if (ModelPart* part = selectedPart())
+            return part->getVisible();
+        const int id = selectedPartID();
+        if (!activeActors)
+            return false;
+        auto it = activeActors->find(id);
+        return it != activeActors->end() && it->second && it->second->GetVisibility();
+    }
+
+    bool selectedPartClipEnabled() const
+    {
+        if (ModelPart* part = selectedPart())
+            return part->getClipEnabled();
+        return false;
+    }
+
+    bool selectedPartShrinkEnabled() const
+    {
+        if (ModelPart* part = selectedPart())
+            return part->getShrinkEnabled();
+        return false;
+    }
+
+    void drawToggle(vtkImageCanvasSource2D* canvas, int slot, bool enabled)
+    {
+        const int x0 = ControlStartX + slot * (ControlSize + ControlGap);
+        const int y0 = ControlY;
+        canvas->SetDrawColor(enabled ? 32 : 74, enabled ? 184 : 78, enabled ? 138 : 88);
+        canvas->FillBox(x0 - 3, x0 + ControlSize + 3, y0 - 3, y0 + ControlSize + 3);
+        canvas->SetDrawColor(enabled ? 26 : 43, enabled ? 161 : 45, enabled ? 121 : 52);
+        canvas->FillBox(x0 + 5, x0 + ControlSize - 5, y0 + 5, y0 + ControlSize - 5);
+    }
+
+    void drawSwatch(vtkImageCanvasSource2D* canvas, int slot, const QColor& colour)
+    {
+        const int x0 = ControlStartX + slot * (ControlSize + ControlGap);
+        const int y0 = ControlY;
+        canvas->SetDrawColor(52, 55, 63);
+        canvas->FillBox(x0 - 3, x0 + ControlSize + 3, y0 - 3, y0 + ControlSize + 3);
+        canvas->SetDrawColor(colour.red(), colour.green(), colour.blue());
+        canvas->FillBox(x0 + 3, x0 + ControlSize - 3, y0 + 3, y0 + ControlSize - 3);
+    }
+
+    void toggle(vtkRenderer* ren, vtkOpenVRRenderWindow* win)
+    {
+        const auto now = MovementClock::now();
+        if (lastToggleTime != MovementClock::time_point::min()
+            && std::chrono::duration<double>(now - lastToggleTime).count() < 0.35) {
+            return;
+        }
+        lastToggleTime = now;
+
+        if (visible) {
+            hide();
+            return;
+        }
+        show(ren, win);
+    }
+
+    void show(vtkRenderer* ren, vtkOpenVRRenderWindow* win)
+    {
+        if (!panelPlane || !panelActor || !ren)
+            return;
+
+        rebuildTexture();
+
+        vtkCamera* cam = ren->GetActiveCamera();
+        if (!cam)
+            return;
+
+        double* camPos = cam->GetPosition();
+        double* camFwd = cam->GetDirectionOfProjection();
+        double* camUp = cam->GetViewUp();
+        double fwd[3] = { camFwd[0], camFwd[1], camFwd[2] };
+        double up[3] = { camUp[0], camUp[1], camUp[2] };
+        vtkMath::Normalize(fwd);
+        vtkMath::Normalize(up);
+
+        double right[3];
+        vtkMath::Cross(fwd, up, right);
+        if (vtkMath::Norm(right) <= 1e-9) {
+            right[0] = 1.0;
+            right[1] = 0.0;
+            right[2] = 0.0;
+        }
+        vtkMath::Normalize(right);
+        vtkMath::Cross(right, fwd, up);
+        vtkMath::Normalize(up);
+
+        const double physicalScale = win ? win->GetPhysicalScale() : 1.0;
+        const double width = physicalScale * 0.55;
+        const double height = physicalScale * 0.32;
+        double center[3] = {
+            camPos[0] + fwd[0] * physicalScale * 0.75,
+            camPos[1] + fwd[1] * physicalScale * 0.75 - up[1] * physicalScale * 0.04,
+            camPos[2] + fwd[2] * physicalScale * 0.75
+        };
+
+        for (int i = 0; i < 3; ++i) {
+            panelCenter[i] = center[i];
+            panelNormal[i] = -fwd[i];
+            panelRight[i] = right[i];
+            panelUp[i] = up[i];
+        }
+        panelWidth = width;
+        panelHeight = height;
+
+        panelPlane->SetOrigin(center[0] - right[0] * width * 0.5 - up[0] * height * 0.5,
+                              center[1] - right[1] * width * 0.5 - up[1] * height * 0.5,
+                              center[2] - right[2] * width * 0.5 - up[2] * height * 0.5);
+        panelPlane->SetPoint1(center[0] + right[0] * width * 0.5 - up[0] * height * 0.5,
+                              center[1] + right[1] * width * 0.5 - up[1] * height * 0.5,
+                              center[2] + right[2] * width * 0.5 - up[2] * height * 0.5);
+        panelPlane->SetPoint2(center[0] - right[0] * width * 0.5 + up[0] * height * 0.5,
+                              center[1] - right[1] * width * 0.5 + up[1] * height * 0.5,
+                              center[2] - right[2] * width * 0.5 + up[2] * height * 0.5);
+        panelPlane->Modified();
+        panelActor->SetVisibility(1);
+        visible = true;
+    }
+
+    HitResult hitTest(const double rayOrigin[3], const double rayDir[3]) const
+    {
+        if (!visible)
+            return {};
+        const double denom = vtkMath::Dot(panelNormal, rayDir);
+        if (std::abs(denom) < 1e-9)
+            return {};
+        double toPanel[3] = {
+            panelCenter[0] - rayOrigin[0],
+            panelCenter[1] - rayOrigin[1],
+            panelCenter[2] - rayOrigin[2]
+        };
+        const double t = vtkMath::Dot(toPanel, panelNormal) / denom;
+        if (t < 0.01 || t > panelWidth * 3.0)
+            return {};
+        double hit[3] = {
+            rayOrigin[0] + rayDir[0] * t,
+            rayOrigin[1] + rayDir[1] * t,
+            rayOrigin[2] + rayDir[2] * t
+        };
+        double local[3] = {
+            hit[0] - panelCenter[0],
+            hit[1] - panelCenter[1],
+            hit[2] - panelCenter[2]
+        };
+        const double u = vtkMath::Dot(local, panelRight) + panelWidth * 0.5;
+        const double v = vtkMath::Dot(local, panelUp) + panelHeight * 0.5;
+        if (u < 0.0 || u > panelWidth || v < 0.0 || v > panelHeight)
+            return {};
+
+        const double px = (u / panelWidth) * TexW;
+        const double py = (v / panelHeight) * TexH;
+        for (int i = 0; i < static_cast<int>(partIds.size()); ++i) {
+            const int row = i / CardCols;
+            const int col = i % CardCols;
+            const int x0 = CardStartX + col * (CardSize + CardGap);
+            const int y0 = CardStartY - row * (CardSize + CardGap);
+            if (px >= x0 && px <= x0 + CardSize && py >= y0 && py <= y0 + CardSize)
+                return { HitKind::Part, i, QColor() };
+        }
+
+        if (selectedPartID() >= 0) {
+            for (int slot = 0; slot < 8; ++slot) {
+                const int x0 = ControlStartX + slot * (ControlSize + ControlGap);
+                const int y0 = ControlY;
+                if (px < x0 || px > x0 + ControlSize || py < y0 || py > y0 + ControlSize)
+                    continue;
+                switch (slot) {
+                case 0:
+                    return { HitKind::Visible, -1, QColor() };
+                case 1:
+                    return { HitKind::Clip, -1, QColor() };
+                case 2:
+                    return { HitKind::Shrink, -1, QColor() };
+                case 3:
+                    return { HitKind::Colour, -1, QColor(255, 50, 50) };
+                case 4:
+                    return { HitKind::Colour, -1, QColor(50, 200, 50) };
+                case 5:
+                    return { HitKind::Colour, -1, QColor(50, 110, 255) };
+                case 6:
+                    return { HitKind::Colour, -1, QColor(255, 230, 50) };
+                case 7:
+                    return { HitKind::Colour, -1, QColor(235, 235, 235) };
+                }
+            }
+        }
+        return { HitKind::Panel, -1, QColor() };
+    }
+
+    HitResult hitFromRayLine(vtkLineSource* line) const
+    {
+        if (!line)
+            return {};
+
+        double origin[3];
+        double end[3];
+        line->GetPoint1(origin);
+        line->GetPoint2(end);
+        double dir[3] = {
+            end[0] - origin[0],
+            end[1] - origin[1],
+            end[2] - origin[2]
+        };
+        if (vtkMath::Norm(dir) <= 1e-9)
+            return {};
+        vtkMath::Normalize(dir);
+
+        return hitTest(origin, dir);
+    }
+
+    HitResult hitFromRays(VRRayCallback* rays) const
+    {
+        if (!rays)
+            return {};
+        HitResult hit = hitFromRayLine(rays->right.rayLine);
+        if (hit.kind != HitKind::None)
+            return hit;
+        return hitFromRayLine(rays->left.rayLine);
+    }
+
+    void hide()
+    {
+        if (panelActor)
+            panelActor->SetVisibility(0);
+        visible = false;
     }
 };
 
@@ -622,6 +957,7 @@ public:
     std::map<int, vtkSmartPointer<vtkActor>>* activeActors = nullptr;
     ModelPartList* partList = nullptr;
     VRRenderThread* vrThread = nullptr;
+    MovementClock::time_point lastGlobalControlTime = MovementClock::time_point::min();
 
     vtkOpenVRRenderWindow* renWindow = nullptr;
 
@@ -629,6 +965,14 @@ public:
     {
         // Compatibility shim: keep the menu-button UserEvent path alive while
         // removing the old per-part popup behavior.
+        if (globalMenu.visible) {
+            VRGlobalMenu::HitResult hit = globalMenu.hitFromRays(rays);
+            if (hit.kind != VRGlobalMenu::HitKind::None) {
+                executeGlobalMenuHit(hit);
+                return;
+            }
+        }
+        globalMenu.toggle(menu.ren, renWindow);
         return;
 
         // check what the controller is pointing at
@@ -668,6 +1012,89 @@ public:
     }
 
 private:
+    void executeGlobalMenuHit(const VRGlobalMenu::HitResult& hit)
+    {
+        if (hit.kind == VRGlobalMenu::HitKind::Panel)
+            return;
+
+        if (hit.kind == VRGlobalMenu::HitKind::Part) {
+            globalMenu.selectedIndex = hit.index;
+            globalMenu.rebuildTexture();
+            return;
+        }
+
+        const auto now = MovementClock::now();
+        if (lastGlobalControlTime != MovementClock::time_point::min()
+            && std::chrono::duration<double>(now - lastGlobalControlTime).count() < 0.35) {
+            return;
+        }
+        lastGlobalControlTime = now;
+
+        const int partID = globalMenu.selectedPartID();
+        if (!partList || partID < 0)
+            return;
+        ModelPart* part = partList->findByID(partID);
+        if (!part)
+            return;
+
+        switch (hit.kind) {
+        case VRGlobalMenu::HitKind::Visible:
+            applyVisibilityVR(partID, part, !part->getVisible());
+            break;
+        case VRGlobalMenu::HitKind::Clip:
+            applyClipVR(partID, part, !part->getClipEnabled());
+            break;
+        case VRGlobalMenu::HitKind::Shrink:
+            applyShrinkVR(partID, part, !part->getShrinkEnabled());
+            break;
+        case VRGlobalMenu::HitKind::Colour:
+            applyColourVRForPart(partID, part, hit.colour);
+            break;
+        default:
+            break;
+        }
+        globalMenu.rebuildTexture();
+    }
+
+    void applyVisibilityVR(int partID, ModelPart* part, bool visible)
+    {
+        if (!part)
+            return;
+        part->m_isVisible = visible;
+        if (part->m_itemData.size() > 1)
+            part->m_itemData.replace(1, visible ? QString("true") : QString("false"));
+        vtkActor* vr = part->getVRActor();
+        if (vr)
+            vr->SetVisibility(visible ? 1 : 0);
+        if (activeActors) {
+            auto it = activeActors->find(partID);
+            if (it != activeActors->end() && it->second)
+                it->second->SetVisibility(visible ? 1 : 0);
+        }
+        if (vrThread)
+            emit vrThread->partVisibilityChanged(partID, visible);
+    }
+
+    void applyClipVR(int partID, ModelPart* part, bool enabled)
+    {
+        if (!part)
+            return;
+        part->m_clipEnabled = enabled;
+        part->rebuildVRPipeline();
+        if (vrThread)
+            emit vrThread->partClipChanged(partID, enabled);
+    }
+
+    void applyShrinkVR(int partID, ModelPart* part, bool enabled)
+    {
+        if (!part)
+            return;
+        part->m_shrinkEnabled = enabled;
+        part->rebuildVRPipeline();
+        if (vrThread)
+            emit vrThread->partShrinkChanged(partID, enabled);
+    }
+
     // looks up which part ID an actor belongs to
     int findPartID(vtkActor* a) const
     {
@@ -722,11 +1149,23 @@ private:
     // updates VR actor and signals GUI to apply the same colour on its side
     void applyColourVR(ModelPart* part, const QColor& c)
     {
+        applyColourVRForPart(menu.targetPartID, part, c);
+    }
+
+    void applyColourVRForPart(int partID, ModelPart* part, const QColor& c)
+    {
+        if (!part)
+            return;
         part->m_colour = c;
         vtkActor* vr = part->getVRActor();
         if (vr)
             vr->GetProperty()->SetColor(c.redF(), c.greenF(), c.blueF());
-        if (vrThread) emit vrThread->partColourChanged(menu.targetPartID, c);
+        if (activeActors) {
+            auto it = activeActors->find(partID);
+            if (it != activeActors->end() && it->second)
+                it->second->GetProperty()->SetColor(c.redF(), c.greenF(), c.blueF());
+        }
+        if (vrThread) emit vrThread->partColourChanged(partID, c);
     }
 };
 
@@ -1047,6 +1486,8 @@ void VRRenderThread::run() {
     menuCallback->renWindow = m_renderWindow;
     menuCallback->menu.create(m_renderer);
     menuCallback->globalMenu.create(m_renderer);
+    menuCallback->globalMenu.activeActors = &m_activeActors;
+    menuCallback->globalMenu.partList = m_partList;
     rayCallback->menuActors = menuCallback->menu.actors();
     m_interactor->AddObserver(vtkCommand::UserEvent, menuCallback, 2.0);
 

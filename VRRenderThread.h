@@ -66,6 +66,7 @@ signals:
     void partColourChanged(int partID, QColor colour);
     void partShrinkChanged(int partID, bool enabled);
     void partClipChanged(int partID, bool enabled);
+    void partVisibilityChanged(int partID, bool visible);
 
 protected:
     // the actual VR render loop
