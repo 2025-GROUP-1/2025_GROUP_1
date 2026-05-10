@@ -148,6 +148,14 @@ if(EXISTS "${_msvc_debug_crt}")
     )
 endif()
 
+# Universal CRT debug DLL (ucrtbased.dll) from Windows SDK
+set(_ucrt_debug "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/ucrt")
+if(EXISTS "${_ucrt_debug}/ucrtbased.dll")
+    install(FILES "${_ucrt_debug}/ucrtbased.dll"
+        DESTINATION ${CMAKE_INSTALL_BINDIR}
+    )
+endif()
+
 # OpenVR DLL
 if(EXISTS "C:/OpenVr/bin/win64/openvr_api.dll")
     install(FILES "C:/OpenVr/bin/win64/openvr_api.dll"
