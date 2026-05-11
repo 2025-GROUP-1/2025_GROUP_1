@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Declares the modal editor for a part&#39;s name, colour, visibility, shrink, and clip settings.">
 <polygon fill="#999999" stroke="#666666" points="150,-74 64,-74 64,-55 150,-55 150,-74"/>
 <text text-anchor="middle" x="107" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">optiondialog.h</text>
 </a>
@@ -30,7 +30,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="mainwindow_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="mainwindow_8cpp.html" target="_top" xlink:title="Implements the main window UI, STL import workflow, renderer updates, themes, and VR controls.">
 <polygon fill="white" stroke="#666666" points="98,-19 0,-19 0,0 98,0 98,-19"/>
 <text text-anchor="middle" x="49" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">mainwindow.cpp</text>
 </a>
@@ -48,7 +48,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="optiondialog_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="optiondialog_8cpp.html" target="_top" xlink:title="Implements the per&#45;part property dialog, including colour picking and state transfer.">
 <polygon fill="white" stroke="#666666" points="214,-19 116,-19 116,0 214,0 214,-19"/>
 <text text-anchor="middle" x="165" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">optiondialog.cpp</text>
 </a>

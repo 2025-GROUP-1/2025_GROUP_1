@@ -136,6 +136,9 @@ $(document).ready(function(){initNavTree('classModelPartList.html',''); initResi
 </div><!--header-->
 <div class="contents">
 
+<p>QAbstractItemModel wrapper around the <a class="el" href="classModelPart.html" title="Represents one CAD part in the model tree, including STL loading, filters, colour,...">ModelPart</a> hierarchy used by the parts browser.  
+ <a href="classModelPartList.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="ModelPartList_8h_source.html">ModelPartList.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ModelPartList:</div>
@@ -183,8 +186,9 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a464a7abc3799ad9498c0ace03f38f87e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="ModelPartList_8h_source.html#l00016">16</a> of file <a class="el" href="ModelPartList_8h_source.html">ModelPartList.h</a>.</p>
+<div class="textblock"><p>QAbstractItemModel wrapper around the <a class="el" href="classModelPart.html" title="Represents one CAD part in the model tree, including STL loading, filters, colour,...">ModelPart</a> hierarchy used by the parts browser. </p>
+
+<p class="definition">Definition at line <a class="el" href="ModelPartList_8h_source.html#l00023">23</a> of file <a class="el" href="ModelPartList_8h_source.html">ModelPartList.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab78590b83bc1a7a05636efd7f29a7862" name="ab78590b83bc1a7a05636efd7f29a7862"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab78590b83bc1a7a05636efd7f29a7862">&#9670;&#160;</a></span>ModelPartList()</h2>
@@ -212,9 +216,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00005">5</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00008">8</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ModelPartList_8cpp_source.html#l00022">data()</a>, and <a class="el" href="ModelPartList_8h_source.html#l00039">rootItem</a>.</p>
+<p class="reference">References <a class="el" href="ModelPartList_8cpp_source.html#l00025">data()</a>, and <a class="el" href="ModelPartList_8h_source.html#l00046">rootItem</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -238,9 +242,9 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00013">13</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00016">16</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ModelPartList_8h_source.html#l00039">rootItem</a>.</p>
+<p class="reference">References <a class="el" href="ModelPartList_8h_source.html#l00046">rootItem</a>.</p>
 
 </div>
 </div>
@@ -271,11 +275,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00090">90</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00093">93</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ModelPart_8cpp_source.html#l00026">ModelPart::appendChild()</a>, <a class="el" href="ModelPart_8cpp_source.html#l00043">ModelPart::childCount()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00022">data()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00061">parent()</a>, and <a class="el" href="ModelPartList_8h_source.html#l00039">rootItem</a>.</p>
+<p class="reference">References <a class="el" href="ModelPart_8cpp_source.html#l00029">ModelPart::appendChild()</a>, <a class="el" href="ModelPart_8cpp_source.html#l00046">ModelPart::childCount()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00025">data()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00064">parent()</a>, and <a class="el" href="ModelPartList_8h_source.html#l00046">rootItem</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l01166">MainWindow::dropEvent()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00584">MainWindow::on_actionImport_Mesh_triggered()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l01169">MainWindow::dropEvent()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00587">MainWindow::on_actionImport_Mesh_triggered()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -313,9 +317,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00017">17</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00020">20</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ModelPart_8cpp_source.html#l00044">ModelPart::columnCount()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00061">parent()</a>, and <a class="el" href="ModelPartList_8h_source.html#l00039">rootItem</a>.</p>
+<p class="reference">References <a class="el" href="ModelPart_8cpp_source.html#l00047">ModelPart::columnCount()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00064">parent()</a>, and <a class="el" href="ModelPartList_8h_source.html#l00046">rootItem</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -358,11 +362,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00022">22</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00025">25</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ModelPart_8cpp_source.html#l00046">ModelPart::data()</a>, and <a class="el" href="ModelPartList_8cpp_source.html#l00045">index()</a>.</p>
+<p class="reference">References <a class="el" href="ModelPart_8cpp_source.html#l00049">ModelPart::data()</a>, and <a class="el" href="ModelPartList_8cpp_source.html#l00048">index()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ModelPartList_8cpp_source.html#l00090">appendChild()</a>, and <a class="el" href="ModelPartList_8cpp_source.html#l00005">ModelPartList()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ModelPartList_8cpp_source.html#l00093">appendChild()</a>, and <a class="el" href="ModelPartList_8cpp_source.html#l00008">ModelPartList()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -392,11 +396,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00106">106</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00109">109</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ModelPart_8cpp_source.html#l00037">ModelPart::child()</a>, <a class="el" href="ModelPart_8cpp_source.html#l00043">ModelPart::childCount()</a>, <a class="el" href="ModelPart_8cpp_source.html#l00172">ModelPart::getID()</a>, and <a class="el" href="ModelPartList_8h_source.html#l00039">rootItem</a>.</p>
+<p class="reference">References <a class="el" href="ModelPart_8cpp_source.html#l00040">ModelPart::child()</a>, <a class="el" href="ModelPart_8cpp_source.html#l00046">ModelPart::childCount()</a>, <a class="el" href="ModelPart_8cpp_source.html#l00175">ModelPart::getID()</a>, and <a class="el" href="ModelPartList_8h_source.html#l00046">rootItem</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l02259">VRRenderThread::applyCommand()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l01443">VRMenuCallback::executeAction()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l01346">VRMenuCallback::executeGlobalMenuHit()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00991">MainWindow::on_actionEnter_VR_triggered()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00719">VRGlobalMenu::selectedPart()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="VRRenderThread_8cpp_source.html#l02302">VRRenderThread::applyCommand()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l01478">VRMenuCallback::executeAction()</a>, <a class="el" href="VRRenderThread_8cpp_source.html#l01381">VRMenuCallback::executeGlobalMenuHit()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00994">MainWindow::on_actionEnter_VR_triggered()</a>, and <a class="el" href="VRRenderThread_8cpp_source.html#l00750">VRGlobalMenu::selectedPart()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -434,9 +438,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00032">32</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00035">35</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ModelPartList_8cpp_source.html#l00045">index()</a>.</p>
+<p class="reference">References <a class="el" href="ModelPartList_8cpp_source.html#l00048">index()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -460,11 +464,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00085">85</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00088">88</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ModelPartList_8h_source.html#l00039">rootItem</a>.</p>
+<p class="reference">References <a class="el" href="ModelPartList_8h_source.html#l00046">rootItem</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l01073">MainWindow::on_actionEnable_Passthrough_triggered()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00991">MainWindow::on_actionEnter_VR_triggered()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l01103">MainWindow::on_buttonSyncVR_clicked()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l01076">MainWindow::on_actionEnable_Passthrough_triggered()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00994">MainWindow::on_actionEnter_VR_triggered()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l01106">MainWindow::on_buttonSyncVR_clicked()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -513,9 +517,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00038">38</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00041">41</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ModelPart_8cpp_source.html#l00046">ModelPart::data()</a>, and <a class="el" href="ModelPartList_8h_source.html#l00039">rootItem</a>.</p>
+<p class="reference">References <a class="el" href="ModelPart_8cpp_source.html#l00049">ModelPart::data()</a>, and <a class="el" href="ModelPartList_8h_source.html#l00046">rootItem</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -564,11 +568,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00045">45</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00048">48</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ModelPart_8cpp_source.html#l00037">ModelPart::child()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00061">parent()</a>, and <a class="el" href="ModelPartList_8h_source.html#l00039">rootItem</a>.</p>
+<p class="reference">References <a class="el" href="ModelPart_8cpp_source.html#l00040">ModelPart::child()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00064">parent()</a>, and <a class="el" href="ModelPartList_8h_source.html#l00046">rootItem</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00963">MainWindow::applyExplodeFromTree()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00956">MainWindow::applyExplodeToAll()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00022">data()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00032">flags()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00723">MainWindow::on_actionEdit_Part_triggered()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00061">parent()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00914">MainWindow::refreshExplodeDirections()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00944">MainWindow::refreshExplodeDirectionsFromTree()</a>, and <a class="el" href="ModelPartList_8cpp_source.html#l00120">removeItem()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00966">MainWindow::applyExplodeFromTree()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00959">MainWindow::applyExplodeToAll()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00025">data()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00035">flags()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00726">MainWindow::on_actionEdit_Part_triggered()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00064">parent()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00917">MainWindow::refreshExplodeDirections()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00947">MainWindow::refreshExplodeDirectionsFromTree()</a>, and <a class="el" href="ModelPartList_8cpp_source.html#l00123">removeItem()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -606,11 +610,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00061">61</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00064">64</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ModelPartList_8cpp_source.html#l00045">index()</a>, <a class="el" href="ModelPart_8cpp_source.html#l00060">ModelPart::parentItem()</a>, <a class="el" href="ModelPartList_8h_source.html#l00039">rootItem</a>, and <a class="el" href="ModelPart_8cpp_source.html#l00062">ModelPart::row()</a>.</p>
+<p class="reference">References <a class="el" href="ModelPartList_8cpp_source.html#l00048">index()</a>, <a class="el" href="ModelPart_8cpp_source.html#l00063">ModelPart::parentItem()</a>, <a class="el" href="ModelPartList_8h_source.html#l00046">rootItem</a>, and <a class="el" href="ModelPart_8cpp_source.html#l00065">ModelPart::row()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ModelPartList_8cpp_source.html#l00090">appendChild()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00017">columnCount()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00045">index()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00120">removeItem()</a>, and <a class="el" href="ModelPartList_8cpp_source.html#l00074">rowCount()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ModelPartList_8cpp_source.html#l00093">appendChild()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00020">columnCount()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00048">index()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00123">removeItem()</a>, and <a class="el" href="ModelPartList_8cpp_source.html#l00077">rowCount()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -640,11 +644,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00120">120</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00123">123</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ModelPartList_8cpp_source.html#l00045">index()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00061">parent()</a>, <a class="el" href="ModelPart_8cpp_source.html#l00060">ModelPart::parentItem()</a>, <a class="el" href="ModelPart_8cpp_source.html#l00031">ModelPart::removeChild()</a>, <a class="el" href="ModelPartList_8h_source.html#l00039">rootItem</a>, and <a class="el" href="ModelPart_8cpp_source.html#l00062">ModelPart::row()</a>.</p>
+<p class="reference">References <a class="el" href="ModelPartList_8cpp_source.html#l00048">index()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00064">parent()</a>, <a class="el" href="ModelPart_8cpp_source.html#l00063">ModelPart::parentItem()</a>, <a class="el" href="ModelPart_8cpp_source.html#l00034">ModelPart::removeChild()</a>, <a class="el" href="ModelPartList_8h_source.html#l00046">rootItem</a>, and <a class="el" href="ModelPart_8cpp_source.html#l00065">ModelPart::row()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l01166">MainWindow::dropEvent()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00764">MainWindow::on_actionDelete_Part_triggered()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00584">MainWindow::on_actionImport_Mesh_triggered()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l01169">MainWindow::dropEvent()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00767">MainWindow::on_actionDelete_Part_triggered()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00587">MainWindow::on_actionImport_Mesh_triggered()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -682,11 +686,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00074">74</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelPartList_8cpp_source.html#l00077">77</a> of file <a class="el" href="ModelPartList_8cpp_source.html">ModelPartList.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ModelPart_8cpp_source.html#l00043">ModelPart::childCount()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00061">parent()</a>, and <a class="el" href="ModelPartList_8h_source.html#l00039">rootItem</a>.</p>
+<p class="reference">References <a class="el" href="ModelPart_8cpp_source.html#l00046">ModelPart::childCount()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00064">parent()</a>, and <a class="el" href="ModelPartList_8h_source.html#l00046">rootItem</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00963">MainWindow::applyExplodeFromTree()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00956">MainWindow::applyExplodeToAll()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00723">MainWindow::on_actionEdit_Part_triggered()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00914">MainWindow::refreshExplodeDirections()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00944">MainWindow::refreshExplodeDirectionsFromTree()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00966">MainWindow::applyExplodeFromTree()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00959">MainWindow::applyExplodeToAll()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00726">MainWindow::on_actionEdit_Part_triggered()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00917">MainWindow::refreshExplodeDirections()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00947">MainWindow::refreshExplodeDirectionsFromTree()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -721,9 +725,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ModelPartList_8h_source.html#l00039">39</a> of file <a class="el" href="ModelPartList_8h_source.html">ModelPartList.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelPartList_8h_source.html#l00046">46</a> of file <a class="el" href="ModelPartList_8h_source.html">ModelPartList.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ModelPartList_8cpp_source.html#l00090">appendChild()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00017">columnCount()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00106">findByID()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00085">getRootItem()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00038">headerData()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00045">index()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00005">ModelPartList()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00061">parent()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00120">removeItem()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00074">rowCount()</a>, and <a class="el" href="ModelPartList_8cpp_source.html#l00013">~ModelPartList()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ModelPartList_8cpp_source.html#l00093">appendChild()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00020">columnCount()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00109">findByID()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00088">getRootItem()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00041">headerData()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00048">index()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00008">ModelPartList()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00064">parent()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00123">removeItem()</a>, <a class="el" href="ModelPartList_8cpp_source.html#l00077">rowCount()</a>, and <a class="el" href="ModelPartList_8cpp_source.html#l00016">~ModelPartList()</a>.</p>
 
 </div>
 </div>

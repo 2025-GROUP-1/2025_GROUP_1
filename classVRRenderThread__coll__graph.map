@@ -1,12 +1,12 @@
 <map id="VRRenderThread" name="VRRenderThread">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,901,169,1327"/>
+<area shape="rect" id="Node000001" title="Dedicated QThread that owns the OpenVR render loop and applies queued scene updates." alt="" coords="5,901,169,1327"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="31,653,101,719"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,732,79,901,74,901,66,733"/>
-<area shape="rect" id="Node000003" href="$classModelPartList.html" title=" " alt="" coords="125,533,263,839"/>
+<area shape="rect" id="Node000003" href="$classModelPartList.html" title="QAbstractItemModel wrapper around the ModelPart hierarchy used by the parts browser." alt="" coords="125,533,263,839"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="159,840,147,886,142,885,153,838"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="59,205,207,271"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="142,284,176,532,170,533,136,285"/>
-<area shape="rect" id="Node000005" href="$classModelPart.html" title=" " alt="" coords="231,5,437,471"/>
+<area shape="rect" id="Node000005" href="$classModelPart.html" title="Represents one CAD part in the model tree, including STL loading, filters, colour,..." alt="" coords="231,5,437,471"/>
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="264,472,249,518,244,516,259,470"/>
 <area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="439,192,457,209,464,238,461,258,453,273,448,271,456,257,459,238,452,212,436,196"/>
 </map>

@@ -57,7 +57,7 @@ var sectionId = 'dynsection-0';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Application entry point that configures Qt/VTK OpenGL and launches the main window.">
 <polygon fill="#999999" stroke="#666666" points="880.5,-239 818.5,-239 818.5,-220 880.5,-220 880.5,-239"/>
 <text text-anchor="middle" x="849.5" y="-227" font-family="Helvetica,sans-Serif" font-size="10.00">main.cpp</text>
 </a>
@@ -66,7 +66,7 @@ var sectionId = 'dynsection-0';
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="mainwindow_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="mainwindow_8h.html" target="_top" xlink:title="Declares the main Qt window, CAD tree actions, viewport controls, and VR commands.">
 <polygon fill="white" stroke="#666666" points="740,-184 653,-184 653,-165 740,-165 740,-184"/>
 <text text-anchor="middle" x="696.5" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">mainwindow.h</text>
 </a>
@@ -264,7 +264,7 @@ var sectionId = 'dynsection-0';
 <!-- Node10 -->
 <g id="Node000010" class="node">
 <title>Node10</title>
-<g id="a_Node000010"><a xlink:href="ModelPart_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000010"><a xlink:href="ModelPart_8h.html" target="_top" xlink:title="Declares the CAD part tree node and its GUI/VR VTK pipelines.">
 <polygon fill="white" stroke="#666666" points="1175.5,-74 1101.5,-74 1101.5,-55 1175.5,-55 1175.5,-74"/>
 <text text-anchor="middle" x="1138.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPart.h</text>
 </a>
@@ -282,7 +282,7 @@ var sectionId = 'dynsection-0';
 <!-- Node26 -->
 <g id="Node000026" class="node">
 <title>Node26</title>
-<g id="a_Node000026"><a xlink:href="ModelPartList_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000026"><a xlink:href="ModelPartList_8h.html" target="_top" xlink:title="Declares the Qt item model that exposes ModelPart nodes to the tree view.">
 <polygon fill="white" stroke="#666666" points="742.5,-129 650.5,-129 650.5,-110 742.5,-110 742.5,-129"/>
 <text text-anchor="middle" x="696.5" y="-117" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPartList.h</text>
 </a>
@@ -300,7 +300,7 @@ var sectionId = 'dynsection-0';
 <!-- Node28 -->
 <g id="Node000028" class="node">
 <title>Node28</title>
-<g id="a_Node000028"><a xlink:href="VRRenderThread_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000028"><a xlink:href="VRRenderThread_8h.html" target="_top" xlink:title="Declares the threaded OpenVR renderer and command queue used to mirror GUI changes in VR.">
 <polygon fill="white" stroke="#666666" points="490,-74 383,-74 383,-55 490,-55 490,-74"/>
 <text text-anchor="middle" x="436.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">VRRenderThread.h</text>
 </a>

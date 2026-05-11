@@ -57,7 +57,7 @@ var sectionId = 'dynsection-1';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="VTK callback that handles controller button presses for context and global VR menus.">
 <polygon fill="#999999" stroke="transparent" points="384.02,-229 244.02,-229 244.02,0 384.02,0 384.02,-229"/>
 <text text-anchor="start" x="272.52" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRMenuCallback</text>
 <text text-anchor="start" x="248.02" y="-201.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -121,7 +121,7 @@ var sectionId = 'dynsection-1';
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classVRRayCallback.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classVRRayCallback.html" target="_top" xlink:title="VTK callback that refreshes controller rays and hover outlines during Move3D events.">
 <polygon fill="white" stroke="transparent" points="203.52,-655 88.52,-655 88.52,-501 203.52,-501 203.52,-655"/>
 <text text-anchor="start" x="109.02" y="-643" font-family="Helvetica,sans-Serif" font-size="10.00">VRRayCallback</text>
 <text text-anchor="start" x="93.02" y="-628" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -171,7 +171,7 @@ var sectionId = 'dynsection-1';
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="structControllerRay.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="structControllerRay.html" target="_top" xlink:title="Visual ray, picker, and hover outline state for one VR controller.">
 <polygon fill="white" stroke="transparent" points="243.52,-1152 116.52,-1152 116.52,-953 243.52,-953 243.52,-1152"/>
 <text text-anchor="start" x="147.02" y="-1139.5" font-family="Helvetica,sans-Serif" font-size="10.00">ControllerRay</text>
 <text text-anchor="start" x="121.02" y="-1124.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -219,7 +219,7 @@ var sectionId = 'dynsection-1';
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="structVRMenu.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="structVRMenu.html" target="_top" xlink:title="Context menu shown near a hovered part for clip, shrink, and colour actions.">
 <polygon fill="white" stroke="transparent" points="312.02,-692.5 222.02,-692.5 222.02,-463.5 312.02,-463.5 312.02,-692.5"/>
 <text text-anchor="start" x="246.52" y="-680" font-family="Helvetica,sans-Serif" font-size="10.00">VRMenu</text>
 <text text-anchor="start" x="226.02" y="-665" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -270,7 +270,7 @@ var sectionId = 'dynsection-1';
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="structVRGlobalMenu.html" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="structVRGlobalMenu.html" target="_top" xlink:title="Headset&#45;space control panel for global VR actions such as colour, filters, movement,...">
 <polygon fill="white" stroke="transparent" points="688.52,-880 557.52,-880 557.52,-276 688.52,-276 688.52,-880"/>
 <text text-anchor="start" x="587.02" y="-868" font-family="Helvetica,sans-Serif" font-size="10.00">VRGlobalMenu</text>
 <text text-anchor="start" x="562.02" y="-853" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -370,7 +370,7 @@ var sectionId = 'dynsection-1';
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="classModelPartList.html" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="classModelPartList.html" target="_top" xlink:title="QAbstractItemModel wrapper around the ModelPart hierarchy used by the parts browser.">
 <polygon fill="white" stroke="transparent" points="541.52,-1167 438.52,-1167 438.52,-938 541.52,-938 541.52,-1167"/>
 <text text-anchor="start" x="457.02" y="-1154.5" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPartList</text>
 <text text-anchor="start" x="488.52" y="-1139.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -429,7 +429,7 @@ var sectionId = 'dynsection-1';
 <!-- Node10 -->
 <g id="Node000010" class="node">
 <title>Node10</title>
-<g id="a_Node000010"><a xlink:href="classVRRenderThread.html" target="_top" xlink:title=" ">
+<g id="a_Node000010"><a xlink:href="classVRRenderThread.html" target="_top" xlink:title="Dedicated QThread that owns the OpenVR render loop and applies queued scene updates.">
 <polygon fill="white" stroke="transparent" points="453.52,-737.5 330.52,-737.5 330.52,-418.5 453.52,-418.5 453.52,-737.5"/>
 <text text-anchor="start" x="351.52" y="-725" font-family="Helvetica,sans-Serif" font-size="10.00">VRRenderThread</text>
 <text text-anchor="start" x="337.52" y="-710" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>
@@ -514,7 +514,7 @@ var sectionId = 'dynsection-1';
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="classModelPart.html" target="_top" xlink:title=" ">
+<g id="a_Node000009"><a xlink:href="classModelPart.html" target="_top" xlink:title="Represents one CAD part in the model tree, including STL loading, filters, colour,...">
 <polygon fill="white" stroke="transparent" points="672.52,-1563 517.52,-1563 517.52,-1214 672.52,-1214 672.52,-1563"/>
 <text text-anchor="start" x="571.02" y="-1550.5" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPart</text>
 <text text-anchor="start" x="524.52" y="-1535.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>

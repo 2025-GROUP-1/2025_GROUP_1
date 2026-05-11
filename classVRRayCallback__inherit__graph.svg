@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="VTK callback that refreshes controller rays and hover outlines during Move3D events.">
 <polygon fill="#999999" stroke="transparent" points="115,-184 0,-184 0,0 115,0 115,-184"/>
 <text text-anchor="start" x="20.5" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">VRRayCallback</text>
 <text text-anchor="start" x="4.5" y="-157" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>

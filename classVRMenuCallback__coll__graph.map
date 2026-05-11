@@ -1,24 +1,24 @@
 <map id="VRMenuCallback" name="VRMenuCallback">
-<area shape="rect" id="Node000001" title=" " alt="" coords="331,1784,517,2089"/>
+<area shape="rect" id="Node000001" title="VTK callback that handles controller button presses for context and global VR menus." alt="" coords="331,1784,517,2089"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="34,653,137,719"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,732,58,804,39,902,22,1022,11,1156,10,1299,15,1371,24,1444,38,1516,57,1587,82,1655,113,1720,133,1751,156,1779,212,1828,273,1868,332,1897,329,1902,270,1872,209,1832,153,1783,128,1754,108,1723,77,1657,52,1588,33,1517,19,1445,10,1372,5,1299,5,1155,16,1021,34,902,53,803,70,731"/>
-<area shape="rect" id="Node000003" href="$classVRRayCallback.html" title=" " alt="" coords="123,1216,277,1421"/>
+<area shape="rect" id="Node000003" href="$classVRRayCallback.html" title="VTK callback that refreshes controller rays and hover outlines during Move3D events." alt="" coords="123,1216,277,1421"/>
 <area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="96,732,184,1215,179,1216,91,733"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,1421,243,1565,265,1644,292,1720,325,1787,320,1789,287,1722,260,1646,238,1566,210,1422"/>
-<area shape="rect" id="Node000004" href="$structControllerRay.html" title=" " alt="" coords="161,553,330,819"/>
+<area shape="rect" id="Node000004" href="$structControllerRay.html" title="Visual ray, picker, and hover outline state for one VR controller." alt="" coords="161,553,330,819"/>
 <area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="239,819,211,1200,206,1199,233,819"/>
-<area shape="rect" id="Node000005" href="$structVRMenu.html" title=" " alt="" coords="301,1166,421,1471"/>
+<area shape="rect" id="Node000005" href="$structVRMenu.html" title="Context menu shown near a hovered part for clip, shrink, and colour actions." alt="" coords="301,1166,421,1471"/>
 <area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="378,1472,407,1760,407,1767,402,1768,401,1760,373,1472"/>
-<area shape="rect" id="Node000006" href="$structVRGlobalMenu.html" title=" " alt="" coords="749,916,923,1721"/>
+<area shape="rect" id="Node000006" href="$structVRGlobalMenu.html" title="Headset&#45;space control panel for global VR actions such as colour, filters, movement,..." alt="" coords="749,916,923,1721"/>
 <area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="751,1691,732,1723,689,1774,639,1819,585,1857,533,1888,531,1883,583,1852,636,1815,685,1770,727,1720,746,1688"/>
-<area shape="rect" id="Node000007" href="$classModelPartList.html" title=" " alt="" coords="590,533,727,839"/>
+<area shape="rect" id="Node000007" href="$classModelPartList.html" title="QAbstractItemModel wrapper around the ModelPart hierarchy used by the parts browser." alt="" coords="590,533,727,839"/>
 <area shape="poly" id="edge11_Node000001_Node000007" title=" " alt="" coords="662,839,660,1079,655,1351,644,1588,635,1672,624,1722,606,1758,583,1792,531,1852,527,1848,579,1789,601,1756,619,1720,630,1671,638,1588,650,1351,655,1079,656,839"/>
 <area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="709,838,732,915,747,968,742,969,727,917,704,840"/>
-<area shape="rect" id="Node000010" href="$classVRRenderThread.html" title=" " alt="" coords="446,1106,610,1531"/>
+<area shape="rect" id="Node000010" href="$classVRRenderThread.html" title="Dedicated QThread that owns the OpenVR render loop and applies queued scene updates." alt="" coords="446,1106,610,1531"/>
 <area shape="poly" id="edge14_Node000010_Node000007" title=" " alt="" coords="592,795,564,864,550,919,540,976,528,1090,523,1089,534,975,545,918,559,862,588,793"/>
 <area shape="rect" id="Node000008" title=" " alt="" coords="523,205,671,271"/>
 <area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="606,284,640,532,635,533,601,285"/>
-<area shape="rect" id="Node000009" href="$classModelPart.html" title=" " alt="" coords="695,5,902,471"/>
+<area shape="rect" id="Node000009" href="$classModelPart.html" title="Represents one CAD part in the model tree, including STL loading, filters, colour,..." alt="" coords="695,5,902,471"/>
 <area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="728,472,714,518,709,516,723,470"/>
 <area shape="poly" id="edge10_Node000009_Node000009" title=" " alt="" coords="904,192,922,209,929,238,926,258,917,273,913,271,921,257,923,238,917,212,900,196"/>
 <area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="498,1532,460,1760,459,1768,453,1767,455,1760,493,1531"/>

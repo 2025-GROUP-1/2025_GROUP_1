@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Dedicated QThread that owns the OpenVR render loop and applies queued scene updates.">
 <polygon fill="#999999" stroke="transparent" points="123,-319 0,-319 0,0 123,0 123,-319"/>
 <text text-anchor="start" x="21" y="-306.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRRenderThread</text>
 <text text-anchor="start" x="7" y="-291.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>

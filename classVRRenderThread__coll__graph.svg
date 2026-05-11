@@ -57,7 +57,7 @@ var sectionId = 'dynsection-1';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Dedicated QThread that owns the OpenVR render loop and applies queued scene updates.">
 <polygon fill="#999999" stroke="transparent" points="123,-319 0,-319 0,0 123,0 123,-319"/>
 <text text-anchor="start" x="21" y="-306.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRRenderThread</text>
 <text text-anchor="start" x="7" y="-291.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>
@@ -132,7 +132,7 @@ var sectionId = 'dynsection-1';
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classModelPartList.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classModelPartList.html" target="_top" xlink:title="QAbstractItemModel wrapper around the ModelPart hierarchy used by the parts browser.">
 <polygon fill="white" stroke="transparent" points="193,-595 90,-595 90,-366 193,-366 193,-595"/>
 <text text-anchor="start" x="108.5" y="-582.5" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPartList</text>
 <text text-anchor="start" x="140" y="-567.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -204,7 +204,7 @@ var sectionId = 'dynsection-1';
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classModelPart.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="classModelPart.html" target="_top" xlink:title="Represents one CAD part in the model tree, including STL loading, filters, colour,...">
 <polygon fill="white" stroke="transparent" points="324,-991 169,-991 169,-642 324,-642 324,-991"/>
 <text text-anchor="start" x="222.5" y="-978.5" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPart</text>
 <text text-anchor="start" x="176" y="-963.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>

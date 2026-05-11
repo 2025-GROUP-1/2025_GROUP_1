@@ -57,7 +57,7 @@ var sectionId = 'dynsection-1';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Main application window that coordinates the part tree, VTK viewport, themes, and VR session.">
 <polygon fill="#999999" stroke="transparent" points="245.5,-621 75.5,-621 75.5,0 245.5,0 245.5,-621"/>
 <text text-anchor="start" x="128.5" y="-608.5" font-family="Helvetica,sans-Serif" font-size="10.00">MainWindow</text>
 <text text-anchor="start" x="82" y="-593.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>
@@ -169,7 +169,7 @@ var sectionId = 'dynsection-1';
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classModelPartList.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classModelPartList.html" target="_top" xlink:title="QAbstractItemModel wrapper around the ModelPart hierarchy used by the parts browser.">
 <polygon fill="white" stroke="transparent" points="304,-1263 201,-1263 201,-1034 304,-1034 304,-1263"/>
 <text text-anchor="start" x="219.5" y="-1250.5" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPartList</text>
 <text text-anchor="start" x="251" y="-1235.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -218,7 +218,7 @@ var sectionId = 'dynsection-1';
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="classVRRenderThread.html" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="classVRRenderThread.html" target="_top" xlink:title="Dedicated QThread that owns the OpenVR render loop and applies queued scene updates.">
 <polygon fill="white" stroke="transparent" points="222,-987 99,-987 99,-668 222,-668 222,-987"/>
 <text text-anchor="start" x="120" y="-974.5" font-family="Helvetica,sans-Serif" font-size="10.00">VRRenderThread</text>
 <text text-anchor="start" x="106" y="-959.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>
@@ -303,7 +303,7 @@ var sectionId = 'dynsection-1';
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classModelPart.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="classModelPart.html" target="_top" xlink:title="Represents one CAD part in the model tree, including STL loading, filters, colour,...">
 <polygon fill="white" stroke="transparent" points="435,-1659 280,-1659 280,-1310 435,-1310 435,-1659"/>
 <text text-anchor="start" x="333.5" y="-1646.5" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPart</text>
 <text text-anchor="start" x="287" y="-1631.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>

@@ -159,15 +159,15 @@ $(document).ready(function(){initNavTree('how_it_works.html',''); initResizable(
 <p>The following steps trace a colour edit from the GUI dialog down to the renderer.</p>
 <ol type="1">
 <li><b>User opens the property editor.</b> <br  />
- Right-clicking a tree item and choosing <em>Item Options</em> triggers <code>MainWindow::on_actionItem_Options_triggered()</code> (<a class="el" href="mainwindow_8cpp.html">mainwindow.cpp</a>:200).</li>
+ Right-clicking a tree item and choosing <em>Item Options</em> triggers <code>MainWindow::on_actionItem_Options_triggered()</code> (<a class="el" href="mainwindow_8cpp.html" title="Implements the main window UI, STL import workflow, renderer updates, themes, and VR controls.">mainwindow.cpp</a>:200).</li>
 <li><b>Selection is validated.</b> <br  />
  <code>ui-&gt;treeView-&gt;currentIndex()</code> returns the active <code>QModelIndex</code>. Its <code>internalPointer()</code> is cast to <code>ModelPart*</code>, which is the part to edit.</li>
 <li><b>Dialog is populated.</b> <br  />
- An <code><a class="el" href="classOptionDialog.html">OptionDialog</a></code> is constructed and <code>OptionDialog::loadFromModelPart(part)</code> is called (<a class="el" href="optiondialog_8cpp.html">optiondialog.cpp</a>:15). This reads <code>part-&gt;getColourR/G/B()</code> and sets the three <code>QSpinBox</code> widgets (0 to 255 each) plus the name <code>QLineEdit</code> and visibility <code>QCheckBox</code>.</li>
+ An <code><a class="el" href="classOptionDialog.html" title="Modal Qt dialog for editing the selected CAD part&#39;s display and filter properties.">OptionDialog</a></code> is constructed and <code>OptionDialog::loadFromModelPart(part)</code> is called (<a class="el" href="optiondialog_8cpp.html" title="Implements the per-part property dialog, including colour picking and state transfer.">optiondialog.cpp</a>:15). This reads <code>part-&gt;getColourR/G/B()</code> and sets the three <code>QSpinBox</code> widgets (0 to 255 each) plus the name <code>QLineEdit</code> and visibility <code>QCheckBox</code>.</li>
 <li><b>User adjusts the spinboxes and clicks OK.</b> <br  />
  <code>dialog.exec()</code> blocks until the user accepts or cancels.</li>
 <li><b>Changes are written back.</b> <br  />
- On <code>QDialog::Accepted</code>, <code>OptionDialog::saveToModelPart(part)</code> is called (<a class="el" href="optiondialog_8cpp.html">optiondialog.cpp</a>:30):<ul>
+ On <code>QDialog::Accepted</code>, <code>OptionDialog::saveToModelPart(part)</code> is called (<a class="el" href="optiondialog_8cpp.html" title="Implements the per-part property dialog, including colour picking and state transfer.">optiondialog.cpp</a>:30):<ul>
 <li><code>part-&gt;setData(0, name)</code>: updates the display name in column 0.</li>
 <li><code>part-&gt;setColour(r, g, b)</code>: stores the three RGB integers in <code><a class="el" href="classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910">ModelPart::red</a>/green/blue</code>.</li>
 <li><code>part-&gt;setVisible(checked)</code>: updates <code><a class="el" href="classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910">ModelPart::isVisible</a></code>, syncs column 1 to <code>"true"</code>/<code>"false"</code>, and calls <code>actor-&gt;SetVisibility()</code> immediately.</li>
@@ -176,17 +176,17 @@ $(document).ready(function(){initNavTree('how_it_works.html',''); initResizable(
 <li><b>Important caveat on colour.</b> <br  />
  <code><a class="el" href="classModelPart.html#abb0819f303fea07fdc053ba750d4684d">ModelPart::setColour()</a></code> (<a class="el" href="classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910">ModelPart.cpp:</a>92) stores the values but does <b>not</b> call <code>actor-&gt;GetProperty()-&gt;SetColor()</code> on the live actor. The actor colour is only applied inside <code><a class="el" href="classModelPart.html#a420f4a3bfbfefada12f711ace277e68e">ModelPart::loadSTL()</a></code> (<a class="el" href="classModelPart.html#a05bc0dd06a3658d9a2c46fa717dec910">ModelPart.cpp:</a>79). Consequently, a colour change via the dialog takes visual effect only when the part's STL is reloaded. A direct fix would be to add <code>actor-&gt;GetProperty()-&gt;SetColor(...)</code> at the end of <code>setColour()</code>.</li>
 <li><b>Tree view is refreshed.</b> <br  />
- <code><a class="el" href="classMainWindow.html">MainWindow</a></code> emits <code>partList-&gt;dataChanged(...)</code> across the full model range, so the "Visible?" column in the <code>QTreeView</code> refreshes immediately.</li>
+ <code><a class="el" href="classMainWindow.html" title="Main application window that coordinates the part tree, VTK viewport, themes, and VR session.">MainWindow</a></code> emits <code>partList-&gt;dataChanged(...)</code> across the full model range, so the "Visible?" column in the <code>QTreeView</code> refreshes immediately.</li>
 <li><b>Render is rebuilt.</b> <br  />
- <code><a class="el" href="classMainWindow.html#aa2a5945f9c4bf90022f0a7ad3db34c49">MainWindow::updateRender()</a></code> (<a class="el" href="mainwindow_8cpp.html">mainwindow.cpp</a>:66) is called:<ul>
+ <code><a class="el" href="classMainWindow.html#aa2a5945f9c4bf90022f0a7ad3db34c49">MainWindow::updateRender()</a></code> (<a class="el" href="mainwindow_8cpp.html" title="Implements the main window UI, STL import workflow, renderer updates, themes, and VR controls.">mainwindow.cpp</a>:66) is called:<ul>
 <li><code>renderer-&gt;RemoveAllViewProps()</code> clears the current frame.</li>
-<li><code>updateRenderFromTree()</code> recurses through every <code><a class="el" href="classModelPart.html">ModelPart</a></code> and calls <code>renderer-&gt;AddActor(part-&gt;getActor())</code> for each non-null actor.</li>
+<li><code>updateRenderFromTree()</code> recurses through every <code><a class="el" href="classModelPart.html" title="Represents one CAD part in the model tree, including STL loading, filters, colour,...">ModelPart</a></code> and calls <code>renderer-&gt;AddActor(part-&gt;getActor())</code> for each non-null actor.</li>
 </ul>
 </li>
 <li><b>GPU frame is drawn.</b> <br  />
  <code>renderWindow-&gt;Render()</code> submits the updated actor list to OpenGL/VTK.</li>
 <li><b>VR thread receives the update (when VR is running).</b> <br  />
- A mutex-protected command is enqueued on <code><a class="el" href="classVRRenderThread.html">VRRenderThread</a></code>. At the start of the next VR frame the thread drains the queue, updates its own copy of the actor (the VR actor, separate from the GUI actor), and calls its VR renderer's <code>Render()</code>. The headset sees the change within one frame.</li>
+ A mutex-protected command is enqueued on <code><a class="el" href="classVRRenderThread.html" title="Dedicated QThread that owns the OpenVR render loop and applies queued scene updates.">VRRenderThread</a></code>. At the start of the next VR frame the thread drains the queue, updates its own copy of the actor (the VR actor, separate from the GUI actor), and calls its VR renderer's <code>Render()</code>. The headset sees the change within one frame.</li>
 </ol>
 <hr  />
 <h1><a class="anchor" id="two-actors"></a>
@@ -200,24 +200,24 @@ $(document).ready(function(){initNavTree('how_it_works.html',''); initResizable(
 <p><b>What happens if you try to share an actor:</b></p>
 <ul>
 <li>Both renderers call <code>actor-&gt;Render(renderer, ...)</code> concurrently. The actor's cached render state (built during the first <code>Render</code> call) is immediately invalidated by the second renderer's context, causing corrupted or missing geometry in one or both viewports.</li>
-<li>Thread-safety is violated: the GUI main thread and <code><a class="el" href="classVRRenderThread.html">VRRenderThread</a></code> would race to modify the same actor object without synchronisation.</li>
+<li>Thread-safety is violated: the GUI main thread and <code><a class="el" href="classVRRenderThread.html" title="Dedicated QThread that owns the OpenVR render loop and applies queued scene updates.">VRRenderThread</a></code> would race to modify the same actor object without synchronisation.</li>
 </ul>
 <p><b>The solution: two actors, one mapper:</b></p>
-<p>Each <code><a class="el" href="classModelPart.html">ModelPart</a></code> constructs two actors that both point to the same <code>vtkPolyDataMapper</code> (and thus the same geometry data, which is read-only after <code>loadSTL()</code> completes). Only actor-level state (colour, visibility, transform) differs between the two copies, so the geometry is not duplicated in memory.</p>
+<p>Each <code><a class="el" href="classModelPart.html" title="Represents one CAD part in the model tree, including STL loading, filters, colour,...">ModelPart</a></code> constructs two actors that both point to the same <code>vtkPolyDataMapper</code> (and thus the same geometry data, which is read-only after <code>loadSTL()</code> completes). Only actor-level state (colour, visibility, transform) differs between the two copies, so the geometry is not duplicated in memory.</p>
 <hr  />
 <h1><a class="anchor" id="explode-animation"></a>
 3. What the Explode Animation Does Internally</h1>
 <p>The explode view pulls every part outward from the model's centre of mass, revealing internal geometry and assembly structure. The implementation (present in the GUI branch, integrated post-merge) follows this sequence:</p>
 <ol type="1">
 <li><b>Compute the model centre.</b> <br  />
- Iterate over all top-level <code><a class="el" href="classModelPart.html">ModelPart</a></code> nodes and accumulate their actor bounding boxes. The model centre <code>C</code> is the centroid of the combined bounding box.</li>
+ Iterate over all top-level <code><a class="el" href="classModelPart.html" title="Represents one CAD part in the model tree, including STL loading, filters, colour,...">ModelPart</a></code> nodes and accumulate their actor bounding boxes. The model centre <code>C</code> is the centroid of the combined bounding box.</li>
 <li><b>Compute per-part displacement vectors.</b> <br  />
  For each part, <code>computeExplodeTarget(part, C)</code> returns the vector from <code>C</code> to the part's own bounding-box centre: <div class="fragment"><div class="line">d = part.centre - C</div>
 </div><!-- fragment --> Parts already at <code>C</code> (degenerate case) receive a zero displacement.</li>
 <li><b>Animate over N frames.</b> <br  />
  A <code>QTimer</code> fires at ~60 Hz. On each tick <code>t</code> (0.0 to 1.0): <div class="fragment"><div class="line">applyExplodeOffset(part, t)</div>
 <div class="line">    actor-&gt;SetPosition(restPosition + t * scale * d)</div>
-</div><!-- fragment --> Both the GUI actor and the corresponding VR actor are updated. The GUI actor directly on the main thread, the VR actor via a command queued to <code><a class="el" href="classVRRenderThread.html">VRRenderThread</a></code>.</li>
+</div><!-- fragment --> Both the GUI actor and the corresponding VR actor are updated. The GUI actor directly on the main thread, the VR actor via a command queued to <code><a class="el" href="classVRRenderThread.html" title="Dedicated QThread that owns the OpenVR render loop and applies queued scene updates.">VRRenderThread</a></code>.</li>
 <li><b>Reset.</b> <br  />
  Calling explode a second time (or clicking <em>Reset</em>) runs the same interpolation in reverse (<code>t</code> from 1.0 to 0.0), smoothly returning all parts to their resting positions. </li>
 </ol>

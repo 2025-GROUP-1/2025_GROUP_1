@@ -1,3 +1,3 @@
 <map id="PolledLocomotion" name="PolledLocomotion">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,143,111"/>
+<area shape="rect" id="Node000001" title="Polls OpenVR thumbstick state every frame so continuous locomotion stays responsive." alt="" coords="5,5,143,111"/>
 </map>

@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Headset&#45;space control panel for global VR actions such as colour, filters, movement,...">
 <polygon fill="#999999" stroke="transparent" points="167,-604 36,-604 36,0 167,0 167,-604"/>
 <text text-anchor="start" x="65.5" y="-592" font-family="Helvetica,sans-Serif" font-size="10.00">VRGlobalMenu</text>
 <text text-anchor="start" x="40.5" y="-577" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -101,7 +101,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classModelPartList.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classModelPartList.html" target="_top" xlink:title="QAbstractItemModel wrapper around the ModelPart hierarchy used by the parts browser.">
 <polygon fill="white" stroke="transparent" points="153,-880 50,-880 50,-651 153,-651 153,-880"/>
 <text text-anchor="start" x="68.5" y="-867.5" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPartList</text>
 <text text-anchor="start" x="100" y="-852.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -173,7 +173,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classModelPart.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="classModelPart.html" target="_top" xlink:title="Represents one CAD part in the model tree, including STL loading, filters, colour,...">
 <polygon fill="white" stroke="transparent" points="284,-1276 129,-1276 129,-927 284,-927 284,-1276"/>
 <text text-anchor="start" x="182.5" y="-1263.5" font-family="Helvetica,sans-Serif" font-size="10.00">ModelPart</text>
 <text text-anchor="start" x="136" y="-1248.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>

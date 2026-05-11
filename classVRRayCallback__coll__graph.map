@@ -1,7 +1,7 @@
 <map id="VRRayCallback" name="VRRayCallback">
-<area shape="rect" id="Node000001" title=" " alt="" coords="60,348,213,553"/>
+<area shape="rect" id="Node000001" title="VTK callback that refreshes controller rays and hover outlines during Move3D events." alt="" coords="60,348,213,553"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,105,108,171"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,183,113,347,108,349,66,184"/>
-<area shape="rect" id="Node000003" href="$structControllerRay.html" title=" " alt="" coords="132,5,301,271"/>
+<area shape="rect" id="Node000003" href="$structControllerRay.html" title="Visual ray, picker, and hover outline state for one VR controller." alt="" coords="132,5,301,271"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="185,271,170,333,164,331,180,270"/>
 </map>

@@ -1,14 +1,14 @@
 <map id="MainWindow" name="MainWindow">
-<area shape="rect" id="Node000001" title=" " alt="" coords="106,1389,333,2217"/>
+<area shape="rect" id="Node000001" title="Main application window that coordinates the part tree, VTK viewport, themes, and VR session." alt="" coords="106,1389,333,2217"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,1081,113,1147"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="72,1160,126,1388,121,1390,67,1161"/>
-<area shape="rect" id="Node000003" href="$classModelPartList.html" title=" " alt="" coords="273,533,411,839"/>
+<area shape="rect" id="Node000003" href="$classModelPartList.html" title="QAbstractItemModel wrapper around the ModelPart hierarchy used by the parts browser." alt="" coords="273,533,411,839"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="345,839,339,1086,330,1227,315,1366,314,1373,309,1373,310,1365,324,1226,333,1086,340,839"/>
-<area shape="rect" id="Node000006" href="$classVRRenderThread.html" title=" " alt="" coords="137,901,301,1327"/>
+<area shape="rect" id="Node000006" href="$classVRRenderThread.html" title="Dedicated QThread that owns the OpenVR render loop and applies queued scene updates." alt="" coords="137,901,301,1327"/>
 <area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="276,811,255,864,249,886,244,884,250,862,271,809"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="207,205,355,271"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="290,284,324,532,318,533,284,285"/>
-<area shape="rect" id="Node000005" href="$classModelPart.html" title=" " alt="" coords="379,5,585,471"/>
+<area shape="rect" id="Node000005" href="$classModelPart.html" title="Represents one CAD part in the model tree, including STL loading, filters, colour,..." alt="" coords="379,5,585,471"/>
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="412,472,397,518,392,516,407,470"/>
 <area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="587,192,605,209,612,238,609,258,601,273,596,271,604,257,607,238,600,212,584,196"/>
 <area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="222,1327,222,1373,217,1373,217,1327"/>

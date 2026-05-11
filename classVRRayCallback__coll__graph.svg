@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="VTK callback that refreshes controller rays and hover outlines during Move3D events.">
 <polygon fill="#999999" stroke="transparent" points="156,-154 41,-154 41,0 156,0 156,-154"/>
 <text text-anchor="start" x="61.5" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00">VRRayCallback</text>
 <text text-anchor="start" x="45.5" y="-127" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -75,7 +75,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="structControllerRay.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="structControllerRay.html" target="_top" xlink:title="Visual ray, picker, and hover outline state for one VR controller.">
 <polygon fill="white" stroke="transparent" points="222,-411 95,-411 95,-212 222,-212 222,-411"/>
 <text text-anchor="start" x="125.5" y="-398.5" font-family="Helvetica,sans-Serif" font-size="10.00">ControllerRay</text>
 <text text-anchor="start" x="99.5" y="-383.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>

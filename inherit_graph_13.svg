@@ -20,7 +20,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:href="classVRMenuCallback.html" target="_top" xlink:title=" ">
+<g id="a_Node000001"><a xlink:href="classVRMenuCallback.html" target="_top" xlink:title="VTK callback that handles controller button presses for context and global VR menus.">
 <polygon fill="white" stroke="#666666" points="218,-56 119,-56 119,-37 218,-37 218,-56"/>
 <text text-anchor="middle" x="168.5" y="-44" font-family="Helvetica,sans-Serif" font-size="10.00">VRMenuCallback</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classVRRayCallback.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classVRRayCallback.html" target="_top" xlink:title="VTK callback that refreshes controller rays and hover outlines during Move3D events.">
 <polygon fill="white" stroke="#666666" points="214,-19 123,-19 123,0 214,0 214,-19"/>
 <text text-anchor="middle" x="168.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">VRRayCallback</text>
 </a>
