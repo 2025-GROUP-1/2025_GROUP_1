@@ -12,6 +12,7 @@ OUTPUT_LANGUAGE        = English
 
 # --- What to document ------------------------------------------
 INPUT                  = mainpage.md \
+                         pages/dir.dox \
                          pages/how-it-works.md \
                          main.cpp \
                          mainwindow.cpp mainwindow.h \

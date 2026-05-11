@@ -1,4 +1,7 @@
-// main application window - parts browser, 3D viewport, properties panel, VR controls
+/**
+ * @file mainwindow.h
+ * @brief Declares the main Qt window, CAD tree actions, viewport controls, and VR commands.
+ */
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
@@ -18,10 +21,18 @@
 #include <vtkSkybox.h>
 
 QT_BEGIN_NAMESPACE
+/**
+ * @namespace Ui
+ * @brief Qt Designer generated widget classes used by the application dialogs and main window.
+ */
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 class QEvent;
 
+/**
+ * @class MainWindow
+ * @brief Main application window that coordinates the part tree, VTK viewport, themes, and VR session.
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

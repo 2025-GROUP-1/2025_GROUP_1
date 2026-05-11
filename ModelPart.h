@@ -1,4 +1,7 @@
-// represents a single STL part in the tree - holds the VTK pipeline, filters, and display state
+/**
+ * @file ModelPart.h
+ * @brief Declares the CAD part tree node and its GUI/VR VTK pipelines.
+ */
 
 #ifndef MODELPART_H
 #define MODELPART_H
@@ -23,6 +26,10 @@
 
 class VRMenuCallback;
 
+/**
+ * @class ModelPart
+ * @brief Represents one CAD part in the model tree, including STL loading, filters, colour, visibility, and actors.
+ */
 class ModelPart {
     friend class VRMenuCallback;
 public:

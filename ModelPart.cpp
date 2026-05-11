@@ -1,4 +1,7 @@
-// implements the VTK pipeline for each part - STL loading, filter chain, colour/visibility, explode
+/**
+ * @file ModelPart.cpp
+ * @brief Implements STL loading, VTK filter chains, display state, and explode-view transforms for each part.
+ */
 
 #include "ModelPart.h"
 #include <cmath>

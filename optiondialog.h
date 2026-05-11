@@ -1,4 +1,7 @@
-// dialog for editing a single part's properties (name, colour, visibility, filters)
+/**
+ * @file optiondialog.h
+ * @brief Declares the modal editor for a part's name, colour, visibility, shrink, and clip settings.
+ */
 
 #ifndef OPTIONDIALOG_H
 #define OPTIONDIALOG_H
@@ -12,6 +15,10 @@ namespace Ui {
     class OptionDialog;
 }
 
+/**
+ * @class OptionDialog
+ * @brief Modal Qt dialog for editing the selected CAD part's display and filter properties.
+ */
 class OptionDialog : public QDialog {
     Q_OBJECT
 

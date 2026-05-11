@@ -1,4 +1,7 @@
-// VR render thread implementation - OpenVR setup, custom interactor, ray casting, in-VR menu
+/**
+ * @file VRRenderThread.cpp
+ * @brief Implements OpenVR setup, controller rays, in-headset menus, locomotion, and queued VR scene updates.
+ */
 
 #include "VRRenderThread.h"
 #include <QMutexLocker>
@@ -98,6 +101,10 @@ void writeVrDebug(const char* mode, const char* fmt, ...)
 // - kills VTK's default red rays (we draw our own)
 // - inverts dolly direction so trackpad-up = push away
 // ---------------------------------------------------------------------------
+/**
+ * @class VRCustomStyle
+ * @brief OpenVR interactor style that replaces VTK's menu event and tunes controller dolly movement.
+ */
 class VRCustomStyle : public vtkOpenVRInteractorStyle {
 public:
     static VRCustomStyle* New();
@@ -200,6 +207,10 @@ vtkStandardNewMacro(VRCustomStyle);
 // controller ray + outline highlight
 // each controller gets a coloured ray and an outline box around hovered actors
 // ---------------------------------------------------------------------------
+/**
+ * @struct ControllerRay
+ * @brief Visual ray, picker, and hover outline state for one VR controller.
+ */
 struct ControllerRay {
     vtkNew<vtkCellPicker>      picker;
     vtkNew<vtkLineSource>      rayLine;
@@ -367,6 +378,10 @@ struct ControllerRay {
 };
 
 // handles Move3D events and updates both controller rays each frame
+/**
+ * @class VRRayCallback
+ * @brief VTK callback that refreshes controller rays and hover outlines during Move3D events.
+ */
 class VRRayCallback : public vtkCommand {
 public:
     static VRRayCallback* New() { return new VRRayCallback; }
@@ -466,9 +481,17 @@ private:
 // in-VR editing menu
 // shows coloured buttons above a hovered part for clip/shrink/colour changes
 // ---------------------------------------------------------------------------
+/**
+ * @struct VRMenu
+ * @brief Context menu shown near a hovered part for clip, shrink, and colour actions.
+ */
 struct VRMenu {
     enum Action { Clip, Shrink, ColRed, ColGreen, ColBlue, ColYellow, ColWhite, NUM_ACTIONS };
 
+    /**
+     * @struct Button
+     * @brief One clickable in-world button actor and the action it triggers.
+     */
     struct Button {
         vtkSmartPointer<vtkActor> actor;
         Action action;
@@ -587,6 +610,10 @@ struct VRMenu {
 
 // Passive replacement-menu shell. This deliberately creates one non-pickable,
 // hidden actor only; no interaction and no pick-list participation yet.
+/**
+ * @struct VRGlobalMenu
+ * @brief Headset-space control panel for global VR actions such as colour, filters, movement, and reset.
+ */
 struct VRGlobalMenu {
     vtkSmartPointer<vtkPlaneSource> panelPlane;
     vtkSmartPointer<vtkActor> panelActor;
@@ -605,6 +632,10 @@ struct VRGlobalMenu {
     bool visible = false;
     MovementClock::time_point lastToggleTime = MovementClock::time_point::min();
     enum class HitKind { None, Panel, Part, Visible, Clip, Shrink, Colour };
+    /**
+     * @struct HitResult
+     * @brief Result of testing a controller ray against global menu regions and part targets.
+     */
     struct HitResult {
         HitKind kind = HitKind::None;
         int index = -1;
@@ -1273,6 +1304,10 @@ struct VRGlobalMenu {
 };
 
 // handles menu button presses - fires when the user hits the menu button on the controller
+/**
+ * @class VRMenuCallback
+ * @brief VTK callback that handles controller button presses for context and global VR menus.
+ */
 class VRMenuCallback : public vtkCommand {
 public:
     static VRMenuCallback* New() { return new VRMenuCallback; }
@@ -1565,6 +1600,10 @@ private:
 // trigger-based grab (single controller)
 // hold trigger on a hovered part to drag it; release to drop
 // ---------------------------------------------------------------------------
+/**
+ * @struct TriggerGrabber
+ * @brief Tracks trigger-held part grabbing and applies controller-relative transforms while dragging.
+ */
 struct TriggerGrabber {
     bool active = false;
     vtkActor* targetActor = nullptr;
@@ -1682,6 +1721,10 @@ struct TriggerGrabber {
 // Polls controller axes directly; this avoids VTK's StartMovement action
 // getting stuck until some other button/trigger event wakes it up.
 // ---------------------------------------------------------------------------
+/**
+ * @struct PolledLocomotion
+ * @brief Polls OpenVR thumbstick state every frame so continuous locomotion stays responsive.
+ */
 struct PolledLocomotion {
     vtkNew<vtkTimerLog> timer;
     bool timerStarted = false;

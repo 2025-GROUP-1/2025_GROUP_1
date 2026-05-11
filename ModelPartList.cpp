@@ -1,4 +1,7 @@
-// implements the tree model - handles insert/remove and maps rows to ModelPart pointers
+/**
+ * @file ModelPartList.cpp
+ * @brief Implements tree indexing, insertion, removal, and lookup for the CAD part model.
+ */
 
 #include "ModelPartList.h"
 
