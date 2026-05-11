@@ -420,6 +420,11 @@ html.sidebar-collapsed #container {
   font-weight: 600;
 }
 
+.vr-badge-download {
+  border-color: rgba(0, 180, 160, 0.44);
+  background: var(--vr-soft);
+}
+
 .vr-chip {
   padding: 0 10px;
   color: #ddfffb;
@@ -472,6 +477,13 @@ html.sidebar-collapsed #container {
 
 .vr-quickstart-header p {
   margin: 4px 0 0;
+}
+
+.vr-quickstart-actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
 }
 
 .vr-command-list {

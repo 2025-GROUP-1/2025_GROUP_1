@@ -3,7 +3,7 @@
 
 # --- Project identity ------------------------------------------
 PROJECT_NAME           = "VR Base Station"
-PROJECT_NUMBER         = v1.1.0
+PROJECT_NUMBER         = v1.4.0
 PROJECT_BRIEF          = "Qt/VTK CAD viewer with VR support, EEEE2076 Group 1"
 PROJECT_ICON           = VRBaseStationLogo.ico
 OUTPUT_DIRECTORY       = .

@@ -10,6 +10,7 @@
       The GUI and VR session stay in sync while parts are loaded, filtered, coloured and explored.
     </p>
     <div class="vr-hero-actions">
+      <a class="vr-button" href="https://github.com/2025-GROUP-1/2025_GROUP_1/releases/latest/download/VRBaseStation-1.0.0-win64.exe">Download Windows EXE</a>
       <a class="vr-button" href="#features">Explore features</a>
       <a class="vr-button secondary" href="classes.html">Browse classes</a>
       <a class="vr-button secondary" href="how_it_works.html">Read how it works</a>
@@ -27,6 +28,8 @@
 @htmlonly
 <div class="vr-badge-row">
   <a class="vr-badge" href="https://github.com/2025-GROUP-1/2025_GROUP_1"><span>Repo</span> GitHub</a>
+  <a class="vr-badge vr-badge-download" href="https://github.com/2025-GROUP-1/2025_GROUP_1/releases/latest/download/VRBaseStation-1.0.0-win64.exe"><span>Download</span> Windows EXE</a>
+  <a class="vr-badge" href="https://github.com/2025-GROUP-1/2025_GROUP_1/releases/latest"><span>Release</span> v1.4.0</a>
   <a class="vr-badge" href="https://github.com/2025-GROUP-1/2025_GROUP_1/actions"><span>Build</span> Actions</a>
   <a class="vr-badge" href="classes.html"><span>Docs</span> Class index</a>
   <a class="vr-badge" href="files.html"><span>Source</span> File browser</a>
@@ -42,7 +45,10 @@
       <h3>Build the app</h3>
       <p>Clone, configure and build the Windows desktop app.</p>
     </div>
-    <a class="vr-button" href="https://github.com/2025-GROUP-1/2025_GROUP_1">Open repo</a>
+    <div class="vr-quickstart-actions">
+      <a class="vr-button" href="https://github.com/2025-GROUP-1/2025_GROUP_1/releases/latest/download/VRBaseStation-1.0.0-win64.exe">Download EXE</a>
+      <a class="vr-button secondary" href="https://github.com/2025-GROUP-1/2025_GROUP_1">Open repo</a>
+    </div>
   </div>
   <div class="vr-command-list">
     <div class="vr-command">
@@ -67,6 +73,10 @@
   <div class="vr-callout">
     <h3>Requirements</h3>
     <p>Visual Studio 2022+, Qt 6.10+, VTK 9 with OpenVR support, OpenVR SDK and CMake 3.20+.</p>
+  </div>
+  <div class="vr-callout">
+    <h3>Latest release</h3>
+    <p>Final Release v1.4.0 bundles the Windows executable with the Qt, VTK, OpenVR and debug CRT runtime DLLs.</p>
   </div>
   <div class="vr-callout">
     <h3>VR hardware note</h3>
@@ -98,8 +108,8 @@ needed.
     <p>target update rhythm for interactive VR changes</p>
   </div>
   <div class="vr-stat">
-    <strong>1</strong>
-    <p>Windows installer for the full runtime bundle</p>
+    <strong>v1.4.0</strong>
+    <p>latest Windows runtime bundle release</p>
   </div>
 </div>
 @endhtmlonly

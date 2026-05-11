@@ -154,7 +154,7 @@
     if (!footer) {
       footer = document.createElement("div");
       footer.id = "vr-site-footer";
-      footer.innerHTML = '<a href="https://github.com/2025-GROUP-1/2025_GROUP_1">Repository</a><a href="index.html">Overview</a><a href="classes.html">Classes</a><a href="files.html">Files</a><span>Docs v1.1.0</span><span>EEEE2076 Group 1</span>';
+      footer.innerHTML = '<a href="https://github.com/2025-GROUP-1/2025_GROUP_1">Repository</a><a href="https://github.com/2025-GROUP-1/2025_GROUP_1/releases/latest">Latest release v1.4.0</a><a href="https://github.com/2025-GROUP-1/2025_GROUP_1/releases/latest/download/VRBaseStation-1.0.0-win64.exe">Download Windows EXE</a><a href="index.html">Overview</a><a href="classes.html">Classes</a><a href="files.html">Files</a><span>Docs v1.4.0</span><span>EEEE2076 Group 1</span>';
     }
 
     if (footer.parentElement !== target) {
